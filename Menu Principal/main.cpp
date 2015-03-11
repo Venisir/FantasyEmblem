@@ -9,11 +9,16 @@
 #include <SFML/Graphics.hpp>
 int main()
 {
-        sf::RenderWindow window(sf::VideoMode(480, 320), "SFML works!");
+    //variables
+    bool nuevojuego=false;
+    bool continuar=false;
+    bool salir=false;
+    
+    sf::RenderWindow window(sf::VideoMode(480, 320), "SFML works!");
 
-        sf::Texture fond;
-        sf::Texture botn1;
-        sf::Texture botn2;
+    sf::Texture fond;
+    sf::Texture botn1;
+    sf::Texture botn2;
         sf::Texture botn3;
         
         if (!fond.loadFromFile("resources/menu.png"))

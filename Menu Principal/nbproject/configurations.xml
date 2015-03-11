@@ -39,9 +39,6 @@
           <incDir>
             <pElem>../SFML-2.1/include</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>SFML_STATIC</Elem>
-          </preprocessorList>
         </ccTool>
         <linkerTool>
           <linkerAddLib>
