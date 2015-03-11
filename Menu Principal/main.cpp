@@ -19,7 +19,7 @@ int main()
     sf::Texture fond;
     sf::Texture botn1;
     sf::Texture botn2;
-        sf::Texture botn3;
+    sf::Texture botn3;
         
         if (!fond.loadFromFile("resources/menu.png"))
         {
@@ -67,8 +67,19 @@ int main()
 
             while (window.pollEvent(event))
             {
-                if (event.type == sf::Event::Closed)
+                if ((event.type == sf::Event::Closed) || (event.key.code == sf::Keyboard::Escape)){
                     window.close();
+                }
+           
+                if((event.type== sf::Event::MouseButtonPressed ) && (event.mouseButton.button == sf::Mouse::Left)){
+                    
+                    if(sf::Mouse::getPosition().x>=){
+                        
+                    }
+                    
+                    
+                }
+               
 
             }
 
