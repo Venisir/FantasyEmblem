@@ -39,23 +39,17 @@
       <compileType>
         <ccTool>
           <incDir>
-            <pElem>C:/Users/Ricardo/Dropbox/SFML-2.1/include</pElem>
+            <pElem>../SFML-2.1/include</pElem>
           </incDir>
         </ccTool>
         <linkerTool>
+          <linkerAddLib>
+            <pElem>../SFML-2.1/lib</pElem>
+          </linkerAddLib>
           <linkerLibItems>
-            <linkerLibFileItem>C:/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-graphics-d.a</linkerLibFileItem>
-            <linkerLibFileItem>C:/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-graphics.a</linkerLibFileItem>
-            <linkerLibFileItem>C:/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-window-d.a</linkerLibFileItem>
-            <linkerLibFileItem>C:/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-window.a</linkerLibFileItem>
-            <linkerLibFileItem>C:/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-system-d.a</linkerLibFileItem>
-            <linkerLibFileItem>C:/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-system.a</linkerLibFileItem>
-            <linkerLibFileItem>C:/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-audio-d.a</linkerLibFileItem>
-            <linkerLibFileItem>C:/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-audio.a</linkerLibFileItem>
-            <linkerLibFileItem>C:/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-network-d.a</linkerLibFileItem>
-            <linkerLibFileItem>C:/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-network.a</linkerLibFileItem>
-            <linkerLibFileItem>C:/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-main-d.a</linkerLibFileItem>
-            <linkerLibFileItem>C:/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-main.a</linkerLibFileItem>
+            <linkerLibLibItem>sfml-graphics-d</linkerLibLibItem>
+            <linkerLibLibItem>sfml-window-d</linkerLibLibItem>
+            <linkerLibLibItem>sfml-system-d</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>

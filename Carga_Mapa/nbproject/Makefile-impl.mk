@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Plantilla
+PROJECTNAME=Carga_Mapa
 
 # Active Configuration
 DEFAULTCONF=Debug

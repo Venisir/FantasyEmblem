@@ -53,49 +53,25 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=/C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-graphics-d.a /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-graphics.a /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-window-d.a /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-window.a /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-system-d.a /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-system.a /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-audio-d.a /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-audio.a /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-network-d.a /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-network.a /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-main-d.a /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-main.a
+LDLIBSOPTIONS=-L../SFML-2.1/lib -lsfml-graphics-d -lsfml-window-d -lsfml-system-d
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/plantilla.exe
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/carga_mapa.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/plantilla.exe: /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-graphics-d.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/plantilla.exe: /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-graphics.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/plantilla.exe: /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-window-d.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/plantilla.exe: /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-window.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/plantilla.exe: /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-system-d.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/plantilla.exe: /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-system.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/plantilla.exe: /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-audio-d.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/plantilla.exe: /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-audio.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/plantilla.exe: /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-network-d.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/plantilla.exe: /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-network.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/plantilla.exe: /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-main-d.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/plantilla.exe: /C/Users/Ricardo/Dropbox/SFML-2.1/lib/libsfml-main.a
-
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/plantilla.exe: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/carga_mapa.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/plantilla ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/carga_mapa ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/C/Users/Ricardo/Dropbox/SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/tinyxml2.o: tinyxml2.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/C/Users/Ricardo/Dropbox/SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/tinyxml2.o tinyxml2.cpp
+	$(COMPILE.cc) -g -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/tinyxml2.o tinyxml2.cpp
 
 # Subprojects
 .build-subprojects:
@@ -103,7 +79,7 @@ ${OBJECTDIR}/tinyxml2.o: tinyxml2.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/plantilla.exe
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/carga_mapa.exe
 
 # Subprojects
 .clean-subprojects:

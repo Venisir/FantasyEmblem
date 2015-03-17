@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=MinGW-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/MinGW-Windows
-CND_ARTIFACT_NAME_Debug=plantilla
-CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW-Windows/plantilla
+CND_ARTIFACT_NAME_Debug=carga_mapa
+CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW-Windows/carga_mapa
 CND_PACKAGE_DIR_Debug=dist/Debug/MinGW-Windows/package
-CND_PACKAGE_NAME_Debug=plantilla.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/MinGW-Windows/package/plantilla.tar
+CND_PACKAGE_NAME_Debug=cargamapa.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/MinGW-Windows/package/cargamapa.tar
 # Release configuration
 CND_PLATFORM_Release=MinGW-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/MinGW-Windows
-CND_ARTIFACT_NAME_Release=plantilla
-CND_ARTIFACT_PATH_Release=dist/Release/MinGW-Windows/plantilla
+CND_ARTIFACT_NAME_Release=carga_mapa
+CND_ARTIFACT_PATH_Release=dist/Release/MinGW-Windows/carga_mapa
 CND_PACKAGE_DIR_Release=dist/Release/MinGW-Windows/package
-CND_PACKAGE_NAME_Release=plantilla.tar
-CND_PACKAGE_PATH_Release=dist/Release/MinGW-Windows/package/plantilla.tar
+CND_PACKAGE_NAME_Release=cargamapa.tar
+CND_PACKAGE_PATH_Release=dist/Release/MinGW-Windows/package/cargamapa.tar
 #
 # include compiler specific variables
 #
