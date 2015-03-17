@@ -61,6 +61,32 @@ int main()
     //mostrar el mapa
     while(window.isOpen())
     {
+        Event evento;
+        
+        while(window.pollEvent(evento))
+        {
+            switch(evento.type)
+            {
+                case Event::Closed:
+                    window.close();
+                break;
+                
+                case sf::Event::KeyPressed:
+                    
+                    //Verifico si se pulsa alguna tecla de movimiento
+                    switch(evento.key.code) 
+                    {
+                        //Tecla ESC para salir
+                        case sf::Keyboard::Escape:
+                            window.close();
+                        break;
+                    }
+            }
+            
+            
+        }
+        
+        
         for(int i=0;i<ancho;i++)
         {
             for(int j=0;j<alto;j++)
