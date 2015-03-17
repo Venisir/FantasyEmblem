@@ -4,7 +4,6 @@
 #include <string>
 #include "tinyxml2.h"
 
-   
 using namespace tinyxml2;
 using namespace std;
 using namespace sf;
@@ -21,16 +20,23 @@ int main()
     
     Sprite sprite;
     Texture textura;
-    
+    Texture cursor;
     
     if (!textura.loadFromFile("resources/patron.png"))
     {
         std::cerr << "Error cargando la imagen sprites.png";
         exit(0);
     }
-    
+    /*
+    if (!cursor.loadFromFile("resources/cursor.png"))
+    {
+        std::cerr << "Error cargando la imagen cursor.png";
+        exit(0);
+    }
+    */
     int matriz[ancho][alto];
     Sprite mapa[ancho][alto];
+    //Sprite spriteCursor;
     
     //preparamos el elemento para el primer tile
     elemento = doc.FirstChildElement("map")->FirstChildElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
@@ -57,6 +63,7 @@ int main()
         }
     }
     
+    //spriteCursor.setTexture(cursor);
     
     //mostrar el mapa
     while(window.isOpen())
@@ -69,11 +76,10 @@ int main()
             }
         }
         
-       window.display(); 
+        //window.draw(spriteCursor);
+        window.display(); 
     }
     
-    
-
     return 0;
 }
 

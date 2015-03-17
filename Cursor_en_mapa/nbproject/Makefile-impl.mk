@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Carga_Mapa
+PROJECTNAME=Cursor_en_mapa
 
 # Active Configuration
 DEFAULTCONF=Debug
