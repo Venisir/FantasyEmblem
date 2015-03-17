@@ -71,14 +71,7 @@ int main()
                     window.close();
                 }
            
-                if((event.type== sf::Event::MouseButtonPressed ) && (event.mouseButton.button == sf::Mouse::Left)){
-                    
-                    if(sf::Mouse::getPosition().x>=){
-                        
-                    }
-                    
-                    
-                }
+             //borro
                
 
             }
