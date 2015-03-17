@@ -158,27 +158,7 @@ int main()
                                 }
                             }
                             
-                            //mapa[c][f].setTexture(sprite.getTexture());
-                            
-                            
-                            
-                            
-                            /*mapa[(int)((spriteCursor.getPosition().x)/16)][(int)((spriteCursor.getPosition().y)/16)].setTexture(movimiento);
-                            
-                            mapa[(int)((spriteCursor.getPosition().x-32)/16)][(int)((spriteCursor.getPosition().y)/16)].setTexture(movimiento);
-                            mapa[(int)((spriteCursor.getPosition().x-16)/16)][(int)((spriteCursor.getPosition().y)/16)].setTexture(movimiento);
-                            mapa[(int)((spriteCursor.getPosition().x+16)/16)][(int)((spriteCursor.getPosition().y)/16)].setTexture(movimiento);
-                            mapa[(int)((spriteCursor.getPosition().x+32)/16)][(int)((spriteCursor.getPosition().y)/16)].setTexture(movimiento);
-                            
-                            mapa[(int)((spriteCursor.getPosition().x)/16)][(int)((spriteCursor.getPosition().y-32)/16)].setTexture(movimiento);
-                            mapa[(int)((spriteCursor.getPosition().x)/16)][(int)((spriteCursor.getPosition().y-16)/16)].setTexture(movimiento);
-                            mapa[(int)((spriteCursor.getPosition().x)/16)][(int)((spriteCursor.getPosition().y+16)/16)].setTexture(movimiento);
-                            mapa[(int)((spriteCursor.getPosition().x)/16)][(int)((spriteCursor.getPosition().y+32)/16)].setTexture(movimiento);
-                            
-                            mapa[(int)((spriteCursor.getPosition().x+16)/16)][(int)((spriteCursor.getPosition().y+16)/16)].setTexture(movimiento);
-                            mapa[(int)((spriteCursor.getPosition().x+16)/16)][(int)((spriteCursor.getPosition().y-16)/16)].setTexture(movimiento);
-                            mapa[(int)((spriteCursor.getPosition().x-16)/16)][(int)((spriteCursor.getPosition().y-16)/16)].setTexture(movimiento);
-                            mapa[(int)((spriteCursor.getPosition().x-16)/16)][(int)((spriteCursor.getPosition().y+16)/16)].setTexture(movimiento);*/
+                            mapa[c/16][f/16]=sprite;
                         break;
                     }
             }
