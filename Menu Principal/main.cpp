@@ -6,20 +6,23 @@
  */
 
 #include <iostream>
+using namespace  std;
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+
 int main()
-{
-    //variables
-    bool nuevojuego=false;
-    bool continuar=false;
-    bool salir=false;
-    
+{    
     sf::RenderWindow window(sf::VideoMode(480, 320), "SFML works!");
 
     sf::Texture fond;
     sf::Texture botn1;
     sf::Texture botn2;
     sf::Texture botn3;
+   /* sf::SoundBuffer buffer;
+    
+        if (!buffer.loadFromFile("resources/1.mp3")){
+            std::cerr << "Error al cargar el archivo de audio";
+        }*/
         
         if (!fond.loadFromFile("resources/menu.png"))
         {
@@ -61,35 +64,63 @@ int main()
         boton2.setPosition(480/2,160);
         boton3.setPosition(480/2,251.75);
         
+       /* // Creamos un sonido
+	sf::Sound sonido;
+	// Le asignamos el buffer cargado
+	sonido.setBuffer(buffer);
+	// establecemos el volumen a 80
+	sonido.setVolume(60);
+	*/
+        
         while (window.isOpen())
         {
             sf::Event event;
-
+            //sonido.play();
             while (window.pollEvent(event))
             {
-                if ((event.type == sf::Event::Closed) || (event.key.code == sf::Keyboard::Escape)){
+                if ((event.type == sf::Event::Closed)){
                     window.close();
                 }
-                 if (event.type == sf::Event::MouseMoved){
-                    
-                /*}
-                if (event.mouseButton.button == sf::Mouse::Left)
-                {**/
+                
+                if (event.type == sf::Event::MouseMoved){
                    if((event.mouseMove.x>=108) && (event.mouseMove.x <=371)){
                         if((event.mouseMove.y>=31) && (event.mouseMove.y<=86)){
-                            boton1.scale(2,2);
+                            boton1.setScale(1.2,1.2);
+                            boton2.setScale(1,1);
+                            boton3.setScale(1,1);
                         }
-                   }               
-                } 
-           }
-
-            window.clear();
-            window.draw(fondo);
-            window.draw(boton1);
-            window.draw(boton2);
-            window.draw(boton3);
-            window.display();
-
+                         if((event.mouseMove.y>=124) && (event.mouseMove.y<=177)){
+                            boton1.setScale(1,1);
+                            boton2.setScale(1.2,1.2);                            
+                            boton3.setScale(1,1);
+                        }
+                         if((event.mouseMove.y>=217) && (event.mouseMove.y<=270)){
+                            boton1.setScale(1,1);
+                            boton2.setScale(1,1);
+                            boton3.setScale(1.2,1.2);
+                        }
+                   }else{
+                       boton1.setScale(1,1);
+                       boton2.setScale(1,1);
+                       boton3.setScale(1,1);
+                   }             
+                }
+                if (event.type == sf::Event::MouseButtonPressed){
+                    if (event.mouseButton.button == sf::Mouse::Left){
+                        if((event.mouseButton.x>=108) && (event.mouseButton.x <=371)){
+                            if((event.mouseButton.y>=217) && (event.mouseButton.y<=270)){
+                                window.close();
+                            }
+                        }
+                    }       
+                }
+        }
+        window.clear();
+        window.draw(fondo);
+        window.draw(boton1);
+        window.draw(boton2);
+        window.draw(boton3);
+        window.display();
         }
 
         return 0;
