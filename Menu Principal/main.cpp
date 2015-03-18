@@ -70,11 +70,18 @@ int main()
                 if ((event.type == sf::Event::Closed) || (event.key.code == sf::Keyboard::Escape)){
                     window.close();
                 }
-           
-             //borro
-               
-
-            }
+                 if (event.type == sf::Event::MouseMoved){
+                    
+                /*}
+                if (event.mouseButton.button == sf::Mouse::Left)
+                {**/
+                   if((event.mouseMove.x>=108) && (event.mouseMove.x <=371)){
+                        if((event.mouseMove.y>=31) && (event.mouseMove.y<=86)){
+                            boton1.scale(2,2);
+                        }
+                   }               
+                } 
+           }
 
             window.clear();
             window.draw(fondo);

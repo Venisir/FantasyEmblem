@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="90">
+<configurationDescriptor version="95">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
@@ -37,12 +37,15 @@
       <compileType>
         <ccTool>
           <incDir>
-            <pElem>../SFML-2.1/include</pElem>
+            <pElem>../../../../../../SFML-2.1-windows-gcc-4.7-mingw-32bits/SFML-2.1/include</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>SFML_STATIC</Elem>
+          </preprocessorList>
         </ccTool>
         <linkerTool>
           <linkerAddLib>
-            <pElem>../SFML-2.1/lib</pElem>
+            <pElem>../../../../../../SFML-2.1-windows-gcc-4.7-mingw-32bits/SFML-2.1/lib</pElem>
           </linkerAddLib>
           <linkerLibItems>
             <linkerLibLibItem>sfml-graphics-d</linkerLibLibItem>
