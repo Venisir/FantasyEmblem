@@ -21,7 +21,7 @@ FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=MinGW_1-Windows
+CND_PLATFORM=MinGW-Windows
 CND_DLIB_EXT=dll
 CND_CONF=Debug
 CND_DISTDIR=dist
@@ -52,7 +52,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-L../../../../../../SFML-2.1-windows-gcc-4.7-mingw-32bits/SFML-2.1/lib -lsfml-graphics-d -lsfml-window-d -lsfml-system-d
+LDLIBSOPTIONS=-L../SFML-2.1/lib -lsfml-graphics-d -lsfml-system-d -lsfml-window-d -lsfml-audio-d
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -65,7 +65,7 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/menu_principal.exe: ${OBJECTFILES}
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -DSFML_STATIC -I../../../../../../SFML-2.1-windows-gcc-4.7-mingw-32bits/SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:

@@ -18,11 +18,11 @@ int main()
     sf::Texture botn1;
     sf::Texture botn2;
     sf::Texture botn3;
-   /* sf::SoundBuffer buffer;
+    sf::SoundBuffer buffer;
     
-        if (!buffer.loadFromFile("resources/1.mp3")){
+        if (!buffer.loadFromFile("resources/1.wav")){
             std::cerr << "Error al cargar el archivo de audio";
-        }*/
+        }
         
         if (!fond.loadFromFile("resources/menu.png"))
         {
@@ -64,18 +64,19 @@ int main()
         boton2.setPosition(480/2,160);
         boton3.setPosition(480/2,251.75);
         
-       /* // Creamos un sonido
+        // Creamos un sonido
 	sf::Sound sonido;
 	// Le asignamos el buffer cargado
 	sonido.setBuffer(buffer);
 	// establecemos el volumen a 80
 	sonido.setVolume(60);
-	*/
+        //sonido.play();
+	
         
         while (window.isOpen())
         {
             sf::Event event;
-            //sonido.play();
+            sonido.play();
             while (window.pollEvent(event))
             {
                 if ((event.type == sf::Event::Closed)){
