@@ -19,6 +19,8 @@ int main()
     sf::Texture botn2;
     sf::Texture botn3;
     sf::SoundBuffer buffer;
+    int contador=0;
+    bool continuar=false;
     
         if (!buffer.loadFromFile("resources/menu.wav")){
             std::cerr << "Error al cargar el archivo de audio";
@@ -69,14 +71,13 @@ int main()
 	// Le asignamos el buffer cargado
 	sonido.setBuffer(buffer);
 	// establecemos el volumen a 80
-	sonido.setVolume(60);
+	sonido.setVolume(80);
         //sonido.play();
 	
         
         while (window.isOpen())
         {
             sf::Event event;
-            sonido.play();
             while (window.pollEvent(event))
             {
                 if ((event.type == sf::Event::Closed)){
@@ -114,6 +115,52 @@ int main()
                             }
                         }
                     }       
+                }
+                if(event.type == sf::Event::KeyPressed){
+                    switch(event.key.code){
+                        case sf::Keyboard::Down:
+                            if(contador==0){
+                                boton1.setScale(1.2,1.2);
+                                boton2.setScale(1,1);
+                                boton3.setScale(1,1);
+                                contador++;
+                            }else if(contador==1){
+                                boton1.setScale(1,1);
+                                boton2.setScale(1.2,1.2);                            
+                                boton3.setScale(1,1);
+                                contador++;
+                                continuar=true;
+                            }else {
+                                boton1.setScale(1,1);
+                                boton2.setScale(1,1);
+                                boton3.setScale(1.2,1.2);
+                            
+                            }
+                            break;
+                        case sf::Keyboard::Up:
+                             if(contador==1){
+                                boton1.setScale(1.2,1.2);
+                                boton2.setScale(1,1);
+                                boton3.setScale(1,1);
+                            }else if(contador==2 && continuar==true){
+                                boton1.setScale(1,1);
+                                boton2.setScale(1.2,1.2);                            
+                                boton3.setScale(1,1);
+                                contador--;
+                                continuar=false;
+                            }else {
+                                boton1.setScale(1,1);
+                                boton2.setScale(1,1);
+                                boton3.setScale(1.2,1.2);
+                                contador--;
+                            }
+                        break;
+                        case sf::Keyboard::Return:
+                            if(contador==2){
+                                window.close();
+                            }
+                           
+                    }
                 }
         }
         window.clear();
