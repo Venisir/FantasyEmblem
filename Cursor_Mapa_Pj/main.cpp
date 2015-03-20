@@ -103,8 +103,6 @@ int main()
     
     while(window.isOpen())
     {
-        
-        
         //BLOQUE DEL PERSONAJE
         Time tiempoPasado = clockSaltitos.getElapsedTime();
         
