@@ -13,6 +13,8 @@ int main()
     RenderWindow window(sf::VideoMode(480,320), "Fantasy Emblem");
     doc.LoadFile("niveles/mapaTiled.tmx");
     
+    window.setSize(sf::Vector2u(800, 480));
+    
     XMLElement* elemento = doc.FirstChildElement("map");
     
     int ancho = elemento->IntAttribute("width");
