@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>tinyxml2.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -14,7 +15,6 @@
                    projectFiles="true">
       <itemPath>main.cpp</itemPath>
       <itemPath>tinyxml2.cpp</itemPath>
-      <itemPath>tinyxml2.h</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -39,7 +39,7 @@
       <compileType>
         <ccTool>
           <incDir>
-            <pElem>../../../../../SFML-2.1/include</pElem>
+            <pElem>../SFML-2.1/include</pElem>
           </incDir>
         </ccTool>
         <linkerTool>

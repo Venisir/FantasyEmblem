@@ -22,9 +22,11 @@ int main()
     sf::SoundBuffer mmcursor;
     sf::SoundBuffer mmselect;
     
+    sf::Clock clock;
+    sf::Time time1;
     
     int contador=0;
-   
+    
     bool continuar=false;
     bool hasonado1=false;
     bool hasonado2=false;
@@ -232,11 +234,12 @@ int main()
                         break;
                         case sf::Keyboard::Return:
                             if(contador==3){
+                                time1 = sf::seconds(1);
                                 select.play();
-                                if(select.getStatus() == sf::Sound::Playing)
-                                    window.close();
+                                sf::sleep(time1);
+                                window.close();
                             }
-                           
+                        break;  
                     }
                 }
         }
