@@ -13,7 +13,6 @@ using namespace  std;
 int main()
 {    
     sf::RenderWindow window(sf::VideoMode(480, 320), "Fantasy Emblem");
-    sf::Texture pantalla_inicio;
     sf::Texture fondo_menu;
     sf::Texture botn1;
     sf::Texture botn2;
@@ -24,7 +23,6 @@ int main()
     
     int contador=0;
    
-    bool start=false;
     bool continuar=false;
     bool hasonado1=false;
     bool hasonado2=false;
@@ -35,10 +33,6 @@ int main()
         }
         if (!mmcursor.loadFromFile("resources/MainMenu_Cursor.wav")){
             std::cerr << "Error al cargar el archivo de audio";
-        }
-        if(!pantalla_inicio.loadFromFile("resources/FireEmblem.jpg")){
-            std::cerr << "Error cargando la imagen menu.png";
-            exit(0);
         }
         if (!fondo_menu.loadFromFile("resources/menu.png"))
         {
@@ -65,7 +59,6 @@ int main()
         }
         
         //Creamos el sprite
-        sf::Sprite inicio(pantalla_inicio);
         sf::Sprite fondo(fondo_menu);
         sf::Sprite boton1(botn1);
         sf::Sprite boton2(botn2);
@@ -103,7 +96,6 @@ int main()
                 if ((event.type == sf::Event::Closed)){
                     window.close();
                 }
-                
                 if (event.type == sf::Event::MouseMoved){
                    if((event.mouseMove.x>=108) && (event.mouseMove.x <=371)){
                         if((event.mouseMove.y>=31) && (event.mouseMove.y<=86)){
@@ -239,14 +231,11 @@ int main()
                     }
                 }
         }
-        window.clear();
-        window.draw(inicio);
-        if(start==true){            
-            window.draw(fondo);
-            window.draw(boton1);
-            window.draw(boton2);
-            window.draw(boton3);
-        }
+        window.clear();        
+        window.draw(fondo);
+        window.draw(boton1);
+        window.draw(boton2);
+        window.draw(boton3);
         window.display();
         }
 
