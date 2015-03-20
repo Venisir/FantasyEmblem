@@ -7,13 +7,14 @@
 using namespace tinyxml2;
 using namespace std;
 using namespace sf;
+
 int main()
 {
-    int _width;
-    int _height;
-    int _tileWidth;
-    int _tileHeight;
-    int _numLayers;
+    int _width = 0;
+    int _height = 0;
+    int _tileWidth = 0;
+    int _tileHeight = 0;
+    int _numLayers = 0;
  
     XMLDocument doc;
     RenderWindow window(sf::VideoMode(480,320), "Fantasy Emblem");
@@ -30,7 +31,7 @@ int main()
     //Imagen del tileset
     XMLElement *img = map->FirstChildElement("tileset")->FirstChildElement("image");
     const char *filename = img->Attribute("source");
-    /*
+    
     //Cuantas capas tiene mi XML
     XMLElement *layer = map->FirstChildElement("layer");
     while(layer){
@@ -38,30 +39,43 @@ int main()
         layer = layer->NextSiblingElement("layer");
     }
     
-    //Cargando GID multiples capas  
-    XMLElement *data[_numLayers];
-    data[0] = map->FirstChildElement("layer")->FirstChildElement("data")->FirstChildElement("tile");    
+    //Cargando GID multiples capas 
+    
+    XMLElement **data;
+    data = new XMLElement*[_numLayers];
+    data[0] = map->FirstChildElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
+    
+    /*
+    int _AUX = 0;
+    
+    data[0]->QueryIntAttribute("gid", &_AUX );
+    
+    std::cerr <<_AUX;
+    */
+     
+    //XMLElement *data[0] = map->FirstChildElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
     
     int ***_tilemap;
-    
     _tilemap = new int**[_numLayers];
+    
     for(int i=0; i<_numLayers; i++){
         _tilemap[i] = new int*[_height];
     }
+    
     for(int l=0; l<_numLayers; l++){
         for(int y=0; y<_height; y++){
             _tilemap[l][y]=new int[_width];
         }
     }
-    */
-    /*
+    
+    
+    
     sf::Sprite ****_tilemapSprite;
     _tilemapSprite = new sf::Sprite***[_numLayers];
     for(int l=0; l<_numLayers; l++){
         _tilemapSprite[l] = new sf::Sprite**[_height];
     }
-    */
-    /*
+    
     for(int l=0; l<_numLayers; l++){
         for(int y=0; y<_height;y++){
             _tilemapSprite[l][y] = new sf::Sprite*[_width];
@@ -71,23 +85,31 @@ int main()
             }
         }
     }
-    */
-    /*
+    
+     XMLElement *layer2 = map->FirstChildElement("layer");
+     
     for(int l=0; l<_numLayers;l++){
+        
+        
+        data[l] = layer2->FirstChildElement("data")->FirstChildElement("tile");
+        
         for(int y=0; y<_height;y++){
             for(int x=0; x<_width; x++){
+                
+                //std::cerr <<"   l: " << l << "   y: " << y <<"   x: " << x <<endl;
                 data[l]->QueryIntAttribute("gid", &_tilemap[l][y][x]);
                 //Avanzo al siguiente tag
                 data[l]=data[l]->NextSiblingElement("tile");
-                
             }
         }
+        
+        layer2 = layer2->NextSiblingElement("layer");
     }
-    */
-    /*
+    
+    
     /////////////////////////////////////////////////////////////////////////
     Texture textura;
-    const IntRect FU(16,16,16,16);
+    const IntRect FU(0,0,16,16);
     
     if (!textura.loadFromFile("resources/patron.png"))
     {
@@ -106,19 +128,41 @@ int main()
                 //if(gid>=_tsw*_tsh){
                 //    std::cerr << "Error, git at (l,x,y)=("<<endl; 
                 //
-                }else if(gid>0){
+                //}else 
+                    
+                    if(gid>0){
                     //Si fuera 0 no creo sprite...
                     //_tilemapSprite[l][y][x] = new sf::Sprite(_tilesetTexture,_tilesetSprite[gid]->getTextureRect());
-                    _tilemapSprite[l][y][x] = new sf::Sprite(textura,FU);
+                    _tilemapSprite[l][y][x] = new sf::Sprite(textura);
                     _tilemapSprite[l][y][x]->setPosition(x*_tileWidth,y*_tileHeight);
+                    std::cerr << l << y << x <<endl;
                 }else{
                     _tilemapSprite[l][y][x] = NULL;
                 }
             }
         }
     }
-    */
 
+    _tilemapSprite[2][8][7]->setPosition(100,100);
+    _tilemapSprite[2][8][7]->setTextureRect(IntRect(0, 0, 16, 16));
+    _tilemapSprite[2][8][7]->setPosition(100,100);
+            
+    window.draw(*(_tilemapSprite[2][8][7]));
+    /*
+    //for(int l=0; l<_numLayers;l++){
+        for(int y=0;y<_height;y++){
+            for(int x=0;x<_width;x++){
+                window.draw(*_tilemapSprite[1][y][x]);
+            }
+        }
+    //}
+    */
+    
+    /*
+    void Tilemap::setActiveLayer(int layer){
+        _activeLayer = layer;
+    }
+    */
     
     /*
     Sprite sprite;
@@ -220,6 +264,7 @@ int main()
                 
             }
         }
+        window.draw(*(_tilemapSprite[2][8][7]));
     }
     return 0;
 }
