@@ -13,20 +13,34 @@ using namespace  std;
 int main()
 {    
     sf::RenderWindow window(sf::VideoMode(480, 320), "Fantasy Emblem");
-
-    sf::Texture fond;
+    sf::Texture pantalla_inicio;
+    sf::Texture fondo_menu;
     sf::Texture botn1;
     sf::Texture botn2;
     sf::Texture botn3;
-    sf::SoundBuffer buffer;
-    int contador=0;
-    bool continuar=false;
     
-        if (!buffer.loadFromFile("resources/menu.wav")){
+    sf::SoundBuffer mainmenu;
+    sf::SoundBuffer mmcursor;
+    
+    int contador=0;
+   
+    bool start=false;
+    bool continuar=false;
+    bool hasonado1=false;
+    bool hasonado2=false;
+    bool hasonado3=false;
+    
+        if (!mainmenu.loadFromFile("resources/menu.wav")){
             std::cerr << "Error al cargar el archivo de audio";
         }
-        
-        if (!fond.loadFromFile("resources/menu.png"))
+        if (!mmcursor.loadFromFile("resources/MainMenu_Cursor.wav")){
+            std::cerr << "Error al cargar el archivo de audio";
+        }
+        if(!pantalla_inicio.loadFromFile("resources/FireEmblem.jpg")){
+            std::cerr << "Error cargando la imagen menu.png";
+            exit(0);
+        }
+        if (!fondo_menu.loadFromFile("resources/menu.png"))
         {
                 std::cerr << "Error cargando la imagen menu.png";
                 exit(0);
@@ -51,13 +65,13 @@ int main()
         }
         
         //Creamos el sprite
-        sf::Sprite fondo(fond);
+        sf::Sprite inicio(pantalla_inicio);
+        sf::Sprite fondo(fondo_menu);
         sf::Sprite boton1(botn1);
         sf::Sprite boton2(botn2);
         sf::Sprite boton3(botn3);
         
         //Poner coordenadas
-        //fondo.setOrigin(480/2,320/2);
         boton1.setOrigin(420/2,280/2);
         boton2.setOrigin(420/2,280/2);
         boton3.setOrigin(420/2,280/2);
@@ -66,13 +80,19 @@ int main()
         boton2.setPosition(480/2,160);
         boton3.setPosition(480/2,251.75);
         
-        // Creamos un sonido
-	sf::Sound sonido;
+       // Creamos un sonido
+	sf::Sound menusonido;
 	// Le asignamos el buffer cargado
-	sonido.setBuffer(buffer);
+	menusonido.setBuffer(mainmenu);
 	// establecemos el volumen a 80
-	sonido.setVolume(80);
-        //sonido.play();
+	menusonido.setVolume(20);
+
+        menusonido.play();
+        
+        sf::Sound cursor;
+        cursor.setBuffer(mmcursor);
+        cursor.setVolume(100);
+
 	
         
         while (window.isOpen())
@@ -90,16 +110,36 @@ int main()
                             boton1.setScale(1.2,1.2);
                             boton2.setScale(1,1);
                             boton3.setScale(1,1);
+                            hasonado2=false;
+                            hasonado3=false;
+                            if(hasonado1==false){
+                                cursor.play();
+                                hasonado1=true;
+                            }
+
                         }
                          if((event.mouseMove.y>=124) && (event.mouseMove.y<=177)){
                             boton1.setScale(1,1);
                             boton2.setScale(1.2,1.2);                            
                             boton3.setScale(1,1);
+                            hasonado1=false;
+                            hasonado3=false;
+                            if(hasonado2==false){
+                                cursor.play();
+                                hasonado2=true;
+                            }
+
                         }
                          if((event.mouseMove.y>=217) && (event.mouseMove.y<=270)){
                             boton1.setScale(1,1);
                             boton2.setScale(1,1);
                             boton3.setScale(1.2,1.2);
+                            hasonado1=false;
+                            hasonado2=false;
+                            if(hasonado3==false){
+                                cursor.play();
+                                hasonado3=true;
+                            }
                         }
                    }else{
                        boton1.setScale(1,1);
@@ -124,17 +164,35 @@ int main()
                                 boton2.setScale(1,1);
                                 boton3.setScale(1,1);
                                 contador++;
+                                 hasonado2=false;
+                                hasonado3=false;
+                                if(hasonado1==false){
+                                    cursor.play();
+                                    hasonado1=true;
+                                }
+                                
                             }else if(contador==1){
                                 boton1.setScale(1,1);
                                 boton2.setScale(1.2,1.2);                            
                                 boton3.setScale(1,1);
                                 contador++;
                                 continuar=true;
+                                hasonado1=false;
+                                hasonado3=false;
+                                if(hasonado2==false){
+                                    cursor.play();
+                                    hasonado2=true;
+                                }
                             }else {
                                 boton1.setScale(1,1);
                                 boton2.setScale(1,1);
                                 boton3.setScale(1.2,1.2);
-                            
+                                hasonado1=false;
+                                hasonado2=false;
+                                if(hasonado3==false){
+                                    cursor.play();
+                                    hasonado3=true;
+                                }
                             }
                             break;
                         case sf::Keyboard::Up:
@@ -142,17 +200,35 @@ int main()
                                 boton1.setScale(1.2,1.2);
                                 boton2.setScale(1,1);
                                 boton3.setScale(1,1);
+                                hasonado2=false;
+                                hasonado3=false;
+                                if(hasonado1==false){
+                                    cursor.play();
+                                    hasonado1=true;
+                                }
                             }else if(contador==2 && continuar==true){
                                 boton1.setScale(1,1);
                                 boton2.setScale(1.2,1.2);                            
                                 boton3.setScale(1,1);
                                 contador--;
                                 continuar=false;
+                                hasonado1=false;
+                                hasonado3=false;
+                                if(hasonado2==false){
+                                    cursor.play();
+                                    hasonado2=true;
+                                }
                             }else {
                                 boton1.setScale(1,1);
                                 boton2.setScale(1,1);
                                 boton3.setScale(1.2,1.2);
                                 contador--;
+                                hasonado1=false;
+                                hasonado2=false;
+                                if(hasonado3==false){
+                                    cursor.play();
+                                    hasonado3=true;
+                                }
                             }
                         break;
                         case sf::Keyboard::Return:
@@ -164,10 +240,13 @@ int main()
                 }
         }
         window.clear();
-        window.draw(fondo);
-        window.draw(boton1);
-        window.draw(boton2);
-        window.draw(boton3);
+        window.draw(inicio);
+        if(start==true){            
+            window.draw(fondo);
+            window.draw(boton1);
+            window.draw(boton2);
+            window.draw(boton3);
+        }
         window.display();
         }
 
