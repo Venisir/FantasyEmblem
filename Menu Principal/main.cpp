@@ -12,7 +12,7 @@ using namespace  std;
 
 int main()
 {    
-    sf::RenderWindow window(sf::VideoMode(480, 320), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(480, 320), "Fantasy Emblem");
 
     sf::Texture fond;
     sf::Texture botn1;
@@ -20,7 +20,7 @@ int main()
     sf::Texture botn3;
     sf::SoundBuffer buffer;
     
-        if (!buffer.loadFromFile("resources/1.wav")){
+        if (!buffer.loadFromFile("resources/menu.wav")){
             std::cerr << "Error al cargar el archivo de audio";
         }
         
