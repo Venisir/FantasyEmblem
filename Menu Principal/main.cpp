@@ -20,6 +20,8 @@ int main()
     
     sf::SoundBuffer mainmenu;
     sf::SoundBuffer mmcursor;
+    sf::SoundBuffer mmselect;
+    
     
     int contador=0;
    
@@ -31,9 +33,15 @@ int main()
         if (!mainmenu.loadFromFile("resources/menu.wav")){
             std::cerr << "Error al cargar el archivo de audio";
         }
+    
         if (!mmcursor.loadFromFile("resources/MainMenu_Cursor.wav")){
             std::cerr << "Error al cargar el archivo de audio";
         }
+        
+        if (!mmselect.loadFromFile("resources/MainMenu_Select.wav")){
+            std::cerr << "Error al cargar el archivo de audio";
+        }
+    
         if (!fondo_menu.loadFromFile("resources/menu.png"))
         {
                 std::cerr << "Error cargando la imagen menu.png";
@@ -86,7 +94,9 @@ int main()
         cursor.setBuffer(mmcursor);
         cursor.setVolume(100);
 
-	
+	sf::Sound select;
+        select.setBuffer(mmselect);
+        select.setVolume(100);
         
         while (window.isOpen())
         {
@@ -143,6 +153,7 @@ int main()
                     if (event.mouseButton.button == sf::Mouse::Left){
                         if((event.mouseButton.x>=108) && (event.mouseButton.x <=371)){
                             if((event.mouseButton.y>=217) && (event.mouseButton.y<=270)){
+                                select.play();
                                 window.close();
                             }
                         }
@@ -156,6 +167,7 @@ int main()
                                 boton2.setScale(1,1);
                                 boton3.setScale(1,1);
                                 contador++;
+                                //cout<<contador<<endl;
                                  hasonado2=false;
                                 hasonado3=false;
                                 if(hasonado1==false){
@@ -168,6 +180,7 @@ int main()
                                 boton2.setScale(1.2,1.2);                            
                                 boton3.setScale(1,1);
                                 contador++;
+                                //cout<<contador<<endl;
                                 continuar=true;
                                 hasonado1=false;
                                 hasonado3=false;
@@ -175,10 +188,12 @@ int main()
                                     cursor.play();
                                     hasonado2=true;
                                 }
-                            }else {
+                            }else if(contador==2){
                                 boton1.setScale(1,1);
                                 boton2.setScale(1,1);
                                 boton3.setScale(1.2,1.2);
+                                contador++;
+                                //cout<<contador<<endl;
                                 hasonado1=false;
                                 hasonado2=false;
                                 if(hasonado3==false){
@@ -188,44 +203,38 @@ int main()
                             }
                             break;
                         case sf::Keyboard::Up:
-                             if(contador==1){
+                             if(contador==2 && continuar==true){
                                 boton1.setScale(1.2,1.2);
                                 boton2.setScale(1,1);
                                 boton3.setScale(1,1);
+                                contador--;
+                                //cout<<contador<<endl;
+                                continuar=false;
+                                hasonado1=false;
                                 hasonado2=false;
-                                hasonado3=false;
                                 if(hasonado1==false){
                                     cursor.play();
                                     hasonado1=true;
                                 }
-                            }else if(contador==2 && continuar==true){
+                            }else if(contador==3){
                                 boton1.setScale(1,1);
                                 boton2.setScale(1.2,1.2);                            
                                 boton3.setScale(1,1);
                                 contador--;
-                                continuar=false;
+                                //cout<<contador<<endl;
                                 hasonado1=false;
                                 hasonado3=false;
                                 if(hasonado2==false){
                                     cursor.play();
                                     hasonado2=true;
                                 }
-                            }else {
-                                boton1.setScale(1,1);
-                                boton2.setScale(1,1);
-                                boton3.setScale(1.2,1.2);
-                                contador--;
-                                hasonado1=false;
-                                hasonado2=false;
-                                if(hasonado3==false){
-                                    cursor.play();
-                                    hasonado3=true;
-                                }
                             }
                         break;
                         case sf::Keyboard::Return:
-                            if(contador==2){
-                                window.close();
+                            if(contador==3){
+                                select.play();
+                                if(select.getStatus() == sf::Sound::Playing)
+                                    window.close();
                             }
                            
                     }
