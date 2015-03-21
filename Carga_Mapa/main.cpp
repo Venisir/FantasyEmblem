@@ -86,10 +86,9 @@ int main()
         }
     }
     
-     XMLElement *layer2 = map->FirstChildElement("layer");
+    XMLElement *layer2 = map->FirstChildElement("layer");
      
     for(int l=0; l<_numLayers;l++){
-        
         
         data[l] = layer2->FirstChildElement("data")->FirstChildElement("tile");
         
@@ -109,15 +108,13 @@ int main()
     
     /////////////////////////////////////////////////////////////////////////
     Texture textura;
-    const IntRect FU(0,0,16,16);
     
     if (!textura.loadFromFile("resources/patron.png"))
     {
-        std::cerr << "Error cargando la imagen sprites.png";
+        std::cerr << "Error cargando la imagen patron.png";
         exit(0);
     }
     /////////////////////////////////////////////////////////////////////////
-    
     
     for(int l=0; l<_numLayers;l++){
         for(int y=0; y<_height;y++){
@@ -132,8 +129,7 @@ int main()
                     
                     if(gid>0){
                     //Si fuera 0 no creo sprite...
-                    //_tilemapSprite[l][y][x] = new sf::Sprite(_tilesetTexture,_tilesetSprite[gid]->getTextureRect());
-                    _tilemapSprite[l][y][x] = new sf::Sprite(textura);
+                    _tilemapSprite[l][y][x] = new sf::Sprite(textura, sf::IntRect(0, 0, 16, 16));
                     _tilemapSprite[l][y][x]->setPosition(x*_tileWidth,y*_tileHeight);
                     std::cerr << l << y << x <<endl;
                 }else{
@@ -143,11 +139,9 @@ int main()
         }
     }
 
-    _tilemapSprite[2][8][7]->setPosition(100,100);
-    _tilemapSprite[2][8][7]->setTextureRect(IntRect(0, 0, 16, 16));
-    _tilemapSprite[2][8][7]->setPosition(100,100);
-            
-    window.draw(*(_tilemapSprite[2][8][7]));
+    
+    //_tilemapSprite[2][8][7]->setPosition(100,100);
+    
     /*
     //for(int l=0; l<_numLayers;l++){
         for(int y=0;y<_height;y++){
@@ -264,7 +258,20 @@ int main()
                 
             }
         }
-        window.draw(*(_tilemapSprite[2][8][7]));
+        window.clear();
+        
+        for(int y=0; y<_height; y++){
+            for(int x=0; x<_width; x++){
+                /////OJO CUIDAO Q HAY Q DIBUJAR TO
+                if(_tilemapSprite[1][y][x] != NULL){
+                    window.draw(*(_tilemapSprite[1][y][x]));
+                }
+            }
+        }
+   
+        
+        
+        window.display();
     }
     return 0;
 }
