@@ -14,6 +14,8 @@ int main()
     int _height = 0;
     int _tileWidth = 0;
     int _tileHeight = 0;
+    int _imageWidth = 0;
+    int _imageHeight = 0;
     int _numLayers = 0;
  
     XMLDocument doc;
@@ -31,6 +33,10 @@ int main()
     //Imagen del tileset
     XMLElement *img = map->FirstChildElement("tileset")->FirstChildElement("image");
     const char *filename = img->Attribute("source");
+    
+    img->QueryIntAttribute( "height", &_imageHeight );
+    img->QueryIntAttribute( "width", &_imageWidth );
+    
     
     //Cuantas capas tiene mi XML
     XMLElement *layer = map->FirstChildElement("layer");
@@ -105,16 +111,46 @@ int main()
         layer2 = layer2->NextSiblingElement("layer");
     }
     
-    
-    /////////////////////////////////////////////////////////////////////////
     Texture textura;
     
-    if (!textura.loadFromFile("resources/patron.png"))
+    /*
+    string estrin = string(filename);
+    string cadena = strcat("niveles/",estrin);
+    
+    std::cerr << cadena <<endl;
+    std::cerr << filename <<endl;
+    */
+    //string s = strcat("niveles/Tilev1.png");
+    string s = "niveles/Tilev1.png";
+    
+    if (!textura.loadFromFile(s))
     {
-        std::cerr << "Error cargando la imagen patron.png";
+        std::cerr << "Error cargando la textura" << endl;
         exit(0);
     }
-    /////////////////////////////////////////////////////////////////////////
+            
+    sf::Sprite **_tilesetSprite;
+    _tilesetSprite = new sf::Sprite*[(_imageWidth/16)*(_imageHeight/16)];
+    
+    int fila = 0;
+    int columna = 0;
+    
+    for(int l=0; l<(_imageWidth/16)*(_imageHeight/16); l++){
+        
+        _tilesetSprite[l] = new sf::Sprite;
+        
+        if(columna == _imageWidth/16){
+            columna = 0;
+            fila++;
+        }
+        
+        _tilesetSprite[l]->setTextureRect(sf::IntRect(columna*16,fila*16,16,16));
+        
+        columna++;
+        
+        //std::cerr << l <<endl;
+    }
+    
     
     for(int l=0; l<_numLayers;l++){
         for(int y=0; y<_height;y++){
@@ -129,9 +165,13 @@ int main()
                     
                     if(gid>0){
                     //Si fuera 0 no creo sprite...
-                    _tilemapSprite[l][y][x] = new sf::Sprite(textura, sf::IntRect(0, 0, 16, 16));
+                    //_tilemapSprite[l][y][x] = new sf::Sprite(textura, sf::IntRect(0, 0, 16, 16));
+                    
+                    _tilemapSprite[l][y][x] = new sf::Sprite(textura, _tilesetSprite[gid]->getTextureRect());//sf::IntRect(0, 0, 16, 16));
+                    
+                    
                     _tilemapSprite[l][y][x]->setPosition(x*_tileWidth,y*_tileHeight);
-                    std::cerr << l << y << x <<endl;
+                    //std::cerr << l << y << x <<endl;
                 }else{
                     _tilemapSprite[l][y][x] = NULL;
                 }
@@ -139,6 +179,7 @@ int main()
         }
     }
 
+    //std::cerr << filename <<endl;
     
     //_tilemapSprite[2][8][7]->setPosition(100,100);
     
@@ -260,15 +301,16 @@ int main()
         }
         window.clear();
         
-        for(int y=0; y<_height; y++){
-            for(int x=0; x<_width; x++){
-                /////OJO CUIDAO Q HAY Q DIBUJAR TO
-                if(_tilemapSprite[1][y][x] != NULL){
-                    window.draw(*(_tilemapSprite[1][y][x]));
+        for(int l=0; l<_numLayers; l++){
+            for(int y=0; y<_height; y++){
+                for(int x=0; x<_width; x++){
+                    //OJO, esta dibujando solo la capa de colisiones
+                    if(_tilemapSprite[l][y][x] != NULL){
+                        window.draw(*(_tilemapSprite[l][y][x]));
+                    }
                 }
             }
         }
-   
         
         
         window.display();

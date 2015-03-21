@@ -39,12 +39,12 @@
       <compileType>
         <ccTool>
           <incDir>
-            <pElem>../SFML-2.1/include</pElem>
+            <pElem>../../../../../../SFML-2.1/include</pElem>
           </incDir>
         </ccTool>
         <linkerTool>
           <linkerAddLib>
-            <pElem>../../../../../SFML-2.1/lib</pElem>
+            <pElem>../../../../../../SFML-2.1/lib</pElem>
           </linkerAddLib>
           <linkerLibItems>
             <linkerLibLibItem>sfml-graphics-d</linkerLibLibItem>

@@ -53,7 +53,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-L../../../../../SFML-2.1/lib -lsfml-graphics-d -lsfml-window-d -lsfml-system-d -lsfml-audio-d -lsfml-main-d -lsfml-network-d
+LDLIBSOPTIONS=-L../../../../../../SFML-2.1/lib -lsfml-graphics-d -lsfml-window-d -lsfml-system-d -lsfml-audio-d -lsfml-main-d -lsfml-network-d
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -66,12 +66,12 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/personaje_mapa.exe: ${OBJECTFILES}
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -I../../../../../../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/tinyxml2.o: tinyxml2.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/tinyxml2.o tinyxml2.cpp
+	$(COMPILE.cc) -g -I../../../../../../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/tinyxml2.o tinyxml2.cpp
 
 # Subprojects
 .build-subprojects:
