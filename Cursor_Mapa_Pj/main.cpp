@@ -19,7 +19,11 @@ int main()
     
     int ancho = elemento->IntAttribute("width");
     int alto = elemento->IntAttribute("height");
-    bool reset=false;
+    string estado= "default";
+    int state=0;//estado por defecto
+    //array donde almacenaremos mediante un numero entero el paso a dar por el personaje (1 derecha,2 arriba,-1 izquierda,-2 abajo)
+    int* recorrido= new int[2];//en este entregable de prueba lo hacemos con un array de tamaño 2
+    int contador=0;
     
     Sprite sprite;
     Texture textura;
@@ -148,97 +152,211 @@ int main()
         
         while(window.pollEvent(evento))
         {
-            switch(evento.type)
+            switch(state)
             {
-                case Event::Closed:
-                    window.close();
-                break;
-                
-                case sf::Event::KeyPressed:
-                    
-                    //Verifico si se pulsa alguna tecla de movimiento
-                    switch(evento.key.code) 
+                case 0:/*estado por defecto*/
+                    switch(evento.type)
                     {
-                        //Tecla ESC para salir
-                        case sf::Keyboard::Escape:
+                        case Event::Closed:
                             window.close();
                         break;
-                        
-                        //Tecla derecha
-                        case sf::Keyboard::Right:
-                            if(spriteCursor.getPosition().x<=448)
-                                spriteCursor.move(16,0);
-                        break;
-                        
-                        //Tecla izquierda
-                        case sf::Keyboard::Left:
-                            if(spriteCursor.getPosition().x>=16)
-                                spriteCursor.move(-16,0);
-                        break;
-                        
-                        //Tecla arriba
-                        case sf::Keyboard::Up:
-                            if(spriteCursor.getPosition().y>=16)
-                                spriteCursor.move(0,-16);
-                        break;
-                        
-                        //Tecla abajo
-                        case sf::Keyboard::Down:
-                            if(spriteCursor.getPosition().y<=302)
-                                spriteCursor.move(0,16);
-                        break;
-                        
-                        case sf::Keyboard::L:
-                            
-                            for(int i=0;i<ancho;i++)
+
+                        case sf::Event::KeyPressed:
+
+                            //Verifico si se pulsa alguna tecla de movimiento
+                            switch(evento.key.code) 
                             {
-                                for(int j=0;j<alto;j++)
-                                {
-                                    mapa[i][j].setTexture(textura);
-                                }
-                            }
-                            
-                        break;
-                        
-                        
-                        //Tecla de prueba M
-                        case sf::Keyboard::Return:
-                            
-                            if(spriteCursor.getPosition()==spritePj1.getPosition()){
-                                reset=false;
+                                //Tecla ESC para salir
+                                case sf::Keyboard::Escape:
+                                    window.close();
+                                break;
 
-                                int c= (int)(spriteCursor.getPosition().x);
-                                int f= (int)(spriteCursor.getPosition().y);
+                                //Tecla derecha
+                                case sf::Keyboard::Right:
+                                    if(spriteCursor.getPosition().x<=448)
+                                        spriteCursor.move(16,0);
+                                break;
 
-                                for(int i=f-16;i<=f+16;i+=16)
-                                {
-                                    for(int j=c-16;j<=c+16;j+=16)
-                                    {
-                                        if(i==f-16 && j==c)
+                                //Tecla izquierda
+                                case sf::Keyboard::Left:
+                                    if(spriteCursor.getPosition().x>=16)
+                                        spriteCursor.move(-16,0);
+                                break;
+
+                                //Tecla arriba
+                                case sf::Keyboard::Up:
+                                    if(spriteCursor.getPosition().y>=16)
+                                        spriteCursor.move(0,-16);
+                                break;
+
+                                //Tecla abajo
+                                case sf::Keyboard::Down:
+                                    if(spriteCursor.getPosition().y<=302)
+                                        spriteCursor.move(0,16);
+                                break;
+
+                                //Tecla de prueba M
+                                case sf::Keyboard::Return:
+                                    estado="sel_movimiento";
+                                    state=1;
+                                    if(spriteCursor.getPosition()==spritePj1.getPosition()){
+                                        int c= (int)(spriteCursor.getPosition().x);
+                                        int f= (int)(spriteCursor.getPosition().y);
+
+                                        for(int i=f-16;i<=f+16;i+=16)
                                         {
-                                            mapa[j/16][(i-16)/16].setTexture(movimiento);
-                                        }
-                                        else if(i==f+16 && j==c)
-                                        {
-                                            mapa[j/16][(i+16)/16].setTexture(movimiento);
-                                        }
-                                        else if(i==f && j==c-16)
-                                        {
-                                           mapa[(j-16)/16][i/16].setTexture(movimiento); 
-                                        }
-                                        else if(i==f && j==c+16)
-                                        {
-                                            mapa[(j+16)/16][i/16].setTexture(movimiento); 
+                                            for(int j=c-16;j<=c+16;j+=16)
+                                            {
+                                                if(i==f-16 && j==c)
+                                                {
+                                                    mapa[j/16][(i-16)/16].setTexture(movimiento);
+                                                }
+                                                else if(i==f+16 && j==c)
+                                                {
+                                                    mapa[j/16][(i+16)/16].setTexture(movimiento);
+                                                }
+                                                else if(i==f && j==c-16)
+                                                {
+                                                   mapa[(j-16)/16][i/16].setTexture(movimiento); 
+                                                }
+                                                else if(i==f && j==c+16)
+                                                {
+                                                    mapa[(j+16)/16][i/16].setTexture(movimiento); 
+                                                }
+
+                                                mapa[j/16][i/16].setTexture(movimiento);
+                                            }
                                         }
 
-                                        mapa[j/16][i/16].setTexture(movimiento);
+                                        mapa[c/16][f/16].setTexture(textura);
                                     }
-                                }
-
-                                mapa[c/16][f/16].setTexture(textura);
+                                break;
                             }
                         break;
                     }
+                break;
+                
+                case 1://estado seleccionar el movimiento que tiene que hacer el personaje
+                    switch(evento.type)
+                    {
+                        case Event::Closed:
+                            window.close();
+                        break;
+
+                        case sf::Event::KeyPressed:
+
+                            //Verifico si se pulsa alguna tecla de movimiento
+                            switch(evento.key.code) 
+                            {
+                                //Tecla ESC para salir
+                                case sf::Keyboard::Escape:
+                                    window.close();
+                                break;
+
+                                //Tecla derecha
+                                case sf::Keyboard::Right:
+                                    if(spriteCursor.getPosition().x<=448)
+                                        spriteCursor.move(16,0);
+                                    
+                                    if(contador<2)
+                                    {
+                                        recorrido[contador]=1;
+                                        contador++;
+                                    }
+                                break;
+
+                                //Tecla izquierda
+                                case sf::Keyboard::Left:
+                                    if(spriteCursor.getPosition().x>=16)
+                                        spriteCursor.move(-16,0);
+                                    
+                                    if(contador<2)
+                                    {
+                                        recorrido[contador]=-1;
+                                        contador++;
+                                    }
+                                    
+                                break;
+
+                                //Tecla arriba
+                                case sf::Keyboard::Up:
+                                    if(spriteCursor.getPosition().y>=16)
+                                        spriteCursor.move(0,-16);
+                                    
+                                    if(contador<2)
+                                    {
+                                        recorrido[contador]=2;
+                                        contador++;
+                                    }
+                                break;
+
+                                //Tecla abajo
+                                case sf::Keyboard::Down:
+                                    if(spriteCursor.getPosition().y<=302)
+                                        spriteCursor.move(0,16);
+                                    
+                                    if(contador<2)
+                                    {
+                                        recorrido[contador]=-2;
+                                        contador++;
+                                    }
+                                    
+                                break;
+                                
+                                case sf::Keyboard::Return:
+                                    
+                                    if(contador!=0)//si se ha decidido algun movimiento para el personaje
+                                    {
+                                        state=2;
+                                        estado="movimientopj";
+                                    }
+                                    else
+                                    {
+                                        state=0;
+                                        estado="default";
+                                    }
+                                    
+                                    for(int i=0;i<ancho;i++)
+                                    {
+                                        for(int j=0;j<alto;j++)
+                                        {
+                                            mapa[i][j].setTexture(textura);
+                                        }
+                                    }
+                                    
+                                break;
+                            }
+                        break;
+                    }
+                break;
+                
+                case 2:
+                    for(int i=0;i < contador;i++)
+                    {
+                        switch(recorrido[i])
+                        {
+                            case 1://derecha
+                                spritePj1.move(16,0);
+                                break;
+
+                            case 2://arriba
+                                spritePj1.move(0,-16);
+                                break;
+
+                            case -1://izquierda
+                                spritePj1.move(-16,0);
+                                break;
+
+                            case -2://abajo
+                                spritePj1.move(0,16);
+                                break; 
+                        }
+                    }
+                    contador=0;
+                    state=0;
+                    estado="default";
+                break;
+            /*fin switch estado*/        
             }
         }
         

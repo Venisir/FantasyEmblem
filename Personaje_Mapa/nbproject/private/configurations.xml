@@ -27,7 +27,7 @@
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
         </runcommandpicklist>
         <runcommand>"${OUTPUT_PATH}"</runcommand>
-        <rundir>C:\Users\Alberto\Documents\NetBeansProjects\p0_1</rundir>
+        <rundir>C:\Users\Alberto\Documents\GitHub\FantasyEmblem\Personaje_Mapa\.</rundir>
         <buildfirst>true</buildfirst>
         <console-type>1</console-type>
         <terminal-type>0</terminal-type>
