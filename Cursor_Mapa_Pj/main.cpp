@@ -21,6 +21,7 @@ int main()
     int alto = elemento->IntAttribute("height");
     string estado= "default";
     int state=0;//estado por defecto
+    int* recorrido= new int[];
     
     Sprite sprite;
     Texture textura;
