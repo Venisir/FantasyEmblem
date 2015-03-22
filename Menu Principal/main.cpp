@@ -155,9 +155,7 @@ int main()
                     if (event.mouseButton.button == sf::Mouse::Left){
                         if((event.mouseButton.x>=108) && (event.mouseButton.x <=371)){
                             if((event.mouseButton.y>=217) && (event.mouseButton.y<=270)){
-                                time1 = sf::seconds(1);
                                 select.play();
-                                sf::sleep(time1);
                                 window.close();
                             }
                         }
