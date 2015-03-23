@@ -13,6 +13,7 @@ using namespace  std;
 int main()
 {    
     sf::RenderWindow window(sf::VideoMode(480, 320), "Fantasy Emblem");
+    
     sf::Texture fondo_menu;
     sf::Texture botn1;
     sf::Texture botn2;

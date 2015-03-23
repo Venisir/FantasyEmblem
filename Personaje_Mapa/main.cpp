@@ -9,6 +9,7 @@ int main()
     //Creamos una ventana 
     sf::RenderWindow window(sf::VideoMode(480, 320), "Fantasy Emblem");
     
+    window.setSize(sf::Vector2u(960, 640));
     //Cargo la imagen donde reside la textura del sprite
     sf::Texture mapa;
     sf::Texture casilla;
