@@ -67,6 +67,12 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
+          <incDir>
+            <pElem>../SFML-2.1/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>SFML_STATIC</Elem>
+          </preprocessorList>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
@@ -74,6 +80,19 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <linkerAddLib>
+            <pElem>../SFML-2.1/lib</pElem>
+          </linkerAddLib>
+          <linkerLibItems>
+            <linkerLibLibItem>sfml-graphics-s-d</linkerLibLibItem>
+            <linkerLibLibItem>sfml-window-s-d</linkerLibLibItem>
+            <linkerLibLibItem>sfml-system-s-d</linkerLibLibItem>
+            <linkerLibLibItem>sfml-audio-s-d</linkerLibLibItem>
+            <linkerLibLibItem>sfml-main-d</linkerLibLibItem>
+            <linkerLibLibItem>sfml-network-s-d</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
       </compileType>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
