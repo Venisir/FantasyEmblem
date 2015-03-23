@@ -18,13 +18,14 @@ int main()
     
     XMLElement* elemento = doc.FirstChildElement("map");
     
+    //variables que recojen el ancho y alto del tileset para poder crear la matriz
     int ancho = elemento->IntAttribute("width");
     int alto = elemento->IntAttribute("height");
     string estado= "default";
     int state=0;//estado por defecto
     //array donde almacenaremos mediante un numero entero el paso a dar por el personaje (1 derecha,2 arriba,-1 izquierda,-2 abajo)
     int* recorrido= new int[2];//en este entregable de prueba lo hacemos con un array de tamaño 2
-    int contador=0;
+    int contador=0;//contador para recorrer el array del recorrido
     
     Sprite sprite;
     Texture textura;
@@ -58,9 +59,9 @@ int main()
         exit(0);
     }
     
-    int matriz[ancho][alto];
+    int matriz[ancho][alto];//matriz de enteros que recojera los valores alojados en el tmx
     
-    //Creo el spritesheet a partir de la imagen anterior
+    //Creacion de los sprites personaje,cursor y la matriz de sprites
     Sprite spritePj1(texPj1);
     Sprite mapa[ancho][alto];
     Sprite spriteCursor(cursor);
@@ -103,6 +104,7 @@ int main()
         }
     }
     
+    /*el siguiente bloque de código es para que el personaje realice una animacion de movimiento (mas bien respiracion) cuando esta quieto*/
     int valorSprite = 1;
     bool siguienteSumar = true;
     
@@ -138,23 +140,17 @@ int main()
                 }
             }
             
-            //std::cerr << "ValorSprite: " << valorSprite << "   tiempoPasado: " << tiempoPasado.asSeconds();
+            
             spritePj1.setTextureRect(sf::IntRect(valorSprite*16, 0, 16, 16));
             clockSaltitos.restart();
-            /*
-            window.clear();
-            window.draw(spriteCursor);
-            window.draw(spritePj1);
-            window.display();
-            */
         }
         
-        Event evento;
+        Event evento;//variable de tipo event que recojera los distintos tipos de eventos que pueden ocurrir cuando la ventana esta abierta
         
         sf::Time tiempoPasadoMovimiento;
         
-        int valorSpriteMovimiento = 0;
-        float destino;
+        int valorSpriteMovimiento = 0;//indice de la animacion de sprites de movimiento
+        float destino;//variable que almacena el destino del movimiento del personaje
         
         
         while(window.pollEvent(evento))
@@ -202,40 +198,43 @@ int main()
                                         spriteCursor.move(0,16);
                                 break;
 
-                                //Tecla de prueba M
+                                //Tecla enter
                                 case sf::Keyboard::Return:
-                                    estado="sel_movimiento";
-                                    state=1;
+                                    //muestra la cuadricula del personaje si el personaje y el cursor estan en la misma posicion                                    
                                     if(spriteCursor.getPosition()==spritePj1.getPosition()){
-                                        int c= (int)(spriteCursor.getPosition().x);
-                                        int f= (int)(spriteCursor.getPosition().y);
+                                        int c= (int)(spriteCursor.getPosition().x);//posicion x
+                                        int f= (int)(spriteCursor.getPosition().y);//posicion y
 
+                                        /*(los 16 es por el tamaño del sprite) se recorre desde x-1,y-1 hasta x+1,y+1 pintando asi la cuadricula*/
                                         for(int i=f-16;i<=f+16;i+=16)
                                         {
                                             for(int j=c-16;j<=c+16;j+=16)
                                             {
+                                                //se diferencian 4 casos uno para cada direccion (arriba,abajo,izquierda,derecha) y se pinta un cuadrado mas en funcion de la direccion pertinente
                                                 if(i==f-16 && j==c)
                                                 {
-                                                    mapa[j/16][(i-16)/16].setTexture(movimiento);
+                                                    mapa[j/16][(i-16)/16].setTexture(movimiento);//arriba
                                                 }
                                                 else if(i==f+16 && j==c)
                                                 {
-                                                    mapa[j/16][(i+16)/16].setTexture(movimiento);
+                                                    mapa[j/16][(i+16)/16].setTexture(movimiento);//abajo
                                                 }
                                                 else if(i==f && j==c-16)
                                                 {
-                                                   mapa[(j-16)/16][i/16].setTexture(movimiento); 
+                                                   mapa[(j-16)/16][i/16].setTexture(movimiento); //izquierda
                                                 }
                                                 else if(i==f && j==c+16)
                                                 {
-                                                    mapa[(j+16)/16][i/16].setTexture(movimiento); 
+                                                    mapa[(j+16)/16][i/16].setTexture(movimiento); //derecha
                                                 }
 
-                                                mapa[j/16][i/16].setTexture(movimiento);
+                                                mapa[j/16][i/16].setTexture(movimiento);//se pinta la posicion del centro con la textura original para que quede libre de la cuadricula
                                             }
                                         }
 
                                         mapa[c/16][f/16].setTexture(textura);
+                                        estado="sel_movimiento";
+                                        state=1;//pasa al estado de seleccion de movimiento
                                     }
                                 break;
                             }
@@ -264,7 +263,8 @@ int main()
                                 case sf::Keyboard::Right:
                                     if(spriteCursor.getPosition().x<=448)
                                         spriteCursor.move(16,0);
-                                    
+                                    /*Si no se han introducido el numero maximo de valores en el array que almacena el recorrido, almacena el entero correspondiente a la direccion seleccionada
+                                     Se aplica en las 4 direcciones*/
                                     if(contador<2)
                                     {
                                         recorrido[contador]=1;
@@ -314,15 +314,16 @@ int main()
                                     
                                     if(contador!=0)//si se ha decidido algun movimiento para el personaje
                                     {
-                                        state=2;
+                                        state=2;//pasa al estado de movimiento
                                         estado="movimientopj";
                                     }
                                     else
                                     {
-                                        state=0;
+                                        state=0;//pasa al estado por defecto
                                         estado="default";
                                     }
                                     
+                                    //refresca el mapa para hacer desaparecer la cuadricula
                                     for(int i=0;i<ancho;i++)
                                     {
                                         for(int j=0;j<alto;j++)
@@ -338,24 +339,28 @@ int main()
                 break;
                 
                 case 2:
-                    for(int i=0;i < contador;i++)
+                    state=0;
+                    estado="default";
+                    for(int i=0;i < contador;i++)//recorre el array que ha almacenado el recorrido en funcion de los elementos que contenga
                     {
                         switch(recorrido[i])
                         {
                             case 1://derecha
-                                clockSaltitos.restart();
+                                clockSaltitos.restart();//se reinicia el clock que hace la animacion de movimiento
 
-                                destino = spritePj1.getPosition().x+16.0;
+                                destino = spritePj1.getPosition().x+16.0;//se almacena el destino del personaje
 
-                                while(spritePj1.getPosition().x != destino){
+                                while(spritePj1.getPosition().x != destino){//mientras no haya llegado al destino
 
-                                    tiempoPasadoMovimiento = clockSaltitos.getElapsedTime();
+                                    tiempoPasadoMovimiento = clockSaltitos.getElapsedTime();//se almacela el tiempo pasado 
                                     if(tiempoPasadoMovimiento.asSeconds() >= 0.1){
-                                        spritePj1.move(1,0);
+                                        spritePj1.move(1,0);//movemos el sprite/
+                                        //cambiamos el sprite por el sprite correspondiente del spritesheet gracias a la variable valorSpriteMovimiento
                                         spritePj1.setTextureRect(sf::IntRect(valorSpriteMovimiento, 32, 20, 20));
 
                                         //////////////////////////////////////////////////
-                                        window.clear();
+                                        window.clear();//limpia la ventana
+                                        //resfesca el mapa 
                                         for(int i=0;i<ancho;i++)
                                         {
                                             for(int j=0;j<alto;j++)
@@ -363,11 +368,11 @@ int main()
                                                 window.draw(mapa[i][j]);
                                             }
                                         }
-                                        window.draw(spritePj1);
+                                        window.draw(spritePj1);//pinta el sprite del personaje
                                         window.display();
                                         //////////////////////////////////////////////////
 
-                                        if(valorSpriteMovimiento != 96){
+                                        if(valorSpriteMovimiento != 96){//aumenta en 32 cada vez el valor de la variable para indicar la posicion x del spritesheet
                                             valorSpriteMovimiento = valorSpriteMovimiento+32;
                                         }
                                         else
@@ -377,6 +382,7 @@ int main()
                                         clockSaltitos.restart();
                                     }
                                 }
+                                //una vez ha terminado de hacer el movimiento vuelve a su posicion original
                                 spritePj1.setTextureRect(sf::IntRect(0, 0, 16, 16));
                                 
                                 break;
@@ -504,13 +510,13 @@ int main()
                         }
                     }
                     contador=0;
-                    state=0;
-                    estado="default";
+
                 break;
             /*fin switch estado*/        
             }
         }
         
+        /*refresco del mapa*/
         for(int i=0;i<ancho;i++)
         {
             for(int j=0;j<alto;j++)
@@ -519,6 +525,7 @@ int main()
             }
         }
         
+        /*`pinta persinaje y cursor*/
         window.draw(spritePj1);
         window.draw(spriteCursor);
         window.display(); 
