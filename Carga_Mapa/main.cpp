@@ -121,7 +121,9 @@ int main()
     std::cerr << filename <<endl;
     */
     //string s = strcat("niveles/Tilev1.png");
-    string s = "niveles/Tilev1.png";
+    string s1 = string(filename);
+    string s = "niveles/"+s1;
+    std::cerr << s <<endl;
     
     if (!textura.loadFromFile(s))
     {
