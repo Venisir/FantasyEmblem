@@ -17,7 +17,7 @@ int main()
     int _imageWidth = 0;
     int _imageHeight = 0;
     int _numLayers = 0;
- 
+
     XMLDocument doc;
     RenderWindow window(sf::VideoMode(480,320), "Fantasy Emblem");
     doc.LoadFile("niveles/mapa1.tmx");
@@ -93,7 +93,7 @@ int main()
     }
     
     XMLElement *layer2 = map->FirstChildElement("layer");
-     
+     /*
     for(int l=0; l<_numLayers;l++){
         
         data[l] = layer2->FirstChildElement("data")->FirstChildElement("tile");
@@ -110,7 +110,7 @@ int main()
         
         layer2 = layer2->NextSiblingElement("layer");
     }
-    
+    */
     Texture textura;
     
     /*
