@@ -45,8 +45,9 @@ int main()
     }
     
     //Cargando GID multiples capas (reservamos espacio a la variable que contendra los tile de una capa)
-    XMLElement **data;
-    data = new XMLElement*[_numLayers];
+    //XMLElement **data;
+    XMLElement *data;
+    //data = new XMLElement*[_numLayers];
     //data[0] = map->FirstChildElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
     
     //Reservando memoria para la variable tilemap, que contendra los gid de las capas
