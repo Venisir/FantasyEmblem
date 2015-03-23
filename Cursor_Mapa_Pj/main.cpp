@@ -11,9 +11,10 @@ int main()
 {
     XMLDocument doc;
     RenderWindow window(sf::VideoMode(480,320), "Fantasy Emblem");
+        
     doc.LoadFile("niveles/mapaTiled.tmx");
     
-    window.setSize(sf::Vector2u(800, 480));
+    window.setSize(sf::Vector2u(960, 640));
     
     XMLElement* elemento = doc.FirstChildElement("map");
     
@@ -30,6 +31,8 @@ int main()
     Texture cursor;
     Texture movimiento;
     Texture texPj1;
+    
+    sf::Clock clockSaltitos;
     
     if (!textura.loadFromFile("resources/patron.png"))
     {
@@ -103,8 +106,6 @@ int main()
     int valorSprite = 1;
     bool siguienteSumar = true;
     
-    Clock clockSaltitos;
-    
     while(window.isOpen())
     {
         //BLOQUE DEL PERSONAJE
@@ -149,6 +150,12 @@ int main()
         }
         
         Event evento;
+        
+        sf::Time tiempoPasadoMovimiento;
+        
+        int valorSpriteMovimiento = 0;
+        float destino;
+        
         
         while(window.pollEvent(evento))
         {
@@ -336,19 +343,163 @@ int main()
                         switch(recorrido[i])
                         {
                             case 1://derecha
-                                spritePj1.move(16,0);
+                                clockSaltitos.restart();
+
+                                destino = spritePj1.getPosition().x+16.0;
+
+                                while(spritePj1.getPosition().x != destino){
+
+                                    tiempoPasadoMovimiento = clockSaltitos.getElapsedTime();
+                                    if(tiempoPasadoMovimiento.asSeconds() >= 0.1){
+                                        spritePj1.move(1,0);
+                                        spritePj1.setTextureRect(sf::IntRect(valorSpriteMovimiento, 32, 20, 20));
+
+                                        //////////////////////////////////////////////////
+                                        window.clear();
+                                        for(int i=0;i<ancho;i++)
+                                        {
+                                            for(int j=0;j<alto;j++)
+                                            {
+                                                window.draw(mapa[i][j]);
+                                            }
+                                        }
+                                        window.draw(spritePj1);
+                                        window.display();
+                                        //////////////////////////////////////////////////
+
+                                        if(valorSpriteMovimiento != 96){
+                                            valorSpriteMovimiento = valorSpriteMovimiento+32;
+                                        }
+                                        else
+                                        {
+                                            valorSpriteMovimiento = 0;
+                                        }
+                                        clockSaltitos.restart();
+                                    }
+                                }
+                                spritePj1.setTextureRect(sf::IntRect(0, 0, 16, 16));
+                                
                                 break;
 
                             case 2://arriba
-                                spritePj1.move(0,-16);
+                                
+                                clockSaltitos.restart();
+                                
+                                destino = spritePj1.getPosition().y-16.0;
+                                
+                                while(spritePj1.getPosition().y != destino){
+                                
+                                    tiempoPasadoMovimiento = clockSaltitos.getElapsedTime();
+                                    if(tiempoPasadoMovimiento.asSeconds() >= 0.1){
+                                        spritePj1.move(0,-1);
+                                        spritePj1.setTextureRect(sf::IntRect(valorSpriteMovimiento, 128, 20, 20));
+
+                                        //////////////////////////////////////////////////
+                                        window.clear();
+                                        for(int i=0;i<ancho;i++)
+                                        {
+                                            for(int j=0;j<alto;j++)
+                                            {
+                                                window.draw(mapa[i][j]);
+                                            }
+                                        }
+                                        window.draw(spritePj1);
+                                        window.display();
+                                        //////////////////////////////////////////////////
+
+                                        if(valorSpriteMovimiento != 96){
+                                            valorSpriteMovimiento = valorSpriteMovimiento+32;
+                                        }
+                                        else
+                                        {
+                                            valorSpriteMovimiento = 0;
+                                        }
+
+                                        clockSaltitos.restart();
+                                    }
+                                }
+                                
+                                spritePj1.setTextureRect(sf::IntRect(0, 0, 16, 16));
+                                
                                 break;
 
                             case -1://izquierda
-                                spritePj1.move(-16,0);
+                                
+                                clockSaltitos.restart();
+                                
+                                destino = spritePj1.getPosition().x-16.0;
+                                
+                                while(spritePj1.getPosition().x != destino){
+                                
+                                    tiempoPasadoMovimiento = clockSaltitos.getElapsedTime();
+                                    if(tiempoPasadoMovimiento.asSeconds() >= 0.1){
+                                        spritePj1.move(-1,0);
+                                        spritePj1.setTextureRect(sf::IntRect(valorSpriteMovimiento, 64, 20, 20));
+
+                                        //////////////////////////////////////////////////
+                                        window.clear();
+                                        for(int i=0;i<ancho;i++)
+                                        {
+                                            for(int j=0;j<alto;j++)
+                                            {
+                                                window.draw(mapa[i][j]);
+                                            }
+                                        }
+                                        window.draw(spritePj1);
+                                        window.display();
+                                        //////////////////////////////////////////////////
+                                        
+                                        if(valorSpriteMovimiento != 96){
+                                            valorSpriteMovimiento = valorSpriteMovimiento+32;
+                                        }
+                                        else
+                                        {
+                                            valorSpriteMovimiento = 0;
+                                        }
+                                        clockSaltitos.restart();
+                                    }
+                                }
+                                spritePj1.setTextureRect(sf::IntRect(0, 0, 16, 16));
+                                
                                 break;
 
                             case -2://abajo
-                                spritePj1.move(0,16);
+                                clockSaltitos.restart();
+
+                                destino = spritePj1.getPosition().y+16.0;
+                                
+                                while(spritePj1.getPosition().y != destino){
+
+                                    tiempoPasadoMovimiento = clockSaltitos.getElapsedTime();
+                                    if(tiempoPasadoMovimiento.asSeconds() >= 0.1){
+                                    spritePj1.move(0,1);
+                                    spritePj1.setTextureRect(sf::IntRect(valorSpriteMovimiento, 96, 20, 20));
+
+                                        //////////////////////////////////////////////////
+                                        window.clear();
+                                        for(int i=0;i<ancho;i++)
+                                        {
+                                            for(int j=0;j<alto;j++)
+                                            {
+                                                window.draw(mapa[i][j]);
+                                            }
+                                        }
+                                        window.draw(spritePj1);
+                                        window.display();
+                                        //////////////////////////////////////////////////
+
+                                        if(valorSpriteMovimiento != 96){
+                                            valorSpriteMovimiento = valorSpriteMovimiento+32;
+                                        }
+                                        else
+                                        {
+                                            valorSpriteMovimiento = 0;
+                                        }
+                                        clockSaltitos.restart();
+                                    }
+                                }
+                                spritePj1.setTextureRect(sf::IntRect(0, 0, 16, 16));
+                                
                                 break; 
                         }
                     }
