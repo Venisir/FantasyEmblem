@@ -39,7 +39,7 @@
       <compileType>
         <ccTool>
           <incDir>
-            <pElem>../../../../../../SFML-2.1/include</pElem>
+            <pElem>../SFML-2.1/include</pElem>
           </incDir>
         </ccTool>
         <linkerTool>

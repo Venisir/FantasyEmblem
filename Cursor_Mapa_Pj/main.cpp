@@ -21,6 +21,9 @@ int main()
     int alto = elemento->IntAttribute("height");
     string estado= "default";
     int state=0;//estado por defecto
+    //array donde almacenaremos mediante un numero entero el paso a dar por el personaje (1 derecha,2 arriba,-1 izquierda,-2 abajo)
+    int* recorrido= new int[2];//en este entregable de prueba lo hacemos con un array de tamaño 2
+    int contador=0;
     
     Sprite sprite;
     Texture textura;
@@ -233,7 +236,7 @@ int main()
                     }
                 break;
                 
-                case 1:
+                case 1://estado seleccionar el movimiento que tiene que hacer el personaje
                     switch(evento.type)
                     {
                         case Event::Closed:
@@ -254,29 +257,65 @@ int main()
                                 case sf::Keyboard::Right:
                                     if(spriteCursor.getPosition().x<=448)
                                         spriteCursor.move(16,0);
+                                    
+                                    if(contador<2)
+                                    {
+                                        recorrido[contador]=1;
+                                        contador++;
+                                    }
                                 break;
 
                                 //Tecla izquierda
                                 case sf::Keyboard::Left:
                                     if(spriteCursor.getPosition().x>=16)
                                         spriteCursor.move(-16,0);
+                                    
+                                    if(contador<2)
+                                    {
+                                        recorrido[contador]=-1;
+                                        contador++;
+                                    }
+                                    
                                 break;
 
                                 //Tecla arriba
                                 case sf::Keyboard::Up:
                                     if(spriteCursor.getPosition().y>=16)
                                         spriteCursor.move(0,-16);
+                                    
+                                    if(contador<2)
+                                    {
+                                        recorrido[contador]=2;
+                                        contador++;
+                                    }
                                 break;
 
                                 //Tecla abajo
                                 case sf::Keyboard::Down:
                                     if(spriteCursor.getPosition().y<=302)
                                         spriteCursor.move(0,16);
+                                    
+                                    if(contador<2)
+                                    {
+                                        recorrido[contador]=-2;
+                                        contador++;
+                                    }
+                                    
                                 break;
                                 
                                 case sf::Keyboard::Return:
-                                    state=0;
-                                    estado="default";
+                                    
+                                    if(contador!=0)//si se ha decidido algun movimiento para el personaje
+                                    {
+                                        state=2;
+                                        estado="movimientopj";
+                                    }
+                                    else
+                                    {
+                                        state=0;
+                                        estado="default";
+                                    }
+                                    
                                     for(int i=0;i<ancho;i++)
                                     {
                                         for(int j=0;j<alto;j++)
@@ -284,10 +323,38 @@ int main()
                                             mapa[i][j].setTexture(textura);
                                         }
                                     }
+                                    
                                 break;
                             }
                         break;
                     }
+                break;
+                
+                case 2:
+                    for(int i=0;i < contador;i++)
+                    {
+                        switch(recorrido[i])
+                        {
+                            case 1://derecha
+                                spritePj1.move(16,0);
+                                break;
+
+                            case 2://arriba
+                                spritePj1.move(0,-16);
+                                break;
+
+                            case -1://izquierda
+                                spritePj1.move(-16,0);
+                                break;
+
+                            case -2://abajo
+                                spritePj1.move(0,16);
+                                break; 
+                        }
+                    }
+                    contador=0;
+                    state=0;
+                    estado="default";
                 break;
             /*fin switch estado*/        
             }
