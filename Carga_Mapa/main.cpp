@@ -21,6 +21,7 @@ int main()
     //Cargamos el XML y creamos la ventana
     XMLDocument doc;
     RenderWindow window(sf::VideoMode(480,320), "Fantasy Emblem");
+    window.setSize(sf::Vector2u(960, 640));
     doc.LoadFile("niveles/mapa1.tmx");
     XMLElement* map = doc.FirstChildElement("map");
 
@@ -85,39 +86,38 @@ int main()
     
     //Bucle que recorre las capas una a una
     for(int l=0; l<_numLayers;l++){
-        //Creo que lo de data se puede optimizar y que no es tan necesario
-        //Con solo crear una variable y no una matriz sería suficiente
-        /****************************************************************/
-        
-        //Hacemos que la primera posicion de data apunte al primer tile de la capa actual
+        //Hacemos que data apunte al primer tile de la capa actual
         data = layer2->FirstChildElement("data")->FirstChildElement("tile");
         //data[l] = layer2->FirstChildElement("data")->FirstChildElement("tile");
         
-        //Hacemos un bucle para rellenar la matriz con los tile
+        //Hacemos un bucle coger los tile de la capa en la que estamos
         for(int y=0; y<_height;y++){
             for(int x=0; x<_width; x++){
                 //Del tile cogemos el gid (id del sprite) y lo ponemos en nuestra matriz 3D tilemap, que almacena todos
-                data[l]->QueryIntAttribute("gid", &_tilemap[l][y][x]);
+                data->QueryIntAttribute("gid", &_tilemap[l][y][x]);
+                //data[l]->QueryIntAttribute("gid", &_tilemap[l][y][x]);
                 //Avanzo al siguiente tile
-                data[l]=data[l]->NextSiblingElement("tile");
+                data=data->NextSiblingElement("tile");
+                //data[l]=data[l]->NextSiblingElement("tile");
             }
         }
         //Pasamos a la siguiente capa
         layer2 = layer2->NextSiblingElement("layer");
     }
     
-    Texture textura;
-
+    //Asignamos a un string la ruta mas el filename
     string s1 = string(filename);
     string s = "niveles/"+s1;
-    std::cerr << s <<endl;
     
+    //Cargamos las texturas
+    Texture textura;
     if (!textura.loadFromFile(s))
     {
         std::cerr << "Error cargando la textura" << endl;
         exit(0);
     }
-            
+    
+    
     sf::Sprite **_tilesetSprite;
     _tilesetSprite = new sf::Sprite*[(_imageWidth/16)*(_imageHeight/16)];
     
@@ -147,8 +147,8 @@ int main()
                 
                 int gid = _tilemap[l][y][x]-1;
                     
-                    if(gid>0){
-                    //Si fuera 0 no creo sprite...;
+                    if(gid>=0){
+                    //Si fuera menor que 0 no creo sprite...
                     
                     _tilemapSprite[l][y][x] = new sf::Sprite(textura, _tilesetSprite[gid]->getTextureRect());//sf::IntRect(0, 0, 16, 16));
                     
