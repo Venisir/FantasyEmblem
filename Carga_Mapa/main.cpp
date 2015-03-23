@@ -18,13 +18,13 @@ int main()
     int _imageHeight = 0;
     int _numLayers = 0;
  
+    //Cargamos el XML y creamos la ventana
     XMLDocument doc;
     RenderWindow window(sf::VideoMode(480,320), "Fantasy Emblem");
     doc.LoadFile("niveles/mapa1.tmx");
-    
-    //Tamanyo de mapa
     XMLElement* map = doc.FirstChildElement("map");
 
+    //Cogemos los tamanyos de mapa y de los tile
     map->QueryIntAttribute( "width", &_width );
     map->QueryIntAttribute( "height", &_height );
     map->QueryIntAttribute( "tilewidth", &_tileWidth );
@@ -33,7 +33,6 @@ int main()
     //Imagen del tileset
     XMLElement *img = map->FirstChildElement("tileset")->FirstChildElement("image");
     const char *filename = img->Attribute("source");
-    
     img->QueryIntAttribute( "height", &_imageHeight );
     img->QueryIntAttribute( "width", &_imageWidth );
     
@@ -45,22 +44,12 @@ int main()
         layer = layer->NextSiblingElement("layer");
     }
     
-    //Cargando GID multiples capas 
-    
+    //Cargando GID multiples capas (reservamos espacio a la variable que contendra los tile de una capa)
     XMLElement **data;
     data = new XMLElement*[_numLayers];
-    data[0] = map->FirstChildElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
+    //data[0] = map->FirstChildElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
     
-    /*
-    int _AUX = 0;
-    
-    data[0]->QueryIntAttribute("gid", &_AUX );
-    
-    std::cerr <<_AUX;
-    */
-     
-    //XMLElement *data[0] = map->FirstChildElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
-    
+    //Reservando memoria para la variable tilemap, que contendra los gid de las capas
     int ***_tilemap;
     _tilemap = new int**[_numLayers];
     
@@ -74,8 +63,7 @@ int main()
         }
     }
     
-    
-    
+    //Resrvando memoria para los sprite (variable tilemapSprite)
     sf::Sprite ****_tilemapSprite;
     _tilemapSprite = new sf::Sprite***[_numLayers];
     for(int l=0; l<_numLayers; l++){
@@ -86,41 +74,37 @@ int main()
         for(int y=0; y<_height;y++){
             _tilemapSprite[l][y] = new sf::Sprite*[_width];
             for(int x=0; x<_width; x++){
-                //...
                 _tilemapSprite[l][y][x] = new sf::Sprite();
             }
         }
     }
     
+    //Creamos un XMLElement que contendra la layer en la que estamos mirando actualmente (en este caso la primera)
     XMLElement *layer2 = map->FirstChildElement("layer");
-     
+    
+    //Bucle que recorre las capas una a una
     for(int l=0; l<_numLayers;l++){
+        //Creo que lo de data se puede optimizar y que no es tan necesario
+        //Con solo crear una variable y no una matriz sería suficiente
+        /****************************************************************/
         
+        //Hacemos que la primera posicion de data apunte al primer tile de la capa actual
         data[l] = layer2->FirstChildElement("data")->FirstChildElement("tile");
-        
+        //Hacemos un bucle para rellenar la matriz con los tile
         for(int y=0; y<_height;y++){
             for(int x=0; x<_width; x++){
-                
-                //std::cerr <<"   l: " << l << "   y: " << y <<"   x: " << x <<endl;
+                //Del tile cogemos el gid (id del sprite) y lo ponemos en nuestra matriz 3D tilemap, que almacena todos
                 data[l]->QueryIntAttribute("gid", &_tilemap[l][y][x]);
-                //Avanzo al siguiente tag
+                //Avanzo al siguiente tile
                 data[l]=data[l]->NextSiblingElement("tile");
             }
         }
-        
+        //Pasamos a la siguiente capa
         layer2 = layer2->NextSiblingElement("layer");
     }
     
     Texture textura;
-    
-    /*
-    string estrin = string(filename);
-    string cadena = strcat("niveles/",estrin);
-    
-    std::cerr << cadena <<endl;
-    std::cerr << filename <<endl;
-    */
-    //string s = strcat("niveles/Tilev1.png");
+
     string s1 = string(filename);
     string s = "niveles/"+s1;
     std::cerr << s <<endl;
@@ -159,15 +143,9 @@ int main()
             for(int x=0; x<_width; x++){
                 
                 int gid = _tilemap[l][y][x]-1;
-                
-                //if(gid>=_tsw*_tsh){
-                //    std::cerr << "Error, git at (l,x,y)=("<<endl; 
-                //
-                //}else 
                     
                     if(gid>0){
-                    //Si fuera 0 no creo sprite...
-                    //_tilemapSprite[l][y][x] = new sf::Sprite(textura, sf::IntRect(0, 0, 16, 16));
+                    //Si fuera 0 no creo sprite...;
                     
                     _tilemapSprite[l][y][x] = new sf::Sprite(textura, _tilesetSprite[gid]->getTextureRect());//sf::IntRect(0, 0, 16, 16));
                     
@@ -180,112 +158,6 @@ int main()
             }
         }
     }
-
-    //std::cerr << filename <<endl;
-    
-    //_tilemapSprite[2][8][7]->setPosition(100,100);
-    
-    /*
-    //for(int l=0; l<_numLayers;l++){
-        for(int y=0;y<_height;y++){
-            for(int x=0;x<_width;x++){
-                window.draw(*_tilemapSprite[1][y][x]);
-            }
-        }
-    //}
-    */
-    
-    /*
-    void Tilemap::setActiveLayer(int layer){
-        _activeLayer = layer;
-    }
-    */
-    
-    /*
-    Sprite sprite;
-    Texture textura;
-    
-    
-    if (!textura.loadFromFile("resources/patron.png"))
-    {
-        std::cerr << "Error cargando la imagen sprites.png";
-        exit(0);
-    }
-    
-    int matriz[ancho][alto];
-    Sprite mapa[ancho][alto];
-    
-    //preparamos el elemento para el primer tile
-    elemento = doc.FirstChildElement("map")->FirstChildElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
-    
-    //se rellena la matriz con los id de los sprites
-    for(int i=0;i<ancho;i++)
-    {
-        for(int j=0;j<alto;j++)
-        {
-            matriz[i][j]=elemento->IntAttribute("gid");
-            elemento=elemento->NextSiblingElement("tile");
-        }
-    }
-    
-    //se crea una matriz de sprites
-    for(int i=0;i<ancho;i++)
-    {
-        for(int j=0;j<alto;j++)
-        {
-            sprite.setTexture(textura);
-            sprite.setTextureRect(IntRect(0, 0, 16, 16));
-            sprite.setPosition(i*16,j*16);
-            mapa[i][j]=sprite;
-        }
-    }
-    
-    
-    //mostrar el mapa
-    while(window.isOpen())
-    {
-        Event evento;
-        
-        while(window.pollEvent(evento))
-        {
-            switch(evento.type)
-            {
-                case Event::Closed:
-                    window.close();
-                break;
-                
-                case sf::Event::KeyPressed:
-                    
-                    //Verifico si se pulsa alguna tecla de movimiento
-                    switch(evento.key.code) 
-                    {
-                        //Tecla ESC para salir
-                        case sf::Keyboard::Escape:
-                            window.close();
-                        break;
-                    }
-            }
-            
-            
-        }
-        
-        
-        for(int i=0;i<ancho;i++)
-        {
-            for(int j=0;j<alto;j++)
-            {
-                window.draw(mapa[i][j]);
-            }
-        }
-        
-       window.display(); 
-    }
-    
-    
-
-    return 0;
-     */
-    
     
     while(window.isOpen())
     {
