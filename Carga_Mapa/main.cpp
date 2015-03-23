@@ -90,7 +90,9 @@ int main()
         /****************************************************************/
         
         //Hacemos que la primera posicion de data apunte al primer tile de la capa actual
-        data[l] = layer2->FirstChildElement("data")->FirstChildElement("tile");
+        data = layer2->FirstChildElement("data")->FirstChildElement("tile");
+        //data[l] = layer2->FirstChildElement("data")->FirstChildElement("tile");
+        
         //Hacemos un bucle para rellenar la matriz con los tile
         for(int y=0; y<_height;y++){
             for(int x=0; x<_width; x++){
