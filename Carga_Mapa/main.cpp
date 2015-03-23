@@ -37,7 +37,6 @@ int main()
     img->QueryIntAttribute( "height", &_imageHeight );
     img->QueryIntAttribute( "width", &_imageWidth );
     
-    
     //Cuantas capas tiene mi XML
     XMLElement *layer = map->FirstChildElement("layer");
     while(layer){
@@ -65,7 +64,9 @@ int main()
         }
     }
     
-    //Resrvando memoria para los sprite (variable tilemapSprite)
+    
+    
+    //Reservando memoria para los sprite (variable tilemapSprite)
     sf::Sprite ****_tilemapSprite;
     _tilemapSprite = new sf::Sprite***[_numLayers];
     for(int l=0; l<_numLayers; l++){
@@ -117,7 +118,6 @@ int main()
         exit(0);
     }
     
-    
     sf::Sprite **_tilesetSprite;
     _tilesetSprite = new sf::Sprite*[(_imageWidth/16)*(_imageHeight/16)];
     
@@ -162,6 +162,7 @@ int main()
         }
     }
     
+    //Dibujamos el mapa
     while(window.isOpen())
     {
         Event evento;
@@ -171,6 +172,26 @@ int main()
             switch(evento.type)
             {
                 case Event::Closed:
+                    for(int l=0; l<_numLayers; l++){
+                        for(int y=0; y<_height; y++){
+                            delete[] _tilemap[l][y];
+                        }
+                        delete[] _tilemap[l];
+                    }
+                    delete[] _tilemap;
+    
+                    //¿Borrar memoria para este tipo de objeto?
+                    /*for(int l=0; l<_numLayers; l++){
+                        for(int y=0; y<_height; y++){
+                            for(int x=0; x<_width; x++){
+                                delete[] _tilemapSprite[l][y][x];
+                            }
+                            delete[] _tilemapSprite[l][y];
+                        }
+                        delete[] _tilemapSprite[l];
+                    }
+                    delete[] _tilemapSprite;*/
+                    
                     window.close();
                 break;
                 
@@ -187,11 +208,10 @@ int main()
                     }
                 }
             }
-        }
-        
-        
+        }        
         window.display();
     }
+    
     return 0;
 }
 
