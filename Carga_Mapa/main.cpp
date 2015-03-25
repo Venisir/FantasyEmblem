@@ -17,6 +17,7 @@ int main()
     int _imageWidth = 0;
     int _imageHeight = 0;
     int _numLayers = 0;
+    int _cont=0;
  
     //Cargamos el XML y creamos la ventana
     XMLDocument doc;
@@ -84,6 +85,7 @@ int main()
     
     //Creamos un XMLElement que contendra la layer en la que estamos mirando actualmente (en este caso la primera)
     XMLElement *layer2 = map->FirstChildElement("layer");
+    
     
     //Bucle que recorre las capas una a una
     for(int l=0; l<_numLayers;l++){
@@ -171,6 +173,56 @@ int main()
         {
             switch(evento.type)
             {
+                case Event::KeyPressed:
+                    switch(evento.key.code)
+                    {
+                        case sf::Keyboard::Numpad1:
+                            _cont=0;
+                            for(int y=0; y<_height;y++){
+                                for(int x=0; x<_width; x++){
+                                    int gid = _tilemap[3][y][x]-1;
+                                    if(gid>=0){
+                                        _cont++;
+                                        if(_cont==3){
+                                            _tilemapSprite[3][y][x] = NULL;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        break;
+                        case sf::Keyboard::Numpad2:
+                            _cont=0;
+                            for(int y=0; y<_height;y++){
+                                for(int x=0; x<_width; x++){
+                                    int gid = _tilemap[3][y][x]-1;
+                                    if(gid>=0){
+                                        _cont++;
+                                        if(_cont==1){
+                                            _tilemapSprite[3][y][x] = NULL;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        break;
+                        case sf::Keyboard::Numpad3:
+                            _cont=0;
+                            for(int y=0; y<_height;y++){
+                                for(int x=0; x<_width; x++){
+                                    int gid = _tilemap[3][y][x]-1;
+                                    if(gid>=0){
+                                        _cont++;
+                                        if(_cont==2){
+                                            _tilemapSprite[3][y][x] = NULL;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        break;
+                    }
+                break;
                 case Event::Closed:
                     for(int l=0; l<_numLayers; l++){
                         for(int y=0; y<_height; y++){
