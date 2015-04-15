@@ -5,7 +5,7 @@
  * Created on 15 de abril de 2015, 9:41
  */
 
-#include "Mapa.h"
+#include "../headers/Mapa.h"
 
 Mapa::Mapa() {
 }

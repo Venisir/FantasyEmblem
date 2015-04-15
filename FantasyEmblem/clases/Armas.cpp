@@ -5,7 +5,7 @@
  * Created on 15 de abril de 2015, 9:42
  */
 
-#include "Armas.h"
+#include "../headers/Armas.h"
 
 Armas::Armas() {
 }

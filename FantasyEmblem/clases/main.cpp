@@ -10,7 +10,7 @@ using namespace  std;
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-#include "MenuPrincipal.h"
+#include "../headers/MenuPrincipal.h"
 
 int main()
 {    

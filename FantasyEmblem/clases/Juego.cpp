@@ -5,7 +5,7 @@
  * Created on 15 de abril de 2015, 9:43
  */
 
-#include "Juego.h"
+#include "../headers/Juego.h"
 
 Juego::Juego() {
 }

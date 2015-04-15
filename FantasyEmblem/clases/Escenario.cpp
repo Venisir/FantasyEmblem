@@ -5,7 +5,7 @@
  * Created on 15 de abril de 2015, 9:41
  */
 
-#include "Escenario.h"
+#include "../headers/Escenario.h"
 
 Escenario::Escenario() {
 }

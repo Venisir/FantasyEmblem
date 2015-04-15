@@ -5,7 +5,7 @@
  * Created on 15 de abril de 2015, 9:43
  */
 
-#include "Cursor.h"
+#include "../headers/Cursor.h"
 
 Cursor::Cursor() {
 }

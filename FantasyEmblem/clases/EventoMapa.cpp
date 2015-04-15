@@ -5,7 +5,7 @@
  * Created on 15 de abril de 2015, 9:45
  */
 
-#include "EventoMapa.h"
+#include "../headers/EventoMapa.h"
 
 EventoMapa::EventoMapa() {
 }

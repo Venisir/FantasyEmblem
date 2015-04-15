@@ -5,7 +5,7 @@
  * Created on 11 de marzo de 2015, 10:42
  */
 
-#include "MenuPrincipal.h"
+#include "../headers/MenuPrincipal.h"
 #include <iostream>
 using namespace  std;
 #include <SFML/Graphics.hpp>
