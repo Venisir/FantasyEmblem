@@ -22,7 +22,7 @@ class Game {
 public:
     Game(sf::RenderWindow* v);
     Game(const Game& orig);
-    virtual ~Game();
+   ~Game();
     void init();
     void render();
     void update();
@@ -36,9 +36,14 @@ private:
     sf::Clock* relojUpdate;
     sf::Clock* reloj_fps;
     sf::Font* fuente;
+    sf::Text* t_fps;
+    sf::Text* t_fps2;
     
     float fps;
+    float contadorUpdate;
     float timeUpdate;
+    
+    int state;
 };
 
 #endif	/* GAME_H */
