@@ -1,4 +1,4 @@
-build/Release/MinGW-Windows/main.o: main.cpp \
+build/Debug/MinGW-Windows/main.o: main.cpp \
  ../SFML-2.1/include/SFML/Graphics.hpp \
  ../SFML-2.1/include/SFML/Window.hpp ../SFML-2.1/include/SFML/System.hpp \
  ../SFML-2.1/include/SFML/Config.hpp \

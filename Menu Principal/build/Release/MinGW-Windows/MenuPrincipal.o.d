@@ -1,5 +1,5 @@
-build/Release/MinGW-Windows/main.o: main.cpp \
- ../SFML-2.1/include/SFML/Graphics.hpp \
+build/Release/MinGW-Windows/MenuPrincipal.o: MenuPrincipal.cpp \
+ MenuPrincipal.h ../SFML-2.1/include/SFML/Graphics.hpp \
  ../SFML-2.1/include/SFML/Window.hpp ../SFML-2.1/include/SFML/System.hpp \
  ../SFML-2.1/include/SFML/Config.hpp \
  ../SFML-2.1/include/SFML/System/Clock.hpp \
@@ -71,7 +71,9 @@ build/Release/MinGW-Windows/main.o: main.cpp \
  ../SFML-2.1/include/SFML/Audio/Sound.hpp \
  ../SFML-2.1/include/SFML/Audio/SoundBuffer.hpp \
  ../SFML-2.1/include/SFML/Audio/SoundBufferRecorder.hpp \
- ../SFML-2.1/include/SFML/Audio/SoundRecorder.hpp MenuPrincipal.h
+ ../SFML-2.1/include/SFML/Audio/SoundRecorder.hpp
+
+MenuPrincipal.h:
 
 ../SFML-2.1/include/SFML/Graphics.hpp:
 
@@ -220,5 +222,3 @@ build/Release/MinGW-Windows/main.o: main.cpp \
 ../SFML-2.1/include/SFML/Audio/SoundBufferRecorder.hpp:
 
 ../SFML-2.1/include/SFML/Audio/SoundRecorder.hpp:
-
-MenuPrincipal.h:

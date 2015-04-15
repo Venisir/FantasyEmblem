@@ -15,6 +15,7 @@ using namespace  std;
 int main()
 {    
     sf::RenderWindow window(sf::VideoMode(480, 320), "Fantasy Emblem");
+    window.setSize(sf::Vector2u(960,640));
     MenuPrincipal MenuPrincipal(window.getSize().x, window.getSize().y);
    
         while (window.isOpen())
