@@ -21,6 +21,7 @@ public:
     void MoveUp();
     void MoveDown();
     void Exit(sf::RenderWindow &window);
+    int getSelectedItemIndex();
 private:
     int selectedItemIndex;
     sf::Texture fondo_menu;

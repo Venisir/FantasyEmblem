@@ -134,11 +134,15 @@ void MenuPrincipal::MoveDown(){
 }
 
 void MenuPrincipal::Exit(sf::RenderWindow& window){
-    if(selectedItemIndex==3){
-        time1 = sf::seconds(1);
-        select.play();
-        sf::sleep(time1);
-        window.close();
-    }
+    
+    time1 = sf::seconds(1);
+    select.play();
+    sf::sleep(time1);
+    window.close();
+    
+}
+
+int MenuPrincipal::getSelectedItemIndex(){
+    return selectedItemIndex;
 }
 

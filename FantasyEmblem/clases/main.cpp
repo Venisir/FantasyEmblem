@@ -37,7 +37,10 @@ int main()
                         break;
                         
                         case sf::Keyboard::Return:
-                            MenuPrincipal.Exit(window);
+                            if(MenuPrincipal.getSelectedItemIndex()==3){
+                                MenuPrincipal.Exit(window);
+                            }
+                            
                         break;  
                         
                     }
