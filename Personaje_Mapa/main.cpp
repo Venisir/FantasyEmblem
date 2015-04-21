@@ -44,7 +44,7 @@ int main()
     
     //Y creo el spritesheet a partir de la imagen anterior
     sf::Sprite spritePj1(texPj1);
-    sf::Sprite spriteMapa(mapa);;
+    sf::Sprite spriteMapa(mapa);
     sf::Sprite spriteCasilla(casilla);
     sf::Sprite spriteCursor(cursor);
     
