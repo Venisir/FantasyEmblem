@@ -46,7 +46,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/clases/Objetos.o \
 	${OBJECTDIR}/clases/Partida.o \
 	${OBJECTDIR}/clases/Unidad.o \
-	${OBJECTDIR}/clases/main.o
+	${OBJECTDIR}/clases/main.o \
+	${OBJECTDIR}/tinyxml2.o
 
 
 # C Compiler Flags
@@ -132,6 +133,11 @@ ${OBJECTDIR}/clases/main.o: clases/main.cpp
 	${MKDIR} -p ${OBJECTDIR}/clases
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/main.o clases/main.cpp
+
+${OBJECTDIR}/tinyxml2.o: tinyxml2.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/tinyxml2.o tinyxml2.cpp
 
 # Subprojects
 .build-subprojects:

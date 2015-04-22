@@ -11,9 +11,11 @@ using namespace  std;
 #include <SFML/Audio.hpp>
 
 #include "../headers/MenuPrincipal.h"
+#include "../headers/Cursor.h"
 
 int main()
 {    
+    /*
     sf::RenderWindow window(sf::VideoMode(480, 320), "Fantasy Emblem");
     window.setSize(sf::Vector2u(960,640));
     MenuPrincipal MenuPrincipal(window.getSize().x, window.getSize().y);
@@ -50,7 +52,25 @@ int main()
         MenuPrincipal.draw(window);
         window.display();
         }
-
+    */
+    
+    RenderWindow window(sf::VideoMode(480,320), "Fantasy Emblem");
+    window.setSize(sf::Vector2u(960, 640));
+    
+    Cursor* cursor = new Cursor(&window);
+    
+    //Ejecuto el juego
+    
+    cursor->init();
+    
+    while (window.isOpen()){
+        cursor->update();
+        cursor->render();
+    }
+    
+    //El juego termina y lo borro
+    delete cursor;
+    
         return 0;
 }
 

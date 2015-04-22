@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=MinGW-Windows
 CND_ARTIFACT_DIR_Debug=dist/Debug/MinGW-Windows
-CND_ARTIFACT_NAME_Debug=prueba
-CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW-Windows/prueba
+CND_ARTIFACT_NAME_Debug=pruebaclases
+CND_ARTIFACT_PATH_Debug=dist/Debug/MinGW-Windows/pruebaclases
 CND_PACKAGE_DIR_Debug=dist/Debug/MinGW-Windows/package
-CND_PACKAGE_NAME_Debug=prueba.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/MinGW-Windows/package/prueba.tar
+CND_PACKAGE_NAME_Debug=pruebaclases.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/MinGW-Windows/package/pruebaclases.tar
 # Release configuration
 CND_PLATFORM_Release=MinGW-Windows
 CND_ARTIFACT_DIR_Release=dist/Release/MinGW-Windows
-CND_ARTIFACT_NAME_Release=prueba
-CND_ARTIFACT_PATH_Release=dist/Release/MinGW-Windows/prueba
+CND_ARTIFACT_NAME_Release=pruebaclases
+CND_ARTIFACT_PATH_Release=dist/Release/MinGW-Windows/pruebaclases
 CND_PACKAGE_DIR_Release=dist/Release/MinGW-Windows/package
-CND_PACKAGE_NAME_Release=prueba.tar
-CND_PACKAGE_PATH_Release=dist/Release/MinGW-Windows/package/prueba.tar
+CND_PACKAGE_NAME_Release=pruebaclases.tar
+CND_PACKAGE_PATH_Release=dist/Release/MinGW-Windows/package/pruebaclases.tar
 #
 # include compiler specific variables
 #

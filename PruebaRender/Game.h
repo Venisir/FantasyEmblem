@@ -7,8 +7,8 @@
 
 #ifndef GAME_H
 #define	GAME_H
-#include "tinyxml2.h"
 
+#include "tinyxml2.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <stdio.h>
