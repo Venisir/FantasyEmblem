@@ -41,11 +41,7 @@ Mapa::Mapa() {
         layer = layer->NextSiblingElement("layer");
     }
     
-    //Cargando GID multiples capas (reservamos espacio a la variable que contendra los tile de una capa)
-    //XMLElement **data;
     XMLElement *data;
-    //data = new XMLElement*[_numLayers];
-    //data[0] = map->FirstChildElement("layer")->FirstChildElement("data")->FirstChildElement("tile");
     
     //Reservando memoria para la variable tilemap, que contendra los gid de las capas
     _tilemap = new int**[_numLayers];
@@ -59,8 +55,6 @@ Mapa::Mapa() {
             _tilemap[l][y]=new int[_width];
         }
     }
-    
-    
     
     //Reservando memoria para los sprite (variable tilemapSprite)
     _tilemapSprite = new sf::Sprite***[_numLayers];
@@ -85,17 +79,13 @@ Mapa::Mapa() {
     for(int l=0; l<_numLayers;l++){
         //Hacemos que data apunte al primer tile de la capa actual
         data = layer2->FirstChildElement("data")->FirstChildElement("tile");
-        //data[l] = layer2->FirstChildElement("data")->FirstChildElement("tile");
-        
-        //Hacemos un bucle coger los tile de la capa en la que estamos
+        //Hacemos un bucle para coger los tile de la capa en la que estamos
         for(int y=0; y<_height;y++){
             for(int x=0; x<_width; x++){
                 //Del tile cogemos el gid (id del sprite) y lo ponemos en nuestra matriz 3D tilemap, que almacena todos
                 data->QueryIntAttribute("gid", &_tilemap[l][y][x]);
-                //data[l]->QueryIntAttribute("gid", &_tilemap[l][y][x]);
                 //Avanzo al siguiente tile
                 data=data->NextSiblingElement("tile");
-                //data[l]=data[l]->NextSiblingElement("tile");
             }
         }
         //Pasamos a la siguiente capa
@@ -114,43 +104,30 @@ Mapa::Mapa() {
         exit(0);
     }
     
+    //Separamos la textura que hemos cargado para obtener las distintas imagenes
     sf::Sprite **_tilesetSprite;
-    _tilesetSprite = new sf::Sprite*[(_imageWidth/16)*(_imageHeight/16)];
-    
+    _tilesetSprite = new sf::Sprite*[(_imageWidth/_tileWidth)*(_imageHeight/_tileHeight)];
     int fila = 0;
     int columna = 0;
-    
-    for(int l=0; l<(_imageWidth/16)*(_imageHeight/16); l++){
-        
+    for(int l=0; l<(_imageWidth/_tileWidth)*(_imageHeight/_tileHeight); l++){
         _tilesetSprite[l] = new sf::Sprite;
-        
-        if(columna == _imageWidth/16){
+        if(columna == _imageWidth/_tileWidth){
             columna = 0;
             fila++;
         }
-        
         _tilesetSprite[l]->setTextureRect(sf::IntRect(columna*16,fila*16,16,16));
-        
         columna++;
-        
-        //std::cerr << l <<endl;
     }
     
-    
+    //Cargamos en la variabe _tilemapSprite las texturas de las capas
     for(int l=0; l<_numLayers;l++){
         for(int y=0; y<_height;y++){
             for(int x=0; x<_width; x++){
-                
                 int gid = _tilemap[l][y][x]-1;
-                    
-                    if(gid>=0){
-                    //Si fuera menor que 0 no creo sprite...
-                    
+                //Si fuera menor que 0 no creo sprite...
+                if(gid>=0){
                     _tilemapSprite[l][y][x] = new sf::Sprite(textura, _tilesetSprite[gid]->getTextureRect());//sf::IntRect(0, 0, 16, 16));
-                    
-                    
                     _tilemapSprite[l][y][x]->setPosition(x*_tileWidth,y*_tileHeight);
-                    //std::cerr << l << y << x <<endl;
                 }else{
                     _tilemapSprite[l][y][x] = NULL;
                 }
@@ -170,9 +147,10 @@ Mapa::Draw() {
     for(int l=0; l<_numLayers; l++){
         for(int y=0; y<_height; y++){
             for(int x=0; x<_width; x++){
-                //OJO, esta dibujando solo la capa de colisiones
                 if(_tilemapSprite[l][y][x] != NULL){
-                    window.draw(*(_tilemapSprite[l][y][x]));
+                   //NO SE CREA VENTANA EN ESTA PARTE, ES POR ELLO QUE NO RECONOCE EL METODO
+                   //window.draw(*(_tilemapSprite[l][y][x]));
+                    //ATENCION, EN ESTA PARTE HAY QUE PONER ALGO
                 }
             }
         }
