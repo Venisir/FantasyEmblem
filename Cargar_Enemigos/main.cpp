@@ -228,9 +228,10 @@ int main()
     bool siguienteSumar = true;
     
     //Dibujamos el mapa
-    while(window.isOpen())
+    while (window.isOpen())
     {
         sf::Time tiempoPasado = clockSaltitos.getElapsedTime();
+        
         if(tiempoPasado.asSeconds()>=0.3)
         {
             if(valorSprite == 0)
@@ -258,28 +259,241 @@ int main()
                 }
             }
             
-            for(int x=0; x<sizeof(enemigos); x++){
-                enemigos[x].setTextureRect(sf::IntRect(valorSprite*16, 0, 16, 16));
-            }
+            //std::cerr << "ValorSprite: " << valorSprite << "   tiempoPasado: " << tiempoPasado.asSeconds();
+            enemigos[0].setTextureRect(sf::IntRect(valorSprite*16, 0, 16, 16));
             clockSaltitos.restart();
             
             window.clear();
+            window.draw(enemigos[0]);
+            window.display();
+            
+        }
+    
+        //Bucle de obtención de eventos
+        
+        sf::Event event;
+        sf::Time tiempoPasadoMovimiento;
+        
+        int valorSpriteMovimiento = 0;
+        float destino;
+                
+        while (window.pollEvent(event))
+        {
+            switch(event.type){
+                
+                //Si se recibe el evento de cerrar la ventana la cierro
+                case sf::Event::Closed:
+                    window.close();
+                    break; 
+                
+                //Se pulsó una tecla, imprimo su codigo
+                case sf::Event::KeyPressed:
+                    
+                    //Verifico si se pulsa alguna tecla de movimiento
+                    switch(event.key.code) {
+                        
+                        case sf::Keyboard::M:
+                            
+                            //Mostrar casillas disponibles
+                            std::cerr << "Posicion de enemigos[0]-> x: " << enemigos[0].getPosition().x << "   y: " << enemigos[0].getPosition().y << std::endl;
+                            
+                            break;
+                        //Mapeo del cursor
+                        case sf::Keyboard::Right:
+                            
+                            ///////////////////////////////////////////////////////////////////////////////
+                            //Escala por defecto
+                            enemigos[0].setScale(1,1);
+                            
+                            clockSaltitos.restart();
+                            
+                            destino = enemigos[0].getPosition().x+16.0;
+                            
+                            while(enemigos[0].getPosition().x != destino){
+                                
+                                tiempoPasadoMovimiento = clockSaltitos.getElapsedTime();
+                                if(tiempoPasadoMovimiento.asSeconds() >= 0.1){
+                                    enemigos[0].move(1,0);
+                                    enemigos[0].setTextureRect(sf::IntRect(valorSpriteMovimiento, 32, 20, 20));
+                                    
+                                    window.clear();
+                                    
+                                    window.draw(enemigos[0]);
+                                    window.display();
+            
+                                    if(valorSpriteMovimiento != 96){
+                                        valorSpriteMovimiento = valorSpriteMovimiento+32;
+                                    }
+                                    else
+                                    {
+                                        valorSpriteMovimiento = 0;
+                                    }
+                                    
+                                    clockSaltitos.restart();
+                                }
+                            }
+                            
+                            enemigos[0].setTextureRect(sf::IntRect(0, 0, 16, 16));
+                            
+                            
+                            ///////////////////////////////////////////////////////////////////////////////
+                        break;
+                        
+                        case sf::Keyboard::Left:
+                            
+                            ///////////////////////////////////////////////////////////////////////////////
+                            
+                            
+                            clockSaltitos.restart();
+                            
+                            destino = enemigos[0].getPosition().x-16.0;
+                            
+                            while(enemigos[0].getPosition().x != destino){
+                                
+                                tiempoPasadoMovimiento = clockSaltitos.getElapsedTime();
+                                if(tiempoPasadoMovimiento.asSeconds() >= 0.1){
+                                    enemigos[0].move(-1,0);
+                                    enemigos[0].setTextureRect(sf::IntRect(valorSpriteMovimiento, 64, 20, 20));
+                                    
+                            
+                            
+                                    window.clear();
+                                    
+                                    window.draw(enemigos[0]);
+                                    window.display();
+            
+                                    if(valorSpriteMovimiento != 96){
+                                        valorSpriteMovimiento = valorSpriteMovimiento+32;
+                                    }
+                                    else
+                                    {
+                                        valorSpriteMovimiento = 0;
+                                    }
+                                    
+                                    clockSaltitos.restart();
+                                }
+                            }
+                            
+                            enemigos[0].setTextureRect(sf::IntRect(0, 0, 16, 16));
+                            
+                            
+                            ///////////////////////////////////////////////////////////////////////////////
+                        break;
+                        
+                        case sf::Keyboard::Down:
+                            
+                            ///////////////////////////////////////////////////////////////////////////////
+                            //Escala por defecto
+                            enemigos[0].setScale(1,1);
+                            
+                            clockSaltitos.restart();
+                            
+                            destino = enemigos[0].getPosition().y+16.0;
+                            
+                            while(enemigos[0].getPosition().y != destino){
+                                
+                                tiempoPasadoMovimiento = clockSaltitos.getElapsedTime();
+                                if(tiempoPasadoMovimiento.asSeconds() >= 0.1){
+                                    enemigos[0].move(0,1);
+                                    enemigos[0].setTextureRect(sf::IntRect(valorSpriteMovimiento, 96, 20, 20));
+                                    
+                                    window.clear();
+                                    //window.draw(spriteMapa);
+                                    
+                                    window.draw(enemigos[0]);
+                                    window.display();
+            
+                                    if(valorSpriteMovimiento != 96){
+                                        valorSpriteMovimiento = valorSpriteMovimiento+32;
+                                    }
+                                    else
+                                    {
+                                        valorSpriteMovimiento = 0;
+                                    }
+                                    
+                                    clockSaltitos.restart();
+                                }
+                            }
+                            
+                            enemigos[0].setTextureRect(sf::IntRect(0, 0, 16, 16));
+                            
+                            
+                            ///////////////////////////////////////////////////////////////////////////////
+                        break;
+                        
+                        case sf::Keyboard::Up:
+                            
+                            ///////////////////////////////////////////////////////////////////////////////
+                            //Escala por defecto
+                            enemigos[0].setScale(1,1);
+                            
+                            clockSaltitos.restart();
+                            
+                            destino = enemigos[0].getPosition().y-16.0;
+                            
+                            while(enemigos[0].getPosition().y != destino){
+                                
+                                tiempoPasadoMovimiento = clockSaltitos.getElapsedTime();
+                                if(tiempoPasadoMovimiento.asSeconds() >= 0.1){
+                                    enemigos[0].move(0,-1);
+                                    enemigos[0].setTextureRect(sf::IntRect(valorSpriteMovimiento, 128, 20, 20));
+                                    
+                                    window.clear();
+                                    //window.draw(spriteMapa);
+                                    
+                                    window.draw(enemigos[0]);
+                                    window.display();
+            
+                                    if(valorSpriteMovimiento != 96){
+                                        valorSpriteMovimiento = valorSpriteMovimiento+32;
+                                    }
+                                    else
+                                    {
+                                        valorSpriteMovimiento = 0;
+                                    }
+                                    
+                                    clockSaltitos.restart();
+                                }
+                            }
+                            
+                            enemigos[0].setTextureRect(sf::IntRect(0, 0, 16, 16));
+                            
+                            
+                            ///////////////////////////////////////////////////////////////////////////////
+                        break;
+                        
+                        
+                        //Tecla ESC para salir
+                        case sf::Keyboard::Escape:
+                            window.close();
+                        break;
+                        
+                        //Cualquier tecla desconocida se imprime por pantalla su código
+                        default:
+                            std::cout << event.key.code << std::endl;
+                        break;
+                           
+                        
+                     break;
+                    }
+            }
+
+            window.clear();
+            //window.draw(spriteMapa);
             for(int l=0; l<_numLayers; l++){
                 for(int y=0; y<_height; y++){
                     for(int x=0; x<_width; x++){
+                        //OJO, esta dibujando solo la capa de colisiones
                         if(_tilemapSprite[l][y][x] != NULL){
                             window.draw(*(_tilemapSprite[l][y][x]));
                         }
                     }
                 }
             }
-            for(int x=0; x<sizeof(enemigos); x++){
-                window.draw(enemigos[x]);
-            }
-            
+            window.draw(enemigos[0]);
             window.display();
+            
         }
     }
-    
     return 0;
 }
