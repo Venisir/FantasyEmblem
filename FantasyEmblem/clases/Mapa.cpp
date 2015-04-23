@@ -124,12 +124,17 @@ Mapa::Mapa() {
         for(int y=0; y<_height;y++){
             for(int x=0; x<_width; x++){
                 int gid = _tilemap[l][y][x]-1;
-                //Si fuera menor que 0 no creo sprite...
-                if(gid>=0){
-                    _tilemapSprite[l][y][x] = new sf::Sprite(textura, _tilesetSprite[gid]->getTextureRect());//sf::IntRect(0, 0, 16, 16));
-                    _tilemapSprite[l][y][x]->setPosition(x*_tileWidth,y*_tileHeight);
+                //CONDICION PARA PONER NPC's CON CAPA
+                if(y==_height-1){
+                    //CREAR AQUI NPC's
                 }else{
-                    _tilemapSprite[l][y][x] = NULL;
+                    if(gid>=0){
+                        //Si fuera menor que 0 no creo sprite...
+                        _tilemapSprite[l][y][x] = new sf::Sprite(textura, _tilesetSprite[gid]->getTextureRect());//sf::IntRect(0, 0, 16, 16));
+                        _tilemapSprite[l][y][x]->setPosition(x*_tileWidth,y*_tileHeight);
+                    }else{
+                        _tilemapSprite[l][y][x] = NULL;
+                    }
                 }
             }
         }
@@ -142,15 +147,13 @@ Mapa::Mapa(const Mapa& orig) {
 Mapa::~Mapa() {
 }
 
-Mapa::Draw() {
+Mapa::Draw(sf::RenderWindow& window) {
     //Esto va entre el window.clear y el window.display
     for(int l=0; l<_numLayers; l++){
         for(int y=0; y<_height; y++){
             for(int x=0; x<_width; x++){
                 if(_tilemapSprite[l][y][x] != NULL){
-                   //NO SE CREA VENTANA EN ESTA PARTE, ES POR ELLO QUE NO RECONOCE EL METODO
-                   //window.draw(*(_tilemapSprite[l][y][x]));
-                    //ATENCION, EN ESTA PARTE HAY QUE PONER ALGO
+                   window.draw(*(_tilemapSprite[l][y][x]));
                 }
             }
         }

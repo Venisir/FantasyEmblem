@@ -1,6 +1,6 @@
 /* 
  * File:   Unidad.cpp
- * Author: Ricardo
+ * Author: Beatriz
  * 
  * Created on 15 de abril de 2015, 9:40
  */
