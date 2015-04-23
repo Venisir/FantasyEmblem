@@ -12,65 +12,34 @@ using namespace  std;
 
 #include "../headers/MenuPrincipal.h"
 #include "../headers/Cursor.h"
+#include "../headers/Escenario.h"
+#include "../headers/Estado.h"
+#include "../headers/Juego.h"
 
 int main()
 {    
-    /*
-    sf::RenderWindow window(sf::VideoMode(480, 320), "Fantasy Emblem");
-    window.setSize(sf::Vector2u(960,640));
-    MenuPrincipal MenuPrincipal(window.getSize().x, window.getSize().y);
-    
-        while (window.isOpen())
-        {
-            sf::Event event;
-            while (window.pollEvent(event))
-            {
-                if ((event.type == sf::Event::Closed)){
-                    window.close();
-                }
-                   
-                if(event.type == sf::Event::KeyPressed){
-                    switch(event.key.code){
-                        case sf::Keyboard::Down:
-                            MenuPrincipal.MoveDown();                 
-                        break;
-                        case sf::Keyboard::Up:
-                            MenuPrincipal.MoveUp();
-                        break;
-                        
-                        case sf::Keyboard::Return:
-                            if(MenuPrincipal.getSelectedItemIndex()==3){
-                                MenuPrincipal.Exit(window);
-                            }
-                            
-                        break;  
-                        
-                    }
-                }
-        }
-        window.clear(); 
-        MenuPrincipal.draw(window);
-        window.display();
-        }
-    */
-    
     RenderWindow window(sf::VideoMode(480,320), "Fantasy Emblem");
     window.setSize(sf::Vector2u(960, 640));
     
-    Cursor* cursor = new Cursor(&window);
+    Juego *juego = Juego::Instance();
     
+    
+    //Le pongo la ventana al juego
+    juego->setVentana(&window);
+
     //Ejecuto el juego
-    
-    cursor->init();
+    juego->init();
     
     while (window.isOpen()){
-        cursor->update();
-        cursor->render();
+        
+        //std::cerr << "YES" <<endl;
+        juego->update();
+        juego->render();
+        //window.close();
     }
     
     //El juego termina y lo borro
-    delete cursor;
+    //delete juego;
     
-        return 0;
+    return 0;
 }
-

@@ -7,11 +7,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Alberto/Documents/GitHub/FantasyEmblem/FantasyEmblem/clases/Cursor.cpp</file>
+            <file>file:/C:/Users/Alberto/Documents/GitHub/FantasyEmblem/FantasyEmblem/headers/Estado.h</file>
             <file>file:/C:/Users/Alberto/Documents/GitHub/FantasyEmblem/FantasyEmblem/clases/MenuPrincipal.cpp</file>
+            <file>file:/C:/Users/Alberto/Documents/GitHub/FantasyEmblem/FantasyEmblem/headers/EstadoPause.h</file>
+            <file>file:/C:/Users/Alberto/Documents/GitHub/FantasyEmblem/FantasyEmblem/clases/EstadoPause.cpp</file>
+            <file>file:/C:/Users/Alberto/Documents/GitHub/FantasyEmblem/FantasyEmblem/headers/Escenario.h</file>
+            <file>file:/C:/Users/Alberto/Documents/GitHub/FantasyEmblem/FantasyEmblem/clases/Estado.cpp</file>
+            <file>file:/C:/Users/Alberto/Documents/GitHub/FantasyEmblem/FantasyEmblem/clases/Escenario.cpp</file>
             <file>file:/C:/Users/Alberto/Documents/GitHub/FantasyEmblem/FantasyEmblem/headers/MenuPrincipal.h</file>
+            <file>file:/C:/Users/Alberto/Documents/GitHub/FantasyEmblem/FantasyEmblem/headers/Juego.h</file>
             <file>file:/C:/Users/Alberto/Documents/GitHub/FantasyEmblem/FantasyEmblem/clases/main.cpp</file>
-            <file>file:/C:/Users/Alberto/Documents/GitHub/FantasyEmblem/FantasyEmblem/headers/Cursor.h</file>
+            <file>file:/C:/Users/Alberto/Documents/GitHub/FantasyEmblem/FantasyEmblem/clases/Juego.cpp</file>
         </group>
     </open-files>
 </project-private>

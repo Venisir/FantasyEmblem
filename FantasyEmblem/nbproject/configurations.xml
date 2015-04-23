@@ -8,6 +8,7 @@
       <itemPath>headers/Cursor.h</itemPath>
       <itemPath>headers/Escenario.h</itemPath>
       <itemPath>headers/Estado.h</itemPath>
+      <itemPath>headers/EstadoPause.h</itemPath>
       <itemPath>headers/EventoMapa.h</itemPath>
       <itemPath>headers/Juego.h</itemPath>
       <itemPath>headers/Mapa.h</itemPath>
@@ -28,6 +29,7 @@
       <itemPath>clases/Cursor.cpp</itemPath>
       <itemPath>clases/Escenario.cpp</itemPath>
       <itemPath>clases/Estado.cpp</itemPath>
+      <itemPath>clases/EstadoPause.cpp</itemPath>
       <itemPath>clases/EventoMapa.cpp</itemPath>
       <itemPath>clases/Juego.cpp</itemPath>
       <itemPath>clases/Mapa.cpp</itemPath>
@@ -88,6 +90,8 @@
       </item>
       <item path="clases/Estado.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/EstadoPause.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/EventoMapa.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Juego.cpp" ex="false" tool="1" flavor2="0">
@@ -111,6 +115,8 @@
       <item path="headers/Escenario.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Estado.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/EstadoPause.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/EventoMapa.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -159,6 +165,8 @@
       </item>
       <item path="clases/Estado.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/EstadoPause.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/EventoMapa.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Juego.cpp" ex="false" tool="1" flavor2="0">
@@ -182,6 +190,8 @@
       <item path="headers/Escenario.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Estado.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/EstadoPause.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/EventoMapa.h" ex="false" tool="3" flavor2="0">
       </item>

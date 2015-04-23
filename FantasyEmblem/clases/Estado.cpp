@@ -1,18 +1,30 @@
 /* 
  * File:   Estado.cpp
- * Author: Ricardo
+ * Author: Alberto
  * 
- * Created on 15 de abril de 2015, 9:44
+ * Created on 23 de abril de 2015, 11:18
  */
 
 #include "../headers/Estado.h"
 
+/*
 Estado::Estado() {
-}
 
-Estado::Estado(const Estado& orig) {
 }
 
 Estado::~Estado() {
+
+}
+*/
+
+void Estado::render(){
+    render_State();
 }
 
+void Estado::init(){
+    init_State();
+}
+
+void Estado::update(){
+    update_State();
+}

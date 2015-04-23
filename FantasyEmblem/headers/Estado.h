@@ -1,8 +1,8 @@
 /* 
  * File:   Estado.h
- * Author: Ricardo
+ * Author: Alberto
  *
- * Created on 15 de abril de 2015, 9:44
+ * Created on 23 de abril de 2015, 11:18
  */
 
 #ifndef ESTADO_H
@@ -10,11 +10,18 @@
 
 class Estado {
 public:
+    /*
     Estado();
-    Estado(const Estado& orig);
     virtual ~Estado();
-private:
+    */
+    void init();
+    void render();
+    void update();
 
+private:
+    virtual void init_State()=0;
+    virtual void render_State()=0;
+    virtual void update_State()=0;
 };
 
 #endif	/* ESTADO_H */

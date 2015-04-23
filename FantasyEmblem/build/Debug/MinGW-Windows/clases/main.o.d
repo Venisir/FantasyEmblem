@@ -72,7 +72,16 @@ build/Debug/MinGW-Windows/clases/main.o: clases/main.cpp \
  ../SFML-2.1/include/SFML/Audio/SoundBuffer.hpp \
  ../SFML-2.1/include/SFML/Audio/SoundBufferRecorder.hpp \
  ../SFML-2.1/include/SFML/Audio/SoundRecorder.hpp \
- clases/../headers/MenuPrincipal.h clases/../headers/Cursor.h
+ clases/../headers/MenuPrincipal.h clases/../headers/../headers/Juego.h \
+ clases/../headers/../headers/../headers/Escenario.h \
+ clases/../headers/../headers/../headers/../headers/Juego.h \
+ clases/../headers/../headers/../headers/../headers/Escenario.h \
+ clases/../headers/../headers/../headers/../headers/Estado.h \
+ clases/../headers/../headers/../headers/Estado.h \
+ clases/../headers/../headers/Escenario.h \
+ clases/../headers/../headers/Estado.h clases/../headers/Cursor.h \
+ clases/../headers/Escenario.h clases/../headers/Estado.h \
+ clases/../headers/Juego.h
 
 ../SFML-2.1/include/SFML/Graphics.hpp:
 
@@ -224,4 +233,26 @@ build/Debug/MinGW-Windows/clases/main.o: clases/main.cpp \
 
 clases/../headers/MenuPrincipal.h:
 
+clases/../headers/../headers/Juego.h:
+
+clases/../headers/../headers/../headers/Escenario.h:
+
+clases/../headers/../headers/../headers/../headers/Juego.h:
+
+clases/../headers/../headers/../headers/../headers/Escenario.h:
+
+clases/../headers/../headers/../headers/../headers/Estado.h:
+
+clases/../headers/../headers/../headers/Estado.h:
+
+clases/../headers/../headers/Escenario.h:
+
+clases/../headers/../headers/Estado.h:
+
 clases/../headers/Cursor.h:
+
+clases/../headers/Escenario.h:
+
+clases/../headers/Estado.h:
+
+clases/../headers/Juego.h:
