@@ -8,14 +8,14 @@
 #ifndef MAPA_H
 #define	MAPA_H
 #include <SFML/Graphics.hpp>
-#include "tinyxml2.h"
+#include "../tinyxml2.h"
 
 class Mapa {
 public:
     Mapa();
     Mapa(const Mapa& orig);
     virtual ~Mapa();
-    Draw();
+    void Draw();
 private:
     //Variables provisoonales (las que no se usen en general hay que quitarlas)
     int _width = 0;

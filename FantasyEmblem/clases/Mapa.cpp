@@ -10,7 +10,7 @@
 #include <SFML/Graphics.hpp>
 #include <stdio.h>
 #include <string>
-#include "tinyxml2.h"
+#include "../tinyxml2.h"
 
 using namespace tinyxml2;
 using namespace std;
@@ -147,13 +147,13 @@ Mapa::Mapa(const Mapa& orig) {
 Mapa::~Mapa() {
 }
 
-Mapa::Draw(sf::RenderWindow& window) {
+void Mapa::Draw() {
     //Esto va entre el window.clear y el window.display
     for(int l=0; l<_numLayers; l++){
         for(int y=0; y<_height; y++){
             for(int x=0; x<_width; x++){
                 if(_tilemapSprite[l][y][x] != NULL){
-                   window.draw(*(_tilemapSprite[l][y][x]));
+                   //window.draw(*(_tilemapSprite[l][y][x]));//ESTA COMENTADO PARA QUE NO PETEEE
                 }
             }
         }
