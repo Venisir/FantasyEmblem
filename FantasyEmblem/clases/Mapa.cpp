@@ -5,7 +5,13 @@
  * Created on 15 de abril de 2015, 9:41
  */
 
+#include "../headers/Escenario.h"
+#include "../headers/MenuPrincipal.h"
+#include "../headers/EstadoPause.h"
+#include "../headers/Estado.h"
+#include "../headers/Juego.h"
 #include "../headers/Mapa.h"
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <stdio.h>
@@ -17,6 +23,16 @@ using namespace std;
 using namespace sf;
 
 Mapa::Mapa() {
+    /*
+    _width = 0;
+    _height = 0;
+    _tileWidth = 0;
+    _tileHeight = 0;
+    _imageWidth = 0;
+    _imageHeight = 0;
+    _numLayers = 0;
+    _cont = 0;
+    */
     //Cargamos el XML y creamos la ventana
     XMLDocument doc;
     doc.LoadFile("niveles/mapa1.tmx");
@@ -33,6 +49,8 @@ Mapa::Mapa() {
     const char *filename = img->Attribute("source");
     img->QueryIntAttribute( "height", &_imageHeight );
     img->QueryIntAttribute( "width", &_imageWidth );
+    
+    
     
     //Cuantas capas tiene mi XML
     XMLElement *layer = map->FirstChildElement("layer");
@@ -97,8 +115,10 @@ Mapa::Mapa() {
     string s = "niveles/"+s1;
     
     //Cargamos las texturas
-    Texture textura;
-    if (!textura.loadFromFile(s))
+    //Texture textura;
+    textura = new Texture();
+    
+    if (!textura->loadFromFile(s))
     {
         std::cerr << "Error cargando la textura" << endl;
         exit(0);
@@ -123,37 +143,42 @@ Mapa::Mapa() {
     for(int l=0; l<_numLayers;l++){
         for(int y=0; y<_height;y++){
             for(int x=0; x<_width; x++){
+                
                 int gid = _tilemap[l][y][x]-1;
+                //std::cerr <<gid<< endl;
                 //CONDICION PARA PONER NPC's CON CAPA
-                if(y==_height-1){
+                //if(y==_height-1){
                     //CREAR AQUI NPC's
-                }else{
+                //}else{
                     if(gid>=0){
                         //Si fuera menor que 0 no creo sprite...
-                        _tilemapSprite[l][y][x] = new sf::Sprite(textura, _tilesetSprite[gid]->getTextureRect());//sf::IntRect(0, 0, 16, 16));
+                        _tilemapSprite[l][y][x] = new sf::Sprite(*textura, _tilesetSprite[gid]->getTextureRect());//sf::IntRect(0, 0, 16, 16));
+                        //_tilemapSprite[l][y][x]->
                         _tilemapSprite[l][y][x]->setPosition(x*_tileWidth,y*_tileHeight);
                     }else{
                         _tilemapSprite[l][y][x] = NULL;
                     }
-                }
+                //}
             }
         }
     }
-}
-
-Mapa::Mapa(const Mapa& orig) {
+                //std::cerr <<s<< endl;
+    
+    Draw();
 }
 
 Mapa::~Mapa() {
 }
 
 void Mapa::Draw() {
+    
     //Esto va entre el window.clear y el window.display
+    
     for(int l=0; l<_numLayers; l++){
         for(int y=0; y<_height; y++){
             for(int x=0; x<_width; x++){
                 if(_tilemapSprite[l][y][x] != NULL){
-                   //window.draw(*(_tilemapSprite[l][y][x]));//ESTA COMENTADO PARA QUE NO PETEEE
+                    Juego::Instance()->getVentana()->draw(*(_tilemapSprite[l][y][x]));
                 }
             }
         }

@@ -143,13 +143,14 @@ int main()
     }
     
     
+    //Cargamos en la variabe _tilemapSprite las texturas de las capas
     for(int l=0; l<_numLayers;l++){
         for(int y=0; y<_height;y++){
             for(int x=0; x<_width; x++){
                 
                 int gid = _tilemap[l][y][x]-1;
                     
-                    if(gid>=0){
+                if(gid>=0){
                     //Si fuera menor que 0 no creo sprite...
                     
                     _tilemapSprite[l][y][x] = new sf::Sprite(textura, _tilesetSprite[gid]->getTextureRect());//sf::IntRect(0, 0, 16, 16));

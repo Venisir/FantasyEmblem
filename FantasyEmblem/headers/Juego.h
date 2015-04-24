@@ -9,7 +9,11 @@
 #define	JUEGO_H
 
 #include "../headers/Escenario.h"
+#include "../headers/MenuPrincipal.h"
+#include "../headers/EstadoPause.h"
 #include "../headers/Estado.h"
+#include "../headers/Juego.h"
+#include "../headers/Mapa.h"
 
 #include <iostream>
 #include <SFML/Graphics.hpp>

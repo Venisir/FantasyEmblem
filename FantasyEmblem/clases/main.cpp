@@ -23,7 +23,6 @@ int main()
     
     Juego *juego = Juego::Instance();
     
-    
     //Le pongo la ventana al juego
     juego->setVentana(&window);
 

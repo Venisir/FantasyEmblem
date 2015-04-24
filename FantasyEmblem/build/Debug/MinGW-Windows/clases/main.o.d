@@ -77,7 +77,13 @@ build/Debug/MinGW-Windows/clases/main.o: clases/main.cpp \
  clases/../headers/../headers/../headers/../headers/Juego.h \
  clases/../headers/../headers/../headers/../headers/Escenario.h \
  clases/../headers/../headers/../headers/../headers/Estado.h \
+ clases/../headers/../headers/../headers/../headers/Mapa.h \
+ clases/../headers/../headers/../headers/../headers/../tinyxml2.h \
+ clases/../headers/../headers/../headers/MenuPrincipal.h \
+ clases/../headers/../headers/../headers/EstadoPause.h \
  clases/../headers/../headers/../headers/Estado.h \
+ clases/../headers/../headers/../headers/Juego.h \
+ clases/../headers/../headers/../headers/Mapa.h \
  clases/../headers/../headers/Escenario.h \
  clases/../headers/../headers/Estado.h clases/../headers/Cursor.h \
  clases/../headers/Escenario.h clases/../headers/Estado.h \
@@ -243,7 +249,19 @@ clases/../headers/../headers/../headers/../headers/Escenario.h:
 
 clases/../headers/../headers/../headers/../headers/Estado.h:
 
+clases/../headers/../headers/../headers/../headers/Mapa.h:
+
+clases/../headers/../headers/../headers/../headers/../tinyxml2.h:
+
+clases/../headers/../headers/../headers/MenuPrincipal.h:
+
+clases/../headers/../headers/../headers/EstadoPause.h:
+
 clases/../headers/../headers/../headers/Estado.h:
+
+clases/../headers/../headers/../headers/Juego.h:
+
+clases/../headers/../headers/../headers/Mapa.h:
 
 clases/../headers/../headers/Escenario.h:
 

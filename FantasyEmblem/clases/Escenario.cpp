@@ -10,6 +10,7 @@
 #include "../headers/Escenario.h"
 #include "../headers/Estado.h"
 #include "../headers/Juego.h"
+#include "../headers/Mapa.h"
 
 #include <iostream>
 #include <sstream>
@@ -37,6 +38,7 @@ Escenario::Escenario() {
     spriteCursor = new Sprite();
     reloj = new Clock();
     evento = new Event();
+    mapa = new Mapa();
     
     init_State();
 }
@@ -50,6 +52,7 @@ Escenario::~Escenario() {
     delete evento;
     //delete ventana;
     delete pinstance;
+    delete mapa;
 }
 
 void Escenario::init_State(){
@@ -80,11 +83,14 @@ void Escenario::cambiaSpriteCursorMano() {
 }
 
 void Escenario::render_State(){
+    
     Juego::Instance()->getVentana()->clear();
+    
+    mapa->Draw();
+    
     Juego::Instance()->getVentana()->draw(*spriteCursor);
     Juego::Instance()->getVentana()->display();
 }
-
 
 void Escenario::update_State(){
     if (reloj->getElapsedTime().asMilliseconds() >= 100) {
@@ -124,20 +130,41 @@ void Escenario::input() {
                 case sf::Keyboard::Numpad1:
                     cambiaSpriteCursorSeleccionar();             
                 break;
+                
                 case sf::Keyboard::Numpad2:
                     cambiaSpriteCursorMano();               
                 break;
+                
+                case sf::Keyboard::Numpad3:
+                    std::cerr <<"DIBUJO"<< endl;
+                    mapa->Draw();
+                break;
+                
+                case sf::Keyboard::Numpad4:
+                    std::cerr <<"CLEAR"<< endl;
+                    Juego::Instance()->getVentana()->clear();
+                break;
+                
+                case sf::Keyboard::Numpad5:
+                    std::cerr <<"DISPLAY"<< endl;
+                    Juego::Instance()->getVentana()->display();
+                break;
+                
+                case sf::Keyboard::Numpad6:
+                    Juego::Instance()->getVentana()->draw(*spriteCursor);
+                break;
+                
+                case sf::Keyboard::Numpad7:
+                    
+                break;
+                
                 case sf::Keyboard::Numpad8:
                     Juego::Instance()->ponerEstadoMenuPrincipal();              
                 break;
                 case sf::Keyboard::Numpad9:
                     Juego::Instance()->ponerEstadoPause();              
                 break;
-                /*
-                case sf::Keyboard::Numpad4:
-                    render_State();              
-                break;
-                */
+                
                 case sf::Keyboard::Escape:
                     Juego::Instance()->getVentana()->close();               
                 break;

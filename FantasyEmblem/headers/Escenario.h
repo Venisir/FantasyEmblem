@@ -11,6 +11,7 @@
 #include "../headers/Juego.h"
 #include "../headers/Escenario.h"
 #include "../headers/Estado.h"
+#include "../headers/Mapa.h"
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -52,6 +53,8 @@ private:
     sf::Sprite* spriteCursor;
     sf::Clock* reloj;
     sf::Event* evento;
+    
+    Mapa* mapa;
 };
 
 #endif	/* ESCENARIO_H */

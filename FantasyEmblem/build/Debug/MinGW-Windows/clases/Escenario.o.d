@@ -1,7 +1,10 @@
 build/Debug/MinGW-Windows/clases/Escenario.o: clases/Escenario.cpp \
  clases/../headers/Escenario.h clases/../headers/../headers/Juego.h \
  clases/../headers/../headers/../headers/Escenario.h \
- clases/../headers/../headers/../headers/Estado.h \
+ clases/../headers/../headers/../headers/MenuPrincipal.h \
+ clases/../headers/../headers/../headers/../headers/Juego.h \
+ clases/../headers/../headers/../headers/../headers/Escenario.h \
+ clases/../headers/../headers/../headers/../headers/Estado.h \
  ../SFML-2.1/include/SFML/Graphics.hpp \
  ../SFML-2.1/include/SFML/Window.hpp ../SFML-2.1/include/SFML/System.hpp \
  ../SFML-2.1/include/SFML/Config.hpp \
@@ -65,8 +68,7 @@ build/Debug/MinGW-Windows/clases/Escenario.o: clases/Escenario.cpp \
  ../SFML-2.1/include/SFML/Graphics/ConvexShape.hpp \
  ../SFML-2.1/include/SFML/Graphics/Sprite.hpp \
  ../SFML-2.1/include/SFML/Graphics/Text.hpp \
- clases/../headers/../headers/Escenario.h \
- clases/../headers/../headers/Estado.h ../SFML-2.1/include/SFML/Audio.hpp \
+ ../SFML-2.1/include/SFML/Audio.hpp \
  ../SFML-2.1/include/SFML/Audio/Listener.hpp \
  ../SFML-2.1/include/SFML/Audio/Export.hpp \
  ../SFML-2.1/include/SFML/Audio/Music.hpp \
@@ -76,7 +78,15 @@ build/Debug/MinGW-Windows/clases/Escenario.o: clases/Escenario.cpp \
  ../SFML-2.1/include/SFML/Audio/SoundBuffer.hpp \
  ../SFML-2.1/include/SFML/Audio/SoundBufferRecorder.hpp \
  ../SFML-2.1/include/SFML/Audio/SoundRecorder.hpp \
- clases/../headers/Estado.h clases/../headers/Juego.h
+ clases/../headers/../headers/../headers/EstadoPause.h \
+ clases/../headers/../headers/../headers/Estado.h \
+ clases/../headers/../headers/../headers/Juego.h \
+ clases/../headers/../headers/../headers/Mapa.h \
+ clases/../headers/../headers/../headers/../tinyxml2.h \
+ clases/../headers/../headers/Escenario.h \
+ clases/../headers/../headers/Estado.h \
+ clases/../headers/../headers/Mapa.h clases/../headers/Estado.h \
+ clases/../headers/Juego.h clases/../headers/Mapa.h
 
 clases/../headers/Escenario.h:
 
@@ -84,7 +94,13 @@ clases/../headers/../headers/Juego.h:
 
 clases/../headers/../headers/../headers/Escenario.h:
 
-clases/../headers/../headers/../headers/Estado.h:
+clases/../headers/../headers/../headers/MenuPrincipal.h:
+
+clases/../headers/../headers/../headers/../headers/Juego.h:
+
+clases/../headers/../headers/../headers/../headers/Escenario.h:
+
+clases/../headers/../headers/../headers/../headers/Estado.h:
 
 ../SFML-2.1/include/SFML/Graphics.hpp:
 
@@ -214,10 +230,6 @@ clases/../headers/../headers/../headers/Estado.h:
 
 ../SFML-2.1/include/SFML/Graphics/Text.hpp:
 
-clases/../headers/../headers/Escenario.h:
-
-clases/../headers/../headers/Estado.h:
-
 ../SFML-2.1/include/SFML/Audio.hpp:
 
 ../SFML-2.1/include/SFML/Audio/Listener.hpp:
@@ -238,6 +250,24 @@ clases/../headers/../headers/Estado.h:
 
 ../SFML-2.1/include/SFML/Audio/SoundRecorder.hpp:
 
+clases/../headers/../headers/../headers/EstadoPause.h:
+
+clases/../headers/../headers/../headers/Estado.h:
+
+clases/../headers/../headers/../headers/Juego.h:
+
+clases/../headers/../headers/../headers/Mapa.h:
+
+clases/../headers/../headers/../headers/../tinyxml2.h:
+
+clases/../headers/../headers/Escenario.h:
+
+clases/../headers/../headers/Estado.h:
+
+clases/../headers/../headers/Mapa.h:
+
 clases/../headers/Estado.h:
 
 clases/../headers/Juego.h:
+
+clases/../headers/Mapa.h:

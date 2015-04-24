@@ -9,6 +9,7 @@
 #include "../headers/EstadoPause.h"
 #include "../headers/Estado.h"
 #include "../headers/Juego.h"
+#include "../headers/Mapa.h"
 
 #include <iostream>
 #include <sstream>

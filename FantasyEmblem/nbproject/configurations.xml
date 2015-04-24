@@ -18,6 +18,12 @@
       <itemPath>headers/Unidad.h</itemPath>
       <itemPath>tinyxml2.h</itemPath>
     </logicalFolder>
+    <logicalFolder name="niveles" displayName="niveles" projectFiles="true">
+      <itemPath>niveles/Tilev1.png</itemPath>
+      <itemPath>niveles/mapa1.png</itemPath>
+      <itemPath>niveles/mapa1.tmx</itemPath>
+      <itemPath>niveles/mapa1v2.png</itemPath>
+    </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
                    projectFiles="true">
@@ -52,6 +58,9 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>niveles</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="Debug" type="1">
@@ -132,6 +141,14 @@
       </item>
       <item path="headers/Unidad.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="niveles/Tilev1.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="niveles/mapa1.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="niveles/mapa1.tmx" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="niveles/mapa1v2.png" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="tinyxml2.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="tinyxml2.h" ex="false" tool="3" flavor2="0">
@@ -206,6 +223,14 @@
       <item path="headers/Partida.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Unidad.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="niveles/Tilev1.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="niveles/mapa1.png" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="niveles/mapa1.tmx" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="niveles/mapa1v2.png" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tinyxml2.cpp" ex="false" tool="1" flavor2="0">
       </item>

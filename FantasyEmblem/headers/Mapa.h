@@ -13,7 +13,6 @@
 class Mapa {
 public:
     Mapa();
-    Mapa(const Mapa& orig);
     virtual ~Mapa();
     void Draw();
 private:
@@ -26,8 +25,10 @@ private:
     int _imageHeight = 0;
     int _numLayers = 0;
     int _cont=0;
+    
     int ***_tilemap;
     sf::Sprite ****_tilemapSprite;
+    sf::Texture* textura;
 };
 
 #endif	/* MAPA_H */
