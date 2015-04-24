@@ -8,6 +8,10 @@
 #ifndef ARMAS_H
 #define	ARMAS_H
 
+#include "../headers/Unidad.h"
+#include "../headers/Aliadas.h"
+#include "../headers/Cofre.h"
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -21,7 +25,7 @@ using namespace sf;
 class Armas {
 public:
     
-    Armas();
+    Armas(string* nom, string* tip, int pes, int pod, int golp, int alcan, int usos);
     virtual ~Armas();
     
     int getPeso();
@@ -30,17 +34,18 @@ public:
     int getAlcance();
     int getUsos();
     
-    int setUsos();
+    void setUsos(int uso);
+    
 private:
 
     
     string* Nombre;
     string* Tipo;
-    int* Peso;
-    int* Poder;
-    int* Golpe;
-    int* Alcance;
-    int* Usos;
+    int Peso;
+    int Poder;
+    int Golpe;
+    int Alcance;
+    int Usos;
     
     
 };

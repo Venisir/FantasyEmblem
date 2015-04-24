@@ -6,6 +6,10 @@
  */
 
 #include "../headers/Armas.h"
+#include "../headers/Unidad.h"
+#include "../headers/Aliadas.h"
+#include "../headers/Cofre.h"
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -16,43 +20,41 @@ using namespace std;
 using namespace sf;
 
 
-Armas::Armas(string nom, string tip, int pes, int pod, int golp, int alcan, int usos ) {
-    if(nom!=NULL && tip!=NULL){
-        Nombre=nom;
-        Tipo=tip;
-    }
+Armas::Armas(string* nom, string* tip, int pes, int pod, int golp, int alcan, int usos) {
+    
+    Nombre=nom;
+    Tipo=tip;
+    
     Peso=pes;
     Poder=pod;
     Golpe=golp;
     Alcance=alcan;
     Usos=usos;
-    
 }
-
 
 Armas::~Armas() {
 }
 
-Armas::getPeso(){
+int Armas::getPeso(){
     return Peso;
 }
 
-Armas::getPoder(){
+int Armas::getPoder(){
     return Poder;
 }
 
-Armas::getGolpe(){
+int Armas::getGolpe(){
     return Golpe;
 }
 
-Armas::getAlcance(){
+int Armas::getAlcance(){
     return Alcance;    
 }
 
-Armas::getUsos(){
+int Armas::getUsos(){
     return Usos;
 }
 
-Armas::setUsos(int uso){
+void Armas::setUsos(int uso){
     Usos=Usos-uso;
 }
