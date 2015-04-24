@@ -17,12 +17,16 @@
 #include <stdio.h>
 #include <string.h>
 #include <vector>
+#include <string>
+#include <cstring>
 
 using namespace std;
 using namespace sf;
 
 Aliadas::Aliadas() {
-   
+    /*for(int i=0;i<3;i++){
+        inventarioObjetos[i] = new Objetos();
+    } */  
 }
 
 Aliadas::Aliadas(const Aliadas& orig) {
@@ -35,7 +39,7 @@ bool Aliadas::usarObjeto(Objetos obj){
     bool usada = false; 
     //recorrer inventario y buscar obj
     for(int i=0;i<3;i++){
-        if(inventarioObjetos[i].getId() == obj.getId()){
+        if(inventarioObjetos[i]->getId() == obj->getId()){
             obj.~Objetos();
             //inventarioObjetos[i];
             usada = true;
@@ -50,17 +54,17 @@ bool Aliadas::usarObjeto(Objetos obj){
 bool Aliadas::abrirCofre(Cofre cofre){
     bool abierto = false;
     bool meter = false;
-    Armas arma_pasada = cofre.getArma();
-    Objetos objeto_pasado = cofre.getObjeto();
     //recorrer inventario en busca objeto tipo llave
     for(int i=0;i<3;i++){
-        if(strcmp(inventarioObjetos[i].getTipo(),"llave")==0){
+        if(inventarioObjetos[i]->getTipo().compare("llave")== 0){
             abierto = true;
             //cambiar sprite
-            if(arma_pasada!=NULL){
+     
+            Armas armaAux = cofre.getArma();
+            if( operator!=(armaAux, NULL)){
                 for(int j=0;j<3;j++){
                     if((inventarioArmas[j]==NULL) && (meter==false)){
-                        inventarioArmas[j] = cofre.getArma();
+                        inventarioArmas[j] = cofre->getArma();
                         meter=true;
                     }
                 }
@@ -70,7 +74,7 @@ bool Aliadas::abrirCofre(Cofre cofre){
             }else{
                 for(int j=0;j<3;j++){
                     if((inventarioObjetos[j]==NULL) && (meter==false)){
-                        inventarioObjetos[j] = objeto_pasado;
+                        inventarioObjetos[j] = cofre.getObjeto();
                         meter=true;
                     }
                 }
