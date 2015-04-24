@@ -41,3 +41,7 @@ Objetos::getAlcance(){
 Objetos::setUsos(int us) {
     Usos=Usos-us;
 }
+
+Objetos::getTipo(){
+    return Tipo;
+}
