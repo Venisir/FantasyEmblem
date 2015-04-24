@@ -147,8 +147,11 @@ Mapa::Mapa() {
                 int gid = _tilemap[l][y][x]-1;
                 //std::cerr <<gid<< endl;
                 //CONDICION PARA PONER NPC's CON CAPA
-                //if(y==_height-1){
+               // if(l==6){
                     //CREAR AQUI NPC's
+                    
+                //}else if(l==4){
+                    //CREAR AQUI COFRES
                 //}else{
                     if(gid>=0){
                         //Si fuera menor que 0 no creo sprite...
