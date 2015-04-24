@@ -25,7 +25,7 @@ public:
     
     int getUsos();
     int getAlcance();
-    
+    string getTipo();
     int setUsos();
     
 private:
