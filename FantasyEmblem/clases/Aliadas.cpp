@@ -44,15 +44,35 @@ void Aliadas::subirNivel(){
 
 bool Aliadas::abrirCofre(Cofre cofre){
     bool abierto = false;
+    bool meter = false;
     //recorrer inventario en busca objeto tipo llave
     for(int i=0;i<3;i++){
-        if(inventarioObjetos[i].getTipo().strcmp("llave")){
+        if(strcmp(inventarioObjetos[i] -> getTipo(),"llave")==0){
             abierto = true;
             //cambiar sprite
+            if(cofre -> getArma()!=NULL){
+                for(int j=0;j<3;j++){
+                    if((inventarioArmas[j]==NULL) && (meter==false)){
+                        inventarioArmas[j] = cofre->getArma();
+                        meter=true;
+                    }
+                }
+                if(meter==false){
+                    //salta aviso: no puedes coger arma
+                }
+            }else{
+                for(int j=0;j<3;j++){
+                    if((inventarioObjetos[j]==NULL) && (meter==false)){
+                        inventarioObjetos[j] = cofre->getObjeto();
+                        meter=true;
+                    }
+                }
+                if(meter==false){
+                    //salta aviso: no puedes coger objeto
+                }
+            }
+            
         } 
     }   
     return abierto;
 }
-
-
-
