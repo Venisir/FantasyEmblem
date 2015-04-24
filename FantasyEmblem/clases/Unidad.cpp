@@ -6,8 +6,13 @@
  */
 
 #include "../headers/Unidad.h"
+#include <stdio.h>
+#include <string>
 
-Unidad::Unidad() {
+using namespace std;
+
+Unidad::Unidad(string nombre, string clase, string ) {
+    
 }
 
 Unidad::Unidad(const Unidad& orig) {
@@ -16,3 +21,51 @@ Unidad::Unidad(const Unidad& orig) {
 Unidad::~Unidad() {
 }
 
+//------------------------------METODOS SET-------------------------------------
+Unidad::setHP(int hp){
+    atributos[0]=hp;
+}
+Unidad::setFuerza(int f){
+    atributos[1]=f;
+}
+Unidad::setMagia(int m){
+    atributos[2]=m;
+}
+Unidad::setHab(int h){
+    atributos[3]=h;
+}
+Unidad::setVel(int v){
+    atributos[4]=v;
+}
+Unidad::setDef(int d){
+    atributos[5]=d;
+}
+Unidad::setDefm(int dm){
+    atributos[6]=dm;
+}
+
+//------------------------------METODOS GET-------------------------------------
+Unidad::setHP(){
+    return atributos[0];
+}
+Unidad::setFuerza(){
+    return atributos[1];
+}
+Unidad::setMagia(){
+    return atributos[2];
+}
+Unidad::setHab(){
+    return atributos[3];
+}
+Unidad::setVel(){
+    return atributos[4];
+}
+Unidad::setDef(){
+    return atributos[5];
+}
+Unidad::setDefm(){
+    return atributos[6];
+}
+//Unidad::setExp(){
+   // 
+//}
