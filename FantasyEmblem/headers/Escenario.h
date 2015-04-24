@@ -55,13 +55,11 @@ private:
     sf::Sprite* spriteCursor;
     sf::Clock* reloj;
     sf::Event* evento;
-<<<<<<< HEAD
     
     Mapa* mapa;
-=======
-    Unidad aliadas[5];//aray de unidades aliadas (posiblemente esten en mapa)
-    Unidad enemigos[5];//array de unidades enemigas
->>>>>>> 5fc7d0477be174a70d2075fa6ddd5c3d00aaeec7
+    
+    //Unidad aliadas[5];//aray de unidades aliadas (posiblemente esten en mapa)
+    //Unidad enemigos[5];//array de unidades enemigas
 };
 
 #endif	/* ESCENARIO_H */

@@ -89,6 +89,9 @@ void Escenario::render_State(){
     mapa->Draw();
     
     Juego::Instance()->getVentana()->draw(*spriteCursor);
+    
+    Juego::Instance()->renderText();
+    
     Juego::Instance()->getVentana()->display();
 }
 
@@ -164,12 +167,10 @@ void Escenario::input() {
                 case sf::Keyboard::Numpad9:
                     Juego::Instance()->ponerEstadoPause();              
                 break;
-<<<<<<< HEAD
-=======
+                
                 case sf::Keyboard::Return:
                                   
                 break;
->>>>>>> 5fc7d0477be174a70d2075fa6ddd5c3d00aaeec7
                 
                 case sf::Keyboard::Escape:
                     Juego::Instance()->getVentana()->close();               

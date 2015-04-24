@@ -32,6 +32,7 @@ public:
     
     RenderWindow* getVentana();
     void setVentana(RenderWindow* v);
+    void renderText();
     
     void init();
     void render();
@@ -56,6 +57,12 @@ private:
     
     RenderWindow* ventana;
     
+    sf::Clock* reloj;
+    sf::Clock* reloj_fps;
+    sf::Font* fuente;
+    
+    float fps;
+    float c_time;
 };
 
 #endif	/* JUEGO_H */

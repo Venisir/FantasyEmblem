@@ -63,7 +63,14 @@ void EstadoPause::init_State(){
     t_textoPause->setCharacterSize(20);
     t_textoPause->setString(s_textoPause);
     t_textoPause->setColor(sf::Color::White);
-    t_textoPause->setPosition(100,100);
+    
+    //Centrar el texto
+    sf::FloatRect textRect = t_textoPause->getLocalBounds();
+    t_textoPause->setOrigin(textRect.left + textRect.width/2.0f,
+                  textRect.top  + textRect.height/2.0f);
+    t_textoPause->setPosition(sf::Vector2f(480/2.0f,320/2.0f));
+
+
 }
 
 void EstadoPause::render_State(){

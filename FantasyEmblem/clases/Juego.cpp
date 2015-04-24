@@ -33,6 +33,11 @@ Juego* Juego::Instance () {
 Juego::Juego() {
     //Realizar inicializaciones necesarias de la instancia
     
+    reloj = new sf::Clock();
+    reloj_fps = new sf::Clock();
+    fuente = new sf::Font();
+    fuente->loadFromFile("resources/font.ttf");
+    
     ponerEstadoMenuPrincipal();
     
     //ponerEstadoEscenario();
@@ -45,7 +50,9 @@ Juego::Juego(const Juego& orig) {
 Juego::~Juego() {
     /*if(pinstance != NULL)*/ 
     delete pinstance;
-    
+    delete reloj;
+    delete reloj_fps;
+    delete fuente;
 }
 
 void Juego::init(){
@@ -53,11 +60,35 @@ void Juego::init(){
 }
 
 void Juego::update(){
-    states.back()->update();
+    
+    if (reloj->getElapsedTime().asMilliseconds() >= 100) {
+        reloj->restart();
+        states.back()->update();
+    }
+    
 }
 
 void Juego::render(){
+    
+    c_time = reloj_fps->restart().asSeconds();
+    fps = (float) 1 / c_time;
+    
     states.back()->render();
+   
+}
+
+void Juego::renderText() {
+    
+    std::stringstream ss_fps;
+    ss_fps << "FPS: "<<fps;
+    std::string s_fps = ss_fps.str();
+    sf::Text t_fps(s_fps,*fuente,12);
+    
+    t_fps.setColor(sf::Color::Black);
+    
+    t_fps.setPosition(0,0);
+    
+    ventana->draw(t_fps);
 }
 
 RenderWindow* Juego::getVentana(){
