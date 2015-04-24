@@ -35,11 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/clases/Aliadas.o \
 	${OBJECTDIR}/clases/Armas.o \
-	${OBJECTDIR}/clases/Cofre.o \
 	${OBJECTDIR}/clases/Cursor.o \
-	${OBJECTDIR}/clases/Enemigos.o \
 	${OBJECTDIR}/clases/Escenario.o \
 	${OBJECTDIR}/clases/Estado.o \
 	${OBJECTDIR}/clases/EstadoPause.o \
@@ -78,30 +75,15 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/fantasyemblem.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/fantasyemblem ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/clases/Aliadas.o: clases/Aliadas.cpp 
-	${MKDIR} -p ${OBJECTDIR}/clases
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -DSFML_STATIC -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/Aliadas.o clases/Aliadas.cpp
-
 ${OBJECTDIR}/clases/Armas.o: clases/Armas.cpp 
 	${MKDIR} -p ${OBJECTDIR}/clases
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -DSFML_STATIC -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/Armas.o clases/Armas.cpp
 
-${OBJECTDIR}/clases/Cofre.o: clases/Cofre.cpp 
-	${MKDIR} -p ${OBJECTDIR}/clases
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -DSFML_STATIC -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/Cofre.o clases/Cofre.cpp
-
 ${OBJECTDIR}/clases/Cursor.o: clases/Cursor.cpp 
 	${MKDIR} -p ${OBJECTDIR}/clases
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -DSFML_STATIC -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/Cursor.o clases/Cursor.cpp
-
-${OBJECTDIR}/clases/Enemigos.o: clases/Enemigos.cpp 
-	${MKDIR} -p ${OBJECTDIR}/clases
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -DSFML_STATIC -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/Enemigos.o clases/Enemigos.cpp
 
 ${OBJECTDIR}/clases/Escenario.o: clases/Escenario.cpp 
 	${MKDIR} -p ${OBJECTDIR}/clases
