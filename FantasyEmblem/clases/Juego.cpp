@@ -82,6 +82,7 @@ void Juego::ponerEstadoPause(){
     //states.back()->init();
 }
 
+
 /*
 void Juego::input() 
 {

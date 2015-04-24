@@ -133,11 +133,10 @@ void Escenario::input() {
                 case sf::Keyboard::Numpad9:
                     Juego::Instance()->ponerEstadoPause();              
                 break;
-                /*
-                case sf::Keyboard::Numpad4:
-                    render_State();              
+                case sf::Keyboard::Return:
+                                  
                 break;
-                */
+                
                 case sf::Keyboard::Escape:
                     Juego::Instance()->getVentana()->close();               
                 break;
