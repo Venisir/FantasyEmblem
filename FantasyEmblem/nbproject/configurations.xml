@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="95">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
@@ -239,3 +240,245 @@
     </conf>
   </confs>
 </configurationDescriptor>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="95">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>headers/Armas.h</itemPath>
+      <itemPath>headers/Cursor.h</itemPath>
+      <itemPath>headers/Escenario.h</itemPath>
+      <itemPath>headers/Estado.h</itemPath>
+      <itemPath>headers/EstadoPause.h</itemPath>
+      <itemPath>headers/EventoMapa.h</itemPath>
+      <itemPath>headers/Juego.h</itemPath>
+      <itemPath>headers/Mapa.h</itemPath>
+      <itemPath>headers/MenuPrincipal.h</itemPath>
+      <itemPath>headers/Objetos.h</itemPath>
+      <itemPath>headers/Partida.h</itemPath>
+      <itemPath>headers/Unidad.h</itemPath>
+      <itemPath>tinyxml2.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>clases/Armas.cpp</itemPath>
+      <itemPath>clases/Cursor.cpp</itemPath>
+      <itemPath>clases/Escenario.cpp</itemPath>
+      <itemPath>clases/Estado.cpp</itemPath>
+      <itemPath>clases/EstadoPause.cpp</itemPath>
+      <itemPath>clases/EventoMapa.cpp</itemPath>
+      <itemPath>clases/Juego.cpp</itemPath>
+      <itemPath>clases/Mapa.cpp</itemPath>
+      <itemPath>clases/MenuPrincipal.cpp</itemPath>
+      <itemPath>clases/Objetos.cpp</itemPath>
+      <itemPath>clases/Partida.cpp</itemPath>
+      <itemPath>clases/Unidad.cpp</itemPath>
+      <itemPath>clases/main.cpp</itemPath>
+      <itemPath>tinyxml2.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <incDir>
+            <pElem>../SFML-2.1/include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>SFML_STATIC</Elem>
+          </preprocessorList>
+        </ccTool>
+        <linkerTool>
+          <linkerAddLib>
+            <pElem>../SFML-2.1/lib</pElem>
+          </linkerAddLib>
+          <linkerLibItems>
+            <linkerLibLibItem>sfml-graphics-s-d</linkerLibLibItem>
+            <linkerLibLibItem>sfml-window-s-d</linkerLibLibItem>
+            <linkerLibLibItem>sfml-system-s-d</linkerLibLibItem>
+            <linkerLibLibItem>sfml-audio-s-d</linkerLibLibItem>
+            <linkerLibLibItem>sfml-network-s-d</linkerLibLibItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="clases/Aliadas.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Armas.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Cofre.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Cursor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Enemigos.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Escenario.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Estado.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/EstadoPause.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/EventoMapa.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Juego.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Mapa.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/MenuPrincipal.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Objetos.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Partida.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Unidad.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="headers/Aliadas.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Armas.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Cofre.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Cursor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Enemigos.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Escenario.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Estado.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/EstadoPause.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/EventoMapa.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Juego.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Mapa.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/MenuPrincipal.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Objetos.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Partida.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Unidad.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tinyxml2.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tinyxml2.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="clases/Aliadas.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Armas.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Cofre.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Cursor.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Enemigos.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Escenario.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Estado.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/EstadoPause.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/EventoMapa.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Juego.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Mapa.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/MenuPrincipal.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Objetos.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Partida.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Unidad.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="headers/Aliadas.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Armas.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Cofre.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Cursor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Enemigos.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Escenario.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Estado.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/EstadoPause.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/EventoMapa.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Juego.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Mapa.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/MenuPrincipal.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Objetos.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Partida.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Unidad.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tinyxml2.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tinyxml2.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
+>>>>>>> 5fc7d0477be174a70d2075fa6ddd5c3d00aaeec7

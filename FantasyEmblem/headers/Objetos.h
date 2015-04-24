@@ -8,13 +8,35 @@
 #ifndef OBJETOS_H
 #define	OBJETOS_H
 
+#include <iostream>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <stdio.h>
+#include <string.h>
+
+using namespace std;
+using namespace sf;
+
+
 class Objetos {
 public:
     Objetos();
-    Objetos(const Objetos& orig);
     virtual ~Objetos();
+    
+    int getUsos();
+    int getAlcance();
+    string getTipo();
+    int setUsos();
+    
 private:
-
+    
+    string* Nombre;
+    string* Tipo;
+    int* Usos;
+    int* Alcance;
+    string* Descripcion;
+    bool* Caido;
+    
 };
 
 #endif	/* OBJETOS_H */

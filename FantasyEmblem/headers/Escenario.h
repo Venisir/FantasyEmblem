@@ -36,6 +36,7 @@ public:
     
     void cambiaSpriteCursorMano();
     void cambiaSpriteCursorSeleccionar();
+    bool hayunidad(sf::Sprite sp);
         
 protected:
     Escenario();
@@ -43,6 +44,7 @@ protected:
 
 private:
     static Escenario* pinstance;
+    
     
     void init_State();
     void render_State();
@@ -53,8 +55,13 @@ private:
     sf::Sprite* spriteCursor;
     sf::Clock* reloj;
     sf::Event* evento;
+<<<<<<< HEAD
     
     Mapa* mapa;
+=======
+    Unidad aliadas[5];//aray de unidades aliadas (posiblemente esten en mapa)
+    Unidad enemigos[5];//array de unidades enemigas
+>>>>>>> 5fc7d0477be174a70d2075fa6ddd5c3d00aaeec7
 };
 
 #endif	/* ESCENARIO_H */

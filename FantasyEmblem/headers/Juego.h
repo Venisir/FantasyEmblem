@@ -41,6 +41,7 @@ public:
     void ponerEstadoMenuPrincipal();
     void ponerEstadoEscenario();
     void ponerEstadoPause();
+    void ponerEstadoUnidadSeleccionada();
     
 protected:
     Juego();

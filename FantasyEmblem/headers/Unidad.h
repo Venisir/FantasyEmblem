@@ -7,11 +7,27 @@
 
 #ifndef UNIDAD_H
 #define	UNIDAD_H
+#include <stdio.h>
+#include <string>
+
+using namespace std;
+
 class Unidad {
 public:
     Unidad();
     Unidad(const Unidad& orig);
     virtual ~Unidad();
+    
+    //METODOS SET
+    void setHP(int hp);
+    void setFuerza(int f);
+    void setMagia(int m);
+    void setHab(int h);
+    void setVel(int v);
+    void setDef(int d);
+    void setDefm(int dm);
+    void setExp();
+    
     //METODOS GET
     int getHP();
     int getFuerza();
@@ -21,35 +37,31 @@ public:
     int getDef();
     int getDefm();
     int getExp();
-    //METODOS SET
-    int setHP();
-    int setFuerza();
-    int setMagia();
-    int setHab();
-    int setVel();
-    int setDef();
-    int setDefm();
-    int setExp();
     
-private:
-    //Vida de la unidad
-    int HP;
-    //Fuerza 
-    int fuerza;
-    //Magia
-    int magia;
-    //Habilidad
-    int hab;
-    //Velocidad
-    int vel;
-    //Defensa
-    int def;
-    //Defensa magica
-    int defm;
+    
+protected:
+    //Nombre
+    string nombre;
+    //Clase
+    string clase;
+    //Arma
+    Armas arma_actual;
+    //------------------------------Atributos-----------------------------------
+    //Posicion 0 - Vida de la unidad
+    //Posicion 1 - Fuerza 
+    //Posicion 2 - Magia
+    //Posicion 3 - Habilidad
+    //Posicion 4 - Velocidad
+    //Posicion 5 - Defensa
+    //Posicion 6 - Defensa magica
+    int atributos[7];
     //Nivel
     int lvl;
-    //Experiencia
-    int exp;
+    //Movimiento de la unidad
+    int rango;
+    bool activo;
+    
+    
 };
 
 #endif	/* UNIDAD_H */
