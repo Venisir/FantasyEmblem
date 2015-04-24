@@ -86,6 +86,8 @@
       </item>
       <item path="clases/Armas.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/Cofre.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/Cursor.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Enemigos.cpp" ex="false" tool="1" flavor2="0">
@@ -115,6 +117,8 @@
       <item path="headers/Aliadas.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Armas.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Cofre.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Cursor.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -169,6 +173,8 @@
       </item>
       <item path="clases/Armas.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/Cofre.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/Cursor.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Enemigos.cpp" ex="false" tool="1" flavor2="0">
@@ -198,6 +204,8 @@
       <item path="headers/Aliadas.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Armas.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Cofre.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Cursor.h" ex="false" tool="3" flavor2="0">
       </item>

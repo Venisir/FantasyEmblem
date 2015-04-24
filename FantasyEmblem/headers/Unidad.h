@@ -39,7 +39,7 @@ public:
     int getExp();
     
     
-private:
+protected:
     //Nombre
     string nombre;
     //Clase
@@ -56,9 +56,10 @@ private:
     //Posicion 6 - Defensa magica
     int atributos[7];
     //Nivel
-    int lvl = 1;
+    int lvl;
     //Movimiento de la unidad
     int rango;
+    bool activo;
     
     
 };

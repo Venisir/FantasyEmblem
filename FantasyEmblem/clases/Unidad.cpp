@@ -11,8 +11,14 @@
 
 using namespace std;
 
-Unidad::Unidad(string nombre, string clase, string ) {
-    
+Unidad::Unidad(string name, string clas, Armas arma, int atributo[],int nivel, int rang) {
+    nombre = name;
+    clase = clas;
+    arma_actual = arma;
+    atributos = atributo;
+    lvl = nivel;
+    rango = rang;
+    activo = true;
 }
 
 Unidad::Unidad(const Unidad& orig) {
