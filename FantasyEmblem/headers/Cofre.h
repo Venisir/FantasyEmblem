@@ -12,7 +12,9 @@ class Cofre {
 public:
     Cofre();
     Cofre(const Cofre& orig);
-    virtual ~Cofre();    
+    virtual ~Cofre(); 
+    Armas getArma();
+    Objetos getObjeto();
     
 private:
     int x;

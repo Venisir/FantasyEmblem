@@ -22,6 +22,7 @@ private:
     int experiencia;
     Objetos inventarioObjetos[3];
     Armas inventarioArmas[3];
+    
 };
 
 #endif	/* ALIADAS_H */
