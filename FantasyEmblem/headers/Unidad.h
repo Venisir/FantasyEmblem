@@ -7,6 +7,11 @@
 
 #ifndef UNIDAD_H
 #define	UNIDAD_H
+#include "../headers/Armas.h"
+#include "../headers/Objetos.h"
+
+#include <iostream>
+#include <SFML/Graphics.hpp>
 #include <stdio.h>
 #include <string>
 

@@ -8,15 +8,26 @@
 #ifndef ALIADAS_H
 #define	ALIADAS_H
 
-class Aliadas:public Unidad {
+#include "../headers/Unidad.h"
+#include "../headers/Cofre.h"
+#include "../headers/Armas.h"
+#include "../headers/Objetos.h"
+#include <iostream>
+#include <SFML/Graphics.hpp>
+#include <stdio.h>
+#include <string>
+
+using namespace std;
+using namespace sf;
+
+class Aliadas : public Unidad {
 public:
     Aliadas();
     Aliadas(const Aliadas& orig);
     virtual ~Aliadas();    
-    equiparArma(Armas arma);
-    usarObjeto(Objetos obj);
-    subirNivel();
-    abrirCofre();
+    bool usarObjeto(Objetos obj);
+    void subirNivel();
+    bool abrirCofre(Cofre cofre);
     
 private:
     int experiencia;

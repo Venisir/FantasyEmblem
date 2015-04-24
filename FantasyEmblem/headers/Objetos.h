@@ -23,13 +23,14 @@ public:
     Objetos();
     virtual ~Objetos();
     
+    int getId();
     int getUsos();
     int getAlcance();
     string getTipo();
     int setUsos();
     
 private:
-    
+    int id;
     string* Nombre;
     string* Tipo;
     int* Usos;

@@ -45,3 +45,7 @@ Objetos::setUsos(int us) {
 Objetos::getTipo(){
     return Tipo;
 }
+
+Objetos::getId(){
+    return id;
+}

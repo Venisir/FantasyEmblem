@@ -6,6 +6,17 @@
  */
 
 #include "../headers/Cofre.h"
+#include "../headers/Armas.h"
+#include "../headers/Objetos.h"
+
+#include <iostream>
+#include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
+#include <stdio.h>
+#include <string.h>
+
+using namespace std;
+using namespace sf;
 
 Cofre::Cofre(int posX, int posY, Armas arma, Objetos obj) {
     x = posX;
@@ -21,11 +32,11 @@ Cofre::Cofre(const Cofre& orig) {
 Cofre::~Cofre() {
 }
 
-Cofre::getArma(){
+Armas Cofre::getArma(){
     return dropArma;
 }
 
-Cofre::getObjeto(){
+Objetos Cofre::getObjeto(){
     return dropObjeto;
 }
 

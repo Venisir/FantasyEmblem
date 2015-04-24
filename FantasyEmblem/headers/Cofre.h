@@ -8,6 +8,16 @@
 #ifndef COFRE_H
 #define	COFRE_H
 
+#include "../headers/Armas.h"
+#include "../headers/Objetos.h"
+#include <iostream>
+#include <SFML/Graphics.hpp>
+#include <stdio.h>
+#include <string>
+
+using namespace std;
+using namespace sf;
+
 class Cofre {
 public:
     Cofre();
