@@ -15,6 +15,10 @@
 using namespace std;
 using namespace sf;
 
+Objetos::Objetos(){
+    
+}
+
 Objetos::Objetos(const char* nom,const char* tip, int uso, int alcan, const char* descrip, bool cai) {
     Nombre=nom;
     Tipo=tip;
@@ -24,27 +28,25 @@ Objetos::Objetos(const char* nom,const char* tip, int uso, int alcan, const char
     Caido=cai;
 }
 
-
-
 Objetos::~Objetos() {
 }
 
-Objetos::getUsos(){
+int Objetos::getUsos(){
     return Usos;
 }
 
-Objetos::getAlcance(){
+int Objetos::getAlcance(){
     return Alcance;
 }
 
-Objetos::setUsos(int us) {
+void Objetos::setUsos(int us) {
     Usos=Usos-us;
 }
 
-Objetos::getTipo(){
+const char* Objetos::getTipo(){
     return Tipo;
 }
 
-Objetos::getId(){
+int Objetos::getId(){
     return id;
 }

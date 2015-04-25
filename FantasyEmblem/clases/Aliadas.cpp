@@ -30,36 +30,35 @@ Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, i
 
 Aliadas::~Aliadas() {
 }
-/*
-bool Aliadas::usarObjeto(Objetos obj){
+
+bool Aliadas::usarObjeto(Objetos* obj){
     bool usada = false; 
     //recorrer inventario y buscar obj
     for(int i=0;i<3;i++){
         if(inventarioObjetos[i]->getId() == obj->getId()){
-            obj.~Objetos();
-            //inventarioObjetos[i];
+            obj->~Objetos();
+            delete inventarioObjetos[i];
             usada = true;
         }
     }    
     return usada;
 }
- * */
+
 
  void Aliadas::subirNivel(){
     lvl++;
 }
-/*
-bool Aliadas::abrirCofre(Cofre cofre){
+
+bool Aliadas::abrirCofre(Cofre* cofre){
     bool abierto = false;
     bool meter = false;
     //recorrer inventario en busca objeto tipo llave
     for(int i=0;i<3;i++){
-        if(inventarioObjetos[i]->getTipo().compare("llave")== 0){
+        if(strcmp(inventarioObjetos[i]->getTipo(),"llave")== 0){
             abierto = true;
             //cambiar sprite
      
-            Armas armaAux = cofre.getArma();
-            if( operator!=(armaAux, NULL)){
+            if(cofre->getArma() != NULL){
                 for(int j=0;j<3;j++){
                     if((inventarioArmas[j]==NULL) && (meter==false)){
                         inventarioArmas[j] = cofre->getArma();
@@ -72,7 +71,7 @@ bool Aliadas::abrirCofre(Cofre cofre){
             }else{
                 for(int j=0;j<3;j++){
                     if((inventarioObjetos[j]==NULL) && (meter==false)){
-                        inventarioObjetos[j] = cofre.getObjeto();
+                        inventarioObjetos[j] = cofre->getObjeto();
                         meter=true;
                     }
                 }
@@ -85,4 +84,3 @@ bool Aliadas::abrirCofre(Cofre cofre){
     }   
     return abierto;
 }
-*/

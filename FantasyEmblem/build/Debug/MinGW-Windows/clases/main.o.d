@@ -78,9 +78,6 @@ build/Debug/MinGW-Windows/clases/main.o: clases/main.cpp \
  clases/../headers/../headers/../headers/../headers/Aliadas.h \
  clases/../headers/../headers/../headers/../headers/../headers/Unidad.h \
  clases/../headers/../headers/../headers/../headers/../headers/../headers/Armas.h \
- clases/../headers/../headers/../headers/../headers/../headers/../headers/../headers/Cofre.h \
- clases/../headers/../headers/../headers/../headers/../headers/../headers/../headers/../headers/Armas.h \
- clases/../headers/../headers/../headers/../headers/../headers/../headers/../headers/../headers/Objetos.h \
  clases/../headers/../headers/../headers/../headers/../headers/../headers/Objetos.h \
  clases/../headers/../headers/../headers/../headers/../headers/Cofre.h \
  clases/../headers/../headers/../headers/../headers/../headers/Armas.h \
@@ -262,12 +259,6 @@ clases/../headers/../headers/../headers/../headers/Aliadas.h:
 clases/../headers/../headers/../headers/../headers/../headers/Unidad.h:
 
 clases/../headers/../headers/../headers/../headers/../headers/../headers/Armas.h:
-
-clases/../headers/../headers/../headers/../headers/../headers/../headers/../headers/Cofre.h:
-
-clases/../headers/../headers/../headers/../headers/../headers/../headers/../headers/../headers/Armas.h:
-
-clases/../headers/../headers/../headers/../headers/../headers/../headers/../headers/../headers/Objetos.h:
 
 clases/../headers/../headers/../headers/../headers/../headers/../headers/Objetos.h:
 

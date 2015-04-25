@@ -1,8 +1,5 @@
 build/Debug/MinGW-Windows/clases/Armas.o: clases/Armas.cpp \
- clases/../headers/Armas.h clases/../headers/../headers/Cofre.h \
- clases/../headers/../headers/../headers/Armas.h \
- clases/../headers/../headers/../headers/Objetos.h \
- ../SFML-2.1/include/SFML/Graphics.hpp \
+ clases/../headers/Armas.h ../SFML-2.1/include/SFML/Graphics.hpp \
  ../SFML-2.1/include/SFML/Window.hpp ../SFML-2.1/include/SFML/System.hpp \
  ../SFML-2.1/include/SFML/Config.hpp \
  ../SFML-2.1/include/SFML/System/Clock.hpp \
@@ -74,18 +71,9 @@ build/Debug/MinGW-Windows/clases/Armas.o: clases/Armas.cpp \
  ../SFML-2.1/include/SFML/Audio/Sound.hpp \
  ../SFML-2.1/include/SFML/Audio/SoundBuffer.hpp \
  ../SFML-2.1/include/SFML/Audio/SoundBufferRecorder.hpp \
- ../SFML-2.1/include/SFML/Audio/SoundRecorder.hpp \
- clases/../headers/Unidad.h clases/../headers/../headers/Armas.h \
- clases/../headers/../headers/Objetos.h clases/../headers/Aliadas.h \
- clases/../headers/../headers/Unidad.h clases/../headers/Cofre.h
+ ../SFML-2.1/include/SFML/Audio/SoundRecorder.hpp
 
 clases/../headers/Armas.h:
-
-clases/../headers/../headers/Cofre.h:
-
-clases/../headers/../headers/../headers/Armas.h:
-
-clases/../headers/../headers/../headers/Objetos.h:
 
 ../SFML-2.1/include/SFML/Graphics.hpp:
 
@@ -234,15 +222,3 @@ clases/../headers/../headers/../headers/Objetos.h:
 ../SFML-2.1/include/SFML/Audio/SoundBufferRecorder.hpp:
 
 ../SFML-2.1/include/SFML/Audio/SoundRecorder.hpp:
-
-clases/../headers/Unidad.h:
-
-clases/../headers/../headers/Armas.h:
-
-clases/../headers/../headers/Objetos.h:
-
-clases/../headers/Aliadas.h:
-
-clases/../headers/../headers/Unidad.h:
-
-clases/../headers/Cofre.h:

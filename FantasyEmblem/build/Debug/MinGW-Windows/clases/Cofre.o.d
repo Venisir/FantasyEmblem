@@ -1,6 +1,5 @@
 build/Debug/MinGW-Windows/clases/Cofre.o: clases/Cofre.cpp \
  clases/../headers/Cofre.h clases/../headers/../headers/Armas.h \
- clases/../headers/../headers/../headers/Cofre.h \
  ../SFML-2.1/include/SFML/Graphics.hpp \
  ../SFML-2.1/include/SFML/Window.hpp ../SFML-2.1/include/SFML/System.hpp \
  ../SFML-2.1/include/SFML/Config.hpp \
@@ -80,8 +79,6 @@ build/Debug/MinGW-Windows/clases/Cofre.o: clases/Cofre.cpp \
 clases/../headers/Cofre.h:
 
 clases/../headers/../headers/Armas.h:
-
-clases/../headers/../headers/../headers/Cofre.h:
 
 ../SFML-2.1/include/SFML/Graphics.hpp:
 

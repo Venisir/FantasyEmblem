@@ -17,8 +17,12 @@
 
 using namespace std;
 using namespace sf;
-/*
-Cofre::Cofre(int posX, int posY, Armas arma, Objetos obj) {
+
+Cofre::Cofre() {
+    
+}
+
+Cofre::Cofre(int posX, int posY, Armas* arma, Objetos* obj) {
     x = posX;
     y = posY;
     dropArma = arma;
@@ -26,18 +30,13 @@ Cofre::Cofre(int posX, int posY, Armas arma, Objetos obj) {
     abierto = false;
 }
 
-Cofre::Cofre(const Cofre& orig) {
-}
-
 Cofre::~Cofre() {
 }
 
-Armas Cofre::getArma(){
+Armas* Cofre::getArma(){
     return dropArma;
 }
 
-Objetos Cofre::getObjeto(){
+Objetos* Cofre::getObjeto(){
     return dropObjeto;
 }
-
-*/

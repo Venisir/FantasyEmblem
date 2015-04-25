@@ -1,8 +1,5 @@
 build/Debug/MinGW-Windows/clases/Unidad.o: clases/Unidad.cpp \
  clases/../headers/Unidad.h clases/../headers/../headers/Armas.h \
- clases/../headers/../headers/../headers/Cofre.h \
- clases/../headers/../headers/../headers/../headers/Armas.h \
- clases/../headers/../headers/../headers/../headers/Objetos.h \
  ../SFML-2.1/include/SFML/Graphics.hpp \
  ../SFML-2.1/include/SFML/Window.hpp ../SFML-2.1/include/SFML/System.hpp \
  ../SFML-2.1/include/SFML/Config.hpp \
@@ -82,6 +79,10 @@ build/Debug/MinGW-Windows/clases/Unidad.o: clases/Unidad.cpp \
  clases/../headers/../headers/../headers/Aliadas.h \
  clases/../headers/../headers/../headers/../headers/Unidad.h \
  clases/../headers/../headers/../headers/../headers/Cofre.h \
+ clases/../headers/../headers/../headers/../headers/../headers/Armas.h \
+ clases/../headers/../headers/../headers/../headers/../headers/Objetos.h \
+ clases/../headers/../headers/../headers/../headers/Armas.h \
+ clases/../headers/../headers/../headers/../headers/Objetos.h \
  clases/../headers/../headers/../headers/Enemigo.h \
  clases/../headers/../headers/../headers/Escenario.h \
  clases/../headers/../headers/../headers/Unidad.h \
@@ -97,12 +98,6 @@ build/Debug/MinGW-Windows/clases/Unidad.o: clases/Unidad.cpp \
 clases/../headers/Unidad.h:
 
 clases/../headers/../headers/Armas.h:
-
-clases/../headers/../headers/../headers/Cofre.h:
-
-clases/../headers/../headers/../headers/../headers/Armas.h:
-
-clases/../headers/../headers/../headers/../headers/Objetos.h:
 
 ../SFML-2.1/include/SFML/Graphics.hpp:
 
@@ -265,6 +260,14 @@ clases/../headers/../headers/../headers/Aliadas.h:
 clases/../headers/../headers/../headers/../headers/Unidad.h:
 
 clases/../headers/../headers/../headers/../headers/Cofre.h:
+
+clases/../headers/../headers/../headers/../headers/../headers/Armas.h:
+
+clases/../headers/../headers/../headers/../headers/../headers/Objetos.h:
+
+clases/../headers/../headers/../headers/../headers/Armas.h:
+
+clases/../headers/../headers/../headers/../headers/Objetos.h:
 
 clases/../headers/../headers/../headers/Enemigo.h:
 

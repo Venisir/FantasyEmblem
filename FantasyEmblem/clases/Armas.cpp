@@ -6,9 +6,9 @@
  */
 
 #include "../headers/Armas.h"
-#include "../headers/Unidad.h"
-#include "../headers/Aliadas.h"
-#include "../headers/Cofre.h"
+//#include "../headers/Unidad.h"
+//#include "../headers/Aliadas.h"
+//#include "../headers/Cofre.h"
 
 #include <iostream>
 #include <SFML/Graphics.hpp>

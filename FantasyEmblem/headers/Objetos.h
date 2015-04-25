@@ -21,22 +21,23 @@ using namespace sf;
 class Objetos {
 public:
     Objetos();
+    Objetos(const char* nom,const char* tip, int uso, int alcan, const char* descrip, bool cai);
     virtual ~Objetos();
     
     int getId();
     int getUsos();
     int getAlcance();
-    const char getTipo();
+    const char* getTipo();
     void setUsos( int uso);
     
 private:
     int id;
     const char* Nombre;
     const char* Tipo;
-    int* Usos;
-    int* Alcance;
+    int Usos;
+    int Alcance;
     const char* Descripcion;
-    bool* Caido;
+    bool Caido;
     
 };
 

@@ -10,6 +10,7 @@
 
 #include "../headers/Armas.h"
 #include "../headers/Objetos.h"
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <stdio.h>
@@ -17,22 +18,22 @@
 
 using namespace std;
 using namespace sf;
-/*
+
 class Cofre {
 public:
     Cofre();
-    Cofre(const Cofre& orig);
+    Cofre(int posX, int posY, Armas* arma, Objetos* obj);
     virtual ~Cofre(); 
-    Armas getArma();
-    Objetos getObjeto();
+    Armas* getArma();
+    Objetos* getObjeto();
     
 private:
     int x;
     int y;
     bool abierto;
-    Armas dropArma;
-    Objetos dropObjeto;
+    Armas* dropArma;
+    Objetos* dropObjeto;
 };
-*/
+
 #endif	/* COFRE_H */
 
