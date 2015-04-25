@@ -16,7 +16,7 @@
 
 using namespace std;
 using namespace sf;
-/*
+
 
 class Objetos {
 public:
@@ -26,19 +26,19 @@ public:
     int getId();
     int getUsos();
     int getAlcance();
-    string getTipo();
-    int setUsos();
+    const char getTipo();
+    void setUsos( int uso);
     
 private:
     int id;
-    string* Nombre;
-    string* Tipo;
+    const char* Nombre;
+    const char* Tipo;
     int* Usos;
     int* Alcance;
-    string* Descripcion;
+    const char* Descripcion;
     bool* Caido;
     
 };
-*/
+
 #endif	/* OBJETOS_H */
 
