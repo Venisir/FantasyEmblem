@@ -31,6 +31,12 @@ Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, i
 Aliadas::~Aliadas() {
 }
 
+bool Aliadas::equiparArma(Armas* arma){
+    bool equipada = false;
+    if(arma!=NULL)
+        arma_actual = arma;
+    return equipada;
+}
 bool Aliadas::usarObjeto(Objetos* obj){
     bool usada = false; 
     //recorrer inventario y buscar obj
