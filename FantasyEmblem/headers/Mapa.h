@@ -17,14 +17,14 @@ public:
     void Draw();
 private:
     //Variables provisoonales (las que no se usen en general hay que quitarlas)
-    int _width = 0;
-    int _height = 0;
-    int _tileWidth = 0;
-    int _tileHeight = 0;
-    int _imageWidth = 0;
-    int _imageHeight = 0;
-    int _numLayers = 0;
-    int _cont=0;
+    int _width;
+    int _height;
+    int _tileWidth;
+    int _tileHeight;
+    int _imageWidth;
+    int _imageHeight;
+    int _numLayers;
+    int _cont;
     
     int ***_tilemap;
     sf::Sprite ****_tilemapSprite;

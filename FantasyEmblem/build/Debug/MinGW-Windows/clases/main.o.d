@@ -75,7 +75,19 @@ build/Debug/MinGW-Windows/clases/main.o: clases/main.cpp \
  clases/../headers/MenuPrincipal.h clases/../headers/../headers/Juego.h \
  clases/../headers/../headers/../headers/Escenario.h \
  clases/../headers/../headers/../headers/../headers/Juego.h \
+ clases/../headers/../headers/../headers/../headers/Aliadas.h \
+ clases/../headers/../headers/../headers/../headers/../headers/Unidad.h \
+ clases/../headers/../headers/../headers/../headers/../headers/../headers/Armas.h \
+ clases/../headers/../headers/../headers/../headers/../headers/../headers/../headers/Cofre.h \
+ clases/../headers/../headers/../headers/../headers/../headers/../headers/../headers/../headers/Armas.h \
+ clases/../headers/../headers/../headers/../headers/../headers/../headers/../headers/../headers/Objetos.h \
+ clases/../headers/../headers/../headers/../headers/../headers/../headers/Objetos.h \
+ clases/../headers/../headers/../headers/../headers/../headers/Cofre.h \
+ clases/../headers/../headers/../headers/../headers/../headers/Armas.h \
+ clases/../headers/../headers/../headers/../headers/../headers/Objetos.h \
+ clases/../headers/../headers/../headers/../headers/Enemigo.h \
  clases/../headers/../headers/../headers/../headers/Escenario.h \
+ clases/../headers/../headers/../headers/../headers/Unidad.h \
  clases/../headers/../headers/../headers/../headers/Estado.h \
  clases/../headers/../headers/../headers/../headers/Mapa.h \
  clases/../headers/../headers/../headers/../headers/../tinyxml2.h \
@@ -245,7 +257,31 @@ clases/../headers/../headers/../headers/Escenario.h:
 
 clases/../headers/../headers/../headers/../headers/Juego.h:
 
+clases/../headers/../headers/../headers/../headers/Aliadas.h:
+
+clases/../headers/../headers/../headers/../headers/../headers/Unidad.h:
+
+clases/../headers/../headers/../headers/../headers/../headers/../headers/Armas.h:
+
+clases/../headers/../headers/../headers/../headers/../headers/../headers/../headers/Cofre.h:
+
+clases/../headers/../headers/../headers/../headers/../headers/../headers/../headers/../headers/Armas.h:
+
+clases/../headers/../headers/../headers/../headers/../headers/../headers/../headers/../headers/Objetos.h:
+
+clases/../headers/../headers/../headers/../headers/../headers/../headers/Objetos.h:
+
+clases/../headers/../headers/../headers/../headers/../headers/Cofre.h:
+
+clases/../headers/../headers/../headers/../headers/../headers/Armas.h:
+
+clases/../headers/../headers/../headers/../headers/../headers/Objetos.h:
+
+clases/../headers/../headers/../headers/../headers/Enemigo.h:
+
 clases/../headers/../headers/../headers/../headers/Escenario.h:
+
+clases/../headers/../headers/../headers/../headers/Unidad.h:
 
 clases/../headers/../headers/../headers/../headers/Estado.h:
 

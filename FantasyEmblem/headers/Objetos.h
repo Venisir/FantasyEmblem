@@ -16,7 +16,7 @@
 
 using namespace std;
 using namespace sf;
-
+/*
 
 class Objetos {
 public:
@@ -39,6 +39,6 @@ private:
     bool* Caido;
     
 };
-
+*/
 #endif	/* OBJETOS_H */
 

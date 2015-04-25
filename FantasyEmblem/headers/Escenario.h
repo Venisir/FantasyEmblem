@@ -9,7 +9,10 @@
 #define	ESCENARIO_H
 
 #include "../headers/Juego.h"
+#include "../headers/Aliadas.h"
+#include "../headers/Enemigo.h"
 #include "../headers/Escenario.h"
+#include "../headers/Unidad.h"
 #include "../headers/Estado.h"
 #include "../headers/Mapa.h"
 
@@ -45,21 +48,24 @@ protected:
 private:
     static Escenario* pinstance;
     
-    
     void init_State();
     void render_State();
     void update_State();
     
-    sf::Texture* texturaSeleccionar;
-    sf::Texture* texturaMano;
+    sf::Texture* texturaCursor;
     sf::Sprite* spriteCursor;
     sf::Clock* reloj;
+    sf::Clock* relojCursor;
     sf::Event* evento;
     
     Mapa* mapa;
+    //Aliadas* unidadWena;
     
-    //Unidad aliadas[5];//aray de unidades aliadas (posiblemente esten en mapa)
-    //Unidad enemigos[5];//array de unidades enemigas
+    int cursorActivo;
+    int varCursor;
+    
+    Aliadas* aliadas[5];//aray de unidades aliadas (posiblemente esten en mapa)
+    Enemigo* enemigos[5];//array de unidades enemigas
 };
 
 #endif	/* ESCENARIO_H */

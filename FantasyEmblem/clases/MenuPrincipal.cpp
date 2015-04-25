@@ -166,6 +166,11 @@ void MenuPrincipal::init_State() {
     
     //inicializo la variable selected
     selectedItemIndex = 0;
+    
+    //Para que por defecto este seleccionada la Nueva Partida
+    menu[selectedItemIndex]->setScale(1.2,1.2);
+    selectedItemIndex++;
+        
 }
 
 void MenuPrincipal::MoveUp(){
@@ -179,8 +184,7 @@ void MenuPrincipal::MoveUp(){
 }
 
 void MenuPrincipal::MoveDown(){
-    if((selectedItemIndex<MAX_NUM_SPRITE)){  
-        
+    if((selectedItemIndex<MAX_NUM_SPRITE)){
         menu[selectedItemIndex]->setScale(1.2,1.2);
         if(selectedItemIndex>0)
             menu[selectedItemIndex-1]->setScale(1,1);
@@ -240,11 +244,14 @@ void MenuPrincipal::input(){
                 break;
                         
                 case sf::Keyboard::Return:
-                    if(getSelectedItemIndex()==3){
-                        Exit();
-                    }      
                     if(getSelectedItemIndex()==1){
                         Juego::Instance()->ponerEstadoEscenario();
+                    }      
+                    if(getSelectedItemIndex()==2){
+                        Juego::Instance()->ponerEstadoEscenario();
+                    }      
+                    if(getSelectedItemIndex()==3){
+                        Exit();
                     }      
                 break;  
             }

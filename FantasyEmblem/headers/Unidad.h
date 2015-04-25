@@ -19,20 +19,26 @@ using namespace std;
 
 class Unidad {
 public:
-    Unidad();
-    Unidad(const Unidad& orig);
+    Unidad(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu);
     virtual ~Unidad();
     
     //METODOS SET
-    void setHP(int hp);
-    void setFuerza(int f);
-    void setMagia(int m);
-    void setHab(int h);
-    void setVel(int v);
-    void setDef(int d);
-    void setDefm(int dm);
-    void setExp();
+    void setHP(int);
+    void setFuerza(int);
+    void setMagia(int);
+    void setHab(int);
+    void setVel(int);
+    void setDef(int);
+    void setDefm(int);
     
+    void cambiaSpriteQuieto();
+    void setPosition(int i, int j);
+    
+    void moverArriba();
+    void moverAbajo();
+    void moverIzquierda();
+    void moverDerecha();
+
     //METODOS GET
     int getHP();
     int getFuerza();
@@ -43,14 +49,23 @@ public:
     int getDefm();
     int getExp();
     
+    int getPosicionCeldaX();
+    int getPosicionCeldaY();
+    
+    int getPosicionSpriteX();
+    int getPosicionSpriteY();
+    
+    void Draw();
+    
+    void verStats();
     
 protected:
     //Nombre
-    string nombre;
+    const char* nombre;
     //Clase
-    string clase;
+    const char* clase;
     //Arma
-    Armas arma_actual;
+    Armas* arma_actual;
     //------------------------------Atributos-----------------------------------
     //Posicion 0 - Vida de la unidad
     //Posicion 1 - Fuerza 
@@ -64,6 +79,13 @@ protected:
     int lvl;
     //Movimiento de la unidad
     int rango;
+    //Sprite de la unidad
+    Sprite* spriteUnidad;
+    Texture* texturaUnidad;
+    
+    int valorSprite;
+    bool siguienteSumar;
+    
     bool activo;
     
     

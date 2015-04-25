@@ -23,7 +23,7 @@ using namespace std;
 using namespace sf;
 
 Mapa::Mapa() {
-    /*
+   
     _width = 0;
     _height = 0;
     _tileWidth = 0;
@@ -32,7 +32,7 @@ Mapa::Mapa() {
     _imageHeight = 0;
     _numLayers = 0;
     _cont = 0;
-    */
+    
     //Cargamos el XML y creamos la ventana
     XMLDocument doc;
     doc.LoadFile("niveles/mapa1.tmx");

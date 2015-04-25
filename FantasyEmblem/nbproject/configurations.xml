@@ -8,6 +8,7 @@
       <itemPath>headers/Armas.h</itemPath>
       <itemPath>headers/Cofre.h</itemPath>
       <itemPath>headers/Cursor.h</itemPath>
+      <itemPath>headers/Enemigo.h</itemPath>
       <itemPath>headers/Escenario.h</itemPath>
       <itemPath>headers/Estado.h</itemPath>
       <itemPath>headers/EstadoPause.h</itemPath>
@@ -31,6 +32,7 @@
       <itemPath>clases/Armas.cpp</itemPath>
       <itemPath>clases/Cofre.cpp</itemPath>
       <itemPath>clases/Cursor.cpp</itemPath>
+      <itemPath>clases/Enemigo.cpp</itemPath>
       <itemPath>clases/Escenario.cpp</itemPath>
       <itemPath>clases/Estado.cpp</itemPath>
       <itemPath>clases/EstadoPause.cpp</itemPath>
@@ -94,6 +96,8 @@
       </item>
       <item path="clases/Cursor.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/Enemigo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/Escenario.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Estado.cpp" ex="false" tool="1" flavor2="0">
@@ -123,6 +127,8 @@
       <item path="headers/Cofre.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Cursor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Enemigo.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Escenario.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -177,6 +183,8 @@
       </item>
       <item path="clases/Cursor.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/Enemigo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/Escenario.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Estado.cpp" ex="false" tool="1" flavor2="0">
@@ -206,6 +214,8 @@
       <item path="headers/Cofre.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Cursor.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Enemigo.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Escenario.h" ex="false" tool="3" flavor2="0">
       </item>

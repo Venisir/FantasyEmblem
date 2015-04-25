@@ -15,7 +15,7 @@
 using namespace std;
 using namespace sf;
 
-
+/*
 Objetos::Objetos(string nom,string tip, int uso, int alcan, string descrip, bool cai) {
     Nombre=nom;
     Tipo=tip;
@@ -49,3 +49,4 @@ Objetos::getTipo(){
 Objetos::getId(){
     return id;
 }
+*/

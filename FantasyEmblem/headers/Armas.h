@@ -8,8 +8,8 @@
 #ifndef ARMAS_H
 #define	ARMAS_H
 
-#include "../headers/Unidad.h"
-#include "../headers/Aliadas.h"
+//#include "../headers/Unidad.h"
+//#include "../headers/Aliadas.h"
 #include "../headers/Cofre.h"
 
 #include <iostream>
@@ -25,9 +25,11 @@ using namespace sf;
 class Armas {
 public:
     
-    Armas(string* nom, string* tip, int pes, int pod, int golp, int alcan, int usos);
+    Armas(const char* nom, const char* tip, int pes, int pod, int golp, int alcan, int usos);
     virtual ~Armas();
     
+    const char* getNombre();
+    const char* getTipo();
     int getPeso();
     int getPoder();
     int getGolpe();
@@ -39,8 +41,8 @@ public:
 private:
 
     
-    string* Nombre;
-    string* Tipo;
+    const char* Nombre;
+    const char* Tipo;
     int Peso;
     int Poder;
     int Golpe;

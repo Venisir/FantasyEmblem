@@ -20,7 +20,7 @@ using namespace std;
 using namespace sf;
 
 
-Armas::Armas(string* nom, string* tip, int pes, int pod, int golp, int alcan, int usos) {
+Armas::Armas(const char* nom, const char* tip, int pes, int pod, int golp, int alcan, int usos) {
     
     Nombre=nom;
     Tipo=tip;
@@ -33,6 +33,14 @@ Armas::Armas(string* nom, string* tip, int pes, int pod, int golp, int alcan, in
 }
 
 Armas::~Armas() {
+}
+
+const char* Armas::getNombre(){
+    return Nombre;
+}
+
+const char* Armas::getTipo(){
+    return Tipo;
 }
 
 int Armas::getPeso(){

@@ -23,18 +23,14 @@
 using namespace std;
 using namespace sf;
 
-Aliadas::Aliadas() {
-    /*for(int i=0;i<3;i++){
-        inventarioObjetos[i] = new Objetos();
-    } */  
-}
-
-Aliadas::Aliadas(const Aliadas& orig) {
+Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, int experien):Unidad(name, clas, atributo, nivel, rang, nombreTextu) {
+    experiencia = experien;
+    
 }
 
 Aliadas::~Aliadas() {
 }
-
+/*
 bool Aliadas::usarObjeto(Objetos obj){
     bool usada = false; 
     //recorrer inventario y buscar obj
@@ -47,10 +43,12 @@ bool Aliadas::usarObjeto(Objetos obj){
     }    
     return usada;
 }
+ * */
+
  void Aliadas::subirNivel(){
     lvl++;
 }
-
+/*
 bool Aliadas::abrirCofre(Cofre cofre){
     bool abierto = false;
     bool meter = false;
@@ -87,3 +85,4 @@ bool Aliadas::abrirCofre(Cofre cofre){
     }   
     return abierto;
 }
+*/

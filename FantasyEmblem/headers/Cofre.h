@@ -17,7 +17,7 @@
 
 using namespace std;
 using namespace sf;
-
+/*
 class Cofre {
 public:
     Cofre();
@@ -33,6 +33,6 @@ private:
     Armas dropArma;
     Objetos dropObjeto;
 };
-
+*/
 #endif	/* COFRE_H */
 

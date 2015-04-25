@@ -22,16 +22,15 @@ using namespace sf;
 
 class Aliadas : public Unidad {
 public:
-    Aliadas();
-    Aliadas(const Aliadas& orig);
+    Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, int experien);
     virtual ~Aliadas();    
-    bool usarObjeto(Objetos obj);
+    //bool usarObjeto(Objetos obj);
     void subirNivel();
-    bool abrirCofre(Cofre cofre);
+    //bool abrirCofre(Cofre cofre);
     
 private:
     int experiencia;
-    Objetos* inventarioObjetos[3];
+    //Objetos* inventarioObjetos[3];
     Armas* inventarioArmas[3];
     
 };

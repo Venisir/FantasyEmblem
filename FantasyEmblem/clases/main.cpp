@@ -18,7 +18,7 @@ using namespace  std;
 
 int main()
 {    
-    RenderWindow window(sf::VideoMode(480,320), "Fantasy Emblem");
+    RenderWindow window(sf::VideoMode(480,320), "Fantasy Emblem", sf::Style::Close);
     window.setSize(sf::Vector2u(960, 640));
     
     Juego *juego = Juego::Instance();

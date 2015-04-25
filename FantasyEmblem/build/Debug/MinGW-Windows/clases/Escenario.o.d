@@ -1,10 +1,9 @@
 build/Debug/MinGW-Windows/clases/Escenario.o: clases/Escenario.cpp \
- clases/../headers/Escenario.h clases/../headers/../headers/Juego.h \
- clases/../headers/../headers/../headers/Escenario.h \
- clases/../headers/../headers/../headers/MenuPrincipal.h \
- clases/../headers/../headers/../headers/../headers/Juego.h \
- clases/../headers/../headers/../headers/../headers/Escenario.h \
- clases/../headers/../headers/../headers/../headers/Estado.h \
+ clases/../headers/Aliadas.h clases/../headers/../headers/Unidad.h \
+ clases/../headers/../headers/../headers/Armas.h \
+ clases/../headers/../headers/../headers/../headers/Cofre.h \
+ clases/../headers/../headers/../headers/../headers/../headers/Armas.h \
+ clases/../headers/../headers/../headers/../headers/../headers/Objetos.h \
  ../SFML-2.1/include/SFML/Graphics.hpp \
  ../SFML-2.1/include/SFML/Window.hpp ../SFML-2.1/include/SFML/System.hpp \
  ../SFML-2.1/include/SFML/Config.hpp \
@@ -78,29 +77,39 @@ build/Debug/MinGW-Windows/clases/Escenario.o: clases/Escenario.cpp \
  ../SFML-2.1/include/SFML/Audio/SoundBuffer.hpp \
  ../SFML-2.1/include/SFML/Audio/SoundBufferRecorder.hpp \
  ../SFML-2.1/include/SFML/Audio/SoundRecorder.hpp \
+ clases/../headers/../headers/../headers/Objetos.h \
+ clases/../headers/../headers/Cofre.h \
+ clases/../headers/../headers/Armas.h \
+ clases/../headers/../headers/Objetos.h clases/../headers/Enemigo.h \
+ clases/../headers/Escenario.h clases/../headers/../headers/Juego.h \
+ clases/../headers/../headers/../headers/Escenario.h \
+ clases/../headers/../headers/../headers/MenuPrincipal.h \
+ clases/../headers/../headers/../headers/../headers/Juego.h \
+ clases/../headers/../headers/../headers/../headers/Escenario.h \
+ clases/../headers/../headers/../headers/../headers/Estado.h \
  clases/../headers/../headers/../headers/EstadoPause.h \
  clases/../headers/../headers/../headers/Estado.h \
  clases/../headers/../headers/../headers/Juego.h \
  clases/../headers/../headers/../headers/Mapa.h \
  clases/../headers/../headers/../headers/../tinyxml2.h \
+ clases/../headers/../headers/Aliadas.h \
+ clases/../headers/../headers/Enemigo.h \
  clases/../headers/../headers/Escenario.h \
  clases/../headers/../headers/Estado.h \
  clases/../headers/../headers/Mapa.h clases/../headers/Estado.h \
  clases/../headers/Juego.h clases/../headers/Mapa.h
 
-clases/../headers/Escenario.h:
+clases/../headers/Aliadas.h:
 
-clases/../headers/../headers/Juego.h:
+clases/../headers/../headers/Unidad.h:
 
-clases/../headers/../headers/../headers/Escenario.h:
+clases/../headers/../headers/../headers/Armas.h:
 
-clases/../headers/../headers/../headers/MenuPrincipal.h:
+clases/../headers/../headers/../headers/../headers/Cofre.h:
 
-clases/../headers/../headers/../headers/../headers/Juego.h:
+clases/../headers/../headers/../headers/../headers/../headers/Armas.h:
 
-clases/../headers/../headers/../headers/../headers/Escenario.h:
-
-clases/../headers/../headers/../headers/../headers/Estado.h:
+clases/../headers/../headers/../headers/../headers/../headers/Objetos.h:
 
 ../SFML-2.1/include/SFML/Graphics.hpp:
 
@@ -250,6 +259,30 @@ clases/../headers/../headers/../headers/../headers/Estado.h:
 
 ../SFML-2.1/include/SFML/Audio/SoundRecorder.hpp:
 
+clases/../headers/../headers/../headers/Objetos.h:
+
+clases/../headers/../headers/Cofre.h:
+
+clases/../headers/../headers/Armas.h:
+
+clases/../headers/../headers/Objetos.h:
+
+clases/../headers/Enemigo.h:
+
+clases/../headers/Escenario.h:
+
+clases/../headers/../headers/Juego.h:
+
+clases/../headers/../headers/../headers/Escenario.h:
+
+clases/../headers/../headers/../headers/MenuPrincipal.h:
+
+clases/../headers/../headers/../headers/../headers/Juego.h:
+
+clases/../headers/../headers/../headers/../headers/Escenario.h:
+
+clases/../headers/../headers/../headers/../headers/Estado.h:
+
 clases/../headers/../headers/../headers/EstadoPause.h:
 
 clases/../headers/../headers/../headers/Estado.h:
@@ -259,6 +292,10 @@ clases/../headers/../headers/../headers/Juego.h:
 clases/../headers/../headers/../headers/Mapa.h:
 
 clases/../headers/../headers/../headers/../tinyxml2.h:
+
+clases/../headers/../headers/Aliadas.h:
+
+clases/../headers/../headers/Enemigo.h:
 
 clases/../headers/../headers/Escenario.h:
 

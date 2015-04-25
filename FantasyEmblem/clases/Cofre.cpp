@@ -17,7 +17,7 @@
 
 using namespace std;
 using namespace sf;
-
+/*
 Cofre::Cofre(int posX, int posY, Armas arma, Objetos obj) {
     x = posX;
     y = posY;
@@ -40,3 +40,4 @@ Objetos Cofre::getObjeto(){
     return dropObjeto;
 }
 
+*/

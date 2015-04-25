@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/clases/Armas.o \
 	${OBJECTDIR}/clases/Cofre.o \
 	${OBJECTDIR}/clases/Cursor.o \
+	${OBJECTDIR}/clases/Enemigo.o \
 	${OBJECTDIR}/clases/Escenario.o \
 	${OBJECTDIR}/clases/Estado.o \
 	${OBJECTDIR}/clases/EstadoPause.o \
@@ -96,6 +97,11 @@ ${OBJECTDIR}/clases/Cursor.o: clases/Cursor.cpp
 	${MKDIR} -p ${OBJECTDIR}/clases
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -DSFML_STATIC -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/Cursor.o clases/Cursor.cpp
+
+${OBJECTDIR}/clases/Enemigo.o: clases/Enemigo.cpp 
+	${MKDIR} -p ${OBJECTDIR}/clases
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -DSFML_STATIC -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/Enemigo.o clases/Enemigo.cpp
 
 ${OBJECTDIR}/clases/Escenario.o: clases/Escenario.cpp 
 	${MKDIR} -p ${OBJECTDIR}/clases
