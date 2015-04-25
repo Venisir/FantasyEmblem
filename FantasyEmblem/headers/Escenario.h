@@ -39,7 +39,9 @@ public:
     
     void cambiaSpriteCursorMano();
     void cambiaSpriteCursorSeleccionar();
-    bool hayunidad(sf::Sprite sp);
+    void mostrarCuadriculaUnidad(int xx, int yy, int rangoUnidad);
+    void quitarCuadriculaUnidad(int xx, int yy, int rangoUnidad);
+    bool hayunidad();
         
 protected:
     Escenario();
@@ -63,6 +65,7 @@ private:
     
     int cursorActivo;
     int varCursor;
+    int unidad_sel;
     
     Aliadas* aliadas[5];//aray de unidades aliadas (posiblemente esten en mapa)
     Enemigo* enemigos[5];//array de unidades enemigas

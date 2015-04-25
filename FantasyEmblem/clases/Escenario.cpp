@@ -50,6 +50,8 @@ Escenario::Escenario() {
     aliadas[0]->setPosition(176,176);
     enemigos[0]->setPosition(208,176);
     
+    unidad_sel=-1;
+    
     init_State();
 }
 
@@ -73,13 +75,6 @@ void Escenario::init_State(){
         std::cerr << "Error cargando la imagen cursores.png";
         exit(0);
     }
-    /*
-    if (!texturaMano-> loadFromFile("resources/cursor_1.png"))
-    {
-        std::cerr << "Error cargando la imagen cursor_1.png";
-        exit(0);
-    }
-    */
     
     spriteCursor->setTexture(*texturaCursor);
     spriteCursor->setTextureRect(IntRect(0, 0, 16, 16));
@@ -102,6 +97,59 @@ void Escenario::cambiaSpriteCursorMano() {
     varCursor = 1;
     spriteCursor->setTextureRect(IntRect(0, 16, 16, 16));
     cursorActivo = 16;
+}
+
+bool Escenario::hayunidad()
+{
+    bool resultado=false;
+    for(int i=0;i<1 && resultado==false;i++)
+    {
+        if(spriteCursor->getPosition()==aliadas[i]->getSprite().getPosition())
+        {
+            resultado=true;
+            unidad_sel=i;
+        }
+    }
+    
+    return resultado;
+}
+
+void Escenario::mostrarCuadriculaUnidad(int f, int c, int rangoUnidad){
+    
+    int auxiliar = 0;
+    for(int y=rangoUnidad; y>0; y--){
+        for(int x=-auxiliar; x<=auxiliar; x++){
+            mapa->setSpriteColor(130, 255, c+(x*16), f+(y*16));
+        }
+        auxiliar ++;
+    }
+    
+    auxiliar = rangoUnidad;
+    for(int y=0; y>= -rangoUnidad; y--){
+        for(int x= -auxiliar; x<= auxiliar; x++){
+            mapa->setSpriteColor(130, 255, c+(x*16), f+(y*16));
+        }
+        auxiliar --;
+    }
+}
+
+void Escenario::quitarCuadriculaUnidad(int f, int c, int rangoUnidad){
+    
+    int auxiliar = 0;
+    for(int y=rangoUnidad; y>0; y--){
+        for(int x=-auxiliar; x<=auxiliar; x++){
+            mapa->defaultSpriteColor(c+(x*16), f+(y*16));
+        }
+        auxiliar ++;
+    }
+    
+    auxiliar = rangoUnidad;
+    for(int y=0; y>= -rangoUnidad; y--){
+        for(int x= -auxiliar; x<= auxiliar; x++){
+            mapa->defaultSpriteColor(c+(x*16), f+(y*16));
+        }
+        auxiliar --;
+    }
 }
 
 void Escenario::render_State(){
@@ -153,26 +201,57 @@ void Escenario::input() {
             
         if(evento->type == sf::Event::KeyPressed){
             switch(evento->key.code){
+                
                 case sf::Keyboard::Down:
                     if(spriteCursor->getPosition().y<320-16)
-                        spriteCursor->move(0,16);     
+                    {
+                        spriteCursor->move(0,16);
                         std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
+                    }
+                    if(unidad_sel!=-1)//hay una unidad seleccionada
+                    {
+                        aliadas[unidad_sel]->guardamovimiento(-2);
+                        std::cerr << "-2" << endl;
+                    }
                 break;
+                
                 case sf::Keyboard::Up:
                     if(spriteCursor->getPosition().y>=16)
+                    {
                         spriteCursor->move(0,-16);       
-                        std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;      
+                        std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
+                    }
+                    if(unidad_sel!=-1)//hay una unidad seleccionada
+                    {
+                        aliadas[unidad_sel]->guardamovimiento(2);
+                        std::cerr << "2" << endl;
+                    }
                 break;
+                
                 case sf::Keyboard::Left:
-                    if(spriteCursor->getPosition().x>=16)
+                    if(spriteCursor->getPosition().x>=16){
                         spriteCursor->move(-16,0);              
                         std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
+                    }
+                    if(unidad_sel!=-1)//hay una unidad seleccionada
+                    {
+                        aliadas[unidad_sel]->guardamovimiento(-1);
+                        std:cerr << "-1" << endl;
+                    }
                 break;
+                
                 case sf::Keyboard::Right:
-                    if(spriteCursor->getPosition().x<480-16)
+                    if(spriteCursor->getPosition().x<480-16){
                         spriteCursor->move(16,0);       
                         std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
+                    }
+                    if(unidad_sel!=-1)//hay una unidad seleccionada
+                    {
+                        aliadas[unidad_sel]->guardamovimiento(1);
+                        std::cerr << "1" << endl;
+                    }
                 break;
+                
                 case sf::Keyboard::Numpad1:
                     cambiaSpriteCursorSeleccionar();             
                 break;
@@ -191,7 +270,7 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad5:
-                    
+                    //mostrarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango());
                 break;
                 
                 case sf::Keyboard::Numpad6:
@@ -210,13 +289,33 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Return:
+                    if(unidad_sel==-1)
+                    {
+                        if(hayunidad()==true)
+                        {
+                            //pintar cuadricula personaje
+                            cambiaSpriteCursorMano();    
+                            mostrarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango());
+                        }
+                    }
+                    else
+                    {
+                        quitarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango());
+                        aliadas[unidad_sel]->recorre();
+                        //devuelve las casillas de la cuadricula a su estado original
+                        unidad_sel=-1;
+                        cambiaSpriteCursorSeleccionar();
+                        
+                    }
+                    /*
                     if(varCursor == 0){
                         if(spriteCursor->getPosition().x == aliadas[0]->getPosicionSpriteX() &&
                             spriteCursor->getPosition().y == aliadas[0]->getPosicionSpriteY()){
                             
                             aliadas[0]->verStats();
                             cambiaSpriteCursorMano();
-                            
+
+                            mostrarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango());
 
                         }
                         if(spriteCursor->getPosition().x == enemigos[0]->getPosicionSpriteX() &&
@@ -234,6 +333,8 @@ void Escenario::input() {
 
                         //}
                     }
+                    
+                    */
                 break;
                 
                 case sf::Keyboard::A:

@@ -25,8 +25,13 @@ class Aliadas : public Unidad {
 public:
     Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, int experien);
     virtual ~Aliadas();    
-    bool usarObjeto(Objetos* obj);
+    
     void subirNivel();
+    
+    void guardamovimiento(int n);
+    void recorre();
+    
+    bool usarObjeto(Objetos* obj);
     bool abrirCofre(Cofre* cofre);
     bool equiparArma(Armas* arma);
     
@@ -34,6 +39,10 @@ private:
     int experiencia;
     Objetos* inventarioObjetos[3];
     Armas* inventarioArmas[3];
+    
+    int* recorrido;
+    int ultimo_mov;//ultimo paso hecho
+    int pasos;//contador de los pasos realizados
     
 };
 

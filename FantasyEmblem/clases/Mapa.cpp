@@ -187,3 +187,16 @@ void Mapa::Draw() {
         }
     }
 }
+
+void Mapa::setSpriteColor(int color1, int color2, int i, int j){
+    if(j<480 && j>=0 && i>=0 && i<320){
+        //_tilemapSprite[0][i/16][j/16] = new Sprite(*textura, IntRect(0, 0, 16, 16));// Sprite(Color(0, color1, color2, 128));//->setColor(sf::Color(0, color1, color2, 128));
+        _tilemapSprite[0][i/16][j/16]->setColor(Color(0, color1, color2, 128));
+    }
+}
+
+void Mapa::defaultSpriteColor(int i, int j){
+    if(j<480 && j>=0 && i>=0 && i<320){
+       // delete _tilemapSprite[0][i/16][j/16];
+    }
+}

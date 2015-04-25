@@ -26,6 +26,8 @@ using namespace sf;
 Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, int experien):Unidad(name, clas, atributo, nivel, rang, nombreTextu) {
     experiencia = experien;
     
+    recorrido=new int[rango];
+    ultimo_mov=0;   
 }
 
 Aliadas::~Aliadas() {
@@ -90,3 +92,46 @@ bool Aliadas::abrirCofre(Cofre* cofre){
     }   
     return abierto;
 }
+
+ void Aliadas::guardamovimiento(int n){
+    int negativo=n*(-1);
+    //si el ultimo introducido es el negativo del que se va a introducir..
+    if(negativo==recorrido[ultimo_mov-1])
+    {
+        ultimo_mov--;
+    }
+    else
+    {
+        recorrido[ultimo_mov]=n;
+        ultimo_mov++;
+    }
+}
+ 
+ void Aliadas::recorre()
+ {
+     for(int i=0;i<ultimo_mov;i++)
+     {
+         switch(recorrido[i])
+         {
+             case 1:
+                 moverDerecha();
+                 std::cerr << recorrido[i] << " ";
+                break;
+             case 2:
+                 moverArriba();
+                 std::cerr << recorrido[i] << " ";
+                break;
+             case -1:
+                 moverIzquierda();
+                 std::cerr << recorrido[i] << " ";
+                break;
+             case -2:
+                 moverAbajo();
+                 std::cerr << recorrido[i] << " ";
+                break; 
+         }
+     }
+     recorrido=new int[rango];
+     ultimo_mov=0;
+     std::cerr << endl;
+ }

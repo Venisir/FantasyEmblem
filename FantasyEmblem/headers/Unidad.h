@@ -16,6 +16,7 @@
 #include <string>
 
 using namespace std;
+using namespace sf;
 
 class Unidad {
 public:
@@ -48,12 +49,15 @@ public:
     int getDef();
     int getDefm();
     int getExp();
-    
+    int getRango();
+
     int getPosicionCeldaX();
     int getPosicionCeldaY();
     
     int getPosicionSpriteX();
     int getPosicionSpriteY();
+    
+    Sprite getSprite();
     
     void Draw();
     

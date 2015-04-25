@@ -173,7 +173,13 @@ int Unidad::getDef(){
 int Unidad::getDefm(){
     return atributos[6];
 }
+int Unidad::getRango(){
+    return rango;
+}
 //Unidad::setExp(){
    // 
 //}
- 
+ Sprite Unidad::getSprite()
+{
+    return *spriteUnidad;
+}

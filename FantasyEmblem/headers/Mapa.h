@@ -15,6 +15,8 @@ public:
     Mapa();
     virtual ~Mapa();
     void Draw();
+    void setSpriteColor(int color1, int color2, int i, int j);
+    void defaultSpriteColor(int i, int j);
 private:
     //Variables provisoonales (las que no se usen en general hay que quitarlas)
     int _width;
