@@ -37,11 +37,14 @@ MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice)
     menu= new Sprite();
     objetos= new Sprite();
     reloj=new Clock();
+    reloj2=new Clock();
     evento=new Event();
+    cont=0;
     m=map;
     ali=al;
     enem=ene;
     index=indice;
+    cursorActivo=true;
     
     init_State();
 }
@@ -97,7 +100,7 @@ void MenuAcciones::init_State()
     objetos->setOrigin(420/2,280/2);
     danyo->setScale(0,0);
     //menu->setScale(0,0);
-    cursorDedo->setScale(0,0);
+    //cursorDedo->setScale(0,0);
     objetos->setScale(0,0);
 
     menu->setPosition(225,250);
@@ -113,11 +116,18 @@ void MenuAcciones::render_State()
     ali[0]->Draw();
     enem[0]->Draw();
     Juego::Instance()->getVentana()->draw(*menu);
+    Juego::Instance()->getVentana()->draw(*cursorDedo);
     Juego::Instance()->getVentana()->display();
 }
 
 void MenuAcciones::update_State()
 {
+    if (reloj2->getElapsedTime().asSeconds() >= 0.5) {
+        ali[0]->cambiaSpriteQuieto();
+        enem[0]->cambiaSpriteQuieto();
+        
+        reloj2->restart();
+    }
     if (reloj->getElapsedTime().asMilliseconds() >= 100) {
         reloj->restart();
 
@@ -134,6 +144,52 @@ void MenuAcciones::input()
 
         if(evento->type == sf::Event::KeyPressed){
             switch(evento->key.code){
+                case sf::Keyboard::Up:
+                    if(cont>0 && cursorActivo==true)//que el contador este a 0 significa que esta en la primera opcion
+                    {
+                        cursorDedo->move(0,-20);
+                        cont--;
+                    }
+                    break;
+                case sf::Keyboard::Down:
+                    if(cont<4 && cursorActivo==true)
+                    {
+                        cursorDedo->move(0,20);
+                        cont++;
+                    }
+                    break;
+                case sf::Keyboard::Return:
+                    cursorActivo = false;
+                        
+                    if(cont==0)
+                    {
+                        //atacar
+                    }
+                    
+                    if(cont==1)
+                    {
+                        //estado
+                    }
+                    
+                    if(cont==2)
+                    {
+                        //objeto
+                    }
+                    
+                    if(cont==3)
+                    {
+                        //interru
+                    }
+                    
+                    if(cont==4)
+                    {
+                        //fin
+                        Juego::Instance()->ponerEstadoEscenario();
+                    }
+                    break;
+                case sf::Keyboard::BackSpace:
+                    cursorActivo=true;
+                    break;
                 case sf::Keyboard::Numpad9:
                     *index=-1;
                     Juego::Instance()->ponerEstadoEscenario(); 
