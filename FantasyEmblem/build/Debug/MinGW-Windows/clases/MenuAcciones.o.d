@@ -93,8 +93,11 @@ build/Debug/MinGW-Windows/clases/MenuAcciones.o: clases/MenuAcciones.cpp \
  clases/../headers/../headers/../headers/Estado.h \
  clases/../headers/../headers/../headers/Juego.h \
  clases/../headers/../headers/../headers/Mapa.h \
+<<<<<<< HEAD
  clases/../headers/../headers/../headers/Aliadas.h \
  clases/../headers/../headers/../headers/Enemigo.h \
+=======
+>>>>>>> origin/master
  clases/../headers/../headers/Aliadas.h \
  clases/../headers/../headers/Enemigo.h \
  clases/../headers/../headers/Escenario.h \
@@ -294,10 +297,13 @@ clases/../headers/../headers/../headers/Juego.h:
 
 clases/../headers/../headers/../headers/Mapa.h:
 
+<<<<<<< HEAD
 clases/../headers/../headers/../headers/Aliadas.h:
 
 clases/../headers/../headers/../headers/Enemigo.h:
 
+=======
+>>>>>>> origin/master
 clases/../headers/../headers/Aliadas.h:
 
 clases/../headers/../headers/Enemigo.h:
