@@ -143,16 +143,16 @@ Mapa::Mapa() {
     for(int l=0; l<_numLayers;l++){
         for(int y=0; y<_height;y++){
             for(int x=0; x<_width; x++){
-                
                 int gid = _tilemap[l][y][x]-1;
                 //std::cerr <<gid<< endl;
                 //CONDICION PARA PONER NPC's CON CAPA
-               // if(l==6){
+                //if(l==6){
                     //CREAR AQUI NPC's
-                    
-                //}else if(l==4){
+                    //std::cerr <<"SOY UN NPC Y AQUI EN EL BOSQUE SOY MUY FELIZ"<< endl;
+                /*}else*/if(l==2){
                     //CREAR AQUI COFRES
-                //}else{
+                    std::cerr <<"SOY UN COFREEEE Y AQUI EN EL BOSQUE SOY MUY FELIZ"<< endl;
+                }else{
                     if(gid>=0){
                         //Si fuera menor que 0 no creo sprite...
                         _tilemapSprite[l][y][x] = new sf::Sprite(*textura, _tilesetSprite[gid]->getTextureRect());//sf::IntRect(0, 0, 16, 16));
@@ -161,7 +161,7 @@ Mapa::Mapa() {
                     }else{
                         _tilemapSprite[l][y][x] = NULL;
                     }
-                //}
+                }
             }
         }
     }
@@ -200,3 +200,35 @@ void Mapa::defaultSpriteColor(int i, int j){
        // delete _tilemapSprite[0][i/16][j/16];
     }
 }
+
+
+bool Mapa::getColision(int i, int j){
+    if(_tilemap[4][i/16][j/16]!=0 || _tilemap[5][i/16][j/16]!=0){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+/*--------------------------------GET ATRIBUTO----------------------------------
+ Devuelve:
+ * 0 no hay atributo
+ * 1 hay bosque
+ * 2 hay montaña
+ * 3 hay un fuerte
+ * 4 hay un trono
+ */
+int Mapa::getAtributo(int i, int j){
+    if(_tilemap[1][i/16][j/16]==12 || _tilemap[1][i/16][j/16]==13 || _tilemap[1][i/16][j/16]==14){
+        return 1;
+    }else if(_tilemap[1][i/16][j/16]==23){
+        return 2;
+    }else if(_tilemap[1][i/16][j/16]==37){
+        return 3;
+    }else if(_tilemap[1][i/16][j/16]==72){
+        return 4;
+    }else{
+        return 0;
+    }
+}
+
