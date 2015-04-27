@@ -47,6 +47,7 @@ public:
     void ponerEstadoUnidadSeleccionada();
     void ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice);
     
+    
 protected:
     Juego();
     virtual ~Juego();
