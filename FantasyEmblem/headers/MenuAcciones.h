@@ -25,12 +25,12 @@
 
 class MenuAcciones:public Estado {
 public:
-    static MenuAcciones* Instance(Mapa* map, Aliadas** al, Enemigo** ene, int *indice);
+    static MenuAcciones* Instance(Mapa* map, Aliadas** al, Enemigo** ene, int *indice,bool *turno);
     void input();
     
 protected:
     MenuAcciones();
-    MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice);
+    MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice,bool *turno);
     ~MenuAcciones();        
 private:
     static MenuAcciones* pinstance;
@@ -52,6 +52,7 @@ private:
     sf::Event *evento;
     int cont;
     bool cursorActivo;
+    bool turnoUsu;
     Mapa *m;//mapa proveniente del escenario 
     Aliadas **ali;//array de unidades aliadas proveniente del escenario
     Enemigo **enem;//array de unidades enemigas proveniete del escenario

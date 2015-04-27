@@ -11,11 +11,11 @@
 using namespace std;
 
 MenuAcciones* MenuAcciones::pinstance = 0;
-MenuAcciones* MenuAcciones::Instance(Mapa* map, Aliadas** al, Enemigo** ene, int *indice)
+MenuAcciones* MenuAcciones::Instance(Mapa* map, Aliadas** al, Enemigo** ene, int *indice,bool *turno)
 {
     if(pinstance==0)
     {
-        pinstance=new MenuAcciones(map,al,ene,indice);
+        pinstance=new MenuAcciones(map,al,ene,indice,turno);
     }
     return pinstance;
 }
@@ -26,7 +26,7 @@ MenuAcciones::MenuAcciones()
 }
 
 
-MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice)
+MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice,bool *turno)
 {
     texturaDanyo=new Texture();
     texturaDedo=new Texture();
@@ -45,6 +45,7 @@ MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice)
     enem=ene;
     index=indice;
     cursorActivo=true;
+    turnoUsu=turno;
     
     init_State();
 }
@@ -188,6 +189,7 @@ void MenuAcciones::input()
                         cont=0;
                         cursorDedo->setPosition(215,260);
                         *index=-1;
+                        //*turnoUsu=false;
                         Juego::Instance()->ponerEstadoEscenario();
                     }
                     break;

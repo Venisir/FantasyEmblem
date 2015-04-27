@@ -44,6 +44,7 @@ Escenario::Escenario() {
     aliadas=new Aliadas*[5];
     enemigos=new Enemigo*[5];
     unidad_sel=new int();
+    turnoUsu=new bool();
         
     fuente = new Font();
     t_stats = new Text();
@@ -59,7 +60,7 @@ Escenario::Escenario() {
     enemigos[0]->setPosition(208,176);
     
     *unidad_sel=-1;
-    //*turnoUsu=true;
+    *turnoUsu=true;
     
     init_State();
 }
@@ -247,7 +248,10 @@ void Escenario::render_State(){
         Juego::Instance()->getVentana()->draw(*t_stats);
     }
     
-    Juego::Instance()->getVentana()->draw(*spriteCursor);
+    if(*turnoUsu==true)
+    {
+        Juego::Instance()->getVentana()->draw(*spriteCursor);
+    }
     
     Juego::Instance()->renderText();
     
@@ -274,7 +278,16 @@ void Escenario::update_State(){
     if (reloj->getElapsedTime().asMilliseconds() >= 100) {
         reloj->restart();
         
-        input();
+        if(*turnoUsu==true)
+        {
+            input();
+        }
+    }
+    
+    if(*turnoUsu==false && reloj->getElapsedTime().asSeconds() >= 5)
+    {
+        reloj->restart();
+        *turnoUsu=true;
     }
 }
 
@@ -392,7 +405,7 @@ void Escenario::input() {
                         //devuelve las casillas de la cuadricula a su estado original
                         //unidad_sel=-1;
                         cambiaSpriteCursorSeleccionar();
-                        Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,unidad_sel); 
+                        Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,unidad_sel,turnoUsu); 
                         
                     }
                     /*

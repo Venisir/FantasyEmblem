@@ -115,9 +115,9 @@ void Juego::ponerEstadoPause(){
     //states.back()->init();
 }
 
-void Juego::ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice)
+void Juego::ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice,bool *turno)
 {
-    states.push_back(MenuAcciones::Instance(map,al,ene,indice));
+    states.push_back(MenuAcciones::Instance(map,al,ene,indice,turno));
 }
 
 void Juego::ponerEstadoBatalla(){

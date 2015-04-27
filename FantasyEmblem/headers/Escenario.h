@@ -72,7 +72,7 @@ private:
     int cursorActivo;
     int varCursor;
     int *unidad_sel;
-    //bool *turnoUsu;
+    bool *turnoUsu;
     
     bool tieneQueMostrarStats;
         
