@@ -11,7 +11,7 @@
 using namespace std;
 
 MenuAcciones* MenuAcciones::pinstance = 0;
-MenuAcciones* MenuAcciones::Instance(Mapa* map, Aliadas* al, Enemigo* ene, int indice)
+MenuAcciones* MenuAcciones::Instance(Mapa* map, Aliadas** al, Enemigo** ene, int *indice)
 {
     if(pinstance==0)
     {
@@ -26,7 +26,7 @@ MenuAcciones::MenuAcciones()
 }
 
 
-MenuAcciones::MenuAcciones(Mapa* map, Aliadas* al, Enemigo* ene, int indice)
+MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice)
 {
     texturaDanyo=new Texture();
     texturaDedo=new Texture();
@@ -61,25 +61,25 @@ MenuAcciones::~MenuAcciones() {
 
 void MenuAcciones::init_State()
 {
-    if (!texturaMenu->loadFromFile("recursos/menu.png"))
+    if (!texturaMenu->loadFromFile("resources/menuacciones.png"))
     {
             std::cerr << "Error cargando la imagen boton1.png";
             exit(0);
     }
 
-    if (!texturaDedo->loadFromFile("recursos/dedo.png"))
+    if (!texturaDedo->loadFromFile("resources/dedo.png"))
     {
             std::cerr << "Error cargando la imagen dedo.png";
             exit(0);
     }
 
-    if (!texturaDanyo->loadFromFile("recursos/dano.png"))
+    if (!texturaDanyo->loadFromFile("resources/dano.png"))
     {
             std::cerr << "Error cargando la imagen dano.png";
             exit(0);
     }
     
-    if (!texturaObjetos->loadFromFile("recursos/objeto.png"))
+    if (!texturaObjetos->loadFromFile("resources/objeto.png"))
     {
             std::cerr << "Error cargando la imagen objeto.png";
             exit(0);
@@ -91,15 +91,58 @@ void MenuAcciones::init_State()
     objetos->setTexture(*texturaObjetos);
     
     /*posicionar sprites*/
+    menu->setOrigin(420/2,280/2);
+    cursorDedo->setOrigin(420/2,280/2);
+    danyo->setOrigin(420/2,280/2);
+    objetos->setOrigin(420/2,280/2);
+    danyo->setScale(0,0);
+    //menu->setScale(0,0);
+    cursorDedo->setScale(0,0);
+    objetos->setScale(0,0);
+
+    menu->setPosition(225,250);
+    cursorDedo->setPosition(215,260);
+    danyo->setPosition(480,175);
+    objetos->setPosition(305,226);
 }
 
 void MenuAcciones::render_State()
 {
-    
+    Juego::Instance()->getVentana()->clear();
+    m->Draw();
+    ali[0]->Draw();
+    enem[0]->Draw();
+    Juego::Instance()->getVentana()->draw(*menu);
+    Juego::Instance()->getVentana()->display();
 }
 
 void MenuAcciones::update_State()
 {
-    
+    if (reloj->getElapsedTime().asMilliseconds() >= 100) {
+        reloj->restart();
+
+        input();
+    }
 }
 
+void MenuAcciones::input()
+{
+    while (Juego::Instance()->getVentana()->pollEvent(*evento)){
+        if ((evento->type == Event::Closed)){
+            Juego::Instance()->getVentana()->close();
+        }
+
+        if(evento->type == sf::Event::KeyPressed){
+            switch(evento->key.code){
+                case sf::Keyboard::Numpad9:
+                    *index=-1;
+                    Juego::Instance()->ponerEstadoEscenario(); 
+                    
+                break;
+                case sf::Keyboard::Escape:
+                    Juego::Instance()->getVentana()->close();               
+                break;
+            }
+        }
+    }
+}

@@ -23,6 +23,7 @@ using namespace sf;
 
 class Aliadas : public Unidad {
 public:
+    Aliadas();
     Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, int experien);
     virtual ~Aliadas();    
     

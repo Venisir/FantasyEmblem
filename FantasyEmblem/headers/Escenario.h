@@ -66,10 +66,10 @@ private:
     
     int cursorActivo;
     int varCursor;
-    int unidad_sel;
+    int *unidad_sel;
     
-    Aliadas* aliadas[5];//aray de unidades aliadas (posiblemente esten en mapa)
-    Enemigo* enemigos[5];//array de unidades enemigas
+    Aliadas** aliadas;//aray de unidades aliadas (posiblemente esten en mapa)
+    Enemigo** enemigos;//array de unidades enemigas
 };
 
 #endif	/* ESCENARIO_H */

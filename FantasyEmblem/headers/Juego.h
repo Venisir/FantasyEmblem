@@ -14,6 +14,8 @@
 #include "../headers/Estado.h"
 #include "../headers/Juego.h"
 #include "../headers/Mapa.h"
+#include "../headers/Aliadas.h"
+#include "../headers/Enemigo.h"
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -43,7 +45,7 @@ public:
     void ponerEstadoEscenario();
     void ponerEstadoPause();
     void ponerEstadoUnidadSeleccionada();
-    void ponerEstadoMenuAcciones();
+    void ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice);
     
 protected:
     Juego();

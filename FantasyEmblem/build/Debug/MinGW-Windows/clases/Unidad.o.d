@@ -93,7 +93,8 @@ build/Debug/MinGW-Windows/clases/Unidad.o: clases/Unidad.cpp \
  clases/../headers/../headers/EstadoPause.h \
  clases/../headers/../headers/Estado.h \
  clases/../headers/../headers/Juego.h clases/../headers/../headers/Mapa.h \
- clases/../headers/Armas.h
+ clases/../headers/../headers/Aliadas.h \
+ clases/../headers/../headers/Enemigo.h clases/../headers/Armas.h
 
 clases/../headers/Unidad.h:
 
@@ -290,5 +291,9 @@ clases/../headers/../headers/Estado.h:
 clases/../headers/../headers/Juego.h:
 
 clases/../headers/../headers/Mapa.h:
+
+clases/../headers/../headers/Aliadas.h:
+
+clases/../headers/../headers/Enemigo.h:
 
 clases/../headers/Armas.h:

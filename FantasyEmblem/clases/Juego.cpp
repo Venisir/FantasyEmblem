@@ -10,6 +10,7 @@
 #include "../headers/Estado.h"
 #include "../headers/Juego.h"
 #include "../headers/Mapa.h"
+#include "../headers/MenuAcciones.h"
 
 #include <iostream>
 #include <sstream>
@@ -114,6 +115,10 @@ void Juego::ponerEstadoPause(){
     //states.back()->init();
 }
 
+void Juego::ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice)
+{
+    states.push_back(MenuAcciones::Instance(map,al,ene,indice));
+}
 
 /*
 void Juego::input() 

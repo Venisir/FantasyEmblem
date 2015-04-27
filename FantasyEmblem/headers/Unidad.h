@@ -20,8 +20,9 @@ using namespace sf;
 
 class Unidad {
 public:
+    Unidad();
     Unidad(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu);
-    virtual ~Unidad();
+    ~Unidad();
     
     //METODOS SET
     void setHP(int);

@@ -23,6 +23,11 @@
 using namespace std;
 using namespace sf;
 
+Aliadas::Aliadas() {
+
+}
+
+
 Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, int experien):Unidad(name, clas, atributo, nivel, rang, nombreTextu) {
     experiencia = experien;
     

@@ -83,13 +83,15 @@ build/Debug/MinGW-Windows/clases/Mapa.o: clases/Mapa.cpp \
  clases/../headers/../headers/../headers/Juego.h \
  clases/../headers/../headers/../headers/Mapa.h \
  clases/../headers/../headers/../headers/../tinyxml2.h \
- clases/../headers/../headers/Aliadas.h \
- clases/../headers/../headers/../headers/Unidad.h \
+ clases/../headers/../headers/../headers/Aliadas.h \
+ clases/../headers/../headers/../headers/../headers/Unidad.h \
+ clases/../headers/../headers/../headers/../headers/../headers/Armas.h \
+ clases/../headers/../headers/../headers/../headers/../headers/Objetos.h \
+ clases/../headers/../headers/../headers/../headers/Cofre.h \
  clases/../headers/../headers/../headers/../headers/Armas.h \
  clases/../headers/../headers/../headers/../headers/Objetos.h \
- clases/../headers/../headers/../headers/Cofre.h \
- clases/../headers/../headers/../headers/Armas.h \
- clases/../headers/../headers/../headers/Objetos.h \
+ clases/../headers/../headers/../headers/Enemigo.h \
+ clases/../headers/../headers/Aliadas.h \
  clases/../headers/../headers/Enemigo.h \
  clases/../headers/../headers/Escenario.h \
  clases/../headers/../headers/Unidad.h \
@@ -270,19 +272,23 @@ clases/../headers/../headers/../headers/Mapa.h:
 
 clases/../headers/../headers/../headers/../tinyxml2.h:
 
-clases/../headers/../headers/Aliadas.h:
+clases/../headers/../headers/../headers/Aliadas.h:
 
-clases/../headers/../headers/../headers/Unidad.h:
+clases/../headers/../headers/../headers/../headers/Unidad.h:
+
+clases/../headers/../headers/../headers/../headers/../headers/Armas.h:
+
+clases/../headers/../headers/../headers/../headers/../headers/Objetos.h:
+
+clases/../headers/../headers/../headers/../headers/Cofre.h:
 
 clases/../headers/../headers/../headers/../headers/Armas.h:
 
 clases/../headers/../headers/../headers/../headers/Objetos.h:
 
-clases/../headers/../headers/../headers/Cofre.h:
+clases/../headers/../headers/../headers/Enemigo.h:
 
-clases/../headers/../headers/../headers/Armas.h:
-
-clases/../headers/../headers/../headers/Objetos.h:
+clases/../headers/../headers/Aliadas.h:
 
 clases/../headers/../headers/Enemigo.h:
 

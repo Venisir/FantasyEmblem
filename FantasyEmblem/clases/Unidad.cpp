@@ -13,6 +13,11 @@
 
 using namespace std;
 
+Unidad::Unidad()
+{
+    
+}
+
 Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu) {
     nombre = name;
     clase = clas;
