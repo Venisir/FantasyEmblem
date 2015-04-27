@@ -113,7 +113,7 @@ void EstadoBatall::render_State(){
 
 
 void EstadoBatall::update_State(){
-    if (reloj->getElapsedTime().asSeconds() >= 0.1) {
+    if (reloj->getElapsedTime().asSeconds() >= 0.05) {
         cerr << contPer1i << "  " << contPer1j << endl;
         per1->setTextureRect(IntRect(contPer1i*248,contPer1j*160,248,160));
         if(contPer1i==7){

@@ -181,6 +181,7 @@ void MenuAcciones::input()
                     if(cont==0)
                     {
                         //atacar
+                        cursorActivo = true;
                         Juego::Instance()->ponerEstadoBatalla();
                     }
                     
