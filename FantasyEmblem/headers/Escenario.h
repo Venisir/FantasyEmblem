@@ -42,8 +42,7 @@ public:
     void mostrarCuadriculaUnidad(int xx, int yy, int rangoUnidad);
     void quitarCuadriculaUnidad(int xx, int yy, int rangoUnidad);
     bool hayunidad();
-    void mostrarStats(int numUnidad, int tipo);
-    void setEnemigo(Enemigo* malo);
+    void mostrarStats(int numUnidad, int tipo);;
         
 protected:
     Escenario();
@@ -78,6 +77,7 @@ private:
         
     Aliadas** aliadas;//aray de unidades aliadas (posiblemente esten en mapa)
     Enemigo** enemigos;//array de unidades enemigas
+    Cofre** cofres;//array de unidades enemigas
 };
 
 #endif	/* ESCENARIO_H */

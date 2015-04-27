@@ -11,6 +11,10 @@
 #include "../headers/Estado.h"
 #include "../headers/Juego.h"
 #include "../headers/Mapa.h"
+#include "../headers/Cofre.h"
+#include "../headers/Unidad.h"
+#include "../headers/Aliadas.h"
+#include "../headers/Enemigo.h"
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -147,15 +151,18 @@ Mapa::Mapa() {
                 //std::cerr <<gid<< endl;
                 //CONDICION PARA PONER NPC's CON CAPA
                 if(l==6){
-                    if(gid==8){
-                        //CREAR AQUI NPC's
-                        std::cerr <<"SOY UN NPC Y AQUI EN EL BOSQUE SOY MUY FELIZ"<< endl;
+                    //CREAR AQUI NPC's
+                    if(gid==80){
+                        //std::cerr <<"SOY UN NPC Y AQUI EN EL BOSQUE SOY MUY FELIZ"<< endl;
+                        
+                    }else{
+                        _tilemapSprite[l][y][x] = NULL;
                     }
                     //std::cerr <<gid<< endl;
                 }else if(l==2){
                     //CREAR AQUI COFRES
                     if(gid>=0){
-                        std::cerr <<"SOY UN COFREEEE Y AQUI EN EL BOSQUE SOY MUY FELIZ"<< endl;
+                        //std::cerr <<"SOY UN COFREEEE Y AQUI EN EL BOSQUE SOY MUY FELIZ"<< endl;
                     }else{
                         _tilemapSprite[l][y][x] = NULL;
                     }
@@ -238,3 +245,43 @@ int Mapa::getAtributo(int i, int j){
     }
 }
 
+Enemigo** Mapa::getEnemigos(){
+    Enemigo** enemigo = new Enemigo*[5];//array de unidades enemigas
+    int l = 0;
+    for(int y=0; y<_height;y++){
+        for(int x=0; x<_width; x++){
+            int gid = _tilemap[6][y][x];
+            //CREAR AQUI NPC's
+            if(gid==81){
+                int atri[] = { 11, 22, 33, 44, 55, 66, 77};
+                enemigo[l]= new Enemigo("Soldado", "Espadachin", atri, 8, 2, "Mapa_espadachin_rojo.png");
+                enemigo[l]->setPosition(x*_tileWidth,y*_tileHeight);
+                //std::cerr <<"HOLI"<< endl;
+                l++;
+            }else{
+                enemigo[l]=NULL;
+            }
+        }
+    }
+    return enemigo;
+}
+
+Cofre** Mapa::getCofres(){
+    Cofre** cofre = new Cofre*[5];//array de unidades enemigas
+    int l = 0;
+    for(int y=0; y<_height;y++){
+        for(int x=0; x<_width; x++){
+            int gid = _tilemap[2][y][x];
+            //CREAR AQUI NPC's
+            if(gid!=0){
+                cofre[l]= new Cofre(y, x, NULL, NULL);
+                cofre[l]->setPosition(x*_tileWidth,y*_tileHeight);
+                //std::cerr <<"HOLI"<< endl;
+                l++;
+            }else{
+                cofre[l]=NULL;
+            }
+        }
+    }
+    return cofre;
+}

@@ -43,6 +43,7 @@ Escenario::Escenario() {
     mapa = new Mapa();
     aliadas=new Aliadas*[5];
     enemigos=new Enemigo*[5];
+    cofres=new Cofre*[5];
     unidad_sel=new int();
     turnoUsu=new bool();
         
@@ -53,11 +54,15 @@ Escenario::Escenario() {
     
     int atri[] = { 11, 22, 33, 44, 55, 66, 77};
     
+    cofres=mapa->getCofres();
+    enemigos=mapa->getEnemigos();
     aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 2, "Mapa_espadachin_azul.png", 0);
-    enemigos[0] = new Enemigo("AlbertoMalo", "Guerrero", atri, 8, 2, "Mapa_espadachin_rojo.png");
+    //enemigos[4] = new Enemigo("AlbertoMalo", "Guerrero", atri, 8, 2, "Mapa_espadachin_rojo.png");
     
     aliadas[0]->setPosition(176,176);
-    enemigos[0]->setPosition(208,176);
+    //enemigos[4]->setPosition(208,176);
+    
+    
     
     *unidad_sel=-1;
     *turnoUsu=true;
@@ -240,8 +245,18 @@ void Escenario::render_State(){
     
     mapa->Draw();
     
+    for(int x=0; x<3; x++){
+       // if(aliadas[x]!=NULL){
+            //aliadas[x]->Draw();
+        //}
+        enemigos[x]->Draw();
+    }
     aliadas[0]->Draw();
-    enemigos[0]->Draw();
+    //enemigos[0]->Draw();
+    
+    for(int x=0; x<2; x++){
+        cofres[x]->Draw();
+    }
     
     if(tieneQueMostrarStats == true){
         Juego::Instance()->getVentana()->draw(*spriteMenuStats);
@@ -263,7 +278,13 @@ void Escenario::update_State(){
     if (relojCursor->getElapsedTime().asSeconds() >= 0.5) {
         
         aliadas[0]->cambiaSpriteQuieto();
-        enemigos[0]->cambiaSpriteQuieto();
+        for(int x=0; x<3; x++){
+            // if(aliadas[x]!=NULL){
+                //aliadas[x]->Draw();
+            //}
+            enemigos[x]->cambiaSpriteQuieto();
+        }
+        //enemigos[0]->cambiaSpriteQuieto();
         
         if(varCursor == 0){
             spriteCursor->setTextureRect(IntRect(cursorActivo, 0, 16, 16));
@@ -474,14 +495,6 @@ void Escenario::input() {
                     tieneQueMostrarStats = true;
                 }
             }
-        }
-    }
-}
-
-void Escenario::setEnemigo(Enemigo* malo){
-    for(int i=0; i<5; i++){
-        if(enemigos[i]==NULL){
-            enemigos[i]=malo;
         }
     }
 }
