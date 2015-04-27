@@ -44,6 +44,12 @@ Escenario::Escenario() {
     aliadas=new Aliadas*[5];
     enemigos=new Enemigo*[5];
     unidad_sel=new int();
+        
+    fuente = new Font();
+    t_stats = new Text();
+    spriteMenuStats = new Sprite();
+    texturaMenuStats = new Texture();
+    
     int atri[] = { 11, 22, 33, 44, 55, 66, 77};
     
     aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 2, "Mapa_espadachin_azul.png", 0);
@@ -67,7 +73,11 @@ Escenario::~Escenario() {
     //delete ventana;
     delete pinstance;
     delete mapa;
-    delete aliadas[0];
+    delete aliadas;
+    delete fuente;
+    delete t_stats;
+    delete texturaMenuStats;
+    delete spriteMenuStats;
 }
 
 void Escenario::init_State(){
@@ -75,6 +85,12 @@ void Escenario::init_State(){
     if (!texturaCursor-> loadFromFile("resources/cursores.png"))
     {
         std::cerr << "Error cargando la imagen cursores.png";
+        exit(0);
+    }
+    
+    if (!texturaMenuStats-> loadFromFile("resources/menuStats.png"))
+    {
+        std::cerr << "Error cargando la imagen menuStats.png";
         exit(0);
     }
     
@@ -86,7 +102,15 @@ void Escenario::init_State(){
     cambiaSpriteCursorSeleccionar();
     
     cursorActivo = 0;
-    varCursor = 0;
+    varCursor = 0;    
+   
+    fuente->loadFromFile("resources/font.ttf");
+    
+    spriteMenuStats->setTexture(*texturaMenuStats);
+    spriteMenuStats->setPosition(0,90);
+    
+    tieneQueMostrarStats = false;
+
 }
 
 void Escenario::cambiaSpriteCursorSeleccionar() {
@@ -115,6 +139,7 @@ bool Escenario::hayunidad()
     
     return resultado;
 }
+
 
 void Escenario::mostrarCuadriculaUnidad(int f, int c, int rangoUnidad){
     
@@ -154,6 +179,38 @@ void Escenario::quitarCuadriculaUnidad(int f, int c, int rangoUnidad){
     }
 }
 
+void Escenario::mostrarStats(int numUnidad, int tipo){
+    
+    //Tipo 0: Aliado
+    //Tipo 1: Enemigo
+    
+    if(tipo == 0){
+        std::stringstream ss_stats;
+        ss_stats << "Nombre: "<< aliadas[numUnidad]->getNombre();
+        std::string s_stats = ss_stats.str();
+
+        t_stats->setCharacterSize(8);
+        t_stats->setFont(*fuente);
+        t_stats->setString(s_stats);
+        
+        t_stats->setColor(sf::Color::White);
+        t_stats->setPosition(0,100);
+        
+    }else{
+        std::stringstream ss_stats;
+        ss_stats << "Nombre: "<< enemigos[numUnidad]->getNombre();
+        std::string s_stats = ss_stats.str();
+
+        t_stats->setCharacterSize(8);
+        t_stats->setFont(*fuente);
+        t_stats->setString(s_stats);
+        
+        t_stats->setColor(sf::Color::White);
+        t_stats->setPosition(0,100);
+    }
+}
+
+
 void Escenario::render_State(){
     
     Juego::Instance()->getVentana()->clear();
@@ -162,6 +219,11 @@ void Escenario::render_State(){
     
     aliadas[0]->Draw();
     enemigos[0]->Draw();
+    
+    if(tieneQueMostrarStats == true){
+        Juego::Instance()->getVentana()->draw(*spriteMenuStats);
+        Juego::Instance()->getVentana()->draw(*t_stats);
+    }
     
     Juego::Instance()->getVentana()->draw(*spriteCursor);
     
@@ -360,11 +422,27 @@ void Escenario::input() {
                     Juego::Instance()->getVentana()->close();               
                 break;
             }
+            
+            tieneQueMostrarStats = false;
+            
+            for(int i=0; i<1; i++){
+                if(spriteCursor->getPosition().x == aliadas[i]->getPosicionSpriteX() && spriteCursor->getPosition().y == aliadas[i]->getPosicionSpriteY()){
+                    mostrarStats(i, 0);
+                    tieneQueMostrarStats = true;
+                }
+            }
+
+            for(int i=0; i<1; i++){
+                if(spriteCursor->getPosition().x == enemigos[i]->getPosicionSpriteX() && spriteCursor->getPosition().y == enemigos[i]->getPosicionSpriteY()){
+                    mostrarStats(i, 1);
+                    tieneQueMostrarStats = true;
+                }
+            }
         }
     }
 }
 
-void Escenario::setEnemigo(Enemigo malo){
+void Escenario::setEnemigo(Enemigo* malo){
     for(int i=0; i<5; i++){
         if(enemigos[i]==NULL){
             enemigos[i]=malo;

@@ -51,6 +51,7 @@ public:
     int getDefm();
     int getExp();
     int getRango();
+    const char* getNombre();
 
     int getPosicionCeldaX();
     int getPosicionCeldaY();

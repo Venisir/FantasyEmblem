@@ -208,7 +208,6 @@ void Mapa::defaultSpriteColor(int i, int j){
     }
 }
 
-
 bool Mapa::getColision(int i, int j){
     if(_tilemap[4][i/16][j/16]!=0 || _tilemap[5][i/16][j/16]!=0){
         return true;

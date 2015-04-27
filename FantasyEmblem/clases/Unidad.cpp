@@ -188,3 +188,7 @@ int Unidad::getRango(){
 {
     return *spriteUnidad;
 }
+ 
+const char* Unidad::getNombre(){
+    return nombre;
+}

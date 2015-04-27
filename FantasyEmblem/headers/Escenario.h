@@ -42,7 +42,8 @@ public:
     void mostrarCuadriculaUnidad(int xx, int yy, int rangoUnidad);
     void quitarCuadriculaUnidad(int xx, int yy, int rangoUnidad);
     bool hayunidad();
-    void setEnemigo(Enemigo malo);
+    void mostrarStats(int numUnidad, int tipo);
+    void setEnemigo(Enemigo* malo);
         
 protected:
     Escenario();
@@ -56,10 +57,14 @@ private:
     void update_State();
     
     sf::Texture* texturaCursor;
+    sf::Texture* texturaMenuStats;
+    sf::Sprite* spriteMenuStats;
     sf::Sprite* spriteCursor;
     sf::Clock* reloj;
     sf::Clock* relojCursor;
     sf::Event* evento;
+    sf::Font* fuente;
+    sf::Text* t_stats;
     
     Mapa* mapa;
     //Aliadas* unidadWena;
@@ -68,6 +73,8 @@ private:
     int varCursor;
     int *unidad_sel;
     
+    bool tieneQueMostrarStats;
+        
     Aliadas** aliadas;//aray de unidades aliadas (posiblemente esten en mapa)
     Enemigo** enemigos;//array de unidades enemigas
 };
