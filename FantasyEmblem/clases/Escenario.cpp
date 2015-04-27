@@ -360,3 +360,11 @@ void Escenario::input() {
         }
     }
 }
+
+void Escenario::setEnemigo(Enemigo malo){
+    for(int i=0; i<5; i++){
+        if(enemigos[i]==NULL){
+            enemigos[i]=malo;
+        }
+    }
+}

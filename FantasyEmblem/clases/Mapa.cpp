@@ -146,12 +146,19 @@ Mapa::Mapa() {
                 int gid = _tilemap[l][y][x]-1;
                 //std::cerr <<gid<< endl;
                 //CONDICION PARA PONER NPC's CON CAPA
-                //if(l==6){
-                    //CREAR AQUI NPC's
-                    //std::cerr <<"SOY UN NPC Y AQUI EN EL BOSQUE SOY MUY FELIZ"<< endl;
-                /*}else*/if(l==2){
+                if(l==6){
+                    if(gid==8){
+                        //CREAR AQUI NPC's
+                        std::cerr <<"SOY UN NPC Y AQUI EN EL BOSQUE SOY MUY FELIZ"<< endl;
+                    }
+                    //std::cerr <<gid<< endl;
+                }else if(l==2){
                     //CREAR AQUI COFRES
-                    std::cerr <<"SOY UN COFREEEE Y AQUI EN EL BOSQUE SOY MUY FELIZ"<< endl;
+                    if(gid>=0){
+                        std::cerr <<"SOY UN COFREEEE Y AQUI EN EL BOSQUE SOY MUY FELIZ"<< endl;
+                    }else{
+                        _tilemapSprite[l][y][x] = NULL;
+                    }
                 }else{
                     if(gid>=0){
                         //Si fuera menor que 0 no creo sprite...

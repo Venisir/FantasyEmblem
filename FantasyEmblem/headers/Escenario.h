@@ -42,6 +42,7 @@ public:
     void mostrarCuadriculaUnidad(int xx, int yy, int rangoUnidad);
     void quitarCuadriculaUnidad(int xx, int yy, int rangoUnidad);
     bool hayunidad();
+    void setEnemigo(Enemigo malo);
         
 protected:
     Escenario();
