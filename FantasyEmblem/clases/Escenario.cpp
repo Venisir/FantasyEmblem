@@ -426,7 +426,7 @@ void Escenario::input() {
                         //devuelve las casillas de la cuadricula a su estado original
                         //unidad_sel=-1;
                         cambiaSpriteCursorSeleccionar();
-                        Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu); 
+                        Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,unidad_sel,turnoUsu); 
                         
                     }
                     /*

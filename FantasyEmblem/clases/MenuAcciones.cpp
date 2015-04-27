@@ -11,11 +11,11 @@
 using namespace std;
 
 MenuAcciones* MenuAcciones::pinstance = 0;
-MenuAcciones* MenuAcciones::Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)
+MenuAcciones* MenuAcciones::Instance(Mapa* map, Aliadas** al, Enemigo** ene, int *indice,bool *turno)
 {
     if(pinstance==0)
     {
-        pinstance=new MenuAcciones(map,al,ene,cofr,indice,turno);
+        pinstance=new MenuAcciones(map,al,ene,indice,turno);
     }
     return pinstance;
 }
@@ -26,7 +26,7 @@ MenuAcciones::MenuAcciones()
 }
 
 
-MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno)
+MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice, bool *turno)
 {
     texturaDanyo=new Texture();
     texturaDedo=new Texture();
@@ -43,7 +43,6 @@ MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr,
     m=map;
     ali=al;
     enem=ene;
-    cof=cofr;
     index=indice;
     cursorActivo=true;
     turnoUsu=turno;
@@ -115,18 +114,8 @@ void MenuAcciones::render_State()
 {
     Juego::Instance()->getVentana()->clear();
     m->Draw();
-    for(int x=0; x<3; x++){
-       // if(aliadas[x]!=NULL){
-            //aliadas[x]->Draw();
-        //}
-        enem[x]->Draw();
-    }
     ali[0]->Draw();
-    //enemigos[0]->Draw();
-    
-    for(int x=0; x<2; x++){
-        cof[x]->Draw();
-    }
+    enem[0]->Draw();
     Juego::Instance()->getVentana()->draw(*menu);
     Juego::Instance()->getVentana()->draw(*cursorDedo);
     Juego::Instance()->getVentana()->display();
@@ -136,12 +125,7 @@ void MenuAcciones::update_State()
 {
     if (reloj2->getElapsedTime().asSeconds() >= 0.5) {
         ali[0]->cambiaSpriteQuieto();
-        for(int x=0; x<3; x++){
-            // if(aliadas[x]!=NULL){
-                //aliadas[x]->Draw();
-            //}
-            enem[x]->cambiaSpriteQuieto();
-        }
+        enem[0]->cambiaSpriteQuieto();
         
         reloj2->restart();
     }

@@ -46,7 +46,7 @@ public:
     void ponerEstadoEscenario();
     void ponerEstadoPause();
     void ponerEstadoUnidadSeleccionada();
-    void ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
+    void ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice, bool *turno);
     void ponerEstadoBatalla();
     
 protected:
