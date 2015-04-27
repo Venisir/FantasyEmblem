@@ -113,6 +113,13 @@ bool Aliadas::abrirCofre(Cofre* cofre){
             ultimo_mov++;
         }
     }
+    else if(ultimo_mov==rango)
+    {
+        if(negativo==recorrido[ultimo_mov-1])
+        {
+            ultimo_mov--;
+        } 
+    }
 }
  
  void Aliadas::recorre()

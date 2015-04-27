@@ -48,7 +48,10 @@ private:
     sf::Sprite *danyo;
     sf::Sprite *objetos;
     sf::Clock *reloj;
+    sf::Clock *reloj2;
     sf::Event *evento;
+    int cont;
+    bool cursorActivo;
     Mapa *m;//mapa proveniente del escenario 
     Aliadas **ali;//array de unidades aliadas proveniente del escenario
     Enemigo **enem;//array de unidades enemigas proveniete del escenario
