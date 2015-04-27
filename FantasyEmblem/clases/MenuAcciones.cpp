@@ -11,17 +11,22 @@
 using namespace std;
 
 MenuAcciones* MenuAcciones::pinstance = 0;
-MenuAcciones* MenuAcciones::Instance()
+MenuAcciones* MenuAcciones::Instance(Mapa* map, Aliadas* al, Enemigo* ene, int indice)
 {
     if(pinstance==0)
     {
-        pinstance=new MenuAcciones();
+        pinstance=new MenuAcciones(map,al,ene,indice);
     }
     return pinstance;
 }
 
-
 MenuAcciones::MenuAcciones()
+{
+    
+}
+
+
+MenuAcciones::MenuAcciones(Mapa* map, Aliadas* al, Enemigo* ene, int indice)
 {
     texturaDanyo=new Texture();
     texturaDedo=new Texture();
@@ -33,12 +38,12 @@ MenuAcciones::MenuAcciones()
     objetos= new Sprite();
     reloj=new Clock();
     evento=new Event();
-    /*m=map;
+    m=map;
     ali=al;
     enem=ene;
-    index=indice;*/
+    index=indice;
     
-    init_state();
+    init_State();
 }
 
 MenuAcciones::~MenuAcciones() {
@@ -54,7 +59,7 @@ MenuAcciones::~MenuAcciones() {
     delete evento;
 }
 
-void MenuAcciones::init_state()
+void MenuAcciones::init_State()
 {
     if (!texturaMenu->loadFromFile("recursos/menu.png"))
     {
@@ -88,5 +93,13 @@ void MenuAcciones::init_state()
     /*posicionar sprites*/
 }
 
+void MenuAcciones::render_State()
+{
+    
+}
 
+void MenuAcciones::update_State()
+{
+    
+}
 

@@ -25,18 +25,18 @@
 
 class MenuAcciones:public Estado {
 public:
-    static MenuAcciones* Instance();
+    static MenuAcciones* Instance(Mapa* map, Aliadas* al, Enemigo* ene, int indice);
     void input();
     
 protected:
     MenuAcciones();
-    //MenuAcciones(Mapa* map, Aliadas* al, Enemigo* ene, int indice);
+    MenuAcciones(Mapa* map, Aliadas* al, Enemigo* ene, int indice);
     ~MenuAcciones();        
 private:
     static MenuAcciones* pinstance;
-    void init_state();
-    void render_state();
-    void update_state();
+    void init_State();
+    void render_State();
+    void update_State();
     
     
     sf::Texture *texturaMenu;
@@ -49,9 +49,9 @@ private:
     sf::Sprite *objetos;
     sf::Clock *reloj;
     sf::Event *evento;
-    Mapa* m;//mapa proveniente del escenario 
-    Aliadas* ali;//array de unidades aliadas proveniente del escenario
-    Enemigo* enem;//array de unidades enemigas proveniete del escenario
+    Mapa *m;//mapa proveniente del escenario 
+    Aliadas *ali;//array de unidades aliadas proveniente del escenario
+    Enemigo *enem;//array de unidades enemigas proveniete del escenario
     int index;//indice de la unidad aliada seleccionada  
 };
 
