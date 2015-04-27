@@ -17,9 +17,8 @@ public:
     void Draw();
     void setSpriteColor(int color1, int color2, int i, int j);
     void defaultSpriteColor(int i, int j);
-    bool Mapa::getColision(int i, int j);
-    bool Mapa::getTrono(int i, int j);
-    int Mapa::getAtributo(int i, int j);
+    bool getColision(int i, int j);
+    int getAtributo(int i, int j);
     
 private:
     //Variables provisoonales (las que no se usen en general hay que quitarlas)
