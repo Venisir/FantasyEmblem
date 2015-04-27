@@ -120,6 +120,10 @@ void Juego::ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int 
     states.push_back(MenuAcciones::Instance(map,al,ene,indice));
 }
 
+void Juego::ponerEstadoBatalla(){
+    states.push_back(EstadoBatall::Instance());
+    //states.back()->init();
+}
 /*
 void Juego::input() 
 {

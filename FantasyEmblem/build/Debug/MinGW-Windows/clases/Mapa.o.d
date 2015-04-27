@@ -91,6 +91,10 @@ build/Debug/MinGW-Windows/clases/Mapa.o: clases/Mapa.cpp \
  clases/../headers/../headers/../headers/../headers/Armas.h \
  clases/../headers/../headers/../headers/../headers/Objetos.h \
  clases/../headers/../headers/../headers/Enemigo.h \
+ clases/../headers/../headers/../headers/EstadoBatall.h \
+ clases/../headers/../headers/../headers/../headers/EstadoBatall.h \
+ clases/../headers/../headers/../headers/../headers/Aliadas.h \
+ clases/../headers/../headers/../headers/../headers/Enemigo.h \
  clases/../headers/../headers/Aliadas.h \
  clases/../headers/../headers/Enemigo.h \
  clases/../headers/../headers/Escenario.h \
@@ -287,6 +291,14 @@ clases/../headers/../headers/../headers/../headers/Armas.h:
 clases/../headers/../headers/../headers/../headers/Objetos.h:
 
 clases/../headers/../headers/../headers/Enemigo.h:
+
+clases/../headers/../headers/../headers/EstadoBatall.h:
+
+clases/../headers/../headers/../headers/../headers/EstadoBatall.h:
+
+clases/../headers/../headers/../headers/../headers/Aliadas.h:
+
+clases/../headers/../headers/../headers/../headers/Enemigo.h:
 
 clases/../headers/../headers/Aliadas.h:
 

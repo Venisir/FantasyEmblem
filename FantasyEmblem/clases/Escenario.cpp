@@ -186,11 +186,8 @@ void Escenario::mostrarStats(int numUnidad, int tipo){
     //Tipo 1: Enemigo
     
     if(tipo == 0){
-        sf::String testString;
-        //testString.insert("HOLAA \n Probando");
-        
         std::stringstream ss_stats;
-        ss_stats << aliadas[numUnidad]->getNombre() << "     Lvl: " << aliadas[numUnidad]->getLvl() << "\n" <<  
+        ss_stats << aliadas[numUnidad]->getNombre() << "    Lvl: " << aliadas[numUnidad]->getLvl() << "\n" <<  
                 aliadas[numUnidad]->getClase() << "\n" << "\n" <<
                 "HP: " << aliadas[numUnidad]->getHP() << "\n" <<
                 "Fuerza: " << aliadas[numUnidad]->getFuerza() << "\n" <<
@@ -201,9 +198,6 @@ void Escenario::mostrarStats(int numUnidad, int tipo){
                 "Defensa mag: " << aliadas[numUnidad]->getDefm() << "\n" <<
                 "Rango: " << aliadas[numUnidad]->getRango();
         
-        
-    
-    
         std::string s_stats = ss_stats.str();
 
         t_stats->setCharacterSize(8);
@@ -214,8 +208,19 @@ void Escenario::mostrarStats(int numUnidad, int tipo){
         t_stats->setPosition(10,100);
         
     }else{
-        std::stringstream ss_stats;
-        ss_stats << "Nomb \n re: "<< enemigos[numUnidad]->getNombre() << endl << "YEE";
+        std::stringstream ss_stats;        
+        
+        ss_stats << enemigos[numUnidad]->getNombre() << "    Lvl: " << enemigos[numUnidad]->getLvl() << "\n" <<  
+                enemigos[numUnidad]->getClase() << "\n" << "\n" <<
+                "HP: " << enemigos[numUnidad]->getHP() << "\n" <<
+                "Fuerza: " << enemigos[numUnidad]->getFuerza() << "\n" <<
+                "Magia: " << enemigos[numUnidad]->getMagia() << "\n" <<
+                "Habilidad: " << enemigos[numUnidad]->getHab() << "\n" <<
+                "Velocidad: " << enemigos[numUnidad]->getVel() << "\n" <<
+                "Defensa: " << enemigos[numUnidad]->getDef() << "\n" <<
+                "Defensa mag: " << enemigos[numUnidad]->getDefm() << "\n" <<
+                "Rango: " << enemigos[numUnidad]->getRango();
+        
         std::string s_stats = ss_stats.str();
 
         t_stats->setCharacterSize(8);

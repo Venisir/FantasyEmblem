@@ -95,6 +95,8 @@ build/Debug/MinGW-Windows/clases/EstadoPause.o: clases/EstadoPause.cpp \
  clases/../headers/../headers/../headers/Mapa.h \
  clases/../headers/../headers/../headers/Aliadas.h \
  clases/../headers/../headers/../headers/Enemigo.h \
+ clases/../headers/../headers/../headers/EstadoBatall.h \
+ clases/../headers/../headers/../headers/../headers/EstadoBatall.h \
  clases/../headers/../headers/Escenario.h \
  clases/../headers/../headers/Estado.h clases/../headers/Estado.h \
  clases/../headers/Juego.h
@@ -294,6 +296,10 @@ clases/../headers/../headers/../headers/Mapa.h:
 clases/../headers/../headers/../headers/Aliadas.h:
 
 clases/../headers/../headers/../headers/Enemigo.h:
+
+clases/../headers/../headers/../headers/EstadoBatall.h:
+
+clases/../headers/../headers/../headers/../headers/EstadoBatall.h:
 
 clases/../headers/../headers/Escenario.h:
 
