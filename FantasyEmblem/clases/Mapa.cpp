@@ -156,7 +156,6 @@ Mapa::Mapa() {
                     if(gid>=0){
                         //Si fuera menor que 0 no creo sprite...
                         _tilemapSprite[l][y][x] = new sf::Sprite(*textura, _tilesetSprite[gid]->getTextureRect());//sf::IntRect(0, 0, 16, 16));
-                        //_tilemapSprite[l][y][x]->
                         _tilemapSprite[l][y][x]->setPosition(x*_tileWidth,y*_tileHeight);
                     }else{
                         _tilemapSprite[l][y][x] = NULL;
@@ -190,14 +189,15 @@ void Mapa::Draw() {
 
 void Mapa::setSpriteColor(int color1, int color2, int i, int j){
     if(j<480 && j>=0 && i>=0 && i<320){
-        //_tilemapSprite[0][i/16][j/16] = new Sprite(*textura, IntRect(0, 0, 16, 16));// Sprite(Color(0, color1, color2, 128));//->setColor(sf::Color(0, color1, color2, 128));
-        _tilemapSprite[0][i/16][j/16]->setColor(Color(0, color1, color2, 128));
+        _tilemapSprite[3][i/16][j/16] = new Sprite(*textura, IntRect(144, 0, 16, 16));
+        _tilemapSprite[3][i/16][j/16]->setPosition(j,i);
+        _tilemapSprite[3][i/16][j/16]->setColor(Color(255, 255, 255, 128));
     }
 }
 
 void Mapa::defaultSpriteColor(int i, int j){
     if(j<480 && j>=0 && i>=0 && i<320){
-       // delete _tilemapSprite[0][i/16][j/16];
+        _tilemapSprite[3][i/16][j/16] = NULL;
     }
 }
 

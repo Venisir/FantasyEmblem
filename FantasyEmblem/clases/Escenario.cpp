@@ -44,8 +44,8 @@ Escenario::Escenario() {
     
     int atri[] = { 11, 22, 33, 44, 55, 66, 77};
     
-    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 9, "Mapa_espadachin_azul.png", 0);
-    enemigos[0] = new Enemigo("AlbertoMalo", "Guerrero", atri, 8, 9, "Mapa_espadachin_rojo.png");
+    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 2, "Mapa_espadachin_azul.png", 0);
+    enemigos[0] = new Enemigo("AlbertoMalo", "Guerrero", atri, 8, 2, "Mapa_espadachin_rojo.png");
     
     aliadas[0]->setPosition(176,176);
     enemigos[0]->setPosition(208,176);
