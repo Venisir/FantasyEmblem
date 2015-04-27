@@ -22,8 +22,9 @@ using namespace sf;
 
 class Enemigo : public Unidad {
 public:
+    Enemigo();
     Enemigo(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu);
-    virtual ~Enemigo();
+    ~Enemigo();
 private:
     Armas* arma;
 };

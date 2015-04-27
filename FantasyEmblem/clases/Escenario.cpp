@@ -41,7 +41,9 @@ Escenario::Escenario() {
     relojCursor = new Clock();
     evento = new Event();
     mapa = new Mapa();
-    
+    aliadas=new Aliadas*[5];
+    enemigos=new Enemigo*[5];
+    unidad_sel=new int();
     int atri[] = { 11, 22, 33, 44, 55, 66, 77};
     
     aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 9, "Mapa_espadachin_azul.png", 0);
@@ -50,7 +52,7 @@ Escenario::Escenario() {
     aliadas[0]->setPosition(176,176);
     enemigos[0]->setPosition(208,176);
     
-    unidad_sel=-1;
+    *unidad_sel=-1;
     
     init_State();
 }
@@ -107,7 +109,7 @@ bool Escenario::hayunidad()
         if(spriteCursor->getPosition()==aliadas[i]->getSprite().getPosition())
         {
             resultado=true;
-            unidad_sel=i;
+            *unidad_sel=i;
         }
     }
     
@@ -208,9 +210,9 @@ void Escenario::input() {
                         spriteCursor->move(0,16);
                         std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
                     }
-                    if(unidad_sel!=-1)//hay una unidad seleccionada
+                    if(*unidad_sel!=-1)//hay una unidad seleccionada
                     {
-                        aliadas[unidad_sel]->guardamovimiento(-2);
+                        aliadas[*unidad_sel]->guardamovimiento(-2);
                         std::cerr << "-2" << endl;
                     }
                 break;
@@ -221,9 +223,9 @@ void Escenario::input() {
                         spriteCursor->move(0,-16);       
                         std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
                     }
-                    if(unidad_sel!=-1)//hay una unidad seleccionada
+                    if(*unidad_sel!=-1)//hay una unidad seleccionada
                     {
-                        aliadas[unidad_sel]->guardamovimiento(2);
+                        aliadas[*unidad_sel]->guardamovimiento(2);
                         std::cerr << "2" << endl;
                     }
                 break;
@@ -233,9 +235,9 @@ void Escenario::input() {
                         spriteCursor->move(-16,0);              
                         std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
                     }
-                    if(unidad_sel!=-1)//hay una unidad seleccionada
+                    if(*unidad_sel!=-1)//hay una unidad seleccionada
                     {
-                        aliadas[unidad_sel]->guardamovimiento(-1);
+                        aliadas[*unidad_sel]->guardamovimiento(-1);
                         std:cerr << "-1" << endl;
                     }
                 break;
@@ -245,9 +247,9 @@ void Escenario::input() {
                         spriteCursor->move(16,0);       
                         std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
                     }
-                    if(unidad_sel!=-1)//hay una unidad seleccionada
+                    if(*unidad_sel!=-1)//hay una unidad seleccionada
                     {
-                        aliadas[unidad_sel]->guardamovimiento(1);
+                        aliadas[*unidad_sel]->guardamovimiento(1);
                         std::cerr << "1" << endl;
                     }
                 break;
@@ -289,7 +291,7 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Return:
-                    if(unidad_sel==-1)
+                    if(*unidad_sel==-1)
                     {
                         if(hayunidad()==true)
                         {
@@ -301,10 +303,11 @@ void Escenario::input() {
                     else
                     {
                         quitarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango());
-                        aliadas[unidad_sel]->recorre();
+                        aliadas[*unidad_sel]->recorre();
                         //devuelve las casillas de la cuadricula a su estado original
-                        unidad_sel=-1;
+                        //unidad_sel=-1;
                         cambiaSpriteCursorSeleccionar();
+                        Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,unidad_sel); 
                         
                     }
                     /*

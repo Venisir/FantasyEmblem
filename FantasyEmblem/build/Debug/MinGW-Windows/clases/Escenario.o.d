@@ -89,6 +89,8 @@ build/Debug/MinGW-Windows/clases/Escenario.o: clases/Escenario.cpp \
  clases/../headers/../headers/../headers/Juego.h \
  clases/../headers/../headers/../headers/Mapa.h \
  clases/../headers/../headers/../headers/../tinyxml2.h \
+ clases/../headers/../headers/../headers/Aliadas.h \
+ clases/../headers/../headers/../headers/Enemigo.h \
  clases/../headers/../headers/Aliadas.h \
  clases/../headers/../headers/Enemigo.h \
  clases/../headers/../headers/Escenario.h \
@@ -283,6 +285,10 @@ clases/../headers/../headers/../headers/Juego.h:
 clases/../headers/../headers/../headers/Mapa.h:
 
 clases/../headers/../headers/../headers/../tinyxml2.h:
+
+clases/../headers/../headers/../headers/Aliadas.h:
+
+clases/../headers/../headers/../headers/Enemigo.h:
 
 clases/../headers/../headers/Aliadas.h:
 
