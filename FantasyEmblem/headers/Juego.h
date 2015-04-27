@@ -43,6 +43,7 @@ public:
     void ponerEstadoEscenario();
     void ponerEstadoPause();
     void ponerEstadoUnidadSeleccionada();
+    void ponerEstadoMenuAcciones();
     
 protected:
     Juego();

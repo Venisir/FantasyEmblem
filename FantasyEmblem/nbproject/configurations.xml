@@ -15,6 +15,7 @@
       <itemPath>headers/EventoMapa.h</itemPath>
       <itemPath>headers/Juego.h</itemPath>
       <itemPath>headers/Mapa.h</itemPath>
+      <itemPath>headers/MenuAcciones.h</itemPath>
       <itemPath>headers/MenuPrincipal.h</itemPath>
       <itemPath>headers/Objetos.h</itemPath>
       <itemPath>headers/Partida.h</itemPath>
@@ -39,6 +40,7 @@
       <itemPath>clases/EventoMapa.cpp</itemPath>
       <itemPath>clases/Juego.cpp</itemPath>
       <itemPath>clases/Mapa.cpp</itemPath>
+      <itemPath>clases/MenuAcciones.cpp</itemPath>
       <itemPath>clases/MenuPrincipal.cpp</itemPath>
       <itemPath>clases/Objetos.cpp</itemPath>
       <itemPath>clases/Partida.cpp</itemPath>
@@ -110,6 +112,8 @@
       </item>
       <item path="clases/Mapa.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/MenuAcciones.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/MenuPrincipal.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Objetos.cpp" ex="false" tool="1" flavor2="0">
@@ -141,6 +145,8 @@
       <item path="headers/Juego.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Mapa.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/MenuAcciones.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/MenuPrincipal.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -197,6 +203,8 @@
       </item>
       <item path="clases/Mapa.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/MenuAcciones.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/MenuPrincipal.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Objetos.cpp" ex="false" tool="1" flavor2="0">
@@ -228,6 +236,8 @@
       <item path="headers/Juego.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Mapa.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/MenuAcciones.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/MenuPrincipal.h" ex="false" tool="3" flavor2="0">
       </item>

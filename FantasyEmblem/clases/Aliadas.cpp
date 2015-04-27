@@ -96,14 +96,17 @@ bool Aliadas::abrirCofre(Cofre* cofre){
  void Aliadas::guardamovimiento(int n){
     int negativo=n*(-1);
     //si el ultimo introducido es el negativo del que se va a introducir..
-    if(negativo==recorrido[ultimo_mov-1])
+    if(ultimo_mov<rango)
     {
-        ultimo_mov--;
-    }
-    else
-    {
-        recorrido[ultimo_mov]=n;
-        ultimo_mov++;
+        if(negativo==recorrido[ultimo_mov-1])
+        {
+            ultimo_mov--;
+        }
+        else
+        {
+            recorrido[ultimo_mov]=n;
+            ultimo_mov++;
+        }
     }
 }
  

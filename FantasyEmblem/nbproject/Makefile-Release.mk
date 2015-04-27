@@ -46,6 +46,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/clases/EventoMapa.o \
 	${OBJECTDIR}/clases/Juego.o \
 	${OBJECTDIR}/clases/Mapa.o \
+	${OBJECTDIR}/clases/MenuAcciones.o \
 	${OBJECTDIR}/clases/MenuPrincipal.o \
 	${OBJECTDIR}/clases/Objetos.o \
 	${OBJECTDIR}/clases/Partida.o \
@@ -132,6 +133,11 @@ ${OBJECTDIR}/clases/Mapa.o: clases/Mapa.cpp
 	${MKDIR} -p ${OBJECTDIR}/clases
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/Mapa.o clases/Mapa.cpp
+
+${OBJECTDIR}/clases/MenuAcciones.o: clases/MenuAcciones.cpp 
+	${MKDIR} -p ${OBJECTDIR}/clases
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/MenuAcciones.o clases/MenuAcciones.cpp
 
 ${OBJECTDIR}/clases/MenuPrincipal.o: clases/MenuPrincipal.cpp 
 	${MKDIR} -p ${OBJECTDIR}/clases
