@@ -79,6 +79,7 @@ private:
         
     Aliadas** aliadas;//aray de unidades aliadas (posiblemente esten en mapa)
     Enemigo** enemigos;//array de unidades enemigas
+    Cofre** cofres;
 };
 
 #endif	/* ESCENARIO_H */

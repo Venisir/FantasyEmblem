@@ -88,6 +88,8 @@ build/Debug/MinGW-Windows/clases/MenuAcciones.o: clases/MenuAcciones.cpp \
  clases/../headers/../headers/../headers/../headers/Estado.h \
  clases/../headers/../headers/../headers/../headers/Mapa.h \
  clases/../headers/../headers/../headers/../headers/../tinyxml2.h \
+ clases/../headers/../headers/../headers/../headers/../headers/Aliadas.h \
+ clases/../headers/../headers/../headers/../headers/../headers/Enemigo.h \
  clases/../headers/../headers/../headers/MenuPrincipal.h \
  clases/../headers/../headers/../headers/EstadoPause.h \
  clases/../headers/../headers/../headers/Estado.h \
@@ -102,7 +104,9 @@ build/Debug/MinGW-Windows/clases/MenuAcciones.o: clases/MenuAcciones.cpp \
  clases/../headers/../headers/Escenario.h \
  clases/../headers/../headers/Unidad.h \
  clases/../headers/../headers/Estado.h \
- clases/../headers/../headers/Mapa.h
+ clases/../headers/../headers/Mapa.h \
+ clases/../headers/../headers/EstadoBatall.h \
+ clases/../headers/../headers/Cofre.h
 
 clases/../headers/MenuAcciones.h:
 
@@ -286,6 +290,10 @@ clases/../headers/../headers/../headers/../headers/Mapa.h:
 
 clases/../headers/../headers/../headers/../headers/../tinyxml2.h:
 
+clases/../headers/../headers/../headers/../headers/../headers/Aliadas.h:
+
+clases/../headers/../headers/../headers/../headers/../headers/Enemigo.h:
+
 clases/../headers/../headers/../headers/MenuPrincipal.h:
 
 clases/../headers/../headers/../headers/EstadoPause.h:
@@ -315,3 +323,7 @@ clases/../headers/../headers/Unidad.h:
 clases/../headers/../headers/Estado.h:
 
 clases/../headers/../headers/Mapa.h:
+
+clases/../headers/../headers/EstadoBatall.h:
+
+clases/../headers/../headers/Cofre.h:
