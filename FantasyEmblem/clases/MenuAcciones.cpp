@@ -184,6 +184,10 @@ void MenuAcciones::input()
                     if(cont==4)
                     {
                         //fin
+                        cursorActivo=true;
+                        cont=0;
+                        cursorDedo->setPosition(215,260);
+                        *index=-1;
                         Juego::Instance()->ponerEstadoEscenario();
                     }
                     break;

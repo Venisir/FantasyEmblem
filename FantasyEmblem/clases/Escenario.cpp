@@ -59,6 +59,7 @@ Escenario::Escenario() {
     enemigos[0]->setPosition(208,176);
     
     *unidad_sel=-1;
+    //*turnoUsu=true;
     
     init_State();
 }
@@ -347,6 +348,7 @@ void Escenario::input() {
                 case sf::Keyboard::Numpad4:
                     cerr<< "Posicion CELDA unidad: (" << aliadas[0]->getPosicionCeldaX() << ", " << aliadas[0]->getPosicionCeldaY() << ")" << endl;
                     cerr<< "Posicion PIXEL unidad: (" << aliadas[0]->getPosicionSpriteX() << ", " << aliadas[0]->getPosicionSpriteY() << ")" << endl;
+                    cerr << unidad_sel << endl;
                 break;
                 
                 case sf::Keyboard::Numpad5:
