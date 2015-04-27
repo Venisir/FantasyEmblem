@@ -26,6 +26,8 @@ public:
     virtual ~Cofre(); 
     Armas* getArma();
     Objetos* getObjeto();
+    void Draw();
+    void setPosition(int i, int j);
     
 private:
     int x;
@@ -33,6 +35,9 @@ private:
     bool abierto;
     Armas* dropArma;
     Objetos* dropObjeto;
+    
+    Sprite* spriteCofre;
+    Texture* texturaCofre;
 };
 
 #endif	/* COFRE_H */

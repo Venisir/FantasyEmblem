@@ -15,6 +15,8 @@
 #include "../headers/Unidad.h"
 #include "../headers/Estado.h"
 #include "../headers/Mapa.h"
+#include "../headers/EstadoBatall.h"
+#include "../headers/Cofre.h"
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -25,12 +27,12 @@
 
 class MenuAcciones:public Estado {
 public:
-    static MenuAcciones* Instance(Mapa* map, Aliadas** al, Enemigo** ene, int *indice,bool *turno);
+    static MenuAcciones* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno);
     void input();
     
 protected:
     MenuAcciones();
-    MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice,bool *turno);
+    MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno);
     ~MenuAcciones();        
 private:
     static MenuAcciones* pinstance;
@@ -56,6 +58,7 @@ private:
     Mapa *m;//mapa proveniente del escenario 
     Aliadas **ali;//array de unidades aliadas proveniente del escenario
     Enemigo **enem;//array de unidades enemigas proveniete del escenario
+    Cofre **cof;
     int *index;//indice de la unidad aliada seleccionada  
 };
 

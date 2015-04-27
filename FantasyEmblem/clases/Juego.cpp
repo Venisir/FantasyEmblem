@@ -11,6 +11,7 @@
 #include "../headers/Juego.h"
 #include "../headers/Mapa.h"
 #include "../headers/MenuAcciones.h"
+#include "../headers/EstadoBatall.h"
 
 #include <iostream>
 #include <sstream>
@@ -115,9 +116,9 @@ void Juego::ponerEstadoPause(){
     //states.back()->init();
 }
 
-void Juego::ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice,bool *turno)
+void Juego::ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)
 {
-    states.push_back(MenuAcciones::Instance(map,al,ene,indice,turno));
+    states.push_back(MenuAcciones::Instance(map,al,ene,cofr,indice,turno));
 }
 
 void Juego::ponerEstadoBatalla(){
