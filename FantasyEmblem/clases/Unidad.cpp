@@ -27,6 +27,7 @@ Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int
     lvl = nivel;
     rango = rang;
     activo = true;
+    PVactual=atributos[0];
     
     valorSprite = 1;
     siguienteSumar = true;
@@ -195,3 +196,169 @@ Sprite Unidad::getSprite()
     return *spriteUnidad;
 }
  
+Armas* Unidad::getArma(){
+    return arma_actual;
+}
+
+int Unidad::getPV(){
+    return PVactual;
+}
+
+void Unidad::setPV(int PV){
+    PVactual=PV;
+}
+
+int Unidad::danyoPropio(Unidad* uni){
+    int aux=0;
+    aux=this->getFuerza()+(arma_actual->getPoder()+bonoArmaDanyo(uni));
+    return aux;
+}
+ 
+int Unidad::bonoArmaDanyo(Unidad* uni){
+    int bono=0;
+    if(strcmp(arma_actual->getTipo(),"espada")== 0){
+        if(strcmp(uni->getArma()->getTipo(),"lanza")== 0){
+            bono=-1;
+        }else if(strcmp(uni->getArma()->getTipo(),"hacha")== 0){
+            bono=1;
+        }else if(strcmp(uni->getArma()->getTipo(),"espada")== 0){
+            bono=0;
+        }
+    }else if(strcmp(arma_actual->getTipo(),"lanza")== 0){
+        if(strcmp(uni->getArma()->getTipo(),"lanza")== 0){
+            bono=0;
+        }else if(strcmp(uni->getArma()->getTipo(),"hacha")== 0){
+            bono=-1;
+        }else if(strcmp(uni->getArma()->getTipo(),"espada")== 0){
+            bono=1;
+        }
+    }else if(strcmp(arma_actual->getTipo(),"hacha")== 0){
+        if(strcmp(uni->getArma()->getTipo(),"lanza")== 0){
+            bono=1;
+        }else if(strcmp(uni->getArma()->getTipo(),"hacha")== 0){
+            bono=0;
+        }else if(strcmp(uni->getArma()->getTipo(),"espada")== 0){
+            bono=-1;
+        }
+    }
+    return bono;
+}
+
+int Unidad::bonoArmaGolpe(Unidad* uni){
+     int bonoGol=0;
+    if(strcmp(arma_actual->getTipo(),"espada")== 0){
+        if(strcmp(uni->getArma()->getTipo(),"lanza")== 0){
+            bonoGol=-15;
+        }else if(strcmp(uni->getArma()->getTipo(),"hacha")== 0){
+            bonoGol=15;
+        }else if(strcmp(uni->getArma()->getTipo(),"espada")== 0){
+            bonoGol=0;
+        }
+    }else if(strcmp(arma_actual->getTipo(),"lanza")== 0){
+        if(strcmp(uni->getArma()->getTipo(),"lanza")== 0){
+            bonoGol=0;
+        }else if(strcmp(uni->getArma()->getTipo(),"hacha")== 0){
+            bonoGol=-15;
+        }else if(strcmp(uni->getArma()->getTipo(),"espada")== 0){
+            bonoGol=15;
+        }
+    }else if(strcmp(arma_actual->getTipo(),"hacha")== 0){
+        if(strcmp(uni->getArma()->getTipo(),"lanza")== 0){
+            bonoGol=15;
+        }else if(strcmp(uni->getArma()->getTipo(),"hacha")== 0){
+            bonoGol=0;
+        }else if(strcmp(uni->getArma()->getTipo(),"espada")== 0){
+            bonoGol=-15;
+        }
+    }
+    return bonoGol;
+}
+
+int Unidad::TotalDanyo(Unidad* uni){
+    int aux=0;
+    aux=danyoPropio(uni)-uni->getDef();
+    return aux;
+}
+
+int Unidad::PosiGolpear(Unidad* uni){
+    int golpe=0;
+    golpe=(getHab()*2)+getArma()->getGolpe()+bonoArmaGolpe(uni);
+    return golpe;
+}
+
+int Unidad::PosiGolpearTotal(Unidad* uni){
+    int golTotal=0;
+    golTotal=PosiGolpear(uni)-uni->Evadir();
+    return golTotal;
+}
+int Unidad::VelocidadAtaque(){
+    int velo=0;
+    velo=getVel()-getArma()->getPeso();
+    return velo;
+}
+
+int Unidad::Evadir(){
+    int evasion=0;
+    evasion=(VelocidadAtaque()*2);
+    return evasion;
+}
+
+int Unidad::GolpesDoble(Unidad* uni){
+    int golpes=1;
+    if((VelocidadAtaque()-uni->VelocidadAtaque())>=4){
+        golpes=2;
+    }else{
+        golpes=1;
+    }
+    
+    return golpes;
+}
+
+void Unidad::Atacar(Unidad* uni){
+    int aux, aux2, aux3;
+    
+    if(GolpesDoble(uni)==1){
+        aux= rand()%(101-1);
+        if(aux<=PosiGolpearTotal(uni)){
+            aux2=uni->getPV()-TotalDanyo(uni);
+            uni->setPV(aux2);
+            aux=rand()%(101-1);
+            if(aux<=uni->PosiGolpearTotal(this)){
+                aux3=this->getPV()- uni->TotalDanyo(this);
+                this->setPV(aux3);
+                if(uni->GolpesDoble(this)==2){
+                    aux=rand()%(101-1);
+                    if(aux<=uni->PosiGolpearTotal(this)){
+                    aux3=this->getPV()-uni->TotalDanyo(this);
+                    this->setPV(aux3);
+                    }
+                }
+            }
+        }
+    }else if(GolpesDoble(uni)==2){
+        aux= rand()%(101-1);
+        if(aux<=PosiGolpearTotal(uni)){
+            aux2=uni->getPV()-TotalDanyo(uni);
+            uni->setPV(aux2);
+            aux=rand()%(101-1);
+            if(aux<=uni->PosiGolpearTotal(this)){
+                aux3=this->getPV()-uni->TotalDanyo(this);
+                this->setPV(aux3);
+                aux=rand()%(101-1);
+                if(aux<=PosiGolpearTotal(uni)){
+                    aux2=uni->getPV()-TotalDanyo(uni);
+                    uni->setPV(aux2);
+                    if(uni->GolpesDoble(this)==2){
+                        aux=rand()%(101-1);
+                        if(aux<=uni->PosiGolpearTotal(this)){
+                            aux3=this->getPV()-uni->TotalDanyo(this);
+                            this->setPV(aux3);
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+    
+}

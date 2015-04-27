@@ -181,6 +181,7 @@ void MenuAcciones::input()
                     if(cont==0)
                     {
                         //atacar
+                        Juego::Instance()->ponerEstadoBatalla();
                     }
                     
                     if(cont==1)

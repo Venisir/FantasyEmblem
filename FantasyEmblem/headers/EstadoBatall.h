@@ -46,14 +46,20 @@ protected:
     void render_State();
     void update_State();
     
+    
+    
+private:
+    int contPer1i;
+    int contPer1j;
+    
     sf::Clock* reloj;
     sf::Event* evento;
     sf::Texture* fondoBata;
     sf::Sprite* batalla;
-    
-    
-private:
-
+    sf::Texture* perso1;
+    sf::Sprite* per1;
+    sf::Texture* perso2;
+    sf::Sprite* per2;
 };
 
 #endif	/* ESTADOBATALL_H */

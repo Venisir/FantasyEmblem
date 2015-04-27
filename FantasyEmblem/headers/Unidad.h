@@ -62,6 +62,24 @@ public:
     
     Sprite getSprite();
     
+
+    void setPV(int);
+
+    Armas* getArma();
+    int getPV();
+
+    
+    int VelocidadAtaque();
+    int Evadir();
+    int danyoPropio(Unidad* uni);
+    int bonoArmaDanyo(Unidad* uni);
+    int bonoArmaGolpe(Unidad* uni);
+    int TotalDanyo(Unidad* uni);
+    int PosiGolpear(Unidad* uni);
+    int PosiGolpearTotal(Unidad* uni);
+    int GolpesDoble(Unidad* uni);
+    void Atacar(Unidad* uni);
+
     void Draw();
     
     void verStats();
@@ -94,7 +112,7 @@ protected:
     bool siguienteSumar;
     
     bool activo;
-    
+    int PVactual;
     
 };
 
