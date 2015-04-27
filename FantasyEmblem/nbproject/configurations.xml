@@ -104,6 +104,8 @@
       </item>
       <item path="clases/Estado.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/EstadoBatall.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/EstadoPause.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/EventoMapa.cpp" ex="false" tool="1" flavor2="0">
@@ -137,6 +139,8 @@
       <item path="headers/Escenario.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Estado.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/EstadoBatall.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/EstadoPause.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -195,6 +199,8 @@
       </item>
       <item path="clases/Estado.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/EstadoBatall.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/EstadoPause.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/EventoMapa.cpp" ex="false" tool="1" flavor2="0">
@@ -228,6 +234,8 @@
       <item path="headers/Escenario.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Estado.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/EstadoBatall.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/EstadoPause.h" ex="false" tool="3" flavor2="0">
       </item>
