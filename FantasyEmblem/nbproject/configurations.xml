@@ -11,6 +11,7 @@
       <itemPath>headers/Enemigo.h</itemPath>
       <itemPath>headers/Escenario.h</itemPath>
       <itemPath>headers/Estado.h</itemPath>
+      <itemPath>headers/EstadoBatall.h</itemPath>
       <itemPath>headers/EstadoPause.h</itemPath>
       <itemPath>headers/EventoMapa.h</itemPath>
       <itemPath>headers/Juego.h</itemPath>
@@ -36,6 +37,7 @@
       <itemPath>clases/Enemigo.cpp</itemPath>
       <itemPath>clases/Escenario.cpp</itemPath>
       <itemPath>clases/Estado.cpp</itemPath>
+      <itemPath>clases/EstadoBatall.cpp</itemPath>
       <itemPath>clases/EstadoPause.cpp</itemPath>
       <itemPath>clases/EventoMapa.cpp</itemPath>
       <itemPath>clases/Juego.cpp</itemPath>

@@ -11,6 +11,7 @@
 #include "../headers/Juego.h"
 #include "../headers/Mapa.h"
 #include "../headers/MenuAcciones.h"
+#include "../headers/EstadoBatall.h"
 
 #include <iostream>
 #include <sstream>

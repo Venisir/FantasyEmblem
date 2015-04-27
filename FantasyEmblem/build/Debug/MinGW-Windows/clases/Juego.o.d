@@ -103,7 +103,9 @@ build/Debug/MinGW-Windows/clases/Juego.o: clases/Juego.cpp \
  clases/../headers/../headers/Mapa.h clases/../headers/MenuPrincipal.h \
  clases/../headers/EstadoPause.h clases/../headers/Estado.h \
  clases/../headers/Juego.h clases/../headers/Mapa.h \
- clases/../headers/MenuAcciones.h
+ clases/../headers/MenuAcciones.h \
+ clases/../headers/../headers/EstadoBatall.h \
+ clases/../headers/EstadoBatall.h
 
 clases/../headers/Escenario.h:
 
@@ -324,3 +326,7 @@ clases/../headers/Juego.h:
 clases/../headers/Mapa.h:
 
 clases/../headers/MenuAcciones.h:
+
+clases/../headers/../headers/EstadoBatall.h:
+
+clases/../headers/EstadoBatall.h:

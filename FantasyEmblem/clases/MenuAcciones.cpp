@@ -26,7 +26,7 @@ MenuAcciones::MenuAcciones()
 }
 
 
-MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice,bool *turno)
+MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, int *indice, bool *turno)
 {
     texturaDanyo=new Texture();
     texturaDedo=new Texture();

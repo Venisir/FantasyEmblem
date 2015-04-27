@@ -15,6 +15,7 @@
 #include "../headers/Unidad.h"
 #include "../headers/Estado.h"
 #include "../headers/Mapa.h"
+#include "../headers/EstadoBatall.h"
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -52,7 +53,7 @@ private:
     sf::Event *evento;
     int cont;
     bool cursorActivo;
-    bool turnoUsu;
+    bool *turnoUsu;
     Mapa *m;//mapa proveniente del escenario 
     Aliadas **ali;//array de unidades aliadas proveniente del escenario
     Enemigo **enem;//array de unidades enemigas proveniete del escenario
