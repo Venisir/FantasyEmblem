@@ -49,8 +49,9 @@ public:
     int getVel();
     int getDef();
     int getDefm();
-    int getExp();
     int getRango();
+    int getLvl();
+    const char* getClase();
     const char* getNombre();
 
     int getPosicionCeldaX();

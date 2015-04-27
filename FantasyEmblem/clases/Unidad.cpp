@@ -181,14 +181,17 @@ int Unidad::getDefm(){
 int Unidad::getRango(){
     return rango;
 }
-//Unidad::setExp(){
-   // 
-//}
- Sprite Unidad::getSprite()
+const char* Unidad::getNombre(){
+    return nombre;
+}
+int Unidad::getLvl(){
+    return lvl;
+}
+const char* Unidad::getClase(){
+    return clase;
+}
+Sprite Unidad::getSprite()
 {
     return *spriteUnidad;
 }
  
-const char* Unidad::getNombre(){
-    return nombre;
-}

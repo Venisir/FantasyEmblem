@@ -185,8 +185,24 @@ void Escenario::mostrarStats(int numUnidad, int tipo){
     //Tipo 1: Enemigo
     
     if(tipo == 0){
+        sf::String testString;
+        //testString.insert("HOLAA \n Probando");
+        
         std::stringstream ss_stats;
-        ss_stats << "Nombre: "<< aliadas[numUnidad]->getNombre();
+        ss_stats << aliadas[numUnidad]->getNombre() << "     Lvl: " << aliadas[numUnidad]->getLvl() << "\n" <<  
+                aliadas[numUnidad]->getClase() << "\n" << "\n" <<
+                "HP: " << aliadas[numUnidad]->getHP() << "\n" <<
+                "Fuerza: " << aliadas[numUnidad]->getFuerza() << "\n" <<
+                "Magia: " << aliadas[numUnidad]->getMagia() << "\n" <<
+                "Habilidad: " << aliadas[numUnidad]->getHab() << "\n" <<
+                "Velocidad: " << aliadas[numUnidad]->getVel() << "\n" <<
+                "Defensa: " << aliadas[numUnidad]->getDef() << "\n" <<
+                "Defensa mag: " << aliadas[numUnidad]->getDefm() << "\n" <<
+                "Rango: " << aliadas[numUnidad]->getRango();
+        
+        
+    
+    
         std::string s_stats = ss_stats.str();
 
         t_stats->setCharacterSize(8);
@@ -194,11 +210,11 @@ void Escenario::mostrarStats(int numUnidad, int tipo){
         t_stats->setString(s_stats);
         
         t_stats->setColor(sf::Color::White);
-        t_stats->setPosition(0,100);
+        t_stats->setPosition(10,100);
         
     }else{
         std::stringstream ss_stats;
-        ss_stats << "Nombre: "<< enemigos[numUnidad]->getNombre();
+        ss_stats << "Nomb \n re: "<< enemigos[numUnidad]->getNombre() << endl << "YEE";
         std::string s_stats = ss_stats.str();
 
         t_stats->setCharacterSize(8);
@@ -206,7 +222,7 @@ void Escenario::mostrarStats(int numUnidad, int tipo){
         t_stats->setString(s_stats);
         
         t_stats->setColor(sf::Color::White);
-        t_stats->setPosition(0,100);
+        t_stats->setPosition(10,100);
     }
 }
 
