@@ -44,7 +44,7 @@ public:
     bool hayunidad();
     void mostrarStats(int numUnidad, int tipo);
     void setEnemigo(Enemigo* malo);
-        
+    void empiezaturnoIA();
 protected:
     Escenario();
     ~Escenario();
@@ -62,6 +62,7 @@ private:
     sf::Sprite* spriteCursor;
     sf::Clock* reloj;
     sf::Clock* relojCursor;
+    sf::Clock* reloj2;
     sf::Event* evento;
     sf::Font* fuente;
     sf::Text* t_stats;

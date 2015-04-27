@@ -71,6 +71,7 @@ Escenario::~Escenario() {
     delete spriteCursor;
     delete reloj;
     delete relojCursor;
+    delete reloj2;
     delete evento;
     //delete ventana;
     delete pinstance;
@@ -233,6 +234,10 @@ void Escenario::mostrarStats(int numUnidad, int tipo){
     }
 }
 
+void Escenario::empiezaturnoIA()
+{
+    reloj2=new Clock();
+}
 
 void Escenario::render_State(){
     
@@ -284,9 +289,9 @@ void Escenario::update_State(){
         }
     }
     
-    if(*turnoUsu==false && reloj->getElapsedTime().asSeconds() >= 5)
+    if(*turnoUsu==false && reloj2->getElapsedTime().asSeconds() >= 5)
     {
-        reloj->restart();
+        delete reloj2;
         *turnoUsu=true;
     }
 }

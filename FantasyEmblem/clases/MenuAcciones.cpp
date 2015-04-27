@@ -189,7 +189,8 @@ void MenuAcciones::input()
                         cont=0;
                         cursorDedo->setPosition(215,260);
                         *index=-1;
-                        //*turnoUsu=false;
+                        *turnoUsu=false;
+                        Escenario::Instance()->empiezaturnoIA();
                         Juego::Instance()->ponerEstadoEscenario();
                     }
                     break;
