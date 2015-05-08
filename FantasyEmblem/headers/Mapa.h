@@ -23,6 +23,7 @@ public:
     bool getColision(int i, int j);
     int getAtributo(int i, int j);
     Enemigo** getEnemigos();
+    int getNumEnemigos();
     Cofre** getCofres();
 private:
     //Variables provisoonales (las que no se usen en general hay que quitarlas)
@@ -34,6 +35,8 @@ private:
     int _imageHeight;
     int _numLayers;
     int _cont;
+    
+    int numEnemigos;
     
     int ***_tilemap;
     sf::Sprite ****_tilemapSprite;

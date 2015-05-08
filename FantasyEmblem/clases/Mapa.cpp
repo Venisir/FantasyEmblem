@@ -36,10 +36,11 @@ Mapa::Mapa() {
     _imageHeight = 0;
     _numLayers = 0;
     _cont = 0;
+    numEnemigos=0;
     
     //Cargamos el XML y creamos la ventana
     XMLDocument doc;
-    doc.LoadFile("niveles/mapa1.tmx");
+    doc.LoadFile("niveles/mapa2.tmx");
     XMLElement* map = doc.FirstChildElement("map");
 
     //Cogemos los tamanyos de mapa y de los tile
@@ -152,13 +153,11 @@ Mapa::Mapa() {
                 //CONDICION PARA PONER NPC's CON CAPA
                 if(l==6){
                     //CREAR AQUI NPC's
-                    if(gid==80){
-                        //std::cerr <<"SOY UN NPC Y AQUI EN EL BOSQUE SOY MUY FELIZ"<< endl;
-                        
+                    if(gid>=0){
+                        numEnemigos++;
                     }else{
                         _tilemapSprite[l][y][x] = NULL;
                     }
-                    //std::cerr <<gid<< endl;
                 }else if(l==2){
                     //CREAR AQUI COFRES
                     if(gid>=0){
@@ -248,7 +247,7 @@ int Mapa::getAtributo(int i, int j){
 }
 
 Enemigo** Mapa::getEnemigos(){
-    Enemigo** enemigo = new Enemigo*[5];//array de unidades enemigas
+    Enemigo** enemigo = new Enemigo*[numEnemigos];//array de unidades enemigas
     int l = 0;
     for(int y=0; y<_height;y++){
         for(int x=0; x<_width; x++){
@@ -268,8 +267,12 @@ Enemigo** Mapa::getEnemigos(){
     return enemigo;
 }
 
+int Mapa::getNumEnemigos(){
+    return numEnemigos;
+}
+
 Cofre** Mapa::getCofres(){
-    Cofre** cofre = new Cofre*[5];//array de unidades enemigas
+    Cofre** cofre = new Cofre*[5];//array de cofres
     int l = 0;
     for(int y=0; y<_height;y++){
         for(int x=0; x<_width; x++){
