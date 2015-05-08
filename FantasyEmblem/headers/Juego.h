@@ -49,6 +49,8 @@ public:
     void ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
     void ponerEstadoBatalla();
     
+    Estado* getEstado();
+    
 protected:
     Juego();
     virtual ~Juego();

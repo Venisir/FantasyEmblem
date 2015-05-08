@@ -62,8 +62,8 @@ Escenario::Escenario() {
     aliadas[0]->setPosition(176,176);
     //enemigos[4]->setPosition(208,176);
     
-    
-    
+    fasesEnemigo = 1;
+    turnoEnemigo = 0;
     *unidad_sel=-1;
     *turnoUsu=true;
     
@@ -250,7 +250,7 @@ void Escenario::render_State(){
     
     mapa->Draw();
     
-    for(int x=0; x<3; x++){
+    for(int x=0; x</*mapa->getNumEnemigos()*/3; x++){
        // if(aliadas[x]!=NULL){
             //aliadas[x]->Draw();
         //}
@@ -283,7 +283,7 @@ void Escenario::update_State(){
     if (relojCursor->getElapsedTime().asSeconds() >= 0.5) {
         
         aliadas[0]->cambiaSpriteQuieto();
-        for(int x=0; x<3; x++){
+        for(int x=0; x</*mapa->getNumEnemigos()*/3; x++){
             // if(aliadas[x]!=NULL){
                 //aliadas[x]->Draw();
             //}
@@ -310,11 +310,65 @@ void Escenario::update_State(){
         }
     }
     
-    if(*turnoUsu==false && reloj2->getElapsedTime().asSeconds() >= 5)
+    if(*turnoUsu==false && reloj2->getElapsedTime().asSeconds() >= 2)
     {
-        delete reloj2;
-        *turnoUsu=true;
+        cerr << "Se mueve el enemigo " << turnoEnemigo << "   Fase del enemigo: " << fasesEnemigo << endl;
+        
+        switch(fasesEnemigo){
+            case 1: mostrarCuadriculaUnidad(enemigos[turnoEnemigo]->getPosicionSpriteX(), enemigos[turnoEnemigo]->getPosicionSpriteY(),enemigos[turnoEnemigo]->getRango());
+                reloj2->restart();
+                break;
+            case 2: quitarCuadriculaUnidad(enemigos[turnoEnemigo]->getPosicionSpriteX(), enemigos[turnoEnemigo]->getPosicionSpriteY(),enemigos[turnoEnemigo]->getRango());
+                reloj2->restart();
+                break;
+            case 3:
+                turnoEnemigo++;
+                //reloj2->restart();
+                fasesEnemigo = 0;
+                    
+                if(turnoEnemigo == 3){
+                    delete reloj2;
+                    *turnoUsu=true;
+                    turnoEnemigo = 0;
+                    fasesEnemigo = 0;
+                }
+                break;
+            case 4:
+                break;
+        }
+        
+        fasesEnemigo++;
     }
+}
+
+void Escenario::ejecutarTurnosEnemigos() {
+    /*
+    if(reloj2->getElapsedTime().asSeconds() >= 1){
+        
+        turnoEnemigo++;
+        
+        cerr << "Se mueve el enemigo " << turnoEnemigo << endl;
+        
+        mostrarCuadriculaUnidad(enemigos[turnoEnemigo]->getPosicionSpriteX(), enemigos[turnoEnemigo]->getPosicionSpriteY(),enemigos[turnoEnemigo]->getRango());
+        
+        
+        if(reloj2->getElapsedTime().asSeconds() >= 2){
+            
+            quitarCuadriculaUnidad(enemigos[turnoEnemigo]->getPosicionSpriteX(), enemigos[turnoEnemigo]->getPosicionSpriteY(),enemigos[turnoEnemigo]->getRango());
+
+
+
+            if(turnoEnemigo == 3){//mapa->getNumEnemigos()){
+                delete reloj2;
+                *turnoUsu=true;
+                turnoEnemigo = 0;
+            }else{
+                reloj2->restart();
+                ejecutarTurnosEnemigos();
+            }
+        }
+    }
+    */
 }
 
 void Escenario::input() {
@@ -495,7 +549,7 @@ void Escenario::input() {
                 }
             }
 
-            for(int i=0; i<3; i++){
+            for(int i=0; i</*mapa->getNumEnemigos()*/3; i++){
                 if(spriteCursor->getPosition().x == enemigos[i]->getPosicionSpriteX() && spriteCursor->getPosition().y == enemigos[i]->getPosicionSpriteY()){
                     mostrarStats(i, 1);
                     tieneQueMostrarStats = true;

@@ -122,31 +122,31 @@ bool Aliadas::abrirCofre(Cofre* cofre){
     }
 }
  
- void Aliadas::recorre()
- {
-     for(int i=0;i<ultimo_mov;i++)
-     {
-         switch(recorrido[i])
-         {
-             case 1:
-                 moverDerecha();
-                 std::cerr << recorrido[i] << " ";
+void Aliadas::recorre()
+{
+    for(int i=0;i<ultimo_mov;i++)
+    {
+        switch(recorrido[i])
+        {
+            case 1:
+                moverDerecha();
+                std::cerr << recorrido[i] << " ";
+               break;
+            case 2:
+                moverArriba();
+                std::cerr << recorrido[i] << " ";
                 break;
-             case 2:
-                 moverArriba();
-                 std::cerr << recorrido[i] << " ";
-                break;
-             case -1:
-                 moverIzquierda();
-                 std::cerr << recorrido[i] << " ";
-                break;
-             case -2:
-                 moverAbajo();
-                 std::cerr << recorrido[i] << " ";
+            case -1:
+                moverIzquierda();
+                std::cerr << recorrido[i] << " ";
+               break;
+            case -2:
+                moverAbajo();
+                std::cerr << recorrido[i] << " ";
                 break; 
-         }
-     }
-     recorrido=new int[rango];
-     ultimo_mov=0;
-     std::cerr << endl;
- }
+        }
+    }
+    recorrido=new int[rango];
+    ultimo_mov=0;
+    std::cerr << endl;
+}

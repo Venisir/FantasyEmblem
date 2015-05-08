@@ -45,6 +45,9 @@ public:
     void mostrarStats(int numUnidad, int tipo);
     void setEnemigo(Enemigo* malo);
     void empiezaturnoIA();
+    
+    void ejecutarTurnosEnemigos();
+    
 protected:
     Escenario();
     ~Escenario();
@@ -73,6 +76,8 @@ private:
     int cursorActivo;
     int varCursor;
     int *unidad_sel;
+    int turnoEnemigo;
+    int fasesEnemigo;
     bool *turnoUsu;
     
     bool tieneQueMostrarStats;

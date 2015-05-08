@@ -125,6 +125,11 @@ void Juego::ponerEstadoBatalla(){
     states.push_back(EstadoBatall::Instance());
     //states.back()->init();
 }
+
+Estado* Juego::getEstado(){
+    return states.back();
+    //states.back()->init();
+}
 /*
 void Juego::input() 
 {
