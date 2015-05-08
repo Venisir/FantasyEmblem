@@ -203,9 +203,13 @@ void Mapa::Draw() {
     }
 }
 
-void Mapa::setSpriteColor(int color1, int color2, int i, int j){
+void Mapa::setSpriteColor(int color, int i, int j){
     if(j<480 && j>=0 && i>=0 && i<320){
-        _tilemapSprite[3][i/16][j/16] = new Sprite(*textura, IntRect(144, 0, 16, 16));
+        if(color == 0){
+            _tilemapSprite[3][i/16][j/16] = new Sprite(*textura, IntRect(144, 0, 16, 16));
+        }else{
+            _tilemapSprite[3][i/16][j/16] = new Sprite(*textura, IntRect(144, 16, 16, 16));
+        }
         _tilemapSprite[3][i/16][j/16]->setPosition(j,i);
         _tilemapSprite[3][i/16][j/16]->setColor(Color(255, 255, 255, 128));
     }

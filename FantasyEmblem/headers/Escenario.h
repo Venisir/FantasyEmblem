@@ -39,7 +39,7 @@ public:
     
     void cambiaSpriteCursorMano();
     void cambiaSpriteCursorSeleccionar();
-    void mostrarCuadriculaUnidad(int xx, int yy, int rangoUnidad);
+    void mostrarCuadriculaUnidad(int xx, int yy, int rangoUnidad, int color);
     void quitarCuadriculaUnidad(int xx, int yy, int rangoUnidad);
     bool hayunidad();
     void mostrarStats(int numUnidad, int tipo);

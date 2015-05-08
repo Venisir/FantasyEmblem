@@ -18,7 +18,7 @@ public:
     Mapa();
     virtual ~Mapa();
     void Draw();
-    void setSpriteColor(int color1, int color2, int i, int j);
+    void setSpriteColor(int color, int i, int j);
     void defaultSpriteColor(int i, int j);
     bool getColision(int i, int j);
     int getAtributo(int i, int j);

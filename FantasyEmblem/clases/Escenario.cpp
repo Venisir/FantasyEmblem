@@ -149,13 +149,12 @@ bool Escenario::hayunidad()
     return resultado;
 }
 
-
-void Escenario::mostrarCuadriculaUnidad(int f, int c, int rangoUnidad){
+void Escenario::mostrarCuadriculaUnidad(int f, int c, int rangoUnidad, int color){
     
     int auxiliar = 0;
     for(int y=rangoUnidad; y>0; y--){
         for(int x=-auxiliar; x<=auxiliar; x++){
-            mapa->setSpriteColor(130, 255, c+(x*16), f+(y*16));
+            mapa->setSpriteColor(color, c+(x*16), f+(y*16));
         }
         auxiliar ++;
     }
@@ -163,7 +162,7 @@ void Escenario::mostrarCuadriculaUnidad(int f, int c, int rangoUnidad){
     auxiliar = rangoUnidad;
     for(int y=0; y>= -rangoUnidad; y--){
         for(int x= -auxiliar; x<= auxiliar; x++){
-            mapa->setSpriteColor(130, 255, c+(x*16), f+(y*16));
+            mapa->setSpriteColor(color, c+(x*16), f+(y*16));
         }
         auxiliar --;
     }
@@ -313,10 +312,12 @@ void Escenario::update_State(){
     
     if(*turnoUsu==false && reloj2->getElapsedTime().asSeconds() >= 1)
     {
+        tieneQueMostrarStats = false;
+        
         cerr << "Se mueve el enemigo " << turnoEnemigo << "   Fase del enemigo: " << fasesEnemigo << endl;
         
         switch(fasesEnemigo){
-            case 1: mostrarCuadriculaUnidad(enemigos[turnoEnemigo]->getPosicionSpriteX(), enemigos[turnoEnemigo]->getPosicionSpriteY(),enemigos[turnoEnemigo]->getRango());
+            case 1: mostrarCuadriculaUnidad(enemigos[turnoEnemigo]->getPosicionSpriteX(), enemigos[turnoEnemigo]->getPosicionSpriteY(),enemigos[turnoEnemigo]->getRango(), 1);
                 reloj2->restart();
                 break;
             case 2: quitarCuadriculaUnidad(enemigos[turnoEnemigo]->getPosicionSpriteX(), enemigos[turnoEnemigo]->getPosicionSpriteY(),enemigos[turnoEnemigo]->getRango());
@@ -429,7 +430,6 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad6:
-                    
                 break;
                 
                 case sf::Keyboard::Numpad7:
@@ -450,7 +450,7 @@ void Escenario::input() {
                         {
                             //pintar cuadricula personaje
                             cambiaSpriteCursorMano();    
-                            mostrarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango());
+                            mostrarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango(), 1);
                         }
                     }
                     else
