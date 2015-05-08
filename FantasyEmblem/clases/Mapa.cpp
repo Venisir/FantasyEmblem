@@ -37,6 +37,7 @@ Mapa::Mapa() {
     _numLayers = 0;
     _cont = 0;
     numEnemigos=0;
+    numCofres=0;
     
     //Cargamos el XML y creamos la ventana
     XMLDocument doc;
@@ -161,6 +162,7 @@ Mapa::Mapa() {
                 }else if(l==2){
                     //CREAR AQUI COFRES
                     if(gid>=0){
+                        numCofres++;
                         //std::cerr <<"SOY UN COFREEEE Y AQUI EN EL BOSQUE SOY MUY FELIZ"<< endl;
                     }else{
                         _tilemapSprite[l][y][x] = NULL;
@@ -272,7 +274,7 @@ int Mapa::getNumEnemigos(){
 }
 
 Cofre** Mapa::getCofres(){
-    Cofre** cofre = new Cofre*[5];//array de cofres
+    Cofre** cofre = new Cofre*[numCofres];//array de cofres
     int l = 0;
     for(int y=0; y<_height;y++){
         for(int x=0; x<_width; x++){
@@ -289,4 +291,8 @@ Cofre** Mapa::getCofres(){
         }
     }
     return cofre;
+}
+
+int Mapa::getNumCofres(){
+    return numCofres;
 }

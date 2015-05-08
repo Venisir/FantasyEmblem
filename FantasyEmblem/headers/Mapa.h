@@ -25,6 +25,7 @@ public:
     Enemigo** getEnemigos();
     int getNumEnemigos();
     Cofre** getCofres();
+    int getNumCofres();
 private:
     //Variables provisoonales (las que no se usen en general hay que quitarlas)
     int _width;
@@ -37,6 +38,7 @@ private:
     int _cont;
     
     int numEnemigos;
+    int numCofres;
     
     int ***_tilemap;
     sf::Sprite ****_tilemapSprite;
