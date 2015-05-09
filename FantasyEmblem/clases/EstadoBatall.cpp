@@ -16,6 +16,7 @@
 #include <string>
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include <unistd.h>
 
 //using namespace tinyxml2;
 using namespace std;
@@ -125,6 +126,8 @@ void EstadoBatall::update_State(){
         if(contPer1i==7 && contPer1j== 5){
             contPer1i = 0;
             contPer1j = 0;
+            
+            sleep(0.5);
             Juego::Instance()->ponerEstadoEscenario();
         }
         

@@ -18,12 +18,15 @@ public:
     Mapa();
     virtual ~Mapa();
     void Draw();
-    void setSpriteColor(int color, int i, int j);
+    void setSpriteColor(int color, int i, int j, int saltaComprobacion);
     void defaultSpriteColor(int i, int j);
     bool getColision(int i, int j);
     int getAtributo(int i, int j);
     int getNumEnemigos();
     int getNumCofres();
+    bool puedeMoverseAqui(int i, int j);
+    void setSpriteColorAtaque(int i, int j);
+    void defaultSpriteColorAtaque(int i, int j);
     
     Enemigo** getEnemigos();
     Cofre** getCofres();

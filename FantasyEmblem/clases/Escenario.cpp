@@ -56,7 +56,7 @@ Escenario::Escenario() {
     
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
-    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 2, "Mapa_espadachin_azul.png", 0);
+    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png", 0);
     //enemigos[4] = new Enemigo("AlbertoMalo", "Guerrero", atri, 8, 2, "Mapa_espadachin_rojo.png");
     
     aliadas[0]->setPosition(176,176);
@@ -151,18 +151,50 @@ bool Escenario::hayunidad()
 
 void Escenario::mostrarCuadriculaUnidad(int f, int c, int rangoUnidad, int color){
     
+    mapa->setSpriteColor(color, c, f, 1);
+            
     int auxiliar = 0;
+    /*
     for(int y=rangoUnidad; y>0; y--){
         for(int x=-auxiliar; x<=auxiliar; x++){
-            mapa->setSpriteColor(color, c+(x*16), f+(y*16));
+            mapa->setSpriteColor(color, c+(x*16), f+(y*16), 0);
         }
         auxiliar ++;
     }
+    */
     
+    //Izquierda
     auxiliar = rangoUnidad;
     for(int y=0; y>= -rangoUnidad; y--){
         for(int x= -auxiliar; x<= auxiliar; x++){
-            mapa->setSpriteColor(color, c+(x*16), f+(y*16));
+            mapa->setSpriteColor(color, c+(x*16), f+(y*16), 0);
+        }
+        auxiliar --;
+    }
+    
+    //Derecha
+    auxiliar = rangoUnidad-1;
+    for(int y=1; y<= rangoUnidad; y++){
+        for(int x= -auxiliar; x<= auxiliar; x++){
+            mapa->setSpriteColor(color, c+(x*16), f+(y*16), 0);
+        }
+        auxiliar --;
+    }
+    
+    //Arriba
+    auxiliar = rangoUnidad;
+    for(int y=0; y>= -rangoUnidad; y--){
+        for(int x= -auxiliar; x<= auxiliar; x++){
+            mapa->setSpriteColor(color, c+(y*16), f+(x*16), 0);
+        }
+        auxiliar --;
+    }
+    
+    //Abajo
+    auxiliar = rangoUnidad-1;
+    for(int y=1; y<= rangoUnidad; y++){
+        for(int x= -auxiliar; x<= auxiliar; x++){
+            mapa->setSpriteColor(color, c+(y*16), f+(x*16), 0);
         }
         auxiliar --;
     }
@@ -426,14 +458,14 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad5:
-                    //mostrarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango());
                 break;
                 
                 case sf::Keyboard::Numpad6:
+                    mostrarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango(), 0);
                 break;
                 
                 case sf::Keyboard::Numpad7:
-                    cerr << mapa->getNumEnemigos() << endl;
+                    quitarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango());
                 break;
                 
                 case sf::Keyboard::Numpad8:
@@ -450,19 +482,27 @@ void Escenario::input() {
                         {
                             //pintar cuadricula personaje
                             cambiaSpriteCursorMano();    
-                            mostrarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango(), 1);
+                            mostrarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango(), 0);
                         }
                     }
                     else
                     {
-                        if(mapa->getColision(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true){
+                        if(mapa->getColision(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true && mapa->puedeMoverseAqui(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true){
                             quitarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango());
                             aliadas[*unidad_sel]->recorre();
                             //devuelve las casillas de la cuadricula a su estado original
-                            //unidad_sel=-1;
+                            
+                            int *cebo;
+                            cebo = new int();
+                            *cebo = *unidad_sel;
+                            
+                            *unidad_sel=-1;
+                            
                             cambiaSpriteCursorSeleccionar();
-                            Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu); 
+                            Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,cofres,cebo,turnoUsu); 
+                            //*unidad_sel=-1;
                         }
+                        
                     }
                     /*
                     if(varCursor == 0){

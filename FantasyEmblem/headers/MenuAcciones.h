@@ -60,6 +60,8 @@ private:
     Enemigo **enem;//array de unidades enemigas proveniete del escenario
     Cofre **cof;
     int *index;//indice de la unidad aliada seleccionada  
+    
+    bool haDecidido;
 };
 
 #endif	/* MENUACCIONES_H */

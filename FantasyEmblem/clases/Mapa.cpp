@@ -203,15 +203,85 @@ void Mapa::Draw() {
     }
 }
 
-void Mapa::setSpriteColor(int color, int i, int j){
+void Mapa::setSpriteColor(int color, int i, int j, int saltaComprobacion){
     if(j<480 && j>=0 && i>=0 && i<320){
-        if(color == 0){
-            _tilemapSprite[3][i/16][j/16] = new Sprite(*textura, IntRect(144, 0, 16, 16));
-        }else{
-            _tilemapSprite[3][i/16][j/16] = new Sprite(*textura, IntRect(144, 16, 16, 16));
+        
+        //Si no hay colision
+        if(_tilemap[4][i/16][j/16]==0 && _tilemap[5][i/16][j/16]==0 && _tilemap[6][i/16][j/16]==0){
+            
+            //Si tiene una adyacencia
+            
+            bool entra = false;
+            
+            if(i+16>= 0 && i+16<320)
+                if(_tilemapSprite[3][(i+16)/16][j/16] != NULL)
+                    entra = true;
+            
+            if(i-16>= 0 && i-16<320)
+                if(_tilemapSprite[3][(i-16)/16][j/16] != NULL)
+                    entra = true;
+            
+            
+            if(j+16>= 0 && j+16<480)
+                if(_tilemapSprite[3][i/16][(j+16)/16] != NULL)
+                    entra = true;
+            
+            if(j-16>= 0 && j-16<480)
+                if(_tilemapSprite[3][i/16][(j-16)/16] != NULL)
+                    entra = true;
+            
+            /////////////////
+            if(saltaComprobacion == 1)
+                entra = true;
+            //////////////
+            
+            if(i+16>= 0 && i+16<320 && j+16>= 0 && j+16<480)
+                if(_tilemapSprite[3][(i+16)/16][(j+16)/16] != NULL)
+                    entra = true;
+            
+            if(i+16>= 0 && i+16<320 && j-16>= 0 && j-16<480)
+                if(_tilemapSprite[3][(i+16)/16][(j-16)/16] != NULL)
+                    entra = true;
+            
+            if(i-16>= 0 && i-16<320 && j+16>= 0 && j+16<480)
+                if(_tilemapSprite[3][(i-16)/16][(j+16)/16] != NULL)
+                    entra = true;
+            
+            if(i-16>= 0 && i-16<320 && j-16>= 0 && j-16<480)
+                if(_tilemapSprite[3][(i-16)/16][(j-16)/16] != NULL)
+                    entra = true;
+            
+            
+            
+                   /*
+            if( _tilemapSprite[3][(i+16)/16][j/16] != NULL || 
+                _tilemapSprite[3][(i-16)/16][j/16] != NULL ||
+                _tilemapSprite[3][i/16][(j+16)/16] != NULL || 
+                _tilemapSprite[3][i/16][(j-16)/16] != NULL ||
+                saltaComprobacion == 1 ||
+                _tilemapSprite[3][(i-16)/16][(j-16)/16] != NULL || 
+                _tilemapSprite[3][(i-16)/16][(j+16)/16] != NULL || 
+                _tilemapSprite[3][(i+16)/16][(j-16)/16] != NULL || 
+                _tilemapSprite[3][(i+16)/16][(j+16)/16] != NULL){
+*/
+            if(entra == true){
+                if(color == 0){
+                    _tilemapSprite[3][i/16][j/16] = new Sprite(*textura, IntRect(144, 0, 16, 16));
+                }else{
+                    _tilemapSprite[3][i/16][j/16] = new Sprite(*textura, IntRect(144, 16, 16, 16));
+                }
+                _tilemapSprite[3][i/16][j/16]->setPosition(j,i);
+                _tilemapSprite[3][i/16][j/16]->setColor(Color(255, 255, 255, 128));
+            }
         }
-        _tilemapSprite[3][i/16][j/16]->setPosition(j,i);
-        _tilemapSprite[3][i/16][j/16]->setColor(Color(255, 255, 255, 128));
+    }
+}
+
+bool Mapa::puedeMoverseAqui(int j, int i){
+    if(_tilemapSprite[3][i/16][j/16] != NULL){
+        return true;
+    }else{
+        return false;
     }
 }
 
@@ -221,10 +291,25 @@ void Mapa::defaultSpriteColor(int i, int j){
     }
 }
 
+void Mapa::setSpriteColorAtaque(int j, int i){
+    cerr << i << " " << j << endl; 
+    if(j<480 && j>=0 && i>=0 && i<320){
+        _tilemapSprite[3][i/16][j/16] = new Sprite(*textura, IntRect(144, 0, 16, 16));
+        _tilemapSprite[3][i/16][j/16]->setPosition(j,i);
+        _tilemapSprite[3][i/16][j/16]->setColor(Color(255, 255, 255, 128));
+    }
+}
+
+void Mapa::defaultSpriteColorAtaque(int i, int j){
+    if(j<480 && j>=0 && i>=0 && i<320){
+        _tilemapSprite[3][i/16][j/16] = NULL;
+    }
+}
+
 bool Mapa::getColision(int j, int i){
     cerr << "i: " << i << "   j: " << j << endl;
     cerr << "gid:" << _tilemap[4][i/16][j/16] << endl;
-    if(_tilemap[4][i/16][j/16]!=0 || _tilemap[5][i/16][j/16]!=0){
+    if(_tilemap[4][i/16][j/16]!=0 || _tilemap[5][i/16][j/16]!=0 || _tilemap[6][i/16][j/16]!=0){
         return false;
     }else{
         return true;
