@@ -40,7 +40,7 @@ Juego::Juego() {
     fuente = new sf::Font();
     fuente->loadFromFile("resources/font.ttf");
     
-    ponerEstadoMenuPrincipal();
+    ponerEstadoPantallaInicio();
     
     //ponerEstadoEscenario();
 }
@@ -123,6 +123,10 @@ void Juego::ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofr
 
 void Juego::ponerEstadoBatalla(){
     states.push_back(EstadoBatall::Instance());
+    //states.back()->init();
+}
+void Juego::ponerEstadoPantallaInicio(){
+    states.push_back(PantallaStart::Instance());
     //states.back()->init();
 }
 /*

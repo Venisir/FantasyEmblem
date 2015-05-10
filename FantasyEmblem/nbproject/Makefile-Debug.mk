@@ -50,6 +50,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/clases/MenuAcciones.o \
 	${OBJECTDIR}/clases/MenuPrincipal.o \
 	${OBJECTDIR}/clases/Objetos.o \
+	${OBJECTDIR}/clases/PantallaStart.o \
 	${OBJECTDIR}/clases/Partida.o \
 	${OBJECTDIR}/clases/Unidad.o \
 	${OBJECTDIR}/clases/main.o \
@@ -154,6 +155,11 @@ ${OBJECTDIR}/clases/Objetos.o: clases/Objetos.cpp
 	${MKDIR} -p ${OBJECTDIR}/clases
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -DSFML_STATIC -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/Objetos.o clases/Objetos.cpp
+
+${OBJECTDIR}/clases/PantallaStart.o: clases/PantallaStart.cpp 
+	${MKDIR} -p ${OBJECTDIR}/clases
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -DSFML_STATIC -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/PantallaStart.o clases/PantallaStart.cpp
 
 ${OBJECTDIR}/clases/Partida.o: clases/Partida.cpp 
 	${MKDIR} -p ${OBJECTDIR}/clases
