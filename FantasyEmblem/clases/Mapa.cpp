@@ -42,7 +42,7 @@ Mapa::Mapa() {
     
     //Cargamos el XML y creamos la ventana
     XMLDocument doc;
-    doc.LoadFile("niveles/mapa2.tmx");
+    doc.LoadFile("niveles/mapa1.tmx");
     XMLElement* map = doc.FirstChildElement("map");
 
     //Cogemos los tamanyos de mapa y de los tile
@@ -204,11 +204,13 @@ void Mapa::Draw() {
 }
 
 void Mapa::setSpriteColor(int color, int i, int j, int saltaComprobacion){
+    
+    //cerr << "He llegado con color: " <<color<< " i: " << i << " j: " << j << " saltacomprobacion: " << saltaComprobacion << endl;
     if(j<480 && j>=0 && i>=0 && i<320){
-        
+        //cerr << "He entrado" << endl;
         //Si no hay colision
-        if(_tilemap[4][i/16][j/16]==0 && _tilemap[5][i/16][j/16]==0 && _tilemap[6][i/16][j/16]==0){
-            
+        if((_tilemap[4][i/16][j/16]==0 && _tilemap[5][i/16][j/16]==0 && _tilemap[6][i/16][j/16]==0) || saltaComprobacion == 1){
+            //cerr << "Y no hay colision" << endl;
             //Si tiene una adyacencia
             
             bool entra = false;
@@ -250,10 +252,14 @@ void Mapa::setSpriteColor(int color, int i, int j, int saltaComprobacion){
             if(i-16>= 0 && i-16<320 && j-16>= 0 && j-16<480)
                 if(_tilemapSprite[3][(i-16)/16][(j-16)/16] != NULL)
                     entra = true;
-            
-            
-            
-                   /*
+            /*
+            if(entra == true){
+                cerr << "entra = true" << endl;
+            }else{
+                cerr << "entra = false" << endl;    
+            }
+            */  
+            /*
             if( _tilemapSprite[3][(i+16)/16][j/16] != NULL || 
                 _tilemapSprite[3][(i-16)/16][j/16] != NULL ||
                 _tilemapSprite[3][i/16][(j+16)/16] != NULL || 
@@ -270,6 +276,7 @@ void Mapa::setSpriteColor(int color, int i, int j, int saltaComprobacion){
                 }else{
                     _tilemapSprite[3][i/16][j/16] = new Sprite(*textura, IntRect(144, 16, 16, 16));
                 }
+                //cerr << "He pintado" << endl;
                 _tilemapSprite[3][i/16][j/16]->setPosition(j,i);
                 _tilemapSprite[3][i/16][j/16]->setColor(Color(255, 255, 255, 128));
             }

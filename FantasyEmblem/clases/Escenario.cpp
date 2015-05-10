@@ -346,7 +346,7 @@ void Escenario::update_State(){
     {
         tieneQueMostrarStats = false;
         
-        cerr << "Se mueve el enemigo " << turnoEnemigo << "   Fase del enemigo: " << fasesEnemigo << endl;
+        cerr << "Se mueve el enemigo " << turnoEnemigo << "   Fase del enemigo: " << fasesEnemigo << "PosX: " << enemigos[turnoEnemigo]->getPosicionSpriteX() << endl;
         
         switch(fasesEnemigo){
             case 1: mostrarCuadriculaUnidad(enemigos[turnoEnemigo]->getPosicionSpriteX(), enemigos[turnoEnemigo]->getPosicionSpriteY(),enemigos[turnoEnemigo]->getRango(), 1);
@@ -458,6 +458,7 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad5:
+                    mostrarCuadriculaUnidad(enemigos[0]->getPosicionSpriteX(), enemigos[0]->getPosicionSpriteY(),enemigos[0]->getRango(), 1);
                 break;
                 
                 case sf::Keyboard::Numpad6:
@@ -491,16 +492,11 @@ void Escenario::input() {
                             quitarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango());
                             aliadas[*unidad_sel]->recorre();
                             //devuelve las casillas de la cuadricula a su estado original
-                            
-                            int *cebo;
-                            cebo = new int();
-                            *cebo = *unidad_sel;
-                            
-                            *unidad_sel=-1;
+                            //*unidad_sel=-1;
                             
                             cambiaSpriteCursorSeleccionar();
-                            Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,cofres,cebo,turnoUsu); 
-                            //*unidad_sel=-1;
+                            Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu); 
+                            
                         }
                         
                     }
@@ -572,4 +568,10 @@ void Escenario::input() {
             }
         }
     }
+}
+
+void Escenario::volverMenuAcciones(){
+    
+    Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu); 
+
 }

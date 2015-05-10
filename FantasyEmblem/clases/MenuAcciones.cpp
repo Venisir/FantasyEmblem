@@ -109,8 +109,6 @@ void MenuAcciones::init_State()
     cursorDedo->setPosition(215,260);
     danyo->setPosition(480,175);
     objetos->setPosition(305,226);
-    
-    haDecidido = false;
 }
 
 void MenuAcciones::render_State()
@@ -180,11 +178,11 @@ void MenuAcciones::input()
                 case sf::Keyboard::Return:
                     cursorActivo = false;
                         
-                    if(cont==0 && haDecidido == false)
+                    if(cont==0)
                     {
                         //atacar
                         cursorActivo = true;
-                        
+                        /*
                         for(int p=0; p<3; p++){
                             if(enem[p]->getPosicionSpriteX()+16 == ali[*index]->getPosicionSpriteX() ||
                                enem[p]->getPosicionSpriteX()-16 == ali[*index]->getPosicionSpriteX() ||    
@@ -194,8 +192,9 @@ void MenuAcciones::input()
                             m->setSpriteColorAtaque(enem[p]->getPosicionSpriteX(),enem[p]->getPosicionSpriteY());
                         }
                         haDecidido = true;
-                    }else if(cont==0 && haDecidido == true){
-                        
+                        */
+                    //}else{
+                        /*
                         for(int p=0; p<3; p++){
                             if(enem[p]->getPosicionSpriteX()+16 == ali[*index]->getPosicionSpriteX() ||
                                enem[p]->getPosicionSpriteX()-16 == ali[*index]->getPosicionSpriteX() ||    
@@ -205,6 +204,7 @@ void MenuAcciones::input()
                             m->defaultSpriteColorAtaque(enem[p]->getPosicionSpriteX(),enem[p]->getPosicionSpriteY());
                         }
                         haDecidido = false;
+                        */
                         Juego::Instance()->ponerEstadoBatalla();
                     }
                     

@@ -45,6 +45,8 @@ public:
     void mostrarStats(int numUnidad, int tipo);
     void setEnemigo(Enemigo* malo);
     void empiezaturnoIA();
+    void volverMenuAcciones();
+    
 protected:
     Escenario();
     ~Escenario();

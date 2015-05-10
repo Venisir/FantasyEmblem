@@ -128,7 +128,9 @@ void EstadoBatall::update_State(){
             contPer1j = 0;
             
             sleep(0.5);
-            Juego::Instance()->ponerEstadoEscenario();
+            
+            Escenario::Instance()->volverMenuAcciones();
+            //Juego::Instance()->ponerEstadoEscenario();
         }
         
         
