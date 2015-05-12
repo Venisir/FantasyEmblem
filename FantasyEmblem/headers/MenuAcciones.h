@@ -17,6 +17,7 @@
 #include "../headers/Mapa.h"
 #include "../headers/EstadoBatall.h"
 #include "../headers/Cofre.h"
+#include "../headers/EstadoObjetos.h"
 
 #include <iostream>
 #include <SFML/Graphics.hpp>

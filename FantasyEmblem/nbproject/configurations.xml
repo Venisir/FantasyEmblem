@@ -12,12 +12,14 @@
       <itemPath>headers/Escenario.h</itemPath>
       <itemPath>headers/Estado.h</itemPath>
       <itemPath>headers/EstadoBatall.h</itemPath>
+      <itemPath>headers/EstadoObjetos.h</itemPath>
       <itemPath>headers/EstadoPause.h</itemPath>
       <itemPath>headers/EventoMapa.h</itemPath>
       <itemPath>headers/Juego.h</itemPath>
       <itemPath>headers/Mapa.h</itemPath>
       <itemPath>headers/MenuAcciones.h</itemPath>
       <itemPath>headers/MenuPrincipal.h</itemPath>
+      <itemPath>headers/ObjetoSeleccionado.h</itemPath>
       <itemPath>headers/Objetos.h</itemPath>
       <itemPath>headers/PantallaStart.h</itemPath>
       <itemPath>headers/Partida.h</itemPath>
@@ -39,12 +41,14 @@
       <itemPath>clases/Escenario.cpp</itemPath>
       <itemPath>clases/Estado.cpp</itemPath>
       <itemPath>clases/EstadoBatall.cpp</itemPath>
+      <itemPath>clases/EstadoObjetos.cpp</itemPath>
       <itemPath>clases/EstadoPause.cpp</itemPath>
       <itemPath>clases/EventoMapa.cpp</itemPath>
       <itemPath>clases/Juego.cpp</itemPath>
       <itemPath>clases/Mapa.cpp</itemPath>
       <itemPath>clases/MenuAcciones.cpp</itemPath>
       <itemPath>clases/MenuPrincipal.cpp</itemPath>
+      <itemPath>clases/ObjetoSeleccionado.cpp</itemPath>
       <itemPath>clases/Objetos.cpp</itemPath>
       <itemPath>clases/PantallaStart.cpp</itemPath>
       <itemPath>clases/Partida.cpp</itemPath>
@@ -110,6 +114,8 @@
       </item>
       <item path="clases/EstadoBatall.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/EstadoObjetos.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/EstadoPause.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/EventoMapa.cpp" ex="false" tool="1" flavor2="0">
@@ -121,6 +127,8 @@
       <item path="clases/MenuAcciones.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/MenuPrincipal.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/ObjetoSeleccionado.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Objetos.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -148,6 +156,8 @@
       </item>
       <item path="headers/EstadoBatall.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="headers/EstadoObjetos.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="headers/EstadoPause.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/EventoMapa.h" ex="false" tool="3" flavor2="0">
@@ -159,6 +169,8 @@
       <item path="headers/MenuAcciones.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/MenuPrincipal.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/ObjetoSeleccionado.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Objetos.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -209,6 +221,8 @@
       </item>
       <item path="clases/EstadoBatall.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/EstadoObjetos.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/EstadoPause.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/EventoMapa.cpp" ex="false" tool="1" flavor2="0">
@@ -220,6 +234,8 @@
       <item path="clases/MenuAcciones.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/MenuPrincipal.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/ObjetoSeleccionado.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Objetos.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -247,6 +263,8 @@
       </item>
       <item path="headers/EstadoBatall.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="headers/EstadoObjetos.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="headers/EstadoPause.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/EventoMapa.h" ex="false" tool="3" flavor2="0">
@@ -258,6 +276,8 @@
       <item path="headers/MenuAcciones.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/MenuPrincipal.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/ObjetoSeleccionado.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Objetos.h" ex="false" tool="3" flavor2="0">
       </item>

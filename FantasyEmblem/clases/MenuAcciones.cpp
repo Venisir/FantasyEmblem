@@ -211,11 +211,13 @@ void MenuAcciones::input()
                     if(cont==1)
                     {
                         //estado
+                       
                     }
                     
                     if(cont==2)
                     {
-                        //objeto
+                        //objeto 
+                        Juego::Instance()->ponerEstadoObjetos(m,ali,enem,cof,index,turnoUsu);
                     }
                     
                     if(cont==3)

@@ -43,12 +43,14 @@ OBJECTFILES= \
 	${OBJECTDIR}/clases/Escenario.o \
 	${OBJECTDIR}/clases/Estado.o \
 	${OBJECTDIR}/clases/EstadoBatall.o \
+	${OBJECTDIR}/clases/EstadoObjetos.o \
 	${OBJECTDIR}/clases/EstadoPause.o \
 	${OBJECTDIR}/clases/EventoMapa.o \
 	${OBJECTDIR}/clases/Juego.o \
 	${OBJECTDIR}/clases/Mapa.o \
 	${OBJECTDIR}/clases/MenuAcciones.o \
 	${OBJECTDIR}/clases/MenuPrincipal.o \
+	${OBJECTDIR}/clases/ObjetoSeleccionado.o \
 	${OBJECTDIR}/clases/Objetos.o \
 	${OBJECTDIR}/clases/PantallaStart.o \
 	${OBJECTDIR}/clases/Partida.o \
@@ -121,6 +123,11 @@ ${OBJECTDIR}/clases/EstadoBatall.o: clases/EstadoBatall.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -DSFML_STATIC -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/EstadoBatall.o clases/EstadoBatall.cpp
 
+${OBJECTDIR}/clases/EstadoObjetos.o: clases/EstadoObjetos.cpp 
+	${MKDIR} -p ${OBJECTDIR}/clases
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -DSFML_STATIC -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/EstadoObjetos.o clases/EstadoObjetos.cpp
+
 ${OBJECTDIR}/clases/EstadoPause.o: clases/EstadoPause.cpp 
 	${MKDIR} -p ${OBJECTDIR}/clases
 	${RM} "$@.d"
@@ -150,6 +157,11 @@ ${OBJECTDIR}/clases/MenuPrincipal.o: clases/MenuPrincipal.cpp
 	${MKDIR} -p ${OBJECTDIR}/clases
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -DSFML_STATIC -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/MenuPrincipal.o clases/MenuPrincipal.cpp
+
+${OBJECTDIR}/clases/ObjetoSeleccionado.o: clases/ObjetoSeleccionado.cpp 
+	${MKDIR} -p ${OBJECTDIR}/clases
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -DSFML_STATIC -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/ObjetoSeleccionado.o clases/ObjetoSeleccionado.cpp
 
 ${OBJECTDIR}/clases/Objetos.o: clases/Objetos.cpp 
 	${MKDIR} -p ${OBJECTDIR}/clases

@@ -12,6 +12,7 @@
 #include "../headers/Mapa.h"
 #include "../headers/MenuAcciones.h"
 #include "../headers/EstadoBatall.h"
+#include "../headers/EstadoObjetos.h"
 
 #include <iostream>
 #include <sstream>
@@ -128,6 +129,14 @@ void Juego::ponerEstadoBatalla(){
 void Juego::ponerEstadoPantallaInicio(){
     states.push_back(PantallaStart::Instance());
     //states.back()->init();
+}
+void Juego::ponerEstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)
+{
+    states.push_back(EstadoObjetos::Instance(map,al,ene,cofr,indice,turno));
+}
+void Juego::ponerEstadoObjetosSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)
+{
+    states.push_back(ObjetoSeleccionado::Instance(map,al,ene,cofr,indice,turno));
 }
 /*
 void Juego::input() 
