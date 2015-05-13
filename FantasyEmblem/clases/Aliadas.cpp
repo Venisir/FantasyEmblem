@@ -109,9 +109,13 @@ bool Aliadas::abrirCofre(Cofre* cofre){
 }
 
 void Aliadas::abrirPuerta(Mapa* mapa){
+    cout<<"entra a abrirPuerta"<<endl;
     for(int i=0;i<3;i++){
+        cout<<"peto"<<endl;
         if(strcmp(inventarioObjetos[i]->getTipo(),"llavePuerta")== 0){            
-          mapa->quitarPuerta(); 
+            cout<<"abro la puerta"<<endl;
+        }else{
+            cout<<"no la tengo"<<endl;
         }
     }
 }
@@ -163,7 +167,6 @@ void Aliadas::abrirPuerta(Mapa* mapa){
                  std::cerr << recorrido[i] << " ";
                 break; 
          }
-//        hayPuerta();
      }
      recorrido=new int[rango];
      ultimo_mov=0;
@@ -171,24 +174,37 @@ void Aliadas::abrirPuerta(Mapa* mapa){
  }
  
  void Aliadas::hayPuerta(Mapa* mapa){
+     cout<<"entra en hayPuerta"<<endl;
      bool puerta = false;     
+     
      //derecha
-     if(mapa->getPuerta(spriteUnidad->getPosition().y,spriteUnidad->getPosition().x+16) == true){
+     cout<<"primer if"<<endl;
+     if((mapa->getPuerta(spriteUnidad->getPosition().y,spriteUnidad->getPosition().x+16) )== true){
          puerta = true;
-         cout<<"Hay puerta a la derecha"<<endl;
+         cout<<"Hay puerta a la derecha"<<endl;     
+     }
      //izquierda
-     }else if(mapa->getPuerta(spriteUnidad->getPosition().y,spriteUnidad->getPosition().x-16) == true){
+     cout<<"segundo if"<<endl;
+     if((mapa->getPuerta(spriteUnidad->getPosition().y,spriteUnidad->getPosition().x-16)) == true){
           puerta = true;
-          cout<<"Hay puerta a la izquierda"<<endl;
+          cout<<"Hay puerta a la izquierda"<<endl;     
+     }
      //arriba
-     }else if(mapa->getPuerta(spriteUnidad->getPosition().y+16,spriteUnidad->getPosition().x) == true){
+     cout<<"tercer if"<<endl;
+     if((mapa->getPuerta(spriteUnidad->getPosition().y+16,spriteUnidad->getPosition().x)) == true){
           puerta = true;
           cout<<"Hay puerta arriba"<<endl;
+     }
      //abajo
-     }else if(mapa->getPuerta(spriteUnidad->getPosition().y-16,spriteUnidad->getPosition().x) == true){
+     cout<<"cuarto if"<<endl;
+     if((mapa->getPuerta(spriteUnidad->getPosition().y-16,spriteUnidad->getPosition().x)) == true){
           puerta = true;
           cout<<"Hay puerta abajo"<<endl;
      }     
-     if(puerta==true)
-        abrirPuerta(mapa);
+     if(puerta==true){
+        cout<<"hay puertesica"<<endl;
+        //abrirPuerta(mapa);
+     }else{
+         cout<<"no hay puertesica"<<endl;
+     }
  }

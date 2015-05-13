@@ -323,7 +323,8 @@ bool Mapa::getColision(int j, int i){
     }
 }
 
-bool Mapa::getPuerta(int j, int i){
+bool Mapa::getPuerta(int i, int j){
+    cout<<"Entra en getPuerta"<<endl;
     if(_tilemap[5][i/16][j/16]!=0){
         return true;
     }else{
@@ -339,7 +340,6 @@ bool Mapa::getCasillaPintada(int j, int i){
     }
 }
 void Mapa::quitarPuerta(){
-    cout<<"quito la puerta"<<endl;
 }
 
 

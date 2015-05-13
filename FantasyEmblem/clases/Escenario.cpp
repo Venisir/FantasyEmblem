@@ -459,7 +459,7 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad1:
-                    cambiaSpriteCursorSeleccionar();             
+                        aliadas[0]->hayPuerta(mapa);           
                 break;
                 
                 case sf::Keyboard::Numpad2:

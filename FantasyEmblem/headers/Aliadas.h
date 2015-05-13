@@ -12,6 +12,7 @@
 #include "../headers/Cofre.h"
 #include "../headers/Armas.h"
 #include "../headers/Objetos.h"
+#include "../headers/Mapa.h"
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -35,6 +36,9 @@ public:
     bool usarObjeto(Objetos* obj);
     bool abrirCofre(Cofre* cofre);
     bool equiparArma(Armas* arma);
+    void abrirPuerta(Mapa* mapa);
+    
+    void hayPuerta(Mapa* mapa);
     
 private:
     int experiencia;
@@ -44,7 +48,8 @@ private:
     int* recorrido;
     int ultimo_mov;//ultimo paso hecho
     int pasos;//contador de los pasos realizados
-    
+    Sprite* spriteCofreAbierto;
+    Texture* texturaCofreAbierto;
 };
 
 #endif	/* ALIADAS_H */
