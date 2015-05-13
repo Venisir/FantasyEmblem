@@ -50,6 +50,8 @@ private:
     int pasos;//contador de los pasos realizados
     Sprite* spriteCofreAbierto;
     Texture* texturaCofreAbierto;
+    Sprite *spriteAvisoInventArmas, *spriteAvisoInventObjetos, *spriteAvisoLlaveCofre, *spriteAvisoLlavePuerta;
+    Texture *texturaAvisoInventarioArmas, *texturaAvisoInventarioObjetos,*texturaAvisoLlaveCofre,*texturaAvisoLlavePuerta;
 };
 
 #endif	/* ALIADAS_H */
