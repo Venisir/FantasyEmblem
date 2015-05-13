@@ -211,7 +211,7 @@ void MenuAcciones::input()
                     if(cont==1)
                     {
                         //estado
-                       
+                       Juego::Instance()->ponerEstadoPersonaje(m,ali,enem,cof,index,turnoUsu);
                     }
                     
                     if(cont==2)

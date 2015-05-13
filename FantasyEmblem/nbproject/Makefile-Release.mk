@@ -45,6 +45,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/clases/EstadoBatall.o \
 	${OBJECTDIR}/clases/EstadoObjetos.o \
 	${OBJECTDIR}/clases/EstadoPause.o \
+	${OBJECTDIR}/clases/EstadoPer.o \
 	${OBJECTDIR}/clases/EventoMapa.o \
 	${OBJECTDIR}/clases/Juego.o \
 	${OBJECTDIR}/clases/Mapa.o \
@@ -132,6 +133,11 @@ ${OBJECTDIR}/clases/EstadoPause.o: clases/EstadoPause.cpp
 	${MKDIR} -p ${OBJECTDIR}/clases
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/EstadoPause.o clases/EstadoPause.cpp
+
+${OBJECTDIR}/clases/EstadoPer.o: clases/EstadoPer.cpp 
+	${MKDIR} -p ${OBJECTDIR}/clases
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/EstadoPer.o clases/EstadoPer.cpp
 
 ${OBJECTDIR}/clases/EventoMapa.o: clases/EventoMapa.cpp 
 	${MKDIR} -p ${OBJECTDIR}/clases
