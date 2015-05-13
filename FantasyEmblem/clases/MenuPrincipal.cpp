@@ -136,9 +136,9 @@ void MenuPrincipal::init_State() {
     }
     
     //cargar audios
-    if (!mainmenu->loadFromFile("resources/menu.wav")){
+   /* if (!mainmenu->loadFromFile("resources/menu.wav")){
         std::cerr << "Error al cargar el archivo de audio";
-    }
+    }*/
     
     if (!mmcursor->loadFromFile("resources/MainMenu_Cursor.wav")){
         std::cerr << "Error al cargar el archivo de audio";
@@ -150,12 +150,12 @@ void MenuPrincipal::init_State() {
     
     
     // Le asignamos el buffer cargado
-    menusonido->setBuffer(*mainmenu);
+   /* menusonido->setBuffer(*mainmenu);
     // establecemos el volumen a 20
     menusonido->setVolume(30);
     //reproducir audio del menu
     menusonido->setLoop(true);
-    menusonido->play();
+    menusonido->play();*/
     
     //cargar el buffer y asignar volumen del cursor y de la seleccion
     cursor->setBuffer(*mmcursor);
