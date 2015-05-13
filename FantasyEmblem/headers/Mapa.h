@@ -20,8 +20,10 @@ public:
     void Draw();
     void setSpriteColor(int color, int i, int j, int saltaComprobacion);
     void defaultSpriteColor(int i, int j);
-    bool getColision(int i, int j);
-    int getAtributo(int i, int j);
+    bool getColision(int j, int i);
+    bool getPuerta(int j, int i);
+    bool getCasillaPintada(int j, int i);
+    int getAtributo(int j, int i);
     int getNumEnemigos();
     int getNumCofres();
     bool puedeMoverseAqui(int i, int j);

@@ -314,12 +314,28 @@ void Mapa::defaultSpriteColorAtaque(int i, int j){
 }
 
 bool Mapa::getColision(int j, int i){
-    cerr << "i: " << i << "   j: " << j << endl;
-    cerr << "gid:" << _tilemap[4][i/16][j/16] << endl;
+    //cerr << "i: " << i << "   j: " << j << endl;
+    //cerr << "gid:" << _tilemap[4][i/16][j/16] << endl;
     if(_tilemap[4][i/16][j/16]!=0 || _tilemap[5][i/16][j/16]!=0 || _tilemap[6][i/16][j/16]!=0){
         return false;
     }else{
         return true;
+    }
+}
+
+bool Mapa::getPuerta(int j, int i){
+    if(_tilemap[5][i/16][j/16]!=0){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+bool Mapa::getCasillaPintada(int j, int i){
+    if(_tilemapSprite[3][i/16][j/16] != NULL){
+        return true;
+    }else{
+        return false;
     }
 }
 
@@ -331,7 +347,7 @@ bool Mapa::getColision(int j, int i){
  * 3 hay un fuerte
  * 4 hay un trono
  */
-int Mapa::getAtributo(int i, int j){
+int Mapa::getAtributo(int j, int i){
     if(_tilemap[1][i/16][j/16]==12 || _tilemap[1][i/16][j/16]==13 || _tilemap[1][i/16][j/16]==14){
         return 1;
     }else if(_tilemap[1][i/16][j/16]==23){
