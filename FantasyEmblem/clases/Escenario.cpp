@@ -510,6 +510,7 @@ void Escenario::input() {
                         if(mapa->getColision(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true && mapa->puedeMoverseAqui(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true){
                             quitarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango());
                             aliadas[*unidad_sel]->recorre();
+                            aliadas[*unidad_sel]->hayPuerta(mapa);
                             //devuelve las casillas de la cuadricula a su estado original
                             //*unidad_sel=-1;
                             

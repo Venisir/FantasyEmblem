@@ -10,6 +10,7 @@
 #include "../headers/Objetos.h"
 #include "../headers/Cofre.h"
 #include "../headers/Unidad.h"
+#include "../headers/Mapa.h"
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -67,10 +68,19 @@ bool Aliadas::abrirCofre(Cofre* cofre){
     bool meter = false;
     //recorrer inventario en busca objeto tipo llave
     for(int i=0;i<3;i++){
-        if(strcmp(inventarioObjetos[i]->getTipo(),"llave")== 0){
+        if(strcmp(inventarioObjetos[i]->getTipo(),"llaveCofre")== 0){
             abierto = true;
             //cambiar sprite
-     
+            string s = "niveles/Tilev1.png";
+    
+            if (!texturaCofreAbierto->loadFromFile(s))
+            {
+                std::cerr << "Error cargando la imagen textura de la unidad";
+                exit(0);
+            }
+            spriteCofreAbierto->setTexture(*texturaCofreAbierto);
+            spriteCofreAbierto->setTextureRect(IntRect(8*16, 1*16, 16, 16));
+            
             if(cofre->getArma() != NULL){
                 for(int j=0;j<3;j++){
                     if((inventarioArmas[j]==NULL) && (meter==false)){
@@ -96,6 +106,14 @@ bool Aliadas::abrirCofre(Cofre* cofre){
         } 
     }   
     return abierto;
+}
+
+void Aliadas::abrirPuerta(Mapa* mapa){
+    for(int i=0;i<3;i++){
+        if(strcmp(inventarioObjetos[i]->getTipo(),"llavePuerta")== 0){            
+          mapa->quitarPuerta(); 
+        }
+    }
 }
 
  void Aliadas::guardamovimiento(int n){
@@ -129,7 +147,7 @@ bool Aliadas::abrirCofre(Cofre* cofre){
          switch(recorrido[i])
          {
              case 1:
-                 moverDerecha();
+                 moverDerecha(); 
                  std::cerr << recorrido[i] << " ";
                 break;
              case 2:
@@ -145,8 +163,32 @@ bool Aliadas::abrirCofre(Cofre* cofre){
                  std::cerr << recorrido[i] << " ";
                 break; 
          }
+//        hayPuerta();
      }
      recorrido=new int[rango];
      ultimo_mov=0;
      std::cerr << endl;
+ }
+ 
+ void Aliadas::hayPuerta(Mapa* mapa){
+     bool puerta = false;     
+     //derecha
+     if(mapa->getPuerta(spriteUnidad->getPosition().y,spriteUnidad->getPosition().x+16) == true){
+         puerta = true;
+         cout<<"Hay puerta a la derecha"<<endl;
+     //izquierda
+     }else if(mapa->getPuerta(spriteUnidad->getPosition().y,spriteUnidad->getPosition().x-16) == true){
+          puerta = true;
+          cout<<"Hay puerta a la izquierda"<<endl;
+     //arriba
+     }else if(mapa->getPuerta(spriteUnidad->getPosition().y+16,spriteUnidad->getPosition().x) == true){
+          puerta = true;
+          cout<<"Hay puerta arriba"<<endl;
+     //abajo
+     }else if(mapa->getPuerta(spriteUnidad->getPosition().y-16,spriteUnidad->getPosition().x) == true){
+          puerta = true;
+          cout<<"Hay puerta abajo"<<endl;
+     }     
+     if(puerta==true)
+        abrirPuerta(mapa);
  }

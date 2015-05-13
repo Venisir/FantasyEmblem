@@ -338,6 +338,11 @@ bool Mapa::getCasillaPintada(int j, int i){
         return false;
     }
 }
+void Mapa::quitarPuerta(){
+    cout<<"quito la puerta"<<endl;
+}
+
+
 
 /*--------------------------------GET ATRIBUTO----------------------------------
  Devuelve:
