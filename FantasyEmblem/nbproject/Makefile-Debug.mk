@@ -21,7 +21,7 @@ FC=gfortran
 AS=as
 
 # Macros
-CND_PLATFORM=MinGW_1-Windows
+CND_PLATFORM=MinGW-Windows
 CND_DLIB_EXT=dll
 CND_CONF=Debug
 CND_DISTDIR=dist
@@ -43,6 +43,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/clases/Escenario.o \
 	${OBJECTDIR}/clases/Estado.o \
 	${OBJECTDIR}/clases/EstadoBatall.o \
+	${OBJECTDIR}/clases/EstadoConversacion.o \
 	${OBJECTDIR}/clases/EstadoObjetos.o \
 	${OBJECTDIR}/clases/EstadoPause.o \
 	${OBJECTDIR}/clases/EstadoPer.o \
@@ -123,6 +124,11 @@ ${OBJECTDIR}/clases/EstadoBatall.o: clases/EstadoBatall.cpp
 	${MKDIR} -p ${OBJECTDIR}/clases
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -DSFML_STATIC -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/EstadoBatall.o clases/EstadoBatall.cpp
+
+${OBJECTDIR}/clases/EstadoConversacion.o: clases/EstadoConversacion.cpp 
+	${MKDIR} -p ${OBJECTDIR}/clases
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -DSFML_STATIC -I../SFML-2.1/include -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/EstadoConversacion.o clases/EstadoConversacion.cpp
 
 ${OBJECTDIR}/clases/EstadoObjetos.o: clases/EstadoObjetos.cpp 
 	${MKDIR} -p ${OBJECTDIR}/clases

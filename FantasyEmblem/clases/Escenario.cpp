@@ -46,6 +46,7 @@ Escenario::Escenario() {
     cofres=new Cofre*[5];
     unidad_sel=new int();
     turnoUsu=new bool();
+    primeritaVes=new bool();
     mapasonido=new SoundBuffer();
     mapasonido1= new Sound();
     
@@ -61,14 +62,7 @@ Escenario::Escenario() {
     aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png", 0);
     //enemigos[4] = new Enemigo("AlbertoMalo", "Guerrero", atri, 8, 2, "Mapa_espadachin_rojo.png");
     
-    aliadas[0]->setPosition(176,176);
     //enemigos[4]->setPosition(208,176);
-    
-    fasesEnemigo = 1;
-    turnoEnemigo = 0;
-    
-    *unidad_sel=-1;
-    *turnoUsu=true;
     
     init_State();
 }
@@ -91,6 +85,7 @@ Escenario::~Escenario() {
     delete t_stats;
     delete texturaMenuStats;
     delete spriteMenuStats;
+    delete primeritaVes;
 }
 
 void Escenario::init_State(){
@@ -136,6 +131,14 @@ void Escenario::init_State(){
     
     tieneQueMostrarStats = false;
 
+    aliadas[0]->setPosition(176,176);
+    
+    fasesEnemigo = 1;
+    turnoEnemigo = 0;
+    
+    *unidad_sel=-1;
+    *turnoUsu=true;
+    *primeritaVes = true;
 }
 void Escenario::paramusic(){
     mapasonido1->stop();
@@ -332,6 +335,12 @@ void Escenario::render_State(){
 void Escenario::update_State(){
     
     if (relojCursor->getElapsedTime().asSeconds() >= 0.5) {
+           
+        if(*primeritaVes == true){
+            *primeritaVes = false;
+            cerr << "GRINGO, A HABLAR" << endl;
+            Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu);     
+        }
         
         aliadas[0]->cambiaSpriteQuieto();
         for(int x=0; x<mapa->getNumEnemigos(); x++){
@@ -467,7 +476,7 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad3:
-                    aliadas[0]->verStats();
+                    Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu);
                 break;
                 
                 case sf::Keyboard::Numpad4:

@@ -9,10 +9,12 @@
 #define	MAPA_H
 #include <SFML/Graphics.hpp>
 #include "../tinyxml2.h"
+
 #include "../headers/Cofre.h"
 #include "../headers/Unidad.h"
 //#include "../headers/Aliadas.h"
 #include "../headers/Enemigo.h"
+
 class Mapa {
 public:
     Mapa();

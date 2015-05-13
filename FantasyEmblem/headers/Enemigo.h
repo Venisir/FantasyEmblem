@@ -12,6 +12,8 @@
 #include "../headers/Cofre.h"
 #include "../headers/Armas.h"
 #include "../headers/Objetos.h"
+//#include "../headers/Aliadas.h"
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <stdio.h>
@@ -25,6 +27,10 @@ public:
     Enemigo();
     Enemigo(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu);
     ~Enemigo();
+    
+    //Aliadas* encontrarAliadoMasCercano(Aliadas** aliadas);
+    //void moverseHaciaAliadoMasCercano(Aliadas* aliado);
+    
 private:
     Armas* arma;
 };

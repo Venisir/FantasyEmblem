@@ -11,10 +11,11 @@
 #include "../headers/Estado.h"
 #include "../headers/Juego.h"
 #include "../headers/Mapa.h"
-#include "../headers/Cofre.h"
 #include "../headers/Unidad.h"
 #include "../headers/Aliadas.h"
+
 #include "../headers/Enemigo.h"
+#include "../headers/Cofre.h"
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -42,7 +43,21 @@ Mapa::Mapa() {
     
     //Cargamos el XML y creamos la ventana
     XMLDocument doc;
-    doc.LoadFile("niveles/mapa1.tmx");
+    
+    const char* m1 = "niveles/";
+    const char* m2 = "mapa1";
+    const char* m3 = ".tmx"; 
+    
+    char result[24];   // array to hold the result.
+
+    strcpy(result,m1); // copy string one into the result.
+    strcat(result,m2); // append string two to the result.
+    strcat(result,m3); // append string two to the result.
+    
+    cerr << result << endl;
+    
+    doc.LoadFile(result);
+    
     XMLElement* map = doc.FirstChildElement("map");
 
     //Cogemos los tamanyos de mapa y de los tile
