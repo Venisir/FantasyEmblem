@@ -31,7 +31,8 @@ public:
     */
     //void init();
     void input();
-        
+    void pararmusica();
+    
 protected:
     PantallaStart();
     ~PantallaStart();

@@ -18,7 +18,7 @@
 #include <sstream>
 #include <string>
 #include <SFML/Graphics.hpp>
-
+#include <SFML/Audio.hpp>
 //using namespace tinyxml2;
 using namespace std;
 using namespace sf;
@@ -46,7 +46,9 @@ Escenario::Escenario() {
     cofres=new Cofre*[5];
     unidad_sel=new int();
     turnoUsu=new bool();
-        
+    mapasonido=new SoundBuffer();
+    mapasonido1= new Sound();
+    
     fuente = new Font();
     t_stats = new Text();
     spriteMenuStats = new Sprite();
@@ -79,6 +81,8 @@ Escenario::~Escenario() {
     delete relojCursor;
     delete reloj2;
     delete evento;
+    delete mapasonido;
+    delete mapasonido1;
     //delete ventana;
     delete pinstance;
     delete mapa;
@@ -103,6 +107,18 @@ void Escenario::init_State(){
         exit(0);
     }
     
+    
+    if (!mapasonido->loadFromFile("resources/mapasonido.wav")){
+        std::cerr << "Error al cargar el archivo de audio";
+    }
+    
+    mapasonido1->setBuffer(*mapasonido);
+    // establecemos el volumen a 20
+    mapasonido1->setVolume(30);
+    //reproducir audio del menu
+    mapasonido1->setLoop(true);
+    mapasonido1->play();
+    
     spriteCursor->setTexture(*texturaCursor);
     spriteCursor->setTextureRect(IntRect(0, 0, 16, 16));
     
@@ -120,6 +136,9 @@ void Escenario::init_State(){
     
     tieneQueMostrarStats = false;
 
+}
+void Escenario::paramusic(){
+    mapasonido1->stop();
 }
 
 void Escenario::cambiaSpriteCursorSeleccionar() {

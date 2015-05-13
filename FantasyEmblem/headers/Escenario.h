@@ -46,7 +46,7 @@ public:
     void setEnemigo(Enemigo* malo);
     void empiezaturnoIA();
     void volverMenuAcciones();
-    
+    void paramusic();
 protected:
     Escenario();
     ~Escenario();
@@ -68,6 +68,8 @@ private:
     sf::Event* evento;
     sf::Font* fuente;
     sf::Text* t_stats;
+    sf::SoundBuffer* mapasonido;
+    sf::Sound* mapasonido1;
     
     Mapa* mapa;
     //Aliadas* unidadWena;
