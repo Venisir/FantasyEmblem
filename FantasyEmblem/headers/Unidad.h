@@ -91,6 +91,8 @@ public:
     int getDestinoX();
     int getDestinoY();
     
+    void recorrido(int destinox, int destinoy);//estrella
+    
     
 protected:
     //Nombre
@@ -126,6 +128,9 @@ protected:
     int destinoX;
     int destinoY;
     int direccionDestino;
+    
+    
+    vector<Celda*> movs;
     
 };
 

@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/clases/Aliadas.o \
 	${OBJECTDIR}/clases/Armas.o \
+	${OBJECTDIR}/clases/Celda.o \
 	${OBJECTDIR}/clases/Cofre.o \
 	${OBJECTDIR}/clases/Cursor.o \
 	${OBJECTDIR}/clases/Enemigo.o \
@@ -94,6 +95,11 @@ ${OBJECTDIR}/clases/Armas.o: clases/Armas.cpp
 	${MKDIR} -p ${OBJECTDIR}/clases
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/Armas.o clases/Armas.cpp
+
+${OBJECTDIR}/clases/Celda.o: clases/Celda.cpp 
+	${MKDIR} -p ${OBJECTDIR}/clases
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/Celda.o clases/Celda.cpp
 
 ${OBJECTDIR}/clases/Cofre.o: clases/Cofre.cpp 
 	${MKDIR} -p ${OBJECTDIR}/clases

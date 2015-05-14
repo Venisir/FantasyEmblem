@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>headers/Aliadas.h</itemPath>
       <itemPath>headers/Armas.h</itemPath>
+      <itemPath>headers/Celda.h</itemPath>
       <itemPath>headers/Cofre.h</itemPath>
       <itemPath>headers/Cursor.h</itemPath>
       <itemPath>headers/Enemigo.h</itemPath>
@@ -37,6 +38,7 @@
                    projectFiles="true">
       <itemPath>clases/Aliadas.cpp</itemPath>
       <itemPath>clases/Armas.cpp</itemPath>
+      <itemPath>clases/Celda.cpp</itemPath>
       <itemPath>clases/Cofre.cpp</itemPath>
       <itemPath>clases/Cursor.cpp</itemPath>
       <itemPath>clases/Enemigo.cpp</itemPath>
@@ -106,6 +108,8 @@
       </item>
       <item path="clases/Armas.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/Celda.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/Cofre.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Cursor.cpp" ex="false" tool="1" flavor2="0">
@@ -151,6 +155,8 @@
       <item path="headers/Aliadas.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Armas.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Celda.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Cofre.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -221,6 +227,8 @@
       </item>
       <item path="clases/Armas.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/Celda.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/Cofre.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Cursor.cpp" ex="false" tool="1" flavor2="0">
@@ -266,6 +274,8 @@
       <item path="headers/Aliadas.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Armas.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Celda.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Cofre.h" ex="false" tool="3" flavor2="0">
       </item>
