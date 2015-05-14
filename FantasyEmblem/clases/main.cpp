@@ -20,7 +20,7 @@ int main()
 {    
     RenderWindow window(sf::VideoMode(480,320), "Fantasy Emblem", sf::Style::Close);
     window.setSize(sf::Vector2u(960, 640));
-    window.setFramerateLimit(60);
+    //window.setFramerateLimit(60);
     
     Juego *juego = Juego::Instance();
     

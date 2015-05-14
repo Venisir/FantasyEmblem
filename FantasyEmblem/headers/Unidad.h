@@ -83,7 +83,6 @@ public:
     void Atacar(Unidad* uni);
 
     void Draw();
-    
     void verStats();
     
     void haLlegado();
@@ -91,6 +90,7 @@ public:
     
     int getDestinoX();
     int getDestinoY();
+    
     
 protected:
     //Nombre

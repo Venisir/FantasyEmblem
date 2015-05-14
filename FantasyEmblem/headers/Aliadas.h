@@ -41,6 +41,8 @@ public:
     void abrirPuerta(Mapa* mapa);
     int getExp();
     void hayPuerta(Mapa* mapa);
+    
+    int hayEnemigosCercanos(Enemigo** enemigos);
      
 private:
     int experiencia;

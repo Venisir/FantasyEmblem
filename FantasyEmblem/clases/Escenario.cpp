@@ -531,7 +531,7 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad2:
-                    aliadas[0]->getSprite().setTextureRect(sf::IntRect(2*32, 64, 20, 20));
+                    cerr << aliadas[0]->hayEnemigosCercanos(enemigos);
                 break;
                 
                 case sf::Keyboard::Numpad3:
@@ -592,19 +592,19 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::A:
-                    aliadas[0]->moverIzquierda();
+                    aliadas[0]->setPosition(aliadas[0]->getPosicionSpriteX()-16, aliadas[0]->getPosicionSpriteY());
                 break;
                 
                 case sf::Keyboard::W:
-                    aliadas[0]->moverArriba();
+                    aliadas[0]->setPosition(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY()-16);
                 break;
                 
                 case sf::Keyboard::S:
-                    aliadas[0]->moverAbajo();
+                    aliadas[0]->setPosition(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY()+16);
                 break;
                 
                 case sf::Keyboard::D:
-                    aliadas[0]->moverDerecha();
+                    aliadas[0]->setPosition(aliadas[0]->getPosicionSpriteX()+16, aliadas[0]->getPosicionSpriteY());
                 break;
                 
                 case sf::Keyboard::Escape:

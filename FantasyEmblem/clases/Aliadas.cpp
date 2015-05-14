@@ -6,6 +6,7 @@
  */
  
 #include "../headers/Aliadas.h"
+#include "../headers/Enemigo.h"
 #include "../headers/Armas.h"
 #include "../headers/Objetos.h"
 #include "../headers/Cofre.h"
@@ -267,4 +268,28 @@ Armas** Aliadas::getArmas(){
 
 Objetos** Aliadas::getObjetos(){
     return inventarioObjetos;
+}
+
+int Aliadas::hayEnemigosCercanos(Enemigo** enemigos){
+    
+    int hayEnemigo = 0;
+    
+    //cerr << sizeof(enemigos) << endl;
+    //cerr << sizeof(*enemigos) << endl;
+    
+    for(int i=0; i<sizeof(enemigos)-1; i++){
+        if(this->getPosicionSpriteX()+16 == enemigos[i]->getPosicionSpriteX() && this->getPosicionSpriteY() == enemigos[i]->getPosicionSpriteY()){
+            hayEnemigo = 1;
+        }
+        if(this->getPosicionSpriteX() == enemigos[i]->getPosicionSpriteX() && this->getPosicionSpriteY()-16 == enemigos[i]->getPosicionSpriteY()){
+            hayEnemigo = 2;
+        }
+        if(this->getPosicionSpriteX()-16 == enemigos[i]->getPosicionSpriteX() && this->getPosicionSpriteY() == enemigos[i]->getPosicionSpriteY()){
+            hayEnemigo = -1;
+        }
+        if(this->getPosicionSpriteX() == enemigos[i]->getPosicionSpriteX() && this->getPosicionSpriteY()+16 == enemigos[i]->getPosicionSpriteY()){
+            hayEnemigo = -2;
+        }
+    }
+    return hayEnemigo;
 }

@@ -7,7 +7,6 @@
 
 #include "../headers/MenuAcciones.h"
 
-
 using namespace std;
 
 MenuAcciones* MenuAcciones::pinstance = 0;
@@ -24,7 +23,6 @@ MenuAcciones::MenuAcciones()
 {
     
 }
-
 
 MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno)
 {

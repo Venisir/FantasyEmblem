@@ -437,8 +437,6 @@ void Unidad::Atacar(Unidad* uni){
                     }
                 }
             }
-            
         }
     }
-    
 }
