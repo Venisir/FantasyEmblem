@@ -63,9 +63,9 @@ MenuPrincipal::~MenuPrincipal() {
     delete botn1;
     delete botn2;
     delete botn3;
-    delete texturas;
+    //delete[] texturas;
     delete textura_fond;
-    delete menu;
+    //delete[] menu;
     delete fondo;
     //delete time1;
     delete mainmenu;
@@ -74,6 +74,14 @@ MenuPrincipal::~MenuPrincipal() {
     delete menusonido;
     delete cursor;
     delete select;  
+    
+    for(int i=0; i<MAX_NUM_TEXT; i++){
+        delete texturas[i];
+    }
+    
+    for(int i=0; i<MAX_NUM_SPRITE; i++){
+        delete menu[i];
+    }
     
     delete reloj;
     delete evento;

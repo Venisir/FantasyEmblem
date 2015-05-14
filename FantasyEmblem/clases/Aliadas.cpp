@@ -370,22 +370,46 @@ int Aliadas::hayCofresCercanos(Mapa* m){
     //cerr << sizeof(*enemigos) << endl;
     
     for(int i=0; i<m->getNumCofres(); i++){
-        if(m->getCofre(this->getPosicionSpriteX()+16, this->getPosicionSpriteY())==true){
+        if(m->getCofre(this->getPosicionSpriteY()+16, this->getPosicionSpriteX())==true){
+            //Esta abajo
+            hayCofre = -2;
+        }
+        if(m->getCofre(this->getPosicionSpriteY(), this->getPosicionSpriteX()-16)==true){
             hayCofre = 1;
         }
-        if(m->getCofre(this->getPosicionSpriteX(), this->getPosicionSpriteY()-16)==true){
+        if(m->getCofre(this->getPosicionSpriteY()-16, this->getPosicionSpriteX())==true){
+            //Esta arriba
             hayCofre = 2;
         }
-        if(m->getCofre(this->getPosicionSpriteX()-16, this->getPosicionSpriteY())==true){
+        if(m->getCofre(this->getPosicionSpriteY(), this->getPosicionSpriteX()+16)==true){
             hayCofre = -1;
-        }
-        if(m->getCofre(this->getPosicionSpriteX(), this->getPosicionSpriteY()+16)==true){
-            hayCofre = -2;
         }
     }
     return hayCofre;
 }
 
 int Aliadas::hayPuertasCercanas(Mapa* m){
-    return 0;
+    
+    int hayPuerta = 0;
+    
+    //cerr << sizeof(enemigos) << endl;
+    //cerr << sizeof(*enemigos) << endl;
+    
+    for(int i=0; i<m->getNumCofres(); i++){
+        if(m->getPuerta(this->getPosicionSpriteY()+16, this->getPosicionSpriteX())==true){
+            //Esta abajo
+            hayPuerta = -2;
+        }
+        if(m->getPuerta(this->getPosicionSpriteY(), this->getPosicionSpriteX()-16)==true){
+            hayPuerta = 1;
+        }
+        if(m->getPuerta(this->getPosicionSpriteY()-16, this->getPosicionSpriteX())==true){
+            //Esta arriba
+            hayPuerta = 2;
+        }
+        if(m->getPuerta(this->getPosicionSpriteY(), this->getPosicionSpriteX()+16)==true){
+            hayPuerta = -1;
+        }
+    }
+    return hayPuerta;
 }

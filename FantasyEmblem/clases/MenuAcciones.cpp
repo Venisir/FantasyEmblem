@@ -311,8 +311,15 @@ void MenuAcciones::input()
                     break;
                     
                 case sf::Keyboard::Numpad1:
-                    seleccionarMenu();
+                    cerr << ali[*index]->hayEnemigosCercanos(enem) << endl;
                 break;
+                case sf::Keyboard::Numpad2:
+                    cerr << ali[*index]->hayCofresCercanos(m) << endl;
+                break;
+                case sf::Keyboard::Numpad3:
+                    cerr << ali[*index]->hayPuertasCercanas(m) << endl;
+                break;
+                
                 case sf::Keyboard::Numpad9:
                     *index=-1;
                     Juego::Instance()->ponerEstadoEscenario(); 
