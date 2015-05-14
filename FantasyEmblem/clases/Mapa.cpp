@@ -354,10 +354,19 @@ bool Mapa::getCasillaPintada(int j, int i){
         return false;
     }
 }
-void Mapa::quitarPuerta(){
+void Mapa::quitarPuerta(int i, int j){
+    _tilemapSprite[5][i/16][j/16]=NULL;
+    _tilemap[5][i/16][j/16]=0;  
 }
 
-
+bool Mapa::getCofre(int i, int j){
+    cout<<"Entra en getCofre"<<endl;
+    if(_tilemap[2][i/16][j/16]!=0){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 /*--------------------------------GET ATRIBUTO----------------------------------
  Devuelve:

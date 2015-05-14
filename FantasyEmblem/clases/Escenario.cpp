@@ -58,6 +58,10 @@ Escenario::Escenario() {
     spriteMenuStats = new Sprite();
     texturaMenuStats = new Texture();
     
+    texturaAbrirPuerta = new Texture();
+    spriteAbrirPuerta = new Sprite();
+    
+    
     int atri[] = { 11, 22, 33, 44, 55, 66, 77};
     
     cofres=mapa->getCofres();
@@ -89,9 +93,18 @@ Escenario::~Escenario() {
     delete texturaMenuStats;
     delete spriteMenuStats;
     delete primeritaVes;
+    
+    delete texturaAbrirPuerta;
+    delete spriteAbrirPuerta;
 }
 
 void Escenario::init_State(){
+    
+    if(!texturaAbrirPuerta->loadFromFile("resources/abrirPuerta.png"))
+    {
+        std::cerr << "Error cargando la imagen abrirPuerta.png";
+        exit(0);
+    }
     
     if (!texturaCursor-> loadFromFile("resources/cursores.png"))
     {
@@ -120,7 +133,14 @@ void Escenario::init_State(){
     spriteCursor->setTexture(*texturaCursor);
     spriteCursor->setTextureRect(IntRect(0, 0, 16, 16));
     
-    spriteCursor->setPosition(0,0);
+    spriteCursor->setPosition(176,176);
+    
+    spriteAbrirPuerta->setTexture(*texturaAbrirPuerta);
+    spriteAbrirPuerta->setPosition(100,30);
+    
+    puertaSi = false;
+    cofreSi = false;
+    enemigoSi = false;
     
     cambiaSpriteCursorSeleccionar();
     
@@ -326,6 +346,10 @@ void Escenario::render_State(){
     if(tieneQueMostrarStats == true){
         Juego::Instance()->getVentana()->draw(*spriteMenuStats);
         Juego::Instance()->getVentana()->draw(*t_stats);
+    }
+    
+    if(puertaSi==true){
+        Juego::Instance()->getVentana()->draw(*spriteAbrirPuerta);
     }
     
     if(*turnoUsu==true)
@@ -583,7 +607,7 @@ void Escenario::input() {
                             if(mapa->getColision(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true && mapa->puedeMoverseAqui(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true){
                                 quitarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango());
                                 aliadas[*unidad_sel]->recorre();
-                                aliadas[*unidad_sel]->hayPuerta(mapa);
+                                //aliadas[*unidad_sel]->hayPuerta(mapa);
                                 //devuelve las casillas de la cuadricula a su estado original
                                 //*unidad_sel=-1;
                             }
@@ -629,6 +653,18 @@ void Escenario::input() {
             }
         }
     }
+}
+
+bool Escenario::getPuertaSi(){
+    return puertaSi;
+}
+
+bool Escenario::getCofreSi(){
+    return cofreSi;
+}
+
+bool Escenario::getEnemigoSi(){
+    return enemigoSi;
 }
 
 void Escenario::volverMenuAcciones(){

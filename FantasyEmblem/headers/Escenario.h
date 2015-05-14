@@ -43,6 +43,11 @@ public:
     void empiezaturnoIA();
     void volverMenuAcciones();
     void paramusic();
+    
+    bool getPuertaSi();
+    bool getCofreSi();
+    bool getEnemigoSi();
+
 protected:
     Escenario();
     ~Escenario();
@@ -67,6 +72,9 @@ private:
     sf::SoundBuffer* mapasonido;
     sf::Sound* mapasonido1;
     
+    sf::Texture* texturaAbrirPuerta;
+    sf::Sprite* spriteAbrirPuerta;
+    
     Mapa* mapa;
     
     int cursorActivo;
@@ -81,6 +89,9 @@ private:
     int cont;
     
     bool tieneQueMostrarStats;
+    bool puertaSi;
+    bool cofreSi;
+    bool enemigoSi;
         
     Aliadas** aliadas;//aray de unidades aliadas (posiblemente esten en mapa)
     Enemigo** enemigos;//array de unidades enemigas

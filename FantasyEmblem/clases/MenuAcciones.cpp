@@ -28,7 +28,10 @@ MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr,
 {
     texturaDanyo=new Texture();
     texturaDedo=new Texture();
-    texturaMenu=new Texture();
+    texturaMenuNormal=new Texture();
+    texturaMenuAtaque=new Texture();
+    texturaMenuCofre=new Texture();
+    texturaMenuPuerta=new Texture();
     texturaObjetos=new Texture();
     cursorDedo= new Sprite();
     danyo=new Sprite();
@@ -49,10 +52,14 @@ MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr,
     init_State();
 }
 
+
 MenuAcciones::~MenuAcciones() {
     delete texturaDanyo;
     delete texturaDedo;
-    delete texturaMenu;
+    delete texturaMenuNormal;
+    delete texturaMenuAtaque;
+    delete texturaMenuCofre;
+    delete texturaMenuPuerta;
     delete texturaObjetos;
     delete menu;
     delete objetos;
@@ -64,16 +71,35 @@ MenuAcciones::~MenuAcciones() {
 
 void MenuAcciones::init_State()
 {
-    if (!texturaMenu->loadFromFile("resources/menuacciones.png"))
+    
+    if (!texturaMenuAtaque->loadFromFile("resources/menuaccionesAtacar.png"))
     {
-            std::cerr << "Error cargando la imagen boton1.png";
-            exit(0);
+        std::cerr << "Error cargando la imagen menuaccionesAtacar.png";
+        exit(0);
+    }
+    
+    if (!texturaMenuCofre->loadFromFile("resources/menuaccionesAbrirCofre.png"))
+    {
+        std::cerr << "Error cargando la imagen menuaccionesAbrirCofre.png";
+        exit(0);
     }
 
+    if (!texturaMenuPuerta->loadFromFile("resources/menuaccionesAbrirPuerta.png"))
+    {
+        std::cerr << "Error cargando la imagen menuaccionesAbrirPuerta.png";
+        exit(0);
+    }
+
+    if (!texturaMenuNormal->loadFromFile("resources/menuacciones.png"))
+    {
+        std::cerr << "Error cargando la imagen menuacciones.png";
+        exit(0);
+    }
+    
     if (!texturaDedo->loadFromFile("resources/dedo.png"))
     {
-            std::cerr << "Error cargando la imagen dedo.png";
-            exit(0);
+        std::cerr << "Error cargando la imagen dedo.png";
+        exit(0);
     }
 
     if (!texturaDanyo->loadFromFile("resources/dano.png"))
@@ -87,8 +113,9 @@ void MenuAcciones::init_State()
             std::cerr << "Error cargando la imagen objeto.png";
             exit(0);
     }
+    numMenu = -1;
+    seleccionarMenu();
     
-    menu->setTexture(*texturaMenu);
     cursorDedo->setTexture(*texturaDedo);
     danyo->setTexture(*texturaDanyo);
     objetos->setTexture(*texturaObjetos);
@@ -107,6 +134,8 @@ void MenuAcciones::init_State()
     cursorDedo->setPosition(215,260);
     danyo->setPosition(480,175);
     objetos->setPosition(305,226);
+    
+    haAtacado = false;
 }
 
 void MenuAcciones::render_State()
@@ -145,7 +174,9 @@ void MenuAcciones::update_State()
     }
     if (reloj->getElapsedTime().asMilliseconds() >= 100) {
         reloj->restart();
-
+        if(numMenu == -1){
+            seleccionarMenu();
+        }
         input();
     }
 }
@@ -167,81 +198,124 @@ void MenuAcciones::input()
                     }
                     break;
                 case sf::Keyboard::Down:
-                    if(cont<4 && cursorActivo==true)
-                    {
-                        cursorDedo->move(0,20);
-                        cont++;
+                    if(numMenu == 3){
+                        if(cont<3 && cursorActivo==true)
+                        {
+                            cursorDedo->move(0,20);
+                            cont++;
+                        }
+                    }else{
+                        if(cont<4 && cursorActivo==true)
+                        {
+                            cursorDedo->move(0,20);
+                            cont++;
+                        }
                     }
                     break;
                 case sf::Keyboard::Return:
                     cursorActivo = false;
                         
-                    if(cont==0)
-                    {
-                        //atacar
-                        cursorActivo = true;
-                        /*
-                        for(int p=0; p<3; p++){
-                            if(enem[p]->getPosicionSpriteX()+16 == ali[*index]->getPosicionSpriteX() ||
-                               enem[p]->getPosicionSpriteX()-16 == ali[*index]->getPosicionSpriteX() ||    
-                               enem[p]->getPosicionSpriteY()+16 == ali[*index]->getPosicionSpriteY() ||  
-                               enem[p]->getPosicionSpriteY()-16 == ali[*index]->getPosicionSpriteY()
-                            )
-                            m->setSpriteColorAtaque(enem[p]->getPosicionSpriteX(),enem[p]->getPosicionSpriteY());
+                    if(numMenu == 3){
+                        if(cont==0){
+                            //estado
+                           Juego::Instance()->ponerEstadoPersonaje(m,ali,enem,cof,index,turnoUsu);
+                           
+                           cursorActivo=true;
                         }
-                        haDecidido = true;
-                        */
-                    //}else{
-                        /*
-                        for(int p=0; p<3; p++){
-                            if(enem[p]->getPosicionSpriteX()+16 == ali[*index]->getPosicionSpriteX() ||
-                               enem[p]->getPosicionSpriteX()-16 == ali[*index]->getPosicionSpriteX() ||    
-                               enem[p]->getPosicionSpriteY()+16 == ali[*index]->getPosicionSpriteY() ||  
-                               enem[p]->getPosicionSpriteY()-16 == ali[*index]->getPosicionSpriteY()
-                            )
-                            m->defaultSpriteColorAtaque(enem[p]->getPosicionSpriteX(),enem[p]->getPosicionSpriteY());
+                        if(cont==1){
+                            //objeto 
+                            Juego::Instance()->ponerEstadoObjetos(m,ali,enem,cof,index,turnoUsu);
+                           
+                            cursorActivo=true;
                         }
-                        haDecidido = false;
-                        */
-                        Juego::Instance()->ponerEstadoBatalla();
+                        if(cont==2){
+                            //interru
+                            cursorActivo=true;
+                        }
+                        if(cont==3){
+                            //fin
+                            cursorActivo=true;
+                            cont=0;
+                            cursorDedo->setPosition(215,260);
+                            *index=-1;
+                            *turnoUsu=false;
+                            numMenu = -1;
+                            haAtacado = false;
+                            Escenario::Instance()->empiezaturnoIA();
+                            Juego::Instance()->ponerEstadoEscenario();
+                        }
+                    }else{
+                        if(cont==0)
+                        {
+                            //atacar, abrir cofre o abrir puerta
+                            switch(numMenu){
+                                case 0:
+                                    //atacar
+                                    cursorActivo = true;
+                                    Juego::Instance()->ponerEstadoBatalla();
+                                    cursorActivo=true;
+                                    haAtacado = true;
+                                    menu->setTexture(*texturaMenuNormal);
+                                    numMenu = 3;
+                                    break;
+                                case 1:
+                                    //abrir cofre
+                                    cursorActivo = true;
+                                    //Juego::Instance()->ponerEstadoBatalla();
+                                    cursorActivo=true;
+                                    break;
+                                case 2:
+                                    //abrir puerta
+                                    cursorActivo = true;
+                                    //Juego::Instance()->ponerEstadoBatalla();
+                                    cursorActivo=true;
+                                    break;
+                                default: cerr << "ATENCION, BUGASO" << endl;
+                            }
+                        }
+
+                        if(cont==1){
+                            //estado
+                           Juego::Instance()->ponerEstadoPersonaje(m,ali,enem,cof,index,turnoUsu);
+                          
+                           cursorActivo=true;
+                        }
+                        if(cont==2){
+                            //objeto 
+                            Juego::Instance()->ponerEstadoObjetos(m,ali,enem,cof,index,turnoUsu);
+                            
+                            cursorActivo=true;
+                        }
+                        if(cont==3){
+                            //interru
+                            cursorActivo=true;
+                        }
+                        if(cont==4){
+                            //fin
+                            cursorActivo=true;
+                            cont=0;
+                            cursorDedo->setPosition(215,260);
+                            *index=-1;
+                            *turnoUsu=false;
+                            haAtacado=false;
+                            numMenu = -1;
+                            Escenario::Instance()->empiezaturnoIA();
+                            Juego::Instance()->ponerEstadoEscenario();
+                           
+                        }
                     }
                     
-                    if(cont==1)
-                    {
-                        //estado
-                       Juego::Instance()->ponerEstadoPersonaje(m,ali,enem,cof,index,turnoUsu);
-                    }
-                    
-                    if(cont==2)
-                    {
-                        //objeto 
-                        Juego::Instance()->ponerEstadoObjetos(m,ali,enem,cof,index,turnoUsu);
-                    }
-                    
-                    if(cont==3)
-                    {
-                        //interru
-                    }
-                    
-                    if(cont==4)
-                    {
-                        //fin
-                        cursorActivo=true;
-                        cont=0;
-                        cursorDedo->setPosition(215,260);
-                        *index=-1;
-                        *turnoUsu=false;
-                        Escenario::Instance()->empiezaturnoIA();
-                        Juego::Instance()->ponerEstadoEscenario();
-                    }
                     break;
                 case sf::Keyboard::BackSpace:
                     cursorActivo=true;
                     break;
+                    
+                case sf::Keyboard::Numpad1:
+                    seleccionarMenu();
+                break;
                 case sf::Keyboard::Numpad9:
                     *index=-1;
                     Juego::Instance()->ponerEstadoEscenario(); 
-                    
                 break;
                 case sf::Keyboard::Escape:
                     Juego::Instance()->getVentana()->close();               
@@ -249,4 +323,24 @@ void MenuAcciones::input()
             }
         }
     }
+}
+
+void MenuAcciones::seleccionarMenu(){
+    
+    if(ali[*index]->hayEnemigosCercanos(enem)!=0 && haAtacado == false){
+        menu->setTexture(*texturaMenuAtaque);
+        numMenu = 0;
+    }else if(ali[*index]->hayCofresCercanos(m)!=0){
+        menu->setTexture(*texturaMenuCofre);
+        numMenu = 1;
+    }else if(ali[*index]->hayPuertasCercanas(m)!=0){
+        menu->setTexture(*texturaMenuPuerta);
+        numMenu = 2;
+    }else{
+        if(numMenu!=3){
+            menu->setTexture(*texturaMenuNormal);
+            numMenu = 3;
+        }
+    }
+    
 }
