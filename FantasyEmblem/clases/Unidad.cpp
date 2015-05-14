@@ -47,7 +47,11 @@ Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int
     spriteUnidad->setTexture(*texturaUnidad);
     spriteUnidad->setTextureRect(IntRect(0, 0, 20, 20));
     
+    mueve = false;
     //spriteUnidad->setPosition(176,176);
+    
+    destinoX = 0;
+    destinoY = 0;
 }
 
 Unidad::~Unidad() {
@@ -75,21 +79,49 @@ void Unidad::setPosition(int i, int j) {
 }
 
 void Unidad::moverArriba(){
-    spriteUnidad->setPosition(spriteUnidad->getPosition().x,spriteUnidad->getPosition().y-16);
+    destinoX = spriteUnidad->getPosition().x;
+    destinoY = spriteUnidad->getPosition().y-16;
+    setMueve(true);
 }
 
 void Unidad::moverAbajo(){
-    spriteUnidad->setPosition(spriteUnidad->getPosition().x,spriteUnidad->getPosition().y+16);
+    destinoX = spriteUnidad->getPosition().x;
+    destinoY = spriteUnidad->getPosition().y+16;
+    setMueve(true);
 }
 
 void Unidad::moverIzquierda(){
-    spriteUnidad->setPosition(spriteUnidad->getPosition().x-16,spriteUnidad->getPosition().y);
+    destinoX = spriteUnidad->getPosition().x-16;
+    destinoY = spriteUnidad->getPosition().y;
+    setMueve(true);
 }
 
 void Unidad::moverDerecha(){
-    spriteUnidad->setPosition(spriteUnidad->getPosition().x+16,spriteUnidad->getPosition().y);
+    destinoX = spriteUnidad->getPosition().x+16;
+    destinoY = spriteUnidad->getPosition().y;
+    setMueve(true);
 }
-    
+
+void Unidad::setMueve(bool b) {
+    mueve = b;
+}
+
+void Unidad::haLlegado() {
+    setMueve(false);
+}
+
+bool Unidad::getMueve() {
+    return mueve;
+}
+
+int Unidad::getDestinoX() {
+    return destinoX;
+}
+
+int Unidad::getDestinoY() {
+    return destinoY;
+}
+
 void Unidad::cambiaSpriteQuieto() {
     if(valorSprite == 0){
         siguienteSumar = true;
@@ -111,6 +143,10 @@ void Unidad::cambiaSpriteQuieto() {
     spriteUnidad->setTextureRect(sf::IntRect(valorSprite*16, 0, 16, 16));
 }
     
+void Unidad::cambiaSprite(int a, int b, int c, int d) {
+    spriteUnidad->setTextureRect(sf::IntRect(a, b, c, d));
+}
+
 void Unidad::verStats() {
     
     //spriteUnidad->setColor(sf::Color(0, 255, 0, 128));

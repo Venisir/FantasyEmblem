@@ -91,14 +91,14 @@ void ObjetoSeleccionado::init_State()
             std::cerr << "Error cargando la imagen dedo.png";
             exit(0);
     }
-    if (!usar->loadFromFile("resources/usar.png"))
+    if (!usar->loadFromFile("resources/usar2.png"))
     {
-            std::cerr << "Error cargando la imagen usar.png";
+            std::cerr << "Error cargando la imagen usar2.png";
             exit(0);
     }
-    if (!tirar->loadFromFile("resources/tirar.png"))
+    if (!tirar->loadFromFile("resources/tirar2.png"))
     {
-            std::cerr << "Error cargando la imagen tirar.png";
+            std::cerr << "Error cargando la imagen tirar2.png";
             exit(0);
     }
 
