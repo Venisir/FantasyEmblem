@@ -7,6 +7,10 @@
 
 #include "../headers/ObjetoSeleccionado.h"
 
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <SFML/Graphics.hpp>
 using namespace std;
 
 ObjetoSeleccionado* ObjetoSeleccionado::pinstance = 0;
@@ -27,6 +31,7 @@ ObjetoSeleccionado::ObjetoSeleccionado()
 
 ObjetoSeleccionado::ObjetoSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno)
 {
+    arma=new Sprite();
     texturaDedo=new Texture();
     texturaMenu=new Texture();
     cursorDedo= new Sprite();
@@ -38,6 +43,9 @@ ObjetoSeleccionado::ObjetoSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, C
     reloj=new Clock();
     reloj2=new Clock();
     evento=new Event();
+    stats=new Text();
+    stats1=new Text();
+    fuente=new Font();
     cursorActivo=true;
     cont=0;
     m=map;
@@ -52,6 +60,10 @@ ObjetoSeleccionado::ObjetoSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, C
 
 ObjetoSeleccionado::~ObjetoSeleccionado() {
     
+    delete arma;
+    delete fuente;
+    delete stats1;
+    delete stats;
     delete texturaDedo;
     delete texturaMenu;
     delete usar;
@@ -108,6 +120,9 @@ void ObjetoSeleccionado::init_State()
     cursorDedo->setPosition(275,365);
     usado->setPosition(280,350);
     tirado->setPosition(350,350);
+    fuente->loadFromFile("resources/font.ttf");
+    
+    mostrarItems();
 }
 
 void ObjetoSeleccionado::render_State()
@@ -131,8 +146,50 @@ void ObjetoSeleccionado::render_State()
     Juego::Instance()->getVentana()->draw(*usado);
     Juego::Instance()->getVentana()->draw(*tirado);
     Juego::Instance()->getVentana()->draw(*cursorDedo);
+    Juego::Instance()->getVentana()->draw(*stats);
+    Juego::Instance()->getVentana()->draw(*stats1);
+    Juego::Instance()->getVentana()->draw(*arma);
     Juego::Instance()->getVentana()->display();
 }
+
+void ObjetoSeleccionado::mostrarItems(){
+    
+   arma=new Sprite(ali[0]->getArma()->getSprite());
+    std::stringstream ss_stats;
+        ss_stats <<   
+               
+              /* ali[0]->getArma()->getSprite() << */ali[0]->getArma()->getNombre()<<" " << ali[0]->getArma()->getUsos() << "\n" << "\n" 
+               ;
+               
+        
+        std::string s_stats = ss_stats.str();
+
+        stats->setCharacterSize(12);
+        stats->setFont(*fuente);
+        stats->setString(s_stats);
+        
+        stats->setColor(sf::Color::White);
+        stats->setPosition(50,135);
+        arma->setPosition(40,135);
+       /* 
+        std::stringstream ss_stats1;
+        ss_stats1 <<   
+               
+                ali[0]->getArma()->getNombre() << "\n" << "\n" <<
+                ali[0]->getDef() << "\n" << "\n" <<
+                ali[0]->getDefm() << "\n" << "\n" ;
+        std::string s_stats1 = ss_stats1.str();
+
+        stats1->setCharacterSize(12);
+        stats1->setFont(*fuente);
+        stats1->setString(s_stats1);
+        
+        stats1->setColor(sf::Color::White);
+        stats1->setPosition(140,135);
+         */
+
+}
+
 
 void ObjetoSeleccionado::update_State()
 {

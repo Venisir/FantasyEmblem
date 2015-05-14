@@ -33,6 +33,8 @@ class EstadoPer:public Estado {
 public:
     static EstadoPer* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno);
     void input();
+    void mostrarDatos();
+    void mostrarStats();
     
 protected:
     EstadoPer();
@@ -43,12 +45,18 @@ private:
     void init_State();
     void render_State();
     void update_State();
-    void mostrarStats();
     
+   
     
     sf::Texture *texturaMenu;
     sf::Font* fuente;
     sf::Text* t_stats;
+    sf::Text* level;
+    sf::Text* vida;
+    sf::Text* clase;
+    sf::Text* stats;
+    sf::Text* stats1;
+
     sf::Sprite *menu;
     sf::Clock *reloj;
     sf::Clock *reloj2;

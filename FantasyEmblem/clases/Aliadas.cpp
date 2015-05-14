@@ -4,14 +4,14 @@
  * 
  * Created on 24 de abril de 2015, 15:22
  */
-
+ 
 #include "../headers/Aliadas.h"
 #include "../headers/Armas.h"
 #include "../headers/Objetos.h"
 #include "../headers/Cofre.h"
 #include "../headers/Unidad.h"
 #include "../headers/Mapa.h"
-
+ 
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -20,25 +20,25 @@
 #include <vector>
 #include <string>
 #include <cstring>
-
+ 
 using namespace std;
 using namespace sf;
-
+ 
 Aliadas::Aliadas() {
-
+ 
 }
-
-
+ 
+ 
 Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, int experien):Unidad(name, clas, atributo, nivel, rang, nombreTextu) {
     experiencia = experien;
-    
+     
     recorrido=new int[rango];
     ultimo_mov=0;   
 }
-
+ 
 Aliadas::~Aliadas() {
 }
-
+ 
 bool Aliadas::equiparArma(Armas* arma){
     bool equipada = false;
     if(arma!=NULL)
@@ -57,12 +57,12 @@ bool Aliadas::usarObjeto(Objetos* obj){
     }    
     return usada;
 }
-
-
+ 
+ 
  void Aliadas::subirNivel(){
     lvl++;
 }
-
+ 
 bool Aliadas::abrirCofre(Cofre* cofre){
     bool abierto = false;
     bool meter = false;
@@ -72,7 +72,7 @@ bool Aliadas::abrirCofre(Cofre* cofre){
             abierto = true;
             //cambiar sprite
             string s = "niveles/Tilev1.png";
-    
+     
             if (!texturaCofreAbierto->loadFromFile(s))
             {
                 std::cerr << "Error cargando la imagen textura del cofre abierto";
@@ -80,7 +80,7 @@ bool Aliadas::abrirCofre(Cofre* cofre){
             }
             spriteCofreAbierto->setTexture(*texturaCofreAbierto);
             spriteCofreAbierto->setTextureRect(IntRect(8*16, 1*16, 16, 16));
-            
+             
             if(cofre->getArma() != NULL){
                 for(int j=0;j<3;j++){
                     if((inventarioArmas[j]==NULL) && (meter==false)){
@@ -91,7 +91,7 @@ bool Aliadas::abrirCofre(Cofre* cofre){
                 if(meter==false){
                     //salta aviso: no puedes coger arma
                     string s_armas = "resources/avisoarmas.png";
-    
+     
                     if (!texturaAvisoInventarioArmas->loadFromFile(s_armas))
                     {
                         std::cerr << "Error cargando la imagen textura del aviso de inventario lleno de armas";
@@ -110,7 +110,7 @@ bool Aliadas::abrirCofre(Cofre* cofre){
                 if(meter==false){
                     //salta aviso: no puedes coger objeto
                     string s_objetos = "resources/avisoobjetos.png";
-    
+     
                     if (!texturaAvisoInventarioObjetos->loadFromFile(s_objetos))
                     {
                         std::cerr << "Error cargando la imagen textura del aviso de inventario lleno de objetos";
@@ -120,10 +120,10 @@ bool Aliadas::abrirCofre(Cofre* cofre){
                     //spriteAvisoInventObjetos->setPosition(200,200);
                 }
             }
-            
+             
         }else{
             string noLlave = "resources/avisollavecofre.png";
-    
+     
             if (!texturaAvisoLlaveCofre->loadFromFile(noLlave))
             {
                 std::cerr << "Error cargando la imagen textura del aviso de no hay llave de cofre";
@@ -134,14 +134,14 @@ bool Aliadas::abrirCofre(Cofre* cofre){
     }   
     return abierto;
 }
-
+ 
 void Aliadas::abrirPuerta(Mapa* mapa){
     cout<<"entra a abrirPuerta"<<endl;
     for(int i=0;i<3;i++){
         cout<<"peto"<<endl;
         if(strcmp(inventarioObjetos[i]->getTipo(),"llavePuerta")== 0){  
             string s_armas = "resources/avisoarmas.png";
-
+ 
                     if (!texturaAvisoInventarioArmas->loadFromFile(s_armas))
                     {
                         std::cerr << "Error cargando la imagen textura del aviso de inventario lleno de armas";
@@ -151,7 +151,7 @@ void Aliadas::abrirPuerta(Mapa* mapa){
             cout<<"abro la puerta"<<endl;
         }else{
             string noLlave = "resources/avisollavepuerta.png";
-    
+     
             if (!texturaAvisoLlavePuerta->loadFromFile(noLlave))
             {
                 std::cerr << "Error cargando la imagen textura del aviso de no hay llave de cofre";
@@ -161,7 +161,7 @@ void Aliadas::abrirPuerta(Mapa* mapa){
         } 
     }
 }
-
+ 
  void Aliadas::guardamovimiento(int n){
     int negativo=n*(-1);
     //si el ultimo introducido es el negativo del que se va a introducir..
@@ -185,11 +185,11 @@ void Aliadas::abrirPuerta(Mapa* mapa){
         } 
     }
 }
- 
+  
 int* Aliadas::getRecorrido(){
     return recorrido;
 }
- 
+  
 void Aliadas::recorre()
 {
     //for(int i=0;i<ultimo_mov;i++)
@@ -219,11 +219,11 @@ void Aliadas::recorre()
      ultimo_mov=0;
      std::cerr << endl;
  }
- 
+  
  void Aliadas::hayPuerta(Mapa* mapa){
      cout<<"entra en hayPuerta"<<endl;
      bool puerta = false;     
-     
+      
      //derecha
      cout<<"primer if"<<endl;
      if((mapa->getPuerta(spriteUnidad->getPosition().y,spriteUnidad->getPosition().x+16) )== true){
@@ -255,3 +255,16 @@ void Aliadas::recorre()
          cout<<"no hay puertesica"<<endl;
      }
  }
+ 
+ int Aliadas::getExp(){
+         
+    return experiencia;
+}
+ 
+Armas** Aliadas::getArmas(){
+    return inventarioArmas;
+} 
+
+Objetos** Aliadas::getObjetos(){
+    return inventarioObjetos;
+}

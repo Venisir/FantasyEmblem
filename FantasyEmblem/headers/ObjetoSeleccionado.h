@@ -33,6 +33,7 @@ class ObjetoSeleccionado: public Estado {
 public:
     static ObjetoSeleccionado* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno);
     void input();
+    void mostrarItems();
     
 protected:
     ObjetoSeleccionado();
@@ -44,6 +45,7 @@ private:
     void render_State();
     void update_State();
     
+     sf::Sprite *arma;
     sf::Texture *usar;
     sf::Texture *tirar;
     sf::Texture *texturaMenu1;
@@ -57,6 +59,9 @@ private:
     sf::Clock *reloj;
     sf::Clock *reloj2;
     sf::Event *evento;
+    sf::Text* stats;
+    sf::Text* stats1;
+    sf::Font* fuente;
     int cont;
     bool cursorActivo;
     bool *turnoUsu;

@@ -25,7 +25,7 @@ using namespace sf;
 class Armas {
 public:
     
-    Armas(const char* nom, const char* tip, int pes, int pod, int golp, int alcan, int usos);
+    Armas(const char* nom, const char* tip, int pes, int pod, int golp, int alcan, int usos, const char* nombArma);
     virtual ~Armas();
     
     const char* getNombre();
@@ -35,12 +35,12 @@ public:
     int getGolpe();
     int getAlcance();
     int getUsos();
-    
+    Sprite getSprite();
     void setUsos(int uso);
     
 private:
 
-    
+    const char* nombArma;
     const char* Nombre;
     const char* Tipo;
     int Peso;
@@ -49,7 +49,8 @@ private:
     int Alcance;
     int Usos;
     
-    
+    Sprite* spriteArma;
+    Texture* texturaArma;
 };
 
 #endif	/* ARMAS_H */
