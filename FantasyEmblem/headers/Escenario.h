@@ -82,6 +82,8 @@ private:
     
     int turnoEnemigo;
     int fasesEnemigo;
+    int aux;
+    int cont;
     
     bool tieneQueMostrarStats;
         

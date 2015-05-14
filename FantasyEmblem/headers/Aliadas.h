@@ -32,6 +32,7 @@ public:
     
     void guardamovimiento(int n);
     void recorre();
+    int* getRecorrido();
     
     bool usarObjeto(Objetos* obj);
     bool abrirCofre(Cofre* cofre);

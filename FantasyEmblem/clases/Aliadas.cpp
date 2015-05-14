@@ -144,31 +144,36 @@ void Aliadas::abrirPuerta(Mapa* mapa){
     }
 }
  
- void Aliadas::recorre()
- {
-     for(int i=0;i<ultimo_mov;i++)
-     {
-         switch(recorrido[i])
-         {
-             case 1:
-                 moverDerecha(); 
-                 std::cerr << recorrido[i] << " ";
+int* Aliadas::getRecorrido(){
+    return recorrido;
+}
+ 
+void Aliadas::recorre()
+{
+    //for(int i=0;i<ultimo_mov;i++)
+    for(int i=0;i<1;i++)
+    {
+        switch(recorrido[i])
+        {
+            case 1:
+                moverDerecha(); 
+                std::cerr << recorrido[i] << " ";
                 break;
-             case 2:
-                 moverArriba();
-                 std::cerr << recorrido[i] << " ";
-                break;
-             case -1:
-                 moverIzquierda();
-                 std::cerr << recorrido[i] << " ";
-                break;
-             case -2:
-                 moverAbajo();
-                 std::cerr << recorrido[i] << " ";
-                break; 
+            case 2:
+                moverArriba();
+                std::cerr << recorrido[i] << " ";
+               break;
+            case -1:
+                moverIzquierda();
+                std::cerr << recorrido[i] << " ";
+               break;
+            case -2:
+                moverAbajo();
+                std::cerr << recorrido[i] << " ";
+               break; 
          }
      }
-     recorrido=new int[rango];
+     //recorrido=new int[rango];
      ultimo_mov=0;
      std::cerr << endl;
  }
