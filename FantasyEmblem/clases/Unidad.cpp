@@ -446,12 +446,13 @@ void Unidad::recorrido(int destinox, int destinoy)
 {
     vector<Celda*> abierta;
     vector<Celda*> cerrada;
-    sf::Vector2i posaux = new sf::Vector2i(getPosicionSpriteX(),getPosicionSpriteY());
-    Celda* n,ady;
+    sf::Vector2i posaux= sf::Vector2i(getPosicionSpriteX(),getPosicionSpriteY());
+    Celda* n;
+    Celda* ady;
     
     
     int coste=1;//coste de moverse en cualquiera de las 4 direcciones, equivale a g
-    int manhatan,coste,f,g;
+    int manhatan,f,g;
     int menorf;
     int nodomenor=0;
     int adyacentes=0;//numero de celdas adyacentes
@@ -464,7 +465,7 @@ void Unidad::recorrido(int destinox, int destinoy)
      */
     abierta.push_back(celdaInicio);
     
-    while(abierta.empty()==false && movs==NULL)
+    while(abierta.empty()!=true && movs.empty()==true)
     {
         menorf=100000000000000000000;
         /*obtenemos el nodo con menor f(n) de la lista abierta*/        
@@ -490,7 +491,7 @@ void Unidad::recorrido(int destinox, int destinoy)
         {
             movs=cerrada;
         }
-        else if(movs==NULL)
+        else if(movs.empty()==true)
         {
             /*obtenemos los adyacentes*/
             
@@ -498,7 +499,7 @@ void Unidad::recorrido(int destinox, int destinoy)
             if(Escenario::Instance()->getMapa()->getCasillaPintada(n->getCoordenadas().x+16,n->getCoordenadas().y)==true)
             {
                 //creo vector con las posiciones de la siguiente celda
-                posaux= new sf::Vector2i(n->getCoordenadas().x+16,n->getCoordenadas().y);
+                posaux= sf::Vector2i(n->getCoordenadas().x+16,n->getCoordenadas().y);
                 g=n->getG()+coste;
                 manhatan=abs(posaux.x-destinox)+abs(posaux.y-destinoy);
                 f=g+manhatan;
@@ -509,7 +510,7 @@ void Unidad::recorrido(int destinox, int destinoy)
             //izquierda
             if(Escenario::Instance()->getMapa()->getCasillaPintada(n->getCoordenadas().x-16,n->getCoordenadas().y)==true)
             {
-                posaux= new sf::Vector2i(n->getCoordenadas().x-16,n->getCoordenadas().y);
+                posaux= sf::Vector2i(n->getCoordenadas().x-16,n->getCoordenadas().y);
                 g=n->getG()+coste;
                 manhatan=abs(posaux.x-destinox)+abs(posaux.y-destinoy);
                 f=g+manhatan;
@@ -520,7 +521,7 @@ void Unidad::recorrido(int destinox, int destinoy)
             //arriba
             if(Escenario::Instance()->getMapa()->getCasillaPintada(n->getCoordenadas().x,n->getCoordenadas().y-16)==true)
             {
-                posaux= new sf::Vector2i(n->getCoordenadas().x,n->getCoordenadas().y-16);
+                posaux= sf::Vector2i(n->getCoordenadas().x,n->getCoordenadas().y-16);
                 g=n->getG()+coste;
                 manhatan=abs(posaux.x-destinox)+abs(posaux.y-destinoy);
                 f=g+manhatan;
@@ -531,7 +532,7 @@ void Unidad::recorrido(int destinox, int destinoy)
             //abajo
             if(Escenario::Instance()->getMapa()->getCasillaPintada(n->getCoordenadas().x,n->getCoordenadas().y+16)==true)
             {
-                posaux= new sf::Vector2i(n->getCoordenadas().x,n->getCoordenadas().y+16);
+                posaux= sf::Vector2i(n->getCoordenadas().x,n->getCoordenadas().y+16);
                 g=n->getG()+coste;
                 manhatan=abs(posaux.x-destinox)+abs(posaux.y-destinoy);
                 f=g+manhatan;
@@ -548,8 +549,8 @@ void Unidad::recorrido(int destinox, int destinoy)
                 for(int j=0;j<cerrada.size();j++)
                 {
                     if(cerrada.at(j)->getCoordenadas().x==abierta.at(i)->getCoordenadas().x && cerrada.at(j)->getCoordenadas().y==abierta.at(i)->getCoordenadas().y){
-                        iterator = abierta.begin()+i;
-                        abierta.erase(iterator);
+                        iter = abierta.begin()+i;
+                        abierta.erase(iter);
                         break;
                     }
                 }
@@ -560,12 +561,12 @@ void Unidad::recorrido(int destinox, int destinoy)
                     if(abierta.at(w)->getCoordenadas().x==abierta.at(i)->getCoordenadas().x && abierta.at(w)->getCoordenadas().y==abierta.at(i)->getCoordenadas().y){
                         if(w!=i){
                             if(abierta.at(w)->getG()<abierta.at(i)->getG()){
-                                iterator = abierta.begin()+i;
-                                abierta.erase(iterator);
+                                iter = abierta.begin()+i;
+                                abierta.erase(iter);
                             }
                             else{
-                                iterator = abierta.begin()+w;
-                                abierta.erase(iterator);
+                                iter = abierta.begin()+w;
+                                abierta.erase(iter);
                             }
                             break;
                         }

@@ -177,6 +177,12 @@ bool Escenario::hayunidad()
     return resultado;
 }
 
+Mapa* Escenario::getMapa() 
+{
+    return mapa;
+}
+
+
 void Escenario::mostrarCuadriculaUnidad(int f, int c, int rangoUnidad, int color){
     
     mapa->setSpriteColor(color, c, f, 1);

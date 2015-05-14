@@ -9,9 +9,12 @@
 #define	UNIDAD_H
 #include "../headers/Armas.h"
 #include "../headers/Objetos.h"
+#include "../headers/Celda.h"
+#include <vector>
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+
 #include <stdio.h>
 #include <string>
 
