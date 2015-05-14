@@ -208,6 +208,7 @@ void EstadoConversacion::update_State()
     if(reloj3->getElapsedTime().asSeconds() >= 0.2) {
         if(quienHabla == 0){
             personajeIzq->setTextureRect(IntRect(contX*177, contY*127, 170, 127));
+            //169/125
         }else{
             personajeDer->setTextureRect(IntRect(contX*177, contY*127, 170, 127));
         }

@@ -6,22 +6,25 @@
  */
 
 
-//#include "tinyxml2.h"
 #include "../headers/Aliadas.h"
 #include "../headers/Enemigo.h"
 #include "../headers/Escenario.h"
 #include "../headers/Estado.h"
 #include "../headers/Juego.h"
 #include "../headers/Mapa.h"
+//#include "tinyxml2.h"
 
 #include <iostream>
 #include <sstream>
 #include <string>
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
+
 //using namespace tinyxml2;
 using namespace std;
 using namespace sf;
+
+#define kVel 20
 
 Escenario* Escenario::pinstance = 0;
 
@@ -369,8 +372,8 @@ void Escenario::update_State(){
     if (reloj->getElapsedTime().asMilliseconds() >= 100) {
         
         if(aliadas[0]->getMueve()==true){
-            cerr << aliadas[0]->getSprite().getPosition().x << "<->" << aliadas[0]->getDestinoX() << "     " << aliadas[0]->getSprite().getPosition().y << "<->" << aliadas[0]->getDestinoY() << endl;
-            if(aliadas[0]->getSprite().getPosition().x == aliadas[0]->getDestinoX() && aliadas[0]->getSprite().getPosition().y == aliadas[0]->getDestinoY()){
+            //cerr << aliadas[0]->getSprite().getPosition().x << "<->" << aliadas[0]->getDestinoX() << "     " << aliadas[0]->getSprite().getPosition().y << "<->" << aliadas[0]->getDestinoY() << endl;
+            if(aliadas[0]->verSiHaLlegado() == true){
                 aliadas[0]->haLlegado();
                 if(aliadas[0]->getSprite().getPosition().x == spriteCursor->getPosition().x && aliadas[0]->getSprite().getPosition().y == spriteCursor->getPosition().y){
                     aux = 0;
@@ -379,8 +382,6 @@ void Escenario::update_State(){
                     Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu); 
                 }else{
                     aux++;
-                    cerr << "AAAAAAAA " << aux << " " << aliadas[0]->getRecorrido()[aux] << endl;
-                    
                     switch(aliadas[0]->getRecorrido()[aux]){
                         case 1:
                             aliadas[0]->moverDerecha(); 
@@ -395,27 +396,26 @@ void Escenario::update_State(){
                             aliadas[0]->moverAbajo(); 
                             break;
                     }
-                    //aliadas[0]->recorre();
                 }  
             }else{
                 Time tiempoPasado = reloj->restart();
                 float ti = tiempoPasado.asSeconds();
-                cerr << -10*ti << "   " << aux << " " << aliadas[0]->getRecorrido()[aux] << endl;
+                
                 switch(aliadas[0]->getRecorrido()[aux]){
                     case 1:
-                        aliadas[0]->setPosition(aliadas[0]->getSprite().getPosition().x+(10*ti),aliadas[0]->getSprite().getPosition().y);
+                        aliadas[0]->setPosition(aliadas[0]->getSprite().getPosition().x+(kVel*ti),aliadas[0]->getSprite().getPosition().y);
                         aliadas[0]->cambiaSprite(cont*32, 32, 20, 20);
                         break;
                     case 2:
-                        aliadas[0]->setPosition(aliadas[0]->getSprite().getPosition().x,aliadas[0]->getSprite().getPosition().y-(10*ti));
+                        aliadas[0]->setPosition(aliadas[0]->getSprite().getPosition().x,aliadas[0]->getSprite().getPosition().y-(kVel*ti));
                         aliadas[0]->cambiaSprite(cont*32, 128, 20, 20);
                         break;
                     case -1:
-                        aliadas[0]->setPosition(aliadas[0]->getSprite().getPosition().x-(10*ti),aliadas[0]->getSprite().getPosition().y);
+                        aliadas[0]->setPosition(aliadas[0]->getSprite().getPosition().x-(kVel*ti),aliadas[0]->getSprite().getPosition().y);
                         aliadas[0]->cambiaSprite(cont*32, 64, 20, 20);
                         break;
                     case -2:
-                        aliadas[0]->setPosition(aliadas[0]->getSprite().getPosition().x,aliadas[0]->getSprite().getPosition().y+(10*ti));
+                        aliadas[0]->setPosition(aliadas[0]->getSprite().getPosition().x,aliadas[0]->getSprite().getPosition().y+(kVel*ti));
                         aliadas[0]->cambiaSprite(cont*32, 96, 20, 20);
                         break;
                         
@@ -430,9 +430,7 @@ void Escenario::update_State(){
                 input();
             }
         }
-        
         reloj->restart();
-        
     }
     
     //Reloj del turno del enemigo
@@ -451,7 +449,6 @@ void Escenario::update_State(){
                 break;
             case 3:
                 turnoEnemigo++;
-                //reloj2->restart();
                 fasesEnemigo = 0;
                     
                 if(turnoEnemigo == mapa->getNumEnemigos()){
@@ -466,10 +463,6 @@ void Escenario::update_State(){
         }
         
         fasesEnemigo++;
-        /*
-        delete reloj2;
-        *turnoUsu=true;
-        */
     }
 }
 

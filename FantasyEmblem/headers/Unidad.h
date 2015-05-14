@@ -63,7 +63,6 @@ public:
     
     Sprite getSprite();
     
-
     void setPV(int);
 
     Armas* getArma();
@@ -88,6 +87,7 @@ public:
     void verStats();
     
     void haLlegado();
+    bool verSiHaLlegado();
     
     int getDestinoX();
     int getDestinoY();
@@ -125,6 +125,7 @@ protected:
     
     int destinoX;
     int destinoY;
+    int direccionDestino;
     
 };
 

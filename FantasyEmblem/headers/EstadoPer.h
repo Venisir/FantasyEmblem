@@ -46,8 +46,6 @@ private:
     void render_State();
     void update_State();
     
-   
-    
     sf::Texture *texturaMenu;
     sf::Font* fuente;
     sf::Text* t_stats;

@@ -27,11 +27,6 @@ using namespace sf;
 class EstadoBatall: public Estado {
 public:
     static EstadoBatall* Instance();
-    /*
-    void Pause();
-    void Resume();
-    */
-    //void init();
     void input();
     
 protected: 

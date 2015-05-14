@@ -26,11 +26,6 @@ class EstadoPause: public Estado{
 public:
     
     static EstadoPause* Instance();
-    /*
-    void Pause();
-    void Resume();
-    */
-    //void init();
     void input();
         
 protected:

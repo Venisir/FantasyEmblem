@@ -25,11 +25,6 @@ class PantallaStart: public Estado{
 public:
     
     static PantallaStart* Instance();
-    /*
-    void Pause();
-    void Resume();
-    */
-    //void init();
     void input();
     void pararmusica();
     

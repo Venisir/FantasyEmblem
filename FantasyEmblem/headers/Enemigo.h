@@ -12,7 +12,6 @@
 #include "../headers/Cofre.h"
 #include "../headers/Armas.h"
 #include "../headers/Objetos.h"
-//#include "../headers/Aliadas.h"
 
 #include <iostream>
 #include <SFML/Graphics.hpp>

@@ -28,22 +28,15 @@ class MenuPrincipal: public Estado{
 public:
     
     static MenuPrincipal* Instance();
-    /*
-    void Pause();
-    void Resume();
-    */
-    //void init();
     void input();
     
     void cambiaSpriteCursorMano();
     void cambiaSpriteCursorSeleccionar();
-        
     
     void MoveUp();
     void MoveDown();
     void Exit();
     int getSelectedItemIndex();
-    
     
 protected:
     MenuPrincipal();

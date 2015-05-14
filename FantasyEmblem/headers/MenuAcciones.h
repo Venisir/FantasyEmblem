@@ -25,7 +25,6 @@
 #include <stdio.h>
 #include <string>
 
-
 class MenuAcciones:public Estado {
 public:
     static MenuAcciones* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno);
@@ -40,7 +39,6 @@ private:
     void init_State();
     void render_State();
     void update_State();
-    
     
     sf::Texture *texturaMenu;
     sf::Texture *texturaDedo;

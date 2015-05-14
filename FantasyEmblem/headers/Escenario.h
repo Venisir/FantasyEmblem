@@ -30,11 +30,7 @@ class Escenario: public Estado{
 public:
     
     static Escenario* Instance();
-    /*
-    void Pause();
-    void Resume();
-    */
-    //void init();
+    
     void input();
     
     void cambiaSpriteCursorMano();
@@ -72,7 +68,6 @@ private:
     sf::Sound* mapasonido1;
     
     Mapa* mapa;
-    //Aliadas* unidadWena;
     
     int cursorActivo;
     int varCursor;

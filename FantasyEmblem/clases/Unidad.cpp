@@ -52,6 +52,7 @@ Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int
     
     destinoX = 0;
     destinoY = 0;
+    direccionDestino = 0;
 }
 
 Unidad::~Unidad() {
@@ -82,24 +83,28 @@ void Unidad::moverArriba(){
     destinoX = spriteUnidad->getPosition().x;
     destinoY = spriteUnidad->getPosition().y-16;
     setMueve(true);
+    direccionDestino = 2;
 }
 
 void Unidad::moverAbajo(){
     destinoX = spriteUnidad->getPosition().x;
     destinoY = spriteUnidad->getPosition().y+16;
     setMueve(true);
+    direccionDestino = -2;
 }
 
 void Unidad::moverIzquierda(){
     destinoX = spriteUnidad->getPosition().x-16;
     destinoY = spriteUnidad->getPosition().y;
     setMueve(true);
+    direccionDestino = -1;
 }
 
 void Unidad::moverDerecha(){
     destinoX = spriteUnidad->getPosition().x+16;
     destinoY = spriteUnidad->getPosition().y;
     setMueve(true);
+    direccionDestino = 1;
 }
 
 void Unidad::setMueve(bool b) {
@@ -108,6 +113,45 @@ void Unidad::setMueve(bool b) {
 
 void Unidad::haLlegado() {
     setMueve(false);
+}
+
+bool Unidad::verSiHaLlegado() {
+    
+    bool ret;
+    ret = false;
+    
+    switch(direccionDestino){
+        //derecha
+        case 1:
+            if(this->getSprite().getPosition().x >= this->getDestinoX() && this->getSprite().getPosition().y == this->getDestinoY()){
+                ret = true;
+                this->setPosition(getDestinoX(), getDestinoY());
+            }
+            break;
+        //arriba
+        case 2:
+            if(this->getSprite().getPosition().x == this->getDestinoX() && this->getSprite().getPosition().y <= this->getDestinoY()){
+                ret = true;
+                this->setPosition(getDestinoX(), getDestinoY());
+            }
+            break;
+        //izquierda
+        case -1:
+            if(this->getSprite().getPosition().x <= this->getDestinoX() && this->getSprite().getPosition().y == this->getDestinoY()){
+                ret = true;
+                this->setPosition(getDestinoX(), getDestinoY());
+            }
+            break;
+        //abajo
+        case -2:
+            if(this->getSprite().getPosition().x == this->getDestinoX() && this->getSprite().getPosition().y >= this->getDestinoY()){
+                ret = true;
+                this->setPosition(getDestinoX(), getDestinoY());
+            }
+            break;       
+    }
+    
+    return ret;
 }
 
 bool Unidad::getMueve() {

@@ -66,7 +66,6 @@ private:
     static Juego* pinstance;
     
     //Pila de estados
-    
     vector<Estado*> states;
     
     RenderWindow* ventana;
