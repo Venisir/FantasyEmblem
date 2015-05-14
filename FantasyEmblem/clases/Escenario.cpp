@@ -365,7 +365,7 @@ void Escenario::update_State(){
         relojCursor->restart();
     }
     
-    //Reloj del input
+    //Reloj del input y del movimiento
     if (reloj->getElapsedTime().asMilliseconds() >= 100) {
         
         if(aliadas[0]->getMueve()==true){
@@ -424,14 +424,15 @@ void Escenario::update_State(){
                 if(cont==4)
                     cont = 0;
             }
+        }else{            
+            if(*turnoUsu==true)
+            {
+                input();
+            }
         }
         
         reloj->restart();
         
-        if(*turnoUsu==true)
-        {
-            input();
-        }
     }
     
     //Reloj del turno del enemigo
@@ -581,45 +582,20 @@ void Escenario::input() {
                     }
                     else
                     {
-                        if(mapa->getColision(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true && mapa->puedeMoverseAqui(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true){
+                        if(aliadas[*unidad_sel]->getPosicionSpriteX()==spriteCursor->getPosition().x && aliadas[*unidad_sel]->getPosicionSpriteY()==spriteCursor->getPosition().y){
                             quitarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango());
-                            aliadas[*unidad_sel]->recorre();
-                            aliadas[*unidad_sel]->hayPuerta(mapa);
-                            //devuelve las casillas de la cuadricula a su estado original
-                            //*unidad_sel=-1;
-                            
-                            
-                        }
-                        
-                    }
-                    /*
-                    if(varCursor == 0){
-                        if(spriteCursor->getPosition().x == aliadas[0]->getPosicionSpriteX() &&
-                            spriteCursor->getPosition().y == aliadas[0]->getPosicionSpriteY()){
-                            
-                            aliadas[0]->verStats();
-                            cambiaSpriteCursorMano();
-
-                            mostrarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango());
-
-                        }
-                        if(spriteCursor->getPosition().x == enemigos[0]->getPosicionSpriteX() &&
-                            spriteCursor->getPosition().y == enemigos[0]->getPosicionSpriteY()){
-                            
-                            enemigos[0]->verStats();
-                            cambiaSpriteCursorMano();
-
-                        }
-                    }else{
-                        //if(spriteCursor->getPosition().x == aliadas[0]->getPosicionCeldaX() &&
-                        //    spriteCursor->getPosition().y == aliadas[0]->getPosicionCeldaY()){
-
                             cambiaSpriteCursorSeleccionar();
-
-                        //}
+                            *unidad_sel=-1;
+                        }else{
+                            if(mapa->getColision(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true && mapa->puedeMoverseAqui(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true){
+                                quitarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango());
+                                aliadas[*unidad_sel]->recorre();
+                                aliadas[*unidad_sel]->hayPuerta(mapa);
+                                //devuelve las casillas de la cuadricula a su estado original
+                                //*unidad_sel=-1;
+                            }
+                        }
                     }
-                    
-                    */
                 break;
                 
                 case sf::Keyboard::A:
