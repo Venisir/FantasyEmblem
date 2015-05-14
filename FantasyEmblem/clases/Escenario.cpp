@@ -46,6 +46,7 @@ Escenario::Escenario() {
     cofres=new Cofre*[5];
     unidad_sel=new int();
     turnoUsu=new bool();
+    primeritaVes=new bool();
     mapasonido=new SoundBuffer();
     mapasonido1= new Sound();
     
@@ -61,14 +62,7 @@ Escenario::Escenario() {
     aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png", 0);
     //enemigos[4] = new Enemigo("AlbertoMalo", "Guerrero", atri, 8, 2, "Mapa_espadachin_rojo.png");
     
-    aliadas[0]->setPosition(176,176);
     //enemigos[4]->setPosition(208,176);
-    
-    fasesEnemigo = 1;
-    turnoEnemigo = 0;
-    
-    *unidad_sel=-1;
-    *turnoUsu=true;
     
     init_State();
 }
@@ -91,6 +85,7 @@ Escenario::~Escenario() {
     delete t_stats;
     delete texturaMenuStats;
     delete spriteMenuStats;
+    delete primeritaVes;
 }
 
 void Escenario::init_State(){
@@ -136,6 +131,17 @@ void Escenario::init_State(){
     
     tieneQueMostrarStats = false;
 
+    aliadas[0]->setPosition(176,176);
+    
+    fasesEnemigo = 1;
+    turnoEnemigo = 0;
+    
+    *unidad_sel=-1;
+    *turnoUsu=true;
+    *primeritaVes = true;
+    
+    cont = 0;
+    aux = 0;
 }
 void Escenario::paramusic(){
     mapasonido1->stop();
@@ -331,7 +337,14 @@ void Escenario::render_State(){
 
 void Escenario::update_State(){
     
+    //Reloj del cursor
     if (relojCursor->getElapsedTime().asSeconds() >= 0.5) {
+           
+        if(*primeritaVes == true){
+            *primeritaVes = false;
+            cerr << "GRINGO, A HABLAR" << endl;
+            Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu);     
+        }
         
         aliadas[0]->cambiaSpriteQuieto();
         for(int x=0; x<mapa->getNumEnemigos(); x++){
@@ -352,7 +365,67 @@ void Escenario::update_State(){
         relojCursor->restart();
     }
     
+    //Reloj del input
     if (reloj->getElapsedTime().asMilliseconds() >= 100) {
+        
+        if(aliadas[0]->getMueve()==true){
+            cerr << aliadas[0]->getSprite().getPosition().x << "<->" << aliadas[0]->getDestinoX() << "     " << aliadas[0]->getSprite().getPosition().y << "<->" << aliadas[0]->getDestinoY() << endl;
+            if(aliadas[0]->getSprite().getPosition().x == aliadas[0]->getDestinoX() && aliadas[0]->getSprite().getPosition().y == aliadas[0]->getDestinoY()){
+                aliadas[0]->haLlegado();
+                if(aliadas[0]->getSprite().getPosition().x == spriteCursor->getPosition().x && aliadas[0]->getSprite().getPosition().y == spriteCursor->getPosition().y){
+                    aux = 0;
+                    aliadas[0]->cambiaSprite(0, 0, 20, 20);
+                    cambiaSpriteCursorSeleccionar();
+                    Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu); 
+                }else{
+                    aux++;
+                    cerr << "AAAAAAAA " << aux << " " << aliadas[0]->getRecorrido()[aux] << endl;
+                    
+                    switch(aliadas[0]->getRecorrido()[aux]){
+                        case 1:
+                            aliadas[0]->moverDerecha(); 
+                            break;
+                        case 2:
+                            aliadas[0]->moverArriba(); 
+                            break;
+                        case -1:
+                            aliadas[0]->moverIzquierda(); 
+                            break;
+                        case -2:
+                            aliadas[0]->moverAbajo(); 
+                            break;
+                    }
+                    //aliadas[0]->recorre();
+                }  
+            }else{
+                Time tiempoPasado = reloj->restart();
+                float ti = tiempoPasado.asSeconds();
+                cerr << -10*ti << "   " << aux << " " << aliadas[0]->getRecorrido()[aux] << endl;
+                switch(aliadas[0]->getRecorrido()[aux]){
+                    case 1:
+                        aliadas[0]->setPosition(aliadas[0]->getSprite().getPosition().x+(10*ti),aliadas[0]->getSprite().getPosition().y);
+                        aliadas[0]->cambiaSprite(cont*32, 32, 20, 20);
+                        break;
+                    case 2:
+                        aliadas[0]->setPosition(aliadas[0]->getSprite().getPosition().x,aliadas[0]->getSprite().getPosition().y-(10*ti));
+                        aliadas[0]->cambiaSprite(cont*32, 128, 20, 20);
+                        break;
+                    case -1:
+                        aliadas[0]->setPosition(aliadas[0]->getSprite().getPosition().x-(10*ti),aliadas[0]->getSprite().getPosition().y);
+                        aliadas[0]->cambiaSprite(cont*32, 64, 20, 20);
+                        break;
+                    case -2:
+                        aliadas[0]->setPosition(aliadas[0]->getSprite().getPosition().x,aliadas[0]->getSprite().getPosition().y+(10*ti));
+                        aliadas[0]->cambiaSprite(cont*32, 96, 20, 20);
+                        break;
+                        
+                }
+                cont++;
+                if(cont==4)
+                    cont = 0;
+            }
+        }
+        
         reloj->restart();
         
         if(*turnoUsu==true)
@@ -361,6 +434,7 @@ void Escenario::update_State(){
         }
     }
     
+    //Reloj del turno del enemigo
     if(*turnoUsu==false && reloj2->getElapsedTime().asSeconds() >= 1)
     {
         tieneQueMostrarStats = false;
@@ -459,15 +533,15 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad1:
-                    cambiaSpriteCursorSeleccionar();             
+                        aliadas[0]->hayPuerta(mapa);           
                 break;
                 
                 case sf::Keyboard::Numpad2:
-                    cambiaSpriteCursorMano();               
+                    aliadas[0]->getSprite().setTextureRect(sf::IntRect(2*32, 64, 20, 20));
                 break;
                 
                 case sf::Keyboard::Numpad3:
-                    aliadas[0]->verStats();
+                    Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu);
                 break;
                 
                 case sf::Keyboard::Numpad4:
@@ -510,11 +584,10 @@ void Escenario::input() {
                         if(mapa->getColision(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true && mapa->puedeMoverseAqui(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true){
                             quitarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango());
                             aliadas[*unidad_sel]->recorre();
+                            aliadas[*unidad_sel]->hayPuerta(mapa);
                             //devuelve las casillas de la cuadricula a su estado original
                             //*unidad_sel=-1;
                             
-                            cambiaSpriteCursorSeleccionar();
-                            Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu); 
                             
                         }
                         

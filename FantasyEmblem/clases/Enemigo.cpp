@@ -29,4 +29,27 @@ Enemigo::Enemigo(const char* name, const char* clas, int atributo[],int nivel, i
 
 Enemigo::~Enemigo() {
 }
+/*
+Aliadas* Enemigo::encontrarAliadoMasCercano(Aliadas** aliadas){
+    
+    int posAliX;
+    int posAliY;
+    
+    int aux = 0;
+    
+    for(int i=0; i<1; i++){
+        posAliX = aliadas[i]->getPosicionCeldaX();
+        posAliY = aliadas[i]->getPosicionCeldaY();
+        
+        
+        //Calculo del mas cercano con estrella
+    }
+    
+    return aliadas[aux];
+}
 
+void Enemigo::moverseHaciaAliadoMasCercano(Aliadas* aliado){
+    
+    
+}
+*/

@@ -78,9 +78,12 @@ private:
     int varCursor;
     int *unidad_sel;
     bool *turnoUsu;
+    bool *primeritaVes;
     
     int turnoEnemigo;
     int fasesEnemigo;
+    int aux;
+    int cont;
     
     bool tieneQueMostrarStats;
         

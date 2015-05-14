@@ -18,9 +18,9 @@
 #include "../headers/Enemigo.h"
 #include "../headers/EstadoBatall.h"
 #include "../headers/PantallaStart.h"
+#include "../headers/EstadoConversacion.h"
 #include "../headers/ObjetoSeleccionado.h"
 #include "../headers/EstadoPer.h"
-
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -52,6 +52,7 @@ public:
     void ponerEstadoUnidadSeleccionada();
     void ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
     void ponerEstadoBatalla();
+    void ponerEstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
     void ponerEstadoPantallaInicio();
     void ponerEstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
     void ponerEstadoObjetosSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);

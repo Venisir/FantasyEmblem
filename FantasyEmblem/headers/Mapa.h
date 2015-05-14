@@ -9,10 +9,12 @@
 #define	MAPA_H
 #include <SFML/Graphics.hpp>
 #include "../tinyxml2.h"
+
 #include "../headers/Cofre.h"
 #include "../headers/Unidad.h"
-#include "../headers/Aliadas.h"
+//#include "../headers/Aliadas.h"
 #include "../headers/Enemigo.h"
+
 class Mapa {
 public:
     Mapa();
@@ -29,6 +31,7 @@ public:
     bool puedeMoverseAqui(int i, int j);
     void setSpriteColorAtaque(int i, int j);
     void defaultSpriteColorAtaque(int i, int j);
+    void quitarPuerta();
     
     Enemigo** getEnemigos();
     Cofre** getCofres();

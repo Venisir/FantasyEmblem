@@ -12,6 +12,7 @@
 #include "../headers/Mapa.h"
 #include "../headers/MenuAcciones.h"
 #include "../headers/EstadoBatall.h"
+#include "../headers/EstadoConversacion.h"
 #include "../headers/EstadoObjetos.h"
 
 #include <iostream>
@@ -120,6 +121,11 @@ void Juego::ponerEstadoPause(){
 void Juego::ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)
 {
     states.push_back(MenuAcciones::Instance(map,al,ene,cofr,indice,turno));
+}
+
+void Juego::ponerEstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)
+{
+    states.push_back(EstadoConversacion::Instance(map,al,ene,cofr,indice,turno));
 }
 
 void Juego::ponerEstadoBatalla(){

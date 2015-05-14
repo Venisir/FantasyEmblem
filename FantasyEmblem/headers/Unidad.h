@@ -34,6 +34,7 @@ public:
     void setDefm(int);
     
     void cambiaSpriteQuieto();
+    void cambiaSprite(int a, int b, int c, int d);
     void setPosition(int i, int j);
     
     void moverArriba();
@@ -67,7 +68,9 @@ public:
 
     Armas* getArma();
     int getPV();
-
+    
+    bool getMueve();
+    void setMueve(bool b);
     
     int VelocidadAtaque();
     int Evadir();
@@ -83,6 +86,11 @@ public:
     void Draw();
     
     void verStats();
+    
+    void haLlegado();
+    
+    int getDestinoX();
+    int getDestinoY();
     
 protected:
     //Nombre
@@ -112,7 +120,11 @@ protected:
     bool siguienteSumar;
     
     bool activo;
+    bool mueve;
     int PVactual;
+    
+    int destinoX;
+    int destinoY;
     
 };
 
