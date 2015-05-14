@@ -21,7 +21,7 @@ Unidad::Unidad()
 Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu) {
     nombre = name;
     clase = clas;
-    arma_actual = new Armas("Espadon Sangriento", "Espada", 1, 1, 1, 1, 1);
+    arma_actual = new Armas("Espada", "Espada", 1, 1, 1, 1, 1, "espada.png");
     for(int i=0; i<7; i++)
         atributos[i] = atributo[i];
     lvl = nivel;

@@ -35,6 +35,9 @@ public:
     bool usarObjeto(Objetos* obj);
     bool abrirCofre(Cofre* cofre);
     bool equiparArma(Armas* arma);
+    int getExp();
+    Armas** getArmas();
+    Objetos** getObjetos();
     
 private:
     int experiencia;

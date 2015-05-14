@@ -149,4 +149,19 @@ bool Aliadas::abrirCofre(Cofre* cofre){
      recorrido=new int[rango];
      ultimo_mov=0;
      std::cerr << endl;
+     
+     
  }
+ 
+ int Aliadas::getExp(){
+         
+    return experiencia;
+}
+ 
+Armas** Aliadas::getArmas(){
+    return inventarioArmas;
+} 
+
+Objetos** Aliadas::getObjetos(){
+    return inventarioObjetos;
+}

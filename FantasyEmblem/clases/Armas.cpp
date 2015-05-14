@@ -20,7 +20,7 @@ using namespace std;
 using namespace sf;
 
 
-Armas::Armas(const char* nom, const char* tip, int pes, int pod, int golp, int alcan, int usos) {
+Armas::Armas(const char* nom, const char* tip, int pes, int pod, int golp, int alcan, int usos, const char* nombArma) {
     
     Nombre=nom;
     Tipo=tip;
@@ -30,11 +30,30 @@ Armas::Armas(const char* nom, const char* tip, int pes, int pod, int golp, int a
     Golpe=golp;
     Alcance=alcan;
     Usos=usos;
+    
+    spriteArma = new Sprite();
+    texturaArma = new Texture();
+    
+    string s1 = string(nombArma);
+    string s = "resources/"+s1;
+    
+    if (!texturaArma->loadFromFile(s))
+    {
+        std::cerr << "Error cargando la imagen textura del arma";
+        exit(0);
+    }
+    
+    spriteArma->setTexture(*texturaArma);
+    
 }
 
 Armas::~Armas() {
 }
 
+Sprite Armas::getSprite()
+{
+    return *spriteArma;
+}
 const char* Armas::getNombre(){
     return Nombre;
 }

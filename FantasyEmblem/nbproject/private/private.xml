@@ -7,15 +7,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/headers/PantallaStart.h</file>
-            <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/clases/MenuPrincipal.cpp</file>
-            <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/headers/Juego.h</file>
-            <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/clases/Juego.cpp</file>
+            <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/headers/Unidad.h</file>
+            <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/headers/EstadoObjetos.h</file>
+            <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/clases/Unidad.cpp</file>
+            <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/headers/ObjetoSeleccionado.h</file>
+            <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/clases/Armas.cpp</file>
             <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/clases/Escenario.cpp</file>
-            <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/headers/EstadoPer.h</file>
-            <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/clases/EstadoPer.cpp</file>
-            <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/clases/PantallaStart.cpp</file>
-            <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/headers/Escenario.h</file>
+            <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/clases/Mapa.cpp</file>
+            <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/clases/EstadoObjetos.cpp</file>
+            <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/clases/ObjetoSeleccionado.cpp</file>
+            <file>file:/C:/Users/Oliver%20Rull/Documents/GitHub/FantasyEmblem/FantasyEmblem/headers/Armas.h</file>
         </group>
     </open-files>
 </project-private>

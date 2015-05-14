@@ -32,6 +32,7 @@ class EstadoObjetos:public Estado {
 public:
     static EstadoObjetos* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno);
     void input();
+    void mostrarItems();
     
 protected:
     EstadoObjetos();
@@ -43,6 +44,8 @@ private:
     void render_State();
     void update_State();
     
+    sf::Sprite *arma;
+    sf::Font* fuente;
     sf::Texture *texturaMenu1;
     sf::Texture *texturaMenu;
     sf::Texture *texturaDedo;
@@ -52,6 +55,8 @@ private:
     sf::Clock *reloj;
     sf::Clock *reloj2;
     sf::Event *evento;
+    sf::Text* stats;
+    sf::Text* stats1;
     int cont;
     bool cursorActivo;
     bool *turnoUsu;

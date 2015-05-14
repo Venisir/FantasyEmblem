@@ -7,7 +7,13 @@
 
 #include "../headers/EstadoObjetos.h"
 
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <SFML/Graphics.hpp>
+
 using namespace std;
+using namespace sf;
 
 EstadoObjetos* EstadoObjetos::pinstance = 0;
 EstadoObjetos* EstadoObjetos::Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)
@@ -30,10 +36,14 @@ EstadoObjetos::EstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cof
     texturaDedo=new Texture();
     texturaMenu=new Texture();
     cursorDedo= new Sprite();
+    arma=new Sprite(),
     menu= new Sprite();
     reloj=new Clock();
     reloj2=new Clock();
     evento=new Event();
+    stats=new Text();
+    stats1=new Text();
+    fuente=new Font();
     cursorActivo=true;
     cont=0;
     m=map;
@@ -48,6 +58,10 @@ EstadoObjetos::EstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cof
 
 EstadoObjetos::~EstadoObjetos() {
     
+    delete arma;
+    delete fuente;
+    delete stats1;
+    delete stats;
     delete texturaDedo;
     delete texturaMenu;
     delete menu;
@@ -85,6 +99,10 @@ void EstadoObjetos::init_State()
 
     menu->setPosition(240,250);
     cursorDedo->setPosition(240,280);
+    
+    fuente->loadFromFile("resources/font.ttf");
+    
+    mostrarItems();
 }
 
 void EstadoObjetos::render_State()
@@ -105,7 +123,47 @@ void EstadoObjetos::render_State()
     }
     Juego::Instance()->getVentana()->draw(*menu);
     Juego::Instance()->getVentana()->draw(*cursorDedo);
+    Juego::Instance()->getVentana()->draw(*stats);
+    Juego::Instance()->getVentana()->draw(*stats1);
+    Juego::Instance()->getVentana()->draw(*arma);
     Juego::Instance()->getVentana()->display();
+}
+
+void EstadoObjetos::mostrarItems(){
+    
+    arma=new Sprite(ali[0]->getArma()->getSprite());
+    std::stringstream ss_stats;
+        ss_stats <<   
+               
+              /* ali[0]->getArma()->getSprite() << */ali[0]->getArma()->getNombre()<<" " << ali[0]->getArma()->getUsos() << "\n" << "\n" 
+               ;
+               
+        
+        std::string s_stats = ss_stats.str();
+
+        stats->setCharacterSize(12);
+        stats->setFont(*fuente);
+        stats->setString(s_stats);
+        
+        stats->setColor(sf::Color::White);
+        stats->setPosition(50,135);
+        arma->setPosition(40,135);
+       /* 
+        std::stringstream ss_stats1;
+        ss_stats1 <<   
+               
+                ali[0]->getArma()->getNombre() << "\n" << "\n" <<
+                ali[0]->getDef() << "\n" << "\n" <<
+                ali[0]->getDefm() << "\n" << "\n" ;
+        std::string s_stats1 = ss_stats1.str();
+
+        stats1->setCharacterSize(12);
+        stats1->setFont(*fuente);
+        stats1->setString(s_stats1);
+        
+        stats1->setColor(sf::Color::White);
+        stats1->setPosition(140,135);
+         */
 }
 
 void EstadoObjetos::update_State()
