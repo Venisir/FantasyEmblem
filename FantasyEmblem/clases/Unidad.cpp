@@ -440,3 +440,139 @@ void Unidad::Atacar(Unidad* uni){
         }
     }
 }
+
+
+void Unidad::recorrido(int destinox, int destinoy) 
+{
+    vector<Celda*> abierta;
+    vector<Celda*> cerrada;
+    sf::Vector2i posaux= sf::Vector2i(getPosicionSpriteX(),getPosicionSpriteY());
+    Celda* n;
+    Celda* ady;
+    
+    
+    int coste=1;//coste de moverse en cualquiera de las 4 direcciones, equivale a g
+    int manhatan,f,g;
+    int menorf;
+    int nodomenor=0;
+    int adyacentes=0;//numero de celdas adyacentes
+    vector<Celda*>::iterator iter;
+    
+    
+    Celda* celdaInicio=new Celda(posaux,0,0,0); //la celda inicio no tiene padre
+    
+    /*Ponemos la celda de inicio en la abierta
+     */
+    abierta.push_back(celdaInicio);
+    
+    while(abierta.empty()!=true && movs.empty()==true)
+    {
+        menorf=100000000000000000000;
+        /*obtenemos el nodo con menor f(n) de la lista abierta*/        
+        for(int i=0;i<abierta.size();i++)
+        {
+            g=abierta.at(i)->getG();
+            manhatan=abs(abierta.at(i)->getCoordenadas().x-destinox)+abs(abierta.at(i)->getCoordenadas().y-destinoy);
+            f=g+manhatan;
+            if(f<menorf)
+            {
+                menorf=f;
+                n=abierta.at(i);
+                nodomenor=i;
+            }
+        }
+        
+        iter=abierta.begin()+nodomenor;
+        abierta.erase(iter);
+        cerrada.push_back(n);
+        
+        //si n es la celda correspondiente al destino
+        if(n->getCoordenadas().x == destinox && n->getCoordenadas().y == destinoy)
+        {
+            movs=cerrada;
+        }
+        else if(movs.empty()==true)
+        {
+            /*obtenemos los adyacentes*/
+            
+            //derecha
+            if(Escenario::Instance()->getMapa()->getCasillaPintada(n->getCoordenadas().x+16,n->getCoordenadas().y)==true)
+            {
+                //creo vector con las posiciones de la siguiente celda
+                posaux= sf::Vector2i(n->getCoordenadas().x+16,n->getCoordenadas().y);
+                g=n->getG()+coste;
+                manhatan=abs(posaux.x-destinox)+abs(posaux.y-destinoy);
+                f=g+manhatan;
+                ady=new Celda(posaux,g,f,manhatan,n);
+                abierta.push_back(ady);
+                adyacentes++;
+            }
+            //izquierda
+            if(Escenario::Instance()->getMapa()->getCasillaPintada(n->getCoordenadas().x-16,n->getCoordenadas().y)==true)
+            {
+                posaux= sf::Vector2i(n->getCoordenadas().x-16,n->getCoordenadas().y);
+                g=n->getG()+coste;
+                manhatan=abs(posaux.x-destinox)+abs(posaux.y-destinoy);
+                f=g+manhatan;
+                ady=new Celda(posaux,g,f,manhatan,n);
+                abierta.push_back(ady);
+                adyacentes++;
+            }
+            //arriba
+            if(Escenario::Instance()->getMapa()->getCasillaPintada(n->getCoordenadas().x,n->getCoordenadas().y-16)==true)
+            {
+                posaux= sf::Vector2i(n->getCoordenadas().x,n->getCoordenadas().y-16);
+                g=n->getG()+coste;
+                manhatan=abs(posaux.x-destinox)+abs(posaux.y-destinoy);
+                f=g+manhatan;
+                ady=new Celda(posaux,g,f,manhatan,n);
+                abierta.push_back(ady);                
+                adyacentes++;
+            }
+            //abajo
+            if(Escenario::Instance()->getMapa()->getCasillaPintada(n->getCoordenadas().x,n->getCoordenadas().y+16)==true)
+            {
+                posaux= sf::Vector2i(n->getCoordenadas().x,n->getCoordenadas().y+16);
+                g=n->getG()+coste;
+                manhatan=abs(posaux.x-destinox)+abs(posaux.y-destinoy);
+                f=g+manhatan;
+                ady=new Celda(posaux,g,f,manhatan,n);
+                abierta.push_back(ady);                   
+                adyacentes++;
+            }
+                       
+            
+            /*Para cada adyacente a n*/
+            for(int i=0;i<abierta.size()-adyacentes;i++)
+            {
+                //comprobamos cual de las celdas adyacentes esta en la lista cerrada ( y borrarla asi de la )
+                for(int j=0;j<cerrada.size();j++)
+                {
+                    if(cerrada.at(j)->getCoordenadas().x==abierta.at(i)->getCoordenadas().x && cerrada.at(j)->getCoordenadas().y==abierta.at(i)->getCoordenadas().y){
+                        iter = abierta.begin()+i;
+                        abierta.erase(iter);
+                        break;
+                    }
+                }
+                
+                /*compruebo si alguna de las adyacentes esta en la lista abierta, en caso de estarlo compruebo cual de las g es mejor y elmino la peor de la lista abierta*/
+                for(int w=0;w<abierta.size();w++)
+                {
+                    if(abierta.at(w)->getCoordenadas().x==abierta.at(i)->getCoordenadas().x && abierta.at(w)->getCoordenadas().y==abierta.at(i)->getCoordenadas().y){
+                        if(w!=i){
+                            if(abierta.at(w)->getG()<abierta.at(i)->getG()){
+                                iter = abierta.begin()+i;
+                                abierta.erase(iter);
+                            }
+                            else{
+                                iter = abierta.begin()+w;
+                                abierta.erase(iter);
+                            }
+                            break;
+                        }
+                    }
+                }
+            }          
+        }
+    }
+}

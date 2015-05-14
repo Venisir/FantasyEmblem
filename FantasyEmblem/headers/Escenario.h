@@ -38,6 +38,7 @@ public:
     void mostrarCuadriculaUnidad(int xx, int yy, int rangoUnidad, int color);
     void quitarCuadriculaUnidad(int xx, int yy, int rangoUnidad);
     bool hayunidad();
+    Mapa* getMapa();
     void mostrarStats(int numUnidad, int tipo);
     void setEnemigo(Enemigo* malo);
     void empiezaturnoIA();

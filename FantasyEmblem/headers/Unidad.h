@@ -9,9 +9,12 @@
 #define	UNIDAD_H
 #include "../headers/Armas.h"
 #include "../headers/Objetos.h"
+#include "../headers/Celda.h"
+#include <vector>
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+
 #include <stdio.h>
 #include <string>
 
@@ -91,6 +94,8 @@ public:
     int getDestinoX();
     int getDestinoY();
     
+    void recorrido(int destinox, int destinoy);//estrella
+    
     
 protected:
     //Nombre
@@ -126,6 +131,9 @@ protected:
     int destinoX;
     int destinoY;
     int direccionDestino;
+    
+    
+    vector<Celda*> movs;
     
 };
 
