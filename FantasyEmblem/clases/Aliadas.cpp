@@ -44,11 +44,12 @@ Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, i
         inventarioObjetos[i]=NULL;
         inventarioArmas[i]=NULL;
     }
-    spriteCofreAbierto = new Sprite();
-    
+    //PRUEBA -> VAMOS A PONERLE UNA LLAVE
+    inventarioObjetos[0] = new Objetos("LlaveInicialCofre", "llaveCofre", 1, 1, "Una llave chachi", 1);
+    inventarioObjetos[1] = new Objetos("LlaveInicialPuerta", "llavePuerta", 1, 1, "Una llave chachi", 1);
+     
     spriteAviso = new Sprite();
     
-    texturaCofreAbierto = new Texture();
     texturaAvisoInventarioArmas = new Texture();
     texturaAvisoInventarioObjetos = new Texture();
     texturaAvisoLlaveCofre = new Texture();
@@ -74,14 +75,7 @@ Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, i
         std::cerr << "Error cargando la imagen textura del aviso de inventario lleno de objetos";
         exit(0);
     }
-    
-    string s = "niveles/Tilev1.png";
-    if (!texturaCofreAbierto->loadFromFile(s))
-    {
-        std::cerr << "Error cargando la imagen textura del cofre abierto";
-        exit(0);
-    }
-               
+           
     string p_noLlave = "resources/avisollavepuerta.png";
     if (!texturaAvisoLlavePuerta->loadFromFile(p_noLlave))
     {
@@ -125,14 +119,14 @@ bool Aliadas::abrirCofre(Cofre* cofre){
     bool abierto = false;
     bool meter = false;
     //recorrer inventario en busca objeto tipo llave
-    for(int i=0;i<3;i++){
+    for(int i=0;i<3 && abierto!=true;i++){
         if(inventarioObjetos[i]!=NULL){
             if(strcmp(inventarioObjetos[i]->getTipo(),"llaveCofre")== 0){
                 abierto = true;
                 //cambiar sprite
-                spriteCofreAbierto->setTexture(*texturaCofreAbierto);
-                spriteCofreAbierto->setTextureRect(IntRect(8*16, 1*16, 16, 16));
-
+                cofre->cambiaTexturaAbierto();
+                cerr << "Hola!" << endl;
+                
                 if(cofre->getArma() != NULL){
                     for(int j=0;j<3;j++){
                         if((inventarioArmas[j]==NULL) && (meter==false)){
@@ -162,10 +156,6 @@ bool Aliadas::abrirCofre(Cofre* cofre){
             }else{
                 spriteAviso->setTexture(*texturaAvisoLlaveCofre);
             } 
-        }else{
-            cerr << "Fun";
-            spriteAviso->setTexture(*texturaAvisoLlaveCofre);
-            cerr << "ciono" << endl;
         }
     }   
     return abierto;
@@ -181,8 +171,17 @@ bool Aliadas::abrirPuerta(Mapa* mapa){
     for(int i=0;i<3 && llave==false;i++){
         if(inventarioObjetos[i]!=NULL){
             if(strcmp(inventarioObjetos[i]->getTipo(),"llavePuerta")== 0){  
-                spriteAviso->setTexture(*texturaAvisoInventarioArmas);
-                cout<<"abro la puerta"<<endl;
+                //spriteAviso->setTexture(*texturaAvisoInventarioArmas);
+                if(mapa->getPuerta(getPosicionSpriteY()+16,getPosicionSpriteX())){
+                    mapa->quitarPuerta(getPosicionSpriteY()+16,getPosicionSpriteX());
+                }else if(mapa->getPuerta(getPosicionSpriteY()-16,getPosicionSpriteX())){
+                    mapa->quitarPuerta(getPosicionSpriteY()-16,getPosicionSpriteX());
+                }else if(mapa->getPuerta(getPosicionSpriteY(),getPosicionSpriteX()+16)){
+                    mapa->quitarPuerta(getPosicionSpriteY(),getPosicionSpriteX()+16);
+                }else if(mapa->getPuerta(getPosicionSpriteY(),getPosicionSpriteX()-16)){
+                    mapa->quitarPuerta(getPosicionSpriteY(),getPosicionSpriteX()-16);
+                }
+                cout<<"He abierto la puerta :D"<<endl;
                 llave=true;
             }
         }

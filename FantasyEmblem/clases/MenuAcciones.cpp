@@ -149,7 +149,6 @@ void MenuAcciones::render_State()
         //}
         enem[x]->Draw();
     }
-    //enemigos[0]->Draw();
     
     for(int x=0; x<m->getNumCofres(); x++){
         cof[x]->Draw();
@@ -272,8 +271,17 @@ void MenuAcciones::input()
                                 case 1:
                                     //abrir cofre
                                     cerr << "Abre el cofre " << endl;
-                                    if(ali[*index]->abrirCofre(m->getCofres()[0])==false){
-                                        renderAviso = 1;
+                                    
+                                    for(int x=0; x<m->getNumCofres(); x++){
+                                        if(m->getCofres()[x]->getPosicionSpriteX() == ali[*index]->getPosicionSpriteX() && m->getCofres()[x]->getPosicionSpriteY() == ali[*index]->getPosicionSpriteY()){
+                                            cerr << "Hay un cofre en la posicion del personaje " << endl;
+                                            if(ali[*index]->abrirCofre(cof[x])==false){
+                                                renderAviso = 1;
+                                            }else{
+                                                menu->setTexture(*texturaMenuNormal);
+                                                numMenu = 3;
+                                            }
+                                        }
                                     }
                                     
                                     cursorActivo = true;
@@ -283,6 +291,9 @@ void MenuAcciones::input()
                                     cerr << "Abre la puerta " << endl;
                                     if(ali[*index]->abrirPuerta(m)==false){
                                         renderAviso = 1;
+                                    }else{
+                                        menu->setTexture(*texturaMenuNormal);
+                                        numMenu = 3;
                                     }
                                     
                                     cursorActivo=true;

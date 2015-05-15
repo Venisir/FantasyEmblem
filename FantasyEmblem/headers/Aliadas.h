@@ -58,8 +58,6 @@ private:
     int* recorrido;
     int ultimo_mov;//ultimo paso hecho
     int pasos;//contador de los pasos realizados
-    Sprite* spriteCofreAbierto;
-    Texture* texturaCofreAbierto;
     Sprite *spriteAviso;
     Texture *texturaAvisoInventarioArmas, *texturaAvisoInventarioObjetos,*texturaAvisoLlaveCofre,*texturaAvisoLlavePuerta;
 };
