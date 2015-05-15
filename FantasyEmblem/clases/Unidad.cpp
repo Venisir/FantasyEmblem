@@ -18,7 +18,7 @@ Unidad::Unidad()
     
 }
 
-Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu) {
+Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, const char* textuBatalla) {
     nombre = name;
     clase = clas;
     arma_actual = new Armas("Espada", "Espada", 1, 1, 1, 1, 1, "espada.png");
@@ -47,6 +47,21 @@ Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int
     spriteUnidad->setTexture(*texturaUnidad);
     spriteUnidad->setTextureRect(IntRect(0, 0, 20, 20));
     
+    spriteBatalla = new Sprite();
+    textBatalla = new Texture();
+	    
+    string s2 = string(textuBatalla);
+    string s3 = "resources/"+s2;
+
+    if (!textBatalla->loadFromFile(s3))
+    {
+        std::cerr << "Error cargando la imagen textura de la unidad";
+        exit(0);
+    }
+
+    spriteBatalla->setTexture(*textBatalla);
+    spriteBatalla->setTextureRect(IntRect(0,0,248,160));
+
     mueve = false;
     //spriteUnidad->setPosition(176,176);
     
@@ -285,7 +300,7 @@ int Unidad::getPV(){
 }
 
 void Unidad::setPV(int PV){
-    PVactual=PV;
+    PVactual=PVactual-PV;
 }
 
 int Unidad::danyoPropio(Unidad* uni){
@@ -617,4 +632,8 @@ void Unidad::muestraMovs(){
     }
         
         //movs.clear();
+}
+
+Sprite Unidad::getSpriteBatalla(){
+    return *spriteBatalla;
 }

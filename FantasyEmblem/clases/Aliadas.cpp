@@ -31,7 +31,7 @@ Aliadas::Aliadas() {
 }
  
  
-Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, int experien):Unidad(name, clas, atributo, nivel, rang, nombreTextu) {
+Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, const char* textuBatalla, int experien):Unidad(name, clas, atributo, nivel, rang, nombreTextu, textuBatalla) {
     experiencia = experien;
      
     recorrido=new int[rango];
@@ -44,13 +44,11 @@ Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, i
         inventarioObjetos[i]=NULL;
         inventarioArmas[i]=NULL;
     }
-    //PRUEBA -> VAMOS A PONERLE UNA LLAVE
-    inventarioObjetos[0] = new Objetos("LlaveInicialCofre", "llaveCofre", 1, 1, "Una llave chachi", 1);
-    inventarioObjetos[1] = new Objetos("LlaveInicialPuerta", "llavePuerta", 1, 1, "Una llave chachi", 1);
-     
-    //inventarioObjetos[0] = new Objetos("LlaveInicialCofre", "llaveCofre", 1, 1, "Una llave chachi", 1);
-    //inventarioObjetos[1] = new Objetos("LlaveInicialPuerta", "llavePuerta", 1, 1, "Una llave chachi", 1);
-
+    //PRUEBA -> VAMOS A PONERLE ALGUNOS OBJETOS
+    inventarioObjetos[0] = new Objetos("LlaveInicialCofre", "llaveCofre", 1, 1, "Una llave chachi", 1, "espada.png");
+    inventarioObjetos[1] = new Objetos("LlaveInicialPuerta", "llavePuerta", 1, 1, "Una llave chachi", 1, "espada.png");
+    inventarioObjetos[2] = new Objetos("Anillo","anillo",3,1,"ooooroooo",false,"espada.png");
+    
     spriteAviso = new Sprite();
     spriteAviso->setOrigin(100/2,45/2);
     spriteAviso->setPosition(240,160);

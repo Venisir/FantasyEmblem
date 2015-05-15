@@ -277,7 +277,7 @@ void MenuAcciones::input()
                                 case 0:
                                     //atacar
                                     cursorActivo = true;
-                                    Juego::Instance()->ponerEstadoBatalla();
+                                    Juego::Instance()->ponerEstadoBatalla(ali[*index],enem[0]);
                                     cursorActivo=true;
                                     haAtacado = true;
                                     menu->setTexture(*texturaMenuNormal);
