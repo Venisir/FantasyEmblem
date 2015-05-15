@@ -157,14 +157,6 @@ void MenuPrincipal::init_State() {
     }
     
     
-    // Le asignamos el buffer cargado
-   /* menusonido->setBuffer(*mainmenu);
-    // establecemos el volumen a 20
-    menusonido->setVolume(30);
-    //reproducir audio del menu
-    menusonido->setLoop(true);
-    menusonido->play();*/
-    
     //cargar el buffer y asignar volumen del cursor y de la seleccion
     cursor->setBuffer(*mmcursor);
     cursor->setVolume(100);

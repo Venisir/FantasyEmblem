@@ -49,6 +49,8 @@ MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr,
     cursorActivo=true;
     turnoUsu=turno;
     
+    mcursor = new SoundBuffer();
+    cursor = new Sound();
     init_State();
 }
 
@@ -67,6 +69,9 @@ MenuAcciones::~MenuAcciones() {
     delete cursorDedo;
     delete reloj;
     delete evento;
+    delete mcursor;
+    delete cursor;
+   
 }
 
 void MenuAcciones::init_State()
@@ -137,6 +142,13 @@ void MenuAcciones::init_State()
     
     haAtacado = false;
     renderAviso = 0;
+    
+    if (!mcursor->loadFromFile("resources/Menu_Cursor.wav")){
+        std::cerr << "Error al cargar el archivo de audio";
+    }
+    
+    cursor->setBuffer(*mcursor);
+    cursor->setVolume(80);
 }
 
 void MenuAcciones::render_State()
@@ -201,6 +213,7 @@ void MenuAcciones::input()
                     {
                         cursorDedo->move(0,-20);
                         cont--;
+                        cursor->play();
                     }
                     break;
                 case sf::Keyboard::Down:
@@ -209,12 +222,14 @@ void MenuAcciones::input()
                         {
                             cursorDedo->move(0,20);
                             cont++;
+                            cursor->play();
                         }
                     }else{
                         if(cont<4 && cursorActivo==true)
                         {
                             cursorDedo->move(0,20);
                             cont++;
+                            cursor->play();
                         }
                     }
                     break;
@@ -289,7 +304,7 @@ void MenuAcciones::input()
                                 case 2:
                                     //abrir puerta
                                     cerr << "Abre la puerta " << endl;
-                                    if(ali[*index]->abrirPuerta(m)==false){
+                                    if((ali[*index]->abrirPuerta(m)==false)){
                                         renderAviso = 1;
                                     }else{
                                         menu->setTexture(*texturaMenuNormal);

@@ -43,6 +43,9 @@ private:
     sf::Text* t_textoPause;
     sf::Clock* reloj;
     sf::Event* evento;
+    
+    sf::SoundBuffer* pause_close;
+    sf::Sound* cpause;
 };
 
 #endif	/* ESTADOPAUSE_H */

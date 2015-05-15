@@ -70,7 +70,8 @@ Escenario::Escenario() {
     //enemigos[4] = new Enemigo("AlbertoMalo", "Guerrero", atri, 8, 2, "Mapa_espadachin_rojo.png");
     
     //enemigos[4]->setPosition(208,176);
-    
+    pause_open = new SoundBuffer();
+    opause = new Sound();
     init_State();
 }
 
@@ -93,7 +94,8 @@ Escenario::~Escenario() {
     delete texturaMenuStats;
     delete spriteMenuStats;
     delete primeritaVes;
-    
+    delete pause_open;
+    delete opause;
     delete spriteAbrirPuerta;
 }
 
@@ -166,10 +168,19 @@ void Escenario::init_State(){
     cont = 0;
     aux = 0;
     
+    if (!pause_open->loadFromFile("resources/PauseMenu_Open.wav")){
+        std::cerr << "Error al cargar el archivo de audio";
+    }
+    
+    opause->setBuffer(*pause_open);
+    opause->setVolume(80);
     
 }
 void Escenario::paramusic(){
     mapasonido1->stop();
+}
+void Escenario::playmusic(){
+    mapasonido1->play();
 }
 
 void Escenario::cambiaSpriteCursorSeleccionar() {
@@ -592,6 +603,8 @@ void Escenario::input() {
                     Juego::Instance()->ponerEstadoMenuPrincipal();              
                 break;
                 case sf::Keyboard::Numpad9:
+                    mapasonido1->pause();
+                    opause->play();
                     Juego::Instance()->ponerEstadoPause();              
                 break;
                 

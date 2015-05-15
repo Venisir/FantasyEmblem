@@ -45,6 +45,8 @@ public:
     void empiezaturnoIA();
     void volverMenuAcciones();
     void paramusic();
+    void pausemusic();
+    void playmusic();
     
     bool getPuertaSi();
     bool getCofreSi();
@@ -98,6 +100,9 @@ private:
     Aliadas** aliadas;//aray de unidades aliadas (posiblemente esten en mapa)
     Enemigo** enemigos;//array de unidades enemigas
     Cofre** cofres;
+    
+    sf::SoundBuffer* pause_open;
+    sf::Sound* opause;
 };
 
 #endif	/* ESCENARIO_H */

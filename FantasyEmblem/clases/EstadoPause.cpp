@@ -36,6 +36,8 @@ EstadoPause::EstadoPause() {
     reloj = new Clock();
     evento = new Event();
     
+    pause_close = new SoundBuffer();
+    cpause = new Sound();
     init_State();
 }
 
@@ -47,6 +49,8 @@ EstadoPause::~EstadoPause() {
     delete evento;
     
     delete pinstance;
+    delete pause_close;
+    delete cpause;
 }
 
 void EstadoPause::init_State(){
@@ -70,6 +74,14 @@ void EstadoPause::init_State(){
                   textRect.top  + textRect.height/2.0f);
     t_textoPause->setPosition(sf::Vector2f(480/2.0f,320/2.0f));
 
+    
+    
+    if (!pause_close->loadFromFile("resources/PauseMenu_Close.wav")){
+        std::cerr << "Error al cargar el archivo de audio";
+    }
+    
+    cpause->setBuffer(*pause_close);
+    cpause->setVolume(80);
 
 }
 
@@ -98,6 +110,8 @@ void EstadoPause::input() {
         if(evento->type == sf::Event::KeyPressed){
             switch(evento->key.code){
                 case sf::Keyboard::Numpad9:
+                    cpause->play();
+                    Escenario::Instance()->playmusic();
                     Juego::Instance()->ponerEstadoEscenario();              
                 break;
                 case sf::Keyboard::Escape:

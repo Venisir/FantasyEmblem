@@ -176,15 +176,23 @@ bool Aliadas::abrirPuerta(Mapa* mapa){
             if(strcmp(inventarioObjetos[i]->getTipo(),"llavePuerta")== 0){  
                 //spriteAviso->setTexture(*texturaAvisoInventarioArmas);
                 if(mapa->getPuerta(getPosicionSpriteY()+16,getPosicionSpriteX())){
+                    cout<<"abajo"<<endl;
                     mapa->quitarPuerta(getPosicionSpriteY()+16,getPosicionSpriteX());
-                }else if(mapa->getPuerta(getPosicionSpriteY()-16,getPosicionSpriteX())){
+                    cout<<"He abierto la puerta :D"<<endl;
+                }else if((spriteUnidad->getPosition().y<0)&&(mapa->getPuerta(getPosicionSpriteY()-16,getPosicionSpriteX()))){
+                    cout<<"arriba"<<endl;
                     mapa->quitarPuerta(getPosicionSpriteY()-16,getPosicionSpriteX());
+                    cout<<"He abierto la puerta :D"<<endl;
                 }else if(mapa->getPuerta(getPosicionSpriteY(),getPosicionSpriteX()+16)){
+                    cout<<"derecha"<<endl;
                     mapa->quitarPuerta(getPosicionSpriteY(),getPosicionSpriteX()+16);
+                    cout<<"He abierto la puerta :D"<<endl;
                 }else if(mapa->getPuerta(getPosicionSpriteY(),getPosicionSpriteX()-16)){
+                    cout<<"izquierda"<<endl;
                     mapa->quitarPuerta(getPosicionSpriteY(),getPosicionSpriteX()-16);
+                    cout<<"He abierto la puerta :D"<<endl;
                 }
-                cout<<"He abierto la puerta :D"<<endl;
+                
                 llave=true;
             }
         }
@@ -382,22 +390,23 @@ int Aliadas::hayCofresCercanos(Mapa* m){
 int Aliadas::hayPuertasCercanas(Mapa* m){
     
     int hayPuerta = 0;
-    
+    bool yano = false;
     //cerr << sizeof(enemigos) << endl;
     //cerr << sizeof(*enemigos) << endl;
     
-        if(m->getPuerta(this->getPosicionSpriteY()+16, this->getPosicionSpriteX())==true){
+        if((m->getPuerta(this->getPosicionSpriteY()+16, this->getPosicionSpriteX())==true)){
             //Esta abajo
             hayPuerta = -2;
+            yano = true;
         }
-        if(m->getPuerta(this->getPosicionSpriteY(), this->getPosicionSpriteX()-16)==true){
+        if((m->getPuerta(this->getPosicionSpriteY(), this->getPosicionSpriteX()-16)==true)){
             hayPuerta = 1;
         }
-        if(m->getPuerta(this->getPosicionSpriteY()-16, this->getPosicionSpriteX())==true){
+        if((m->getPuerta(this->getPosicionSpriteY()-16, this->getPosicionSpriteX())==true)){
             //Esta arriba
             hayPuerta = 2;
         }
-        if(m->getPuerta(this->getPosicionSpriteY(), this->getPosicionSpriteX()+16)==true){
+        if((m->getPuerta(this->getPosicionSpriteY(), this->getPosicionSpriteX()+16)==true)){
             hayPuerta = -1;
         }
     

@@ -65,6 +65,8 @@ private:
     Cofre **cof;
     int *index;//indice de la unidad aliada seleccionada
     int numMenu;//numero de menu que tiene, si tiene el de abrirpuerta, el de abrircofre, el de atacar...
+    sf::SoundBuffer* mcursor;
+    sf::Sound* cursor;
 };
 
 #endif	/* MENUACCIONES_H */
