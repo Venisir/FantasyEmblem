@@ -237,7 +237,7 @@ void MenuPrincipal::input(){
         if(evento->type == sf::Event::KeyPressed){
             switch(evento->key.code){
                 case sf::Keyboard::Down:
-                    MoveDown();                 
+                    MoveDown();
                 break;
                 case sf::Keyboard::Up:
                     MoveUp();
@@ -256,6 +256,40 @@ void MenuPrincipal::input(){
                         Exit();
                     }      
                 break;  
+            }
+        }else{
+            if(sf::Joystick::isConnected(0)){
+                
+                if (evento->type == sf::Event::JoystickMoved)
+                {
+                    if (evento->joystickMove.axis == sf::Joystick::PovX){
+                        if(evento->joystickMove.position == -100){
+                            MoveDown();
+                        }else if(evento->joystickMove.position == +100){
+                            MoveUp();
+                        }
+                    }
+                }
+                
+                if(evento->type == sf::Event::JoystickButtonPressed){
+                    
+                    switch(evento->joystickButton.button){
+
+                        case 2:
+                            if(getSelectedItemIndex()==1){
+                                PantallaStart::Instance()->pararmusica();
+                                Juego::Instance()->ponerEstadoEscenario();
+                            }      
+                            if(getSelectedItemIndex()==2){
+                                Juego::Instance()->ponerEstadoEscenario();
+                                Juego::Instance()->reiniciarEstadoEscenario();
+                            }      
+                            if(getSelectedItemIndex()==3){
+                                Exit();
+                            }
+                        break;
+                    }
+                }
             }
         }
     }

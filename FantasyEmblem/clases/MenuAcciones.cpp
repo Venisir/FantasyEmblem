@@ -203,6 +203,228 @@ void MenuAcciones::update_State()
     }
 }
 
+void MenuAcciones::teclaArriba(){
+    if(cont>0 && cursorActivo==true)//que el contador este a 0 significa que esta en la primera opcion
+    {
+        cursorDedo->move(0,-20);
+        cont--;
+        cursor->play();
+    }
+}
+void MenuAcciones::teclaDerecha(){
+    
+}
+void MenuAcciones::teclaIzquierda(){
+    
+}
+void MenuAcciones::teclaAbajo(){
+    if(numMenu == 3){
+        if(cont<3 && cursorActivo==true)
+        {
+            cursorDedo->move(0,20);
+            cont++;
+            cursor->play();
+        }
+    }else{
+        if(cont<4 && cursorActivo==true)
+        {
+            cursorDedo->move(0,20);
+            cont++;
+            cursor->play();
+        }
+    }
+}
+
+void MenuAcciones::teclaIntro(){
+    cursorActivo = false;
+
+    if(renderAviso != 0){
+        renderAviso = 0;
+        cursorActivo=true;
+    }else if(numMenu == 3){
+        if(cont==0){
+            //estado
+           Juego::Instance()->ponerEstadoPersonaje(m,ali,enem,cof,index,turnoUsu);
+
+           cursorActivo=true;
+        }
+        if(cont==1){
+            //objeto 
+            Juego::Instance()->ponerEstadoObjetos(m,ali,enem,cof,index,turnoUsu);
+
+            cursorActivo=true;
+        }
+        if(cont==2){
+            //interru
+            ali[*index]->setHaJugado(true);
+            cursorActivo=true;
+
+            bool hayMasAliadosPorJugar = false;
+
+            for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
+                if(ali[i]->getHaJugado() == false){
+                    hayMasAliadosPorJugar = true;
+                }
+            }
+
+            if(hayMasAliadosPorJugar == true){
+                //Vuelve al escenario
+                Escenario::Instance()->deseleccionarUnidad();
+                Juego::Instance()->ponerEstadoEscenario();
+            }else{
+                //Se ha acabado el turno de los aliados
+                for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
+                    ali[i]->setHaJugado(false);
+                }
+
+                cursorActivo=true;
+                cont=0;
+                cursorDedo->setPosition(215,260);
+                *index=-1;
+                *turnoUsu=false;
+                haAtacado=false;
+                numMenu = -1;
+
+                Escenario::Instance()->empiezaturnoIA();
+                Escenario::Instance()->deseleccionarUnidad();
+                Juego::Instance()->ponerEstadoEscenario();
+            }
+        }
+        if(cont==3){
+            //fin
+            cursorActivo=true;
+            cont=0;
+            cursorDedo->setPosition(215,260);
+            *index=-1;
+            *turnoUsu=false;
+            haAtacado=false;
+            numMenu = -1;
+
+            for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
+                ali[i]->setHaJugado(false);
+            }
+
+            Escenario::Instance()->empiezaturnoIA();
+            Escenario::Instance()->deseleccionarUnidad();
+            Juego::Instance()->ponerEstadoEscenario();
+        }
+    }else{  
+        if(cont==0)
+        {
+            //atacar, abrir cofre o abrir puerta
+            switch(numMenu){
+                case 0:
+                    //atacar
+                    cursorActivo = true;
+                    Juego::Instance()->ponerEstadoBatalla(ali[*index],enem[0]);
+                    cursorActivo=true;
+                    haAtacado = true;
+                    menu->setTexture(*texturaMenuNormal);
+                    numMenu = 3;
+                    break;
+                case 1:
+                    //abrir cofre
+                    cerr << "Abre el cofre " << endl;
+
+                    for(int x=0; x<m->getNumCofres(); x++){
+                        if(m->getCofres()[x]->getPosicionSpriteX() == ali[*index]->getPosicionSpriteX() && m->getCofres()[x]->getPosicionSpriteY() == ali[*index]->getPosicionSpriteY()){
+                            cerr << "Hay un cofre en la posicion del personaje " << endl;
+                            if(ali[*index]->abrirCofre(cof[x])==false){
+                                renderAviso = 1;
+                            }else{
+                                menu->setTexture(*texturaMenuNormal);
+                                numMenu = 3;
+                            }
+                        }
+                    }
+
+                    cursorActivo = true;
+                    break;
+                case 2:
+                    //abrir puerta
+                    cerr << "Abre la puerta " << endl;
+                    if((ali[*index]->abrirPuerta(m)==false)){
+                        renderAviso = 1;
+                    }else{
+                        menu->setTexture(*texturaMenuNormal);
+                        numMenu = 3;
+                    }
+
+                    cursorActivo=true;
+                    break;
+                default: cerr << "ATENCION, BUGASO" << endl;
+            }
+        }
+
+        if(cont==1){
+            //estado
+           Juego::Instance()->ponerEstadoPersonaje(m,ali,enem,cof,index,turnoUsu);
+
+           cursorActivo=true;
+        }
+        if(cont==2){
+            //objeto 
+            Juego::Instance()->ponerEstadoObjetos(m,ali,enem,cof,index,turnoUsu);
+
+            cursorActivo=true;
+        }
+        if(cont==3){
+            //interru
+            ali[*index]->setHaJugado(true);
+            cursorActivo=true;
+
+            bool hayMasAliadosPorJugar = false;
+
+            for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
+                if(ali[*index]->getHaJugado() == false){
+                    hayMasAliadosPorJugar = true;
+                }
+            }
+
+            if(hayMasAliadosPorJugar == true){
+                //Vuelve al escenario
+                Escenario::Instance()->deseleccionarUnidad();
+                Juego::Instance()->ponerEstadoEscenario();
+            }else{
+                //Se ha acabado el turno de los aliados
+                for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
+                    ali[i]->setHaJugado(false);
+                }
+                Escenario::Instance()->empiezaturnoIA();
+                Escenario::Instance()->deseleccionarUnidad();
+                Juego::Instance()->ponerEstadoEscenario();
+
+                cursorActivo=true;
+                cont=0;
+                cursorDedo->setPosition(215,260);
+                *index=-1;
+                *turnoUsu=false;
+                haAtacado=false;
+                numMenu = -1;
+            }
+
+        }
+        if(cont==4){
+            //fin
+            cursorActivo=true;
+            cont=0;
+            cursorDedo->setPosition(215,260);
+            *index=-1;
+            *turnoUsu=false;
+            haAtacado=false;
+            numMenu = -1;
+
+            for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
+                    ali[i]->setHaJugado(false);
+            }
+
+            Escenario::Instance()->empiezaturnoIA();
+            Escenario::Instance()->deseleccionarUnidad();
+            Juego::Instance()->ponerEstadoEscenario();
+        }
+    }
+}
+
 void MenuAcciones::input()
 {
     while (Juego::Instance()->getVentana()->pollEvent(*evento)){
@@ -213,224 +435,20 @@ void MenuAcciones::input()
         if(evento->type == sf::Event::KeyPressed){
             switch(evento->key.code){
                 case sf::Keyboard::Up:
-                    if(cont>0 && cursorActivo==true)//que el contador este a 0 significa que esta en la primera opcion
-                    {
-                        cursorDedo->move(0,-20);
-                        cont--;
-                        cursor->play();
-                    }
-                    break;
+                    teclaArriba();
+                break;
+                
                 case sf::Keyboard::Down:
-                    if(numMenu == 3){
-                        if(cont<3 && cursorActivo==true)
-                        {
-                            cursorDedo->move(0,20);
-                            cont++;
-                            cursor->play();
-                        }
-                    }else{
-                        if(cont<4 && cursorActivo==true)
-                        {
-                            cursorDedo->move(0,20);
-                            cont++;
-                            cursor->play();
-                        }
-                    }
-                    break;
+                    teclaAbajo();
+                break;
+                    
                 case sf::Keyboard::Return:
-                    cursorActivo = false;
-                    
-                    
-                    if(renderAviso != 0){
-                        renderAviso = 0;
-                        cursorActivo=true;
-                    }else if(numMenu == 3){
-                        if(cont==0){
-                            //estado
-                           Juego::Instance()->ponerEstadoPersonaje(m,ali,enem,cof,index,turnoUsu);
-                           
-                           cursorActivo=true;
-                        }
-                        if(cont==1){
-                            //objeto 
-                            Juego::Instance()->ponerEstadoObjetos(m,ali,enem,cof,index,turnoUsu);
-                           
-                            cursorActivo=true;
-                        }
-                        if(cont==2){
-                            //interru
-                            ali[*index]->setHaJugado(true);
-                            cursorActivo=true;
-                            
-                            bool hayMasAliadosPorJugar = false;
-                            
-                            for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
-                                if(ali[i]->getHaJugado() == false){
-                                    hayMasAliadosPorJugar = true;
-                                }
-                            }
-                            
-                            if(hayMasAliadosPorJugar == true){
-                                //Vuelve al escenario
-                                Escenario::Instance()->deseleccionarUnidad();
-                                Juego::Instance()->ponerEstadoEscenario();
-                            }else{
-                                //Se ha acabado el turno de los aliados
-                                for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
-                                    ali[i]->setHaJugado(false);
-                                }
-                                
-                                cursorActivo=true;
-                                cont=0;
-                                cursorDedo->setPosition(215,260);
-                                *index=-1;
-                                *turnoUsu=false;
-                                haAtacado=false;
-                                numMenu = -1;
-                                
-                                Escenario::Instance()->empiezaturnoIA();
-                                Escenario::Instance()->deseleccionarUnidad();
-                                Juego::Instance()->ponerEstadoEscenario();
-                            }
-                        }
-                        if(cont==3){
-                            //fin
-                            cursorActivo=true;
-                            cont=0;
-                            cursorDedo->setPosition(215,260);
-                            *index=-1;
-                            *turnoUsu=false;
-                            haAtacado=false;
-                            numMenu = -1;
-                            
-                            for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
-                                ali[i]->setHaJugado(false);
-                            }
-                            
-                            Escenario::Instance()->empiezaturnoIA();
-                            Escenario::Instance()->deseleccionarUnidad();
-                            Juego::Instance()->ponerEstadoEscenario();
-                        }
-                    }else{  
-                        if(cont==0)
-                        {
-                            //atacar, abrir cofre o abrir puerta
-                            switch(numMenu){
-                                case 0:
-                                    //atacar
-                                    cursorActivo = true;
-                                    Juego::Instance()->ponerEstadoBatalla(ali[*index],enem[0]);
-                                    cursorActivo=true;
-                                    haAtacado = true;
-                                    menu->setTexture(*texturaMenuNormal);
-                                    numMenu = 3;
-                                    break;
-                                case 1:
-                                    //abrir cofre
-                                    cerr << "Abre el cofre " << endl;
-                                    
-                                    for(int x=0; x<m->getNumCofres(); x++){
-                                        if(m->getCofres()[x]->getPosicionSpriteX() == ali[*index]->getPosicionSpriteX() && m->getCofres()[x]->getPosicionSpriteY() == ali[*index]->getPosicionSpriteY()){
-                                            cerr << "Hay un cofre en la posicion del personaje " << endl;
-                                            if(ali[*index]->abrirCofre(cof[x])==false){
-                                                renderAviso = 1;
-                                            }else{
-                                                menu->setTexture(*texturaMenuNormal);
-                                                numMenu = 3;
-                                            }
-                                        }
-                                    }
-                                    
-                                    cursorActivo = true;
-                                    break;
-                                case 2:
-                                    //abrir puerta
-                                    cerr << "Abre la puerta " << endl;
-                                    if((ali[*index]->abrirPuerta(m)==false)){
-                                        renderAviso = 1;
-                                    }else{
-                                        menu->setTexture(*texturaMenuNormal);
-                                        numMenu = 3;
-                                    }
-                                    
-                                    cursorActivo=true;
-                                    break;
-                                default: cerr << "ATENCION, BUGASO" << endl;
-                            }
-                        }
-
-                        if(cont==1){
-                            //estado
-                           Juego::Instance()->ponerEstadoPersonaje(m,ali,enem,cof,index,turnoUsu);
-                          
-                           cursorActivo=true;
-                        }
-                        if(cont==2){
-                            //objeto 
-                            Juego::Instance()->ponerEstadoObjetos(m,ali,enem,cof,index,turnoUsu);
-                            
-                            cursorActivo=true;
-                        }
-                        if(cont==3){
-                            //interru
-                            ali[*index]->setHaJugado(true);
-                            cursorActivo=true;
-                            
-                            bool hayMasAliadosPorJugar = false;
-                            
-                            for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
-                                if(ali[*index]->getHaJugado() == false){
-                                    hayMasAliadosPorJugar = true;
-                                }
-                            }
-                            
-                            if(hayMasAliadosPorJugar == true){
-                                //Vuelve al escenario
-                                Escenario::Instance()->deseleccionarUnidad();
-                                Juego::Instance()->ponerEstadoEscenario();
-                            }else{
-                                //Se ha acabado el turno de los aliados
-                                for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
-                                    ali[i]->setHaJugado(false);
-                                }
-                                Escenario::Instance()->empiezaturnoIA();
-                                Escenario::Instance()->deseleccionarUnidad();
-                                Juego::Instance()->ponerEstadoEscenario();
-                                
-                                cursorActivo=true;
-                                cont=0;
-                                cursorDedo->setPosition(215,260);
-                                *index=-1;
-                                *turnoUsu=false;
-                                haAtacado=false;
-                                numMenu = -1;
-                            }
-                            
-                        }
-                        if(cont==4){
-                            //fin
-                            cursorActivo=true;
-                            cont=0;
-                            cursorDedo->setPosition(215,260);
-                            *index=-1;
-                            *turnoUsu=false;
-                            haAtacado=false;
-                            numMenu = -1;
-                            
-                            for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
-                                    ali[i]->setHaJugado(false);
-                            }
-                            
-                            Escenario::Instance()->empiezaturnoIA();
-                            Escenario::Instance()->deseleccionarUnidad();
-                            Juego::Instance()->ponerEstadoEscenario();
-                        }
-                    }
-                    
-                    break;
+                    teclaIntro();
+                break;
+                
                 case sf::Keyboard::BackSpace:
                     cursorActivo=true;
-                    break;
+                break;
                     
                 case sf::Keyboard::Numpad1:
                     ali[*index]->setHaJugado(true);
@@ -441,7 +459,6 @@ void MenuAcciones::input()
                 case sf::Keyboard::Numpad3:
                     cerr << ali[*index]->hayPuertasCercanas(m) << endl;
                 break;
-                
                 
                 case sf::Keyboard::Numpad4:
                     cerr << "INDEEEEEEEEEEEEEX: " << *index << endl;
@@ -455,6 +472,37 @@ void MenuAcciones::input()
                 case sf::Keyboard::Escape:
                     Juego::Instance()->getVentana()->close();               
                 break;
+            }
+        }else{
+            if(sf::Joystick::isConnected(0)){
+                
+                if (evento->type == sf::Event::JoystickMoved)
+                {
+                    if (evento->joystickMove.axis == sf::Joystick::PovX){
+                        if(evento->joystickMove.position == -100){
+                            teclaAbajo();
+                        }else if(evento->joystickMove.position == +100){
+                            teclaArriba();
+                        }
+                    }
+                    if (evento->joystickMove.axis == sf::Joystick::PovY){
+                        if(evento->joystickMove.position == -100){
+                            teclaIzquierda();
+                        }else if(evento->joystickMove.position == +100){
+                            teclaDerecha();
+                        }
+                    }
+                }
+                
+                if(evento->type == sf::Event::JoystickButtonPressed){
+                    
+                    switch(evento->joystickButton.button){
+
+                        case 2:
+                            teclaIntro();
+                        break;
+                    }
+                }
             }
         }
     }

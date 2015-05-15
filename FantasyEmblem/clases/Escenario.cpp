@@ -514,64 +514,108 @@ void Escenario::update_State(){
     }
 }
 
+void Escenario::teclaArriba(){
+    if(spriteCursor->getPosition().y>=16){
+        spriteCursor->move(0,-16);       
+        std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
+    }
+    if(*unidad_sel!=-1){
+        aliadas[*unidad_sel]->guardamovimiento(2);
+        std::cerr << "2" << endl;
+    }
+}
+
+void Escenario::teclaDerecha(){
+    if(spriteCursor->getPosition().x<480-16){
+        spriteCursor->move(16,0);       
+        std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
+    }
+    if(*unidad_sel!=-1){
+        aliadas[*unidad_sel]->guardamovimiento(1);
+        std::cerr << "1" << endl;
+    }
+}
+
+void Escenario::teclaIzquierda(){
+    if(spriteCursor->getPosition().x>=16){
+        spriteCursor->move(-16,0);              
+        std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
+    }
+    if(*unidad_sel!=-1){
+        aliadas[*unidad_sel]->guardamovimiento(-1);
+        std:cerr << "-1" << endl;
+    }
+}
+
+void Escenario::teclaAbajo(){
+    
+    if(spriteCursor->getPosition().y<320-16){
+        spriteCursor->move(0,16);
+        std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
+    }
+    if(*unidad_sel!=-1){
+        aliadas[*unidad_sel]->guardamovimiento(-2);
+        std::cerr << "-2" << endl;
+    }
+}
+
+void Escenario::teclaIntro(){
+    if(*unidad_sel==-1){
+        if(hayunidad()==true){
+            if(aliadas[*unidad_sel]->getHaJugado() == false){
+                //pintar cuadricula personaje
+                cambiaSpriteCursorMano();    
+                mostrarCuadriculaUnidad(aliadas[*unidad_sel]->getPosicionSpriteX(), aliadas[*unidad_sel]->getPosicionSpriteY(),aliadas[*unidad_sel]->getRango(), 0);
+            }else{
+                cerr << "Esa unidad ya se ha movido" << endl;
+                *unidad_sel = -1;
+            }
+        }
+    }else{
+        if(aliadas[*unidad_sel]->getPosicionSpriteX()==spriteCursor->getPosition().x && aliadas[*unidad_sel]->getPosicionSpriteY()==spriteCursor->getPosition().y){
+            quitarCuadriculaUnidad(aliadas[*unidad_sel]->getPosicionSpriteX(), aliadas[*unidad_sel]->getPosicionSpriteY(),aliadas[*unidad_sel]->getRango());
+            cambiaSpriteCursorSeleccionar();
+            *unidad_sel=-1;
+        }else{
+            if(mapa->getColision(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true && mapa->puedeMoverseAqui(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true){
+                quitarCuadriculaUnidad(aliadas[*unidad_sel]->getPosicionSpriteX(), aliadas[*unidad_sel]->getPosicionSpriteY(),aliadas[*unidad_sel]->getRango());
+                aliadas[*unidad_sel]->recorre();
+            }
+        }
+    }
+}
+
+    
 void Escenario::input() {
     
     while (Juego::Instance()->getVentana()->pollEvent(*evento)){
         if ((evento->type == Event::Closed)){
             Juego::Instance()->getVentana()->close();
         }
-            
+        
+        
+        
         if(evento->type == sf::Event::KeyPressed){
             switch(evento->key.code){
                 
                 case sf::Keyboard::Down:
-                    if(spriteCursor->getPosition().y<320-16)
-                    {
-                        spriteCursor->move(0,16);
-                        std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
-                    }
-                    if(*unidad_sel!=-1)//hay una unidad seleccionada
-                    {
-                        aliadas[*unidad_sel]->guardamovimiento(-2);
-                        std::cerr << "-2" << endl;
-                    }
+                    teclaAbajo();
                 break;
                 
                 case sf::Keyboard::Up:
-                    if(spriteCursor->getPosition().y>=16)
-                    {
-                        spriteCursor->move(0,-16);       
-                        std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
-                    }
-                    if(*unidad_sel!=-1)//hay una unidad seleccionada
-                    {
-                        aliadas[*unidad_sel]->guardamovimiento(2);
-                        std::cerr << "2" << endl;
-                    }
+                    teclaArriba();
                 break;
                 
                 case sf::Keyboard::Left:
-                    if(spriteCursor->getPosition().x>=16){
-                        spriteCursor->move(-16,0);              
-                        std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
-                    }
-                    if(*unidad_sel!=-1)//hay una unidad seleccionada
-                    {
-                        aliadas[*unidad_sel]->guardamovimiento(-1);
-                        std:cerr << "-1" << endl;
-                    }
+                    teclaIzquierda();
                 break;
                 
                 case sf::Keyboard::Right:
-                    if(spriteCursor->getPosition().x<480-16){
-                        spriteCursor->move(16,0);       
-                        std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
-                    }
-                    if(*unidad_sel!=-1)//hay una unidad seleccionada
-                    {
-                        aliadas[*unidad_sel]->guardamovimiento(1);
-                        std::cerr << "1" << endl;
-                    }
+                    teclaDerecha();
+                break;
+                
+                case sf::Keyboard::Return:
+                    teclaIntro();
                 break;
                 
                 case sf::Keyboard::Numpad1:
@@ -601,7 +645,13 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad7:
-                    *unidad_sel = -1;
+                    
+                    if(sf::Joystick::isConnected(0)){
+                        cerr << "Conectado!" << endl;
+                    }else{
+                        cerr << "No conectado!" << endl;
+                    }
+    
                 break;
                 
                 case sf::Keyboard::Numpad8:
@@ -611,38 +661,6 @@ void Escenario::input() {
                     mapasonido1->pause();
                     opause->play();
                     Juego::Instance()->ponerEstadoPause();              
-                break;
-                
-                case sf::Keyboard::Return:
-                    if(*unidad_sel==-1)
-                    {
-                        if(hayunidad()==true){
-                            if(aliadas[*unidad_sel]->getHaJugado() == false){
-                                //pintar cuadricula personaje
-                                cambiaSpriteCursorMano();    
-                                mostrarCuadriculaUnidad(aliadas[*unidad_sel]->getPosicionSpriteX(), aliadas[*unidad_sel]->getPosicionSpriteY(),aliadas[*unidad_sel]->getRango(), 0);
-                            }else{
-                                cerr << "Esa unidad ya se ha movido" << endl;
-                                *unidad_sel = -1;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if(aliadas[*unidad_sel]->getPosicionSpriteX()==spriteCursor->getPosition().x && aliadas[*unidad_sel]->getPosicionSpriteY()==spriteCursor->getPosition().y){
-                            
-                            quitarCuadriculaUnidad(aliadas[*unidad_sel]->getPosicionSpriteX(), aliadas[*unidad_sel]->getPosicionSpriteY(),aliadas[*unidad_sel]->getRango());
-                            cambiaSpriteCursorSeleccionar();
-                            *unidad_sel=-1;
-                        }else{
-                            
-                            if(mapa->getColision(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true && mapa->puedeMoverseAqui(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true){
-                                
-                                quitarCuadriculaUnidad(aliadas[*unidad_sel]->getPosicionSpriteX(), aliadas[*unidad_sel]->getPosicionSpriteY(),aliadas[*unidad_sel]->getRango());
-                                aliadas[*unidad_sel]->recorre();
-                            }
-                        }
-                    }
                 break;
                 
                 case sf::Keyboard::A:
@@ -682,6 +700,42 @@ void Escenario::input() {
                 }
             }
              */
+        }else{
+            if(sf::Joystick::isConnected(0)){
+                
+                if (evento->type == sf::Event::JoystickMoved)
+                {
+                    if (evento->joystickMove.axis == sf::Joystick::PovX){
+                        if(evento->joystickMove.position == -100){
+                            teclaAbajo();
+                        }else if(evento->joystickMove.position == +100){
+                            teclaArriba();
+                        }
+                    }
+                    if (evento->joystickMove.axis == sf::Joystick::PovY){
+                        if(evento->joystickMove.position == -100){
+                            teclaIzquierda();
+                        }else if(evento->joystickMove.position == +100){
+                            teclaDerecha();
+                        }
+                    }
+                }
+                
+                if(evento->type == sf::Event::JoystickButtonPressed){
+                    
+                    switch(evento->joystickButton.button){
+
+                        case 2:
+                            teclaIntro();
+                        break;
+                        case 9:
+                            mapasonido1->pause();
+                            opause->play();
+                            Juego::Instance()->ponerEstadoPause();  
+                        break;
+                    }
+                }
+            }
         }
     }
 }
@@ -699,9 +753,7 @@ bool Escenario::getEnemigoSi(){
 }
 
 void Escenario::volverMenuAcciones(){
-    
     Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu); 
-
 }
 
 void Escenario::deseleccionarUnidad(){

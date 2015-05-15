@@ -172,6 +172,16 @@ void PantallaStart::input() {
                     Juego::Instance()->getVentana()->close();               
                 break;
             }
+        }else{
+            if(sf::Joystick::isConnected(0)){
+                if(evento->type == sf::Event::JoystickButtonPressed){
+                    switch(evento->joystickButton.button){
+                        case 9:
+                            Juego::Instance()->ponerEstadoMenuPrincipal(); 
+                        break;
+                    }
+                }
+            }
         }
     }
 }

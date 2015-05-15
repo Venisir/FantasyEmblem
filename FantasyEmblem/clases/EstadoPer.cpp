@@ -248,6 +248,16 @@ void EstadoPer::input()
                     Juego::Instance()->getVentana()->close();               
                 break;
             }
+        }else{
+            if(sf::Joystick::isConnected(0)){
+                if(evento->type == sf::Event::JoystickButtonPressed){
+                    switch(evento->joystickButton.button){
+                        case 1:
+                            Juego::Instance()->ponerEstadoMenuAcciones(m,ali,enem,cof,index,turnoUsu);
+                        break;
+                    }
+                }
+            }
         }
     }
 }

@@ -30,6 +30,13 @@ public:
     static MenuAcciones* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno);
     void input();
     void seleccionarMenu();
+    
+    void teclaArriba();
+    void teclaDerecha();
+    void teclaIzquierda();
+    void teclaAbajo();
+    void teclaIntro();
+    
 protected:
     MenuAcciones();
     MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno);

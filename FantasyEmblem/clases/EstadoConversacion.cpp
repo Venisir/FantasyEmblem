@@ -298,10 +298,22 @@ void EstadoConversacion::input()
             switch(evento->key.code){
                 case sf::Keyboard::Return:
                     siguienteTexto();
-                    break;
+                break;
                 case sf::Keyboard::Escape:
                     Juego::Instance()->getVentana()->close();               
                 break;
+            }
+        }else{
+            if(sf::Joystick::isConnected(0)){
+                if(evento->type == sf::Event::JoystickButtonPressed){
+                    
+                    switch(evento->joystickButton.button){
+
+                        case 2:
+                            siguienteTexto();
+                        break;
+                    }
+                }
             }
         }
     }

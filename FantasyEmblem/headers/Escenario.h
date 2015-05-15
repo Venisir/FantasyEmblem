@@ -53,6 +53,12 @@ public:
     bool getPuertaSi();
     bool getCofreSi();
     bool getEnemigoSi();
+    
+    void teclaArriba();
+    void teclaDerecha();
+    void teclaIzquierda();
+    void teclaAbajo();
+    void teclaIntro();
 
 protected:
     Escenario();
