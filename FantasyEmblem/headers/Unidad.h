@@ -94,7 +94,8 @@ public:
     int getDestinoX();
     int getDestinoY();
     
-    void recorrido(int destinox, int destinoy);//estrella
+    void recorridoA(int destinox, int destinoy);//estrella
+    void muestraMovs();
     
     
 protected:

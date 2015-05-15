@@ -258,6 +258,7 @@ void MenuPrincipal::input(){
                     }      
                     if(getSelectedItemIndex()==2){
                         Juego::Instance()->ponerEstadoEscenario();
+                        Juego::Instance()->reiniciarEstadoEscenario();
                     }      
                     if(getSelectedItemIndex()==3){
                         Exit();

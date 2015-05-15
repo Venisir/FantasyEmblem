@@ -97,6 +97,12 @@ Escenario::~Escenario() {
     delete spriteAbrirPuerta;
 }
 
+void Escenario::ResetInstance(){
+    //delete pinstance; // REM : it works even if the pointer is NULL (does nothing then)
+    pinstance = 0; // so GetInstance will still work.
+}
+
+
 void Escenario::init_State(){
     
      
@@ -553,11 +559,11 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad1:
-                        aliadas[0]->hayPuerta(mapa);           
+                    aliadas[0]->recorridoA(spriteCursor->getPosition().x, spriteCursor->getPosition().y);
                 break;
                 
                 case sf::Keyboard::Numpad2:
-                    cerr << aliadas[0]->hayEnemigosCercanos(enemigos);
+                    aliadas[0]->muestraMovs();
                 break;
                 
                 case sf::Keyboard::Numpad3:

@@ -30,6 +30,7 @@ class Escenario: public Estado{
 public:
     
     static Escenario* Instance();
+    static void ResetInstance();
     
     void input();
     

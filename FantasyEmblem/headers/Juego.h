@@ -58,6 +58,9 @@ public:
     void ponerEstadoObjetosSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
     void ponerEstadoPersonaje(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
     
+    
+    void reiniciarEstadoEscenario();
+    
 protected:
     Juego();
     virtual ~Juego();

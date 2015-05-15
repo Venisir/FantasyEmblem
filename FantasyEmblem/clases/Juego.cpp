@@ -46,10 +46,6 @@ Juego::Juego() {
     
     //ponerEstadoEscenario();
 }
-/*
-Juego::Juego(const Juego& orig) {
-}
-*/
 
 Juego::~Juego() {
     /*if(pinstance != NULL)*/ 
@@ -111,6 +107,11 @@ void Juego::ponerEstadoMenuPrincipal(){
 void Juego::ponerEstadoEscenario(){
     states.push_back(Escenario::Instance());
     //states.back()->init();
+}
+
+void Juego::reiniciarEstadoEscenario() {
+    Escenario::Instance()->ResetInstance();
+    ponerEstadoEscenario();
 }
 
 void Juego::ponerEstadoPause(){
