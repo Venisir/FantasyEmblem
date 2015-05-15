@@ -94,18 +94,12 @@ Escenario::~Escenario() {
     delete spriteMenuStats;
     delete primeritaVes;
     
-    delete texturaAbrirPuerta;
     delete spriteAbrirPuerta;
 }
 
 void Escenario::init_State(){
     
-    if(!texturaAbrirPuerta->loadFromFile("resources/abrirPuerta.png"))
-    {
-        std::cerr << "Error cargando la imagen abrirPuerta.png";
-        exit(0);
-    }
-    
+     
     if (!texturaCursor-> loadFromFile("resources/cursores.png"))
     {
         std::cerr << "Error cargando la imagen cursores.png";
@@ -165,6 +159,8 @@ void Escenario::init_State(){
     
     cont = 0;
     aux = 0;
+    
+    
 }
 void Escenario::paramusic(){
     mapasonido1->stop();

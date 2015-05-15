@@ -48,7 +48,12 @@ Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, i
     inventarioObjetos[0] = new Objetos("LlaveInicialCofre", "llaveCofre", 1, 1, "Una llave chachi", 1);
     inventarioObjetos[1] = new Objetos("LlaveInicialPuerta", "llavePuerta", 1, 1, "Una llave chachi", 1);
      
+    //inventarioObjetos[0] = new Objetos("LlaveInicialCofre", "llaveCofre", 1, 1, "Una llave chachi", 1);
+    //inventarioObjetos[1] = new Objetos("LlaveInicialPuerta", "llavePuerta", 1, 1, "Una llave chachi", 1);
+
     spriteAviso = new Sprite();
+    spriteAviso->setOrigin(100/2,45/2);
+    spriteAviso->setPosition(240,160);
     
     texturaAvisoInventarioArmas = new Texture();
     texturaAvisoInventarioObjetos = new Texture();
@@ -137,7 +142,6 @@ bool Aliadas::abrirCofre(Cofre* cofre){
                     if(meter==false){
                         //salta aviso: no puedes coger arma
                         spriteAviso->setTexture(*texturaAvisoInventarioArmas);
-                       //spriteAvisoInventArmas->setPosition(170,170);
                     }
                 }else{
                     for(int j=0;j<3;j++){
@@ -149,7 +153,6 @@ bool Aliadas::abrirCofre(Cofre* cofre){
                     if(meter==false){
                         //salta aviso: no puedes coger objeto
                         spriteAviso->setTexture(*texturaAvisoInventarioObjetos);
-                        //spriteAvisoInventObjetos->setPosition(200,200);
                     }
                 }
 
@@ -193,8 +196,6 @@ bool Aliadas::abrirPuerta(Mapa* mapa){
 
         cout<<"p1"<<endl;
         spriteAviso->setTexture(*texturaAvisoLlavePuerta);
-        spriteAviso->setOrigin(0,0);
-        spriteAviso->setPosition(170,0);
         //Juego :: Instance()->getVentana()->draw(*spriteAvisoLlavePuerta);
         cout<<"p3"<<endl;
     }
