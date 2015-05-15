@@ -35,10 +35,12 @@ public:
     int* getRecorrido();
     Armas** getArmas();
     Objetos** getObjetos();
+    Sprite* dameQuePinte();
     bool usarObjeto(Objetos* obj);
     bool abrirCofre(Cofre* cofre);
     bool equiparArma(Armas* arma);
-    void abrirPuerta(Mapa* mapa);
+    bool abrirPuerta(Mapa* mapa);
+    
     int getExp();
     
     bool hayCofre(Mapa* mapa);
@@ -58,7 +60,7 @@ private:
     int pasos;//contador de los pasos realizados
     Sprite* spriteCofreAbierto;
     Texture* texturaCofreAbierto;
-    Sprite *spriteAvisoInventArmas, *spriteAvisoInventObjetos, *spriteAvisoLlaveCofre, *spriteAvisoLlavePuerta;
+    Sprite *spriteAviso;
     Texture *texturaAvisoInventarioArmas, *texturaAvisoInventarioObjetos,*texturaAvisoLlaveCofre,*texturaAvisoLlavePuerta;
 };
  

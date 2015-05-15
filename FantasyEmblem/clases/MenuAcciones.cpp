@@ -136,6 +136,7 @@ void MenuAcciones::init_State()
     objetos->setPosition(305,226);
     
     haAtacado = false;
+    renderAviso = 0;
 }
 
 void MenuAcciones::render_State()
@@ -148,14 +149,20 @@ void MenuAcciones::render_State()
         //}
         enem[x]->Draw();
     }
-    ali[0]->Draw();
     //enemigos[0]->Draw();
     
     for(int x=0; x<m->getNumCofres(); x++){
         cof[x]->Draw();
     }
+    
+    ali[0]->Draw();
+    
     Juego::Instance()->getVentana()->draw(*menu);
     Juego::Instance()->getVentana()->draw(*cursorDedo);
+    
+    if(renderAviso != 0){
+        Juego::Instance()->getVentana()->draw(*ali[*index]->dameQuePinte());
+    }
     Juego::Instance()->getVentana()->display();
 }
 
@@ -214,8 +221,12 @@ void MenuAcciones::input()
                     break;
                 case sf::Keyboard::Return:
                     cursorActivo = false;
-                        
-                    if(numMenu == 3){
+                    
+                    
+                    if(renderAviso != 0){
+                        renderAviso = 0;
+                        cursorActivo=true;
+                    }else if(numMenu == 3){
                         if(cont==0){
                             //estado
                            Juego::Instance()->ponerEstadoPersonaje(m,ali,enem,cof,index,turnoUsu);
@@ -244,7 +255,7 @@ void MenuAcciones::input()
                             Escenario::Instance()->empiezaturnoIA();
                             Juego::Instance()->ponerEstadoEscenario();
                         }
-                    }else{
+                    }else{  
                         if(cont==0)
                         {
                             //atacar, abrir cofre o abrir puerta
@@ -260,14 +271,20 @@ void MenuAcciones::input()
                                     break;
                                 case 1:
                                     //abrir cofre
+                                    cerr << "Abre el cofre " << endl;
+                                    if(ali[*index]->abrirCofre(m->getCofres()[0])==false){
+                                        renderAviso = 1;
+                                    }
+                                    
                                     cursorActivo = true;
-                                    //Juego::Instance()->ponerEstadoBatalla();
-                                    cursorActivo=true;
                                     break;
                                 case 2:
                                     //abrir puerta
-                                    cursorActivo = true;
-                                    //Juego::Instance()->ponerEstadoBatalla();
+                                    cerr << "Abre la puerta " << endl;
+                                    if(ali[*index]->abrirPuerta(m)==false){
+                                        renderAviso = 1;
+                                    }
+                                    
                                     cursorActivo=true;
                                     break;
                                 default: cerr << "ATENCION, BUGASO" << endl;

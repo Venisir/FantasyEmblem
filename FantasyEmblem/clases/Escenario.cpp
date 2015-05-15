@@ -342,12 +342,12 @@ void Escenario::render_State(){
         //}
         enemigos[x]->Draw();
     }
-    aliadas[0]->Draw();
-    //enemigos[0]->Draw();
     
     for(int x=0; x<mapa->getNumCofres(); x++){
         cofres[x]->Draw();
     }
+    
+    aliadas[0]->Draw();
     
     if(tieneQueMostrarStats == true){
         Juego::Instance()->getVentana()->draw(*spriteMenuStats);
