@@ -159,6 +159,8 @@ void Escenario::init_State(){
     
     cont = 0;
     aux = 0;
+    
+    
 }
 void Escenario::paramusic(){
     mapasonido1->stop();

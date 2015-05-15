@@ -240,15 +240,17 @@ void ObjetoSeleccionado::input()
                         
                     if(cont==0)
                     {
-                        //atacar
-                        cursorActivo = true;
-                    
-                       
+                        //usar
+                        cursorActivo = true;                    
+                        cout<<"usar"<<endl;
+                        
                     }
                     
                     if(cont==1)
                     {
-                        //estado
+                        //tirar
+                        cout<<"tirar"<<endl;
+                        
                     }
                     
                     break;
