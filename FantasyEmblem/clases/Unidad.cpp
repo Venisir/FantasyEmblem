@@ -637,3 +637,34 @@ void Unidad::muestraMovs(){
 Sprite Unidad::getSpriteBatalla(){
     return *spriteBatalla;
 }
+
+int* Unidad::getMovimientos() {
+    return movimientos;
+}
+
+void Unidad::MovstoInt() {
+    movimientos=new int [movs.size()-1];//-1 porque movs contiene la posicion de inicio
+    
+    for(int i=0;i<movs.size()-1;i++)
+    {
+        //priemro compruebo las posibles direcciones del eje x
+        if(movs.at(i+1)->getCoordenadas().x == movs.at(i+1)->getCoordenadas().x+16)
+        {
+            movimientos[i]=1;//derecha
+        }
+        else if(movs.at(i+1)->getCoordenadas().x == movs.at(i+1)->getCoordenadas().x-16)
+        {
+            movimientos[i]=-1;//izquierda
+        }
+        //le toca el turno al eje y
+        else if(movs.at(i+1)->getCoordenadas().y == movs.at(i+1)->getCoordenadas().y+16)
+        {
+            movimientos[i]=2;//abajo
+        }
+        else if(movs.at(i+1)->getCoordenadas().y == movs.at(i+1)->getCoordenadas().y-16)
+        {
+            movimientos[i]=-2;//arriba
+        }
+    }
+}
+

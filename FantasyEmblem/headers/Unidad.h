@@ -95,6 +95,9 @@ public:
     int getDestinoX();
     int getDestinoY();
     
+    int* getMovimientos();
+    void MovstoInt();
+    
     void recorridoA(int destinox, int destinoy);//estrella
     void muestraMovs();
     
@@ -136,7 +139,7 @@ protected:
     int destinoY;
     int direccionDestino;
     
-    
+    int* movimientos;
     vector<Celda*> movs;
     
 };
