@@ -48,6 +48,8 @@ public:
     void pausemusic();
     void playmusic();
     
+    void deseleccionarUnidad();
+    
     bool getPuertaSi();
     bool getCofreSi();
     bool getEnemigoSi();

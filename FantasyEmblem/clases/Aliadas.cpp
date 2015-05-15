@@ -263,7 +263,6 @@ void Aliadas::recorre()
      }
      //recorrido=new int[rango];
      ultimo_mov=0;
-     std::cerr << endl;
  }
   
  bool Aliadas::hayPuerta(Mapa* mapa){

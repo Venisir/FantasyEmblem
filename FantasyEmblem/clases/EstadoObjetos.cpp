@@ -321,7 +321,7 @@ void EstadoObjetos::input()
                     cursorActivo=true;
                     break;
                 case sf::Keyboard::B:
-                    *index=-1;
+                    //*index=-1;
                     cursorActivo=true;
                     Juego::Instance()->ponerEstadoMenuAcciones(m,ali,enem,cof,index,turnoUsu); 
                     

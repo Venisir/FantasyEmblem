@@ -68,6 +68,8 @@ Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int
     destinoX = 0;
     destinoY = 0;
     direccionDestino = 0;
+    
+    haJugado = false;
 }
 
 Unidad::~Unidad() {
@@ -636,4 +638,19 @@ void Unidad::muestraMovs(){
 
 Sprite Unidad::getSpriteBatalla(){
     return *spriteBatalla;
+}
+
+bool Unidad::getHaJugado(){
+    return haJugado;
+}
+
+void Unidad::setHaJugado(bool b){
+    
+    cerr << "He entrado en setHaJugado" << endl;
+    haJugado = b;
+    if(haJugado == true){
+        spriteUnidad->setColor(sf::Color(128,128,128));
+    }else{
+        spriteUnidad->setColor(sf::Color(255,255,255));
+    }
 }

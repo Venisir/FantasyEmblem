@@ -92,6 +92,9 @@ public:
     void haLlegado();
     bool verSiHaLlegado();
     
+    void setHaJugado(bool b);
+    bool getHaJugado();
+    
     int getDestinoX();
     int getDestinoY();
     
@@ -136,6 +139,7 @@ protected:
     int destinoY;
     int direccionDestino;
     
+    bool haJugado;
     
     vector<Celda*> movs;
     

@@ -240,7 +240,7 @@ void EstadoPer::input()
             switch(evento->key.code){
                
                 case sf::Keyboard::B:
-                    *index=-1;
+                    //*index=-1;
                     Juego::Instance()->ponerEstadoMenuAcciones(m,ali,enem,cof,index,turnoUsu); 
                     
                 break;
