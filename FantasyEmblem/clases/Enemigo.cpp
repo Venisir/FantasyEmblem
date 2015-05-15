@@ -23,7 +23,7 @@
 using namespace std;
 using namespace sf;
 
-Enemigo::Enemigo(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu):Unidad(name, clas, atributo, nivel, rang, nombreTextu) {
+Enemigo::Enemigo(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu,const char* textuBatalla):Unidad(name, clas, atributo, nivel, rang, nombreTextu, textuBatalla) {
 
 }
 

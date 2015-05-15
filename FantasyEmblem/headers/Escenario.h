@@ -30,6 +30,7 @@ class Escenario: public Estado{
 public:
     
     static Escenario* Instance();
+    static void ResetInstance();
     
     void input();
     
@@ -44,6 +45,13 @@ public:
     void empiezaturnoIA();
     void volverMenuAcciones();
     void paramusic();
+    void pausemusic();
+    void playmusic();
+    
+    bool getPuertaSi();
+    bool getCofreSi();
+    bool getEnemigoSi();
+
 protected:
     Escenario();
     ~Escenario();
@@ -68,6 +76,9 @@ private:
     sf::SoundBuffer* mapasonido;
     sf::Sound* mapasonido1;
     
+    sf::Texture* texturaAbrirPuerta;
+    sf::Sprite* spriteAbrirPuerta;
+    
     Mapa* mapa;
     
     int cursorActivo;
@@ -82,10 +93,16 @@ private:
     int cont;
     
     bool tieneQueMostrarStats;
+    bool puertaSi;
+    bool cofreSi;
+    bool enemigoSi;
         
     Aliadas** aliadas;//aray de unidades aliadas (posiblemente esten en mapa)
     Enemigo** enemigos;//array de unidades enemigas
     Cofre** cofres;
+    
+    sf::SoundBuffer* pause_open;
+    sf::Sound* opause;
 };
 
 #endif	/* ESCENARIO_H */

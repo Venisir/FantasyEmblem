@@ -28,6 +28,10 @@ public:
     Objetos* getObjeto();
     void Draw();
     void setPosition(int i, int j);
+    void cambiaTexturaAbierto();
+    
+    int getPosicionSpriteX();
+    int getPosicionSpriteY();
     
 private:
     int x;

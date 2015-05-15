@@ -62,6 +62,9 @@ private:
     sf::Text* stats;
     sf::Text* stats1;
     sf::Font* fuente;
+    sf::Sprite *objeto1;
+    sf::Sprite *objeto2;
+    sf::Sprite *objeto3;
     int cont;
     bool cursorActivo;
     bool *turnoUsu;

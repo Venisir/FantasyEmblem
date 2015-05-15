@@ -63,9 +63,9 @@ MenuPrincipal::~MenuPrincipal() {
     delete botn1;
     delete botn2;
     delete botn3;
-    delete texturas;
+    //delete[] texturas;
     delete textura_fond;
-    delete menu;
+    //delete[] menu;
     delete fondo;
     //delete time1;
     delete mainmenu;
@@ -74,6 +74,14 @@ MenuPrincipal::~MenuPrincipal() {
     delete menusonido;
     delete cursor;
     delete select;  
+    
+    for(int i=0; i<MAX_NUM_TEXT; i++){
+        delete texturas[i];
+    }
+    
+    for(int i=0; i<MAX_NUM_SPRITE; i++){
+        delete menu[i];
+    }
     
     delete reloj;
     delete evento;
@@ -148,14 +156,6 @@ void MenuPrincipal::init_State() {
         std::cerr << "Error al cargar el archivo de audio";
     }
     
-    
-    // Le asignamos el buffer cargado
-   /* menusonido->setBuffer(*mainmenu);
-    // establecemos el volumen a 20
-    menusonido->setVolume(30);
-    //reproducir audio del menu
-    menusonido->setLoop(true);
-    menusonido->play();*/
     
     //cargar el buffer y asignar volumen del cursor y de la seleccion
     cursor->setBuffer(*mmcursor);
@@ -250,6 +250,7 @@ void MenuPrincipal::input(){
                     }      
                     if(getSelectedItemIndex()==2){
                         Juego::Instance()->ponerEstadoEscenario();
+                        Juego::Instance()->reiniciarEstadoEscenario();
                     }      
                     if(getSelectedItemIndex()==3){
                         Exit();

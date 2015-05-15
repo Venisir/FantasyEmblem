@@ -20,9 +20,11 @@ using namespace sf;
 class Objetos {
 public:
     Objetos();
-    Objetos(const char* nom,const char* tip, int uso, int alcan, const char* descrip, bool cai);
+    Objetos(const char* nom,const char* tip, int uso, int alcan, const char* descrip, bool cai, const char* fotico);
     virtual ~Objetos();
     
+    const char* getNombre();
+    Sprite getSprite();
     int getId();
     int getUsos();
     int getAlcance();
@@ -37,6 +39,9 @@ private:
     int Alcance;
     const char* Descripcion;
     bool Caido;
+    const char* foto;
+    sf::Texture* textObjeto;
+    sf::Sprite* spriteObjeto;
     
 };
 

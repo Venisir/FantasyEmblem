@@ -340,11 +340,14 @@ bool Mapa::getColision(int j, int i){
 
 bool Mapa::getPuerta(int i, int j){
     cout<<"Entra en getPuerta"<<endl;
-    if(_tilemap[5][i/16][j/16]!=0){
-        return true;
-    }else{
-        return false;
+    if(i>=0 && i<320 && j>=0 && j<480){
+        if(_tilemap[5][i/16][j/16]!=0){
+            return true;
+        }else{
+            return false;
+        }
     }
+    return false;
 }
 
 bool Mapa::getCasillaPintada(int j, int i){
@@ -354,10 +357,19 @@ bool Mapa::getCasillaPintada(int j, int i){
         return false;
     }
 }
-void Mapa::quitarPuerta(){
+void Mapa::quitarPuerta(int i, int j){
+    _tilemapSprite[5][i/16][j/16]=NULL;
+    _tilemap[5][i/16][j/16]=0;  
 }
 
-
+bool Mapa::getCofre(int i, int j){
+    cout<<"Entra en getCofre"<<endl;
+    if(_tilemap[2][i/16][j/16]!=0){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 /*--------------------------------GET ATRIBUTO----------------------------------
  Devuelve:
@@ -390,7 +402,7 @@ Enemigo** Mapa::getEnemigos(){
             //CREAR AQUI NPC's
             if(gid==81){
                 int atri[] = { 11, 22, 33, 44, 55, 66, 77};
-                enemigo[l]= new Enemigo("Soldado", "Espadachin", atri, 8, 2, "Mapa_espadachin_rojo.png");
+                enemigo[l]= new Enemigo("Soldado", "Espadachin", atri, 8, 2, "Mapa_espadachin_rojo.png","black.png");
                 enemigo[l]->setPosition(x*_tileWidth,y*_tileHeight);
                 //std::cerr <<"HOLI"<< endl;
                 l++;

@@ -29,7 +29,7 @@ class MenuAcciones:public Estado {
 public:
     static MenuAcciones* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno);
     void input();
-    
+    void seleccionarMenu();
 protected:
     MenuAcciones();
     MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno);
@@ -40,7 +40,10 @@ private:
     void render_State();
     void update_State();
     
-    sf::Texture *texturaMenu;
+    sf::Texture *texturaMenuNormal;
+    sf::Texture *texturaMenuAtaque;
+    sf::Texture *texturaMenuCofre;
+    sf::Texture *texturaMenuPuerta;
     sf::Texture *texturaDedo;
     sf::Texture *texturaDanyo;
     sf::Texture *texturaObjetos;
@@ -54,11 +57,16 @@ private:
     int cont;
     bool cursorActivo;
     bool *turnoUsu;
+    bool haAtacado;
+    int renderAviso;
     Mapa *m;//mapa proveniente del escenario 
     Aliadas **ali;//array de unidades aliadas proveniente del escenario
     Enemigo **enem;//array de unidades enemigas proveniete del escenario
     Cofre **cof;
     int *index;//indice de la unidad aliada seleccionada
+    int numMenu;//numero de menu que tiene, si tiene el de abrirpuerta, el de abrircofre, el de atacar...
+    sf::SoundBuffer* mcursor;
+    sf::Sound* cursor;
 };
 
 #endif	/* MENUACCIONES_H */

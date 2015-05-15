@@ -14,6 +14,7 @@
 #include "../headers/EstadoBatall.h"
 #include "../headers/Aliadas.h"
 #include "../headers/Enemigo.h"
+#include "../headers/Armas.h"
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -26,12 +27,13 @@ using namespace sf;
 
 class EstadoBatall: public Estado {
 public:
-    static EstadoBatall* Instance();
+    static EstadoBatall* Instance(Aliadas* ali, Enemigo* ene);
     void input();
     
 protected: 
     
     EstadoBatall();
+    EstadoBatall(Aliadas* ali, Enemigo* ene);
     ~EstadoBatall();
     
     
@@ -40,13 +42,18 @@ protected:
     void init_State();
     void render_State();
     void update_State();
-    
+    void mostrarDats();
     
     
 private:
     int contPer1i;
     int contPer1j;
-    
+    int contPer2i;
+    int contPer2j;
+    bool atacado;
+    bool atacado2;
+    bool turno2;
+    bool reini;
     sf::Clock* reloj;
     sf::Event* evento;
     sf::Texture* fondoBata;
@@ -55,6 +62,15 @@ private:
     sf::Sprite* per1;
     sf::Texture* perso2;
     sf::Sprite* per2;
+    sf::Font* fuente;
+    sf::Text* stats;
+    sf::Text* stats2;
+    sf::Text* nombres;
+    sf::Text* armas;
+    sf::Text* vidas;
+   
+    Aliadas* alia; 
+    Enemigo* enem;
 };
 
 #endif	/* ESTADOBATALL_H */

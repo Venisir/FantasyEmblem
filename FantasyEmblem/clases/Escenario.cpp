@@ -58,15 +58,20 @@ Escenario::Escenario() {
     spriteMenuStats = new Sprite();
     texturaMenuStats = new Texture();
     
+    texturaAbrirPuerta = new Texture();
+    spriteAbrirPuerta = new Sprite();
+    
+    
     int atri[] = { 11, 22, 33, 44, 55, 66, 77};
     
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
-    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png", 0);
+    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0);
     //enemigos[4] = new Enemigo("AlbertoMalo", "Guerrero", atri, 8, 2, "Mapa_espadachin_rojo.png");
     
     //enemigos[4]->setPosition(208,176);
-    
+    pause_open = new SoundBuffer();
+    opause = new Sound();
     init_State();
 }
 
@@ -89,10 +94,20 @@ Escenario::~Escenario() {
     delete texturaMenuStats;
     delete spriteMenuStats;
     delete primeritaVes;
+    delete pause_open;
+    delete opause;
+    delete spriteAbrirPuerta;
 }
+
+void Escenario::ResetInstance(){
+    //delete pinstance; // REM : it works even if the pointer is NULL (does nothing then)
+    pinstance = 0; // so GetInstance will still work.
+}
+
 
 void Escenario::init_State(){
     
+     
     if (!texturaCursor-> loadFromFile("resources/cursores.png"))
     {
         std::cerr << "Error cargando la imagen cursores.png";
@@ -120,7 +135,14 @@ void Escenario::init_State(){
     spriteCursor->setTexture(*texturaCursor);
     spriteCursor->setTextureRect(IntRect(0, 0, 16, 16));
     
-    spriteCursor->setPosition(0,0);
+    spriteCursor->setPosition(176,176);
+    
+    spriteAbrirPuerta->setTexture(*texturaAbrirPuerta);
+    spriteAbrirPuerta->setPosition(100,30);
+    
+    puertaSi = false;
+    cofreSi = false;
+    enemigoSi = false;
     
     cambiaSpriteCursorSeleccionar();
     
@@ -145,9 +167,20 @@ void Escenario::init_State(){
     
     cont = 0;
     aux = 0;
+    
+    if (!pause_open->loadFromFile("resources/PauseMenu_Open.wav")){
+        std::cerr << "Error al cargar el archivo de audio";
+    }
+    
+    opause->setBuffer(*pause_open);
+    opause->setVolume(80);
+    
 }
 void Escenario::paramusic(){
     mapasonido1->stop();
+}
+void Escenario::playmusic(){
+    mapasonido1->play();
 }
 
 void Escenario::cambiaSpriteCursorSeleccionar() {
@@ -322,16 +355,20 @@ void Escenario::render_State(){
         //}
         enemigos[x]->Draw();
     }
-    aliadas[0]->Draw();
-    //enemigos[0]->Draw();
     
     for(int x=0; x<mapa->getNumCofres(); x++){
         cofres[x]->Draw();
     }
     
+    aliadas[0]->Draw();
+    
     if(tieneQueMostrarStats == true){
         Juego::Instance()->getVentana()->draw(*spriteMenuStats);
         Juego::Instance()->getVentana()->draw(*t_stats);
+    }
+    
+    if(puertaSi==true){
+        Juego::Instance()->getVentana()->draw(*spriteAbrirPuerta);
     }
     
     if(*turnoUsu==true)
@@ -533,11 +570,11 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad1:
-                        aliadas[0]->hayPuerta(mapa);           
+                    aliadas[0]->recorridoA(spriteCursor->getPosition().x, spriteCursor->getPosition().y);
                 break;
                 
                 case sf::Keyboard::Numpad2:
-                    cerr << aliadas[0]->hayEnemigosCercanos(enemigos);
+                    aliadas[0]->muestraMovs();
                 break;
                 
                 case sf::Keyboard::Numpad3:
@@ -566,6 +603,8 @@ void Escenario::input() {
                     Juego::Instance()->ponerEstadoMenuPrincipal();              
                 break;
                 case sf::Keyboard::Numpad9:
+                    mapasonido1->pause();
+                    opause->play();
                     Juego::Instance()->ponerEstadoPause();              
                 break;
                 
@@ -589,7 +628,7 @@ void Escenario::input() {
                             if(mapa->getColision(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true && mapa->puedeMoverseAqui(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true){
                                 quitarCuadriculaUnidad(aliadas[0]->getPosicionSpriteX(), aliadas[0]->getPosicionSpriteY(),aliadas[0]->getRango());
                                 aliadas[*unidad_sel]->recorre();
-                                aliadas[*unidad_sel]->hayPuerta(mapa);
+                                //aliadas[*unidad_sel]->hayPuerta(mapa);
                                 //devuelve las casillas de la cuadricula a su estado original
                                 //*unidad_sel=-1;
                             }
@@ -635,6 +674,18 @@ void Escenario::input() {
             }
         }
     }
+}
+
+bool Escenario::getPuertaSi(){
+    return puertaSi;
+}
+
+bool Escenario::getCofreSi(){
+    return cofreSi;
+}
+
+bool Escenario::getEnemigoSi(){
+    return enemigoSi;
 }
 
 void Escenario::volverMenuAcciones(){

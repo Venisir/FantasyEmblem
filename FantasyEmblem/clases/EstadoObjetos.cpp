@@ -34,6 +34,9 @@ EstadoObjetos::EstadoObjetos()
 EstadoObjetos::EstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno)
 {
     texturaDedo=new Texture();
+    objeto1=new Sprite();
+    objeto2=new Sprite();
+    objeto3=new Sprite();
     texturaMenu=new Texture();
     cursorDedo= new Sprite();
     arma=new Sprite(),
@@ -58,6 +61,9 @@ EstadoObjetos::EstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cof
 
 EstadoObjetos::~EstadoObjetos() {
     
+    delete objeto1;
+    delete objeto2;
+    delete objeto3;
     delete arma;
     delete fuente;
     delete stats1;
@@ -126,16 +132,36 @@ void EstadoObjetos::render_State()
     Juego::Instance()->getVentana()->draw(*stats);
     Juego::Instance()->getVentana()->draw(*stats1);
     Juego::Instance()->getVentana()->draw(*arma);
+    Juego::Instance()->getVentana()->draw(*objeto1);
+    Juego::Instance()->getVentana()->draw(*objeto2);
+    Juego::Instance()->getVentana()->draw(*objeto3);
     Juego::Instance()->getVentana()->display();
 }
 
 void EstadoObjetos::mostrarItems(){
     
-    arma=new Sprite(ali[0]->getArma()->getSprite());
+    for(int i=0; i<sizeof(ali[0]->getObjetos());i++){
+        cerr << "sadasds" << endl;
+        if(i==0){
+            objeto1= new Sprite(ali[0]->getObjetos()[i]->getSprite());
+        }
+         if(i==1){
+            objeto1= new Sprite(ali[0]->getObjetos()[i]->getSprite());
+        } 
+        if(i==2){
+            objeto1= new Sprite(ali[0]->getObjetos()[i]->getSprite());
+        }
+        
+    }
+    
+    
+    //arma=new Sprite(ali[0]->getArma()->getSprite());
     std::stringstream ss_stats;
         ss_stats <<   
                
-              /* ali[0]->getArma()->getSprite() << */ali[0]->getArma()->getNombre()<<" " << ali[0]->getArma()->getUsos() << "\n" << "\n" 
+              ali[0]->getObjetos()[0]->getNombre() << "\n" << "\n"<< 
+              ali[0]->getObjetos()[1]->getNombre() << "\n" << "\n"<< 
+              ali[0]->getObjetos()[2]->getNombre()  
                ;
                
         
@@ -147,7 +173,9 @@ void EstadoObjetos::mostrarItems(){
         
         stats->setColor(sf::Color::White);
         stats->setPosition(50,135);
-        arma->setPosition(40,135);
+        objeto1->setPosition(40,135);
+        objeto2->setPosition(40,157);
+        objeto3->setPosition(40,179);
        /* 
         std::stringstream ss_stats1;
         ss_stats1 <<   

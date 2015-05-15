@@ -25,7 +25,7 @@ using namespace sf;
 class Aliadas : public Unidad {
 public:
     Aliadas();
-    Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, int experien);
+    Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu,const char* textuBatalla , int experien);
     virtual ~Aliadas();    
      
     void subirNivel();
@@ -35,26 +35,30 @@ public:
     int* getRecorrido();
     Armas** getArmas();
     Objetos** getObjetos();
+    Sprite* dameQuePinte();
     bool usarObjeto(Objetos* obj);
     bool abrirCofre(Cofre* cofre);
     bool equiparArma(Armas* arma);
-    void abrirPuerta(Mapa* mapa);
+    bool abrirPuerta(Mapa* mapa);
+    
     int getExp();
-    void hayPuerta(Mapa* mapa);
+    
+    bool hayCofre(Mapa* mapa);
+    bool hayPuerta(Mapa* mapa);
     
     int hayEnemigosCercanos(Enemigo** enemigos);
+    int hayCofresCercanos(Mapa* m);
+    int hayPuertasCercanas(Mapa* m);
      
 private:
     int experiencia;
-    Objetos* inventarioObjetos[3];
-    Armas* inventarioArmas[3];
-     
+    Objetos** inventarioObjetos;
+    Armas** inventarioArmas;
+    
     int* recorrido;
     int ultimo_mov;//ultimo paso hecho
     int pasos;//contador de los pasos realizados
-    Sprite* spriteCofreAbierto;
-    Texture* texturaCofreAbierto;
-    Sprite *spriteAvisoInventArmas, *spriteAvisoInventObjetos, *spriteAvisoLlaveCofre, *spriteAvisoLlavePuerta;
+    Sprite *spriteAviso;
     Texture *texturaAvisoInventarioArmas, *texturaAvisoInventarioObjetos,*texturaAvisoLlaveCofre,*texturaAvisoLlavePuerta;
 };
  

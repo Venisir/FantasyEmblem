@@ -19,16 +19,34 @@ Objetos::Objetos(){
     
 }
 
-Objetos::Objetos(const char* nom,const char* tip, int uso, int alcan, const char* descrip, bool cai) {
+Objetos::Objetos(const char* nom,const char* tip, int uso, int alcan, const char* descrip, bool cai, const char* fotico) {
     Nombre=nom;
     Tipo=tip;
     Usos=uso;
     Alcance=alcan;
     Descripcion=descrip;
     Caido=cai;
+    foto=fotico;
+            
+    spriteObjeto= new Sprite();
+    textObjeto= new Texture();
+            
+    string s1 = string(fotico);
+    string s = "resources/"+s1;
+    
+    if (!textObjeto->loadFromFile(s))
+    {
+        std::cerr << "Error cargando la imagen textura del arma";
+        exit(0);
+    }
+    
+    spriteObjeto->setTexture(*textObjeto);
 }
 
 Objetos::~Objetos() {
+    
+    delete spriteObjeto;
+    delete textObjeto;
 }
 
 int Objetos::getUsos(){
@@ -49,4 +67,12 @@ const char* Objetos::getTipo(){
 
 int Objetos::getId(){
     return id;
+}
+
+const char* Objetos::getNombre(){
+    return Nombre;
+}
+
+Sprite Objetos::getSprite(){
+    return *spriteObjeto;
 }

@@ -43,7 +43,10 @@ private:
     void init_State();
     void render_State();
     void update_State();
-    
+
+     sf::Sprite *objeto1;
+    sf::Sprite *objeto2;
+    sf::Sprite *objeto3;
     sf::Sprite *arma;
     sf::Font* fuente;
     sf::Texture *texturaMenu1;

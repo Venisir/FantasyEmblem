@@ -31,7 +31,8 @@ public:
     bool puedeMoverseAqui(int i, int j);
     void setSpriteColorAtaque(int i, int j);
     void defaultSpriteColorAtaque(int i, int j);
-    void quitarPuerta();
+    void quitarPuerta(int i, int j);
+    bool getCofre(int i, int j);
     
     Enemigo** getEnemigos();
     Cofre** getCofres();

@@ -179,7 +179,7 @@ void EstadoPer::mostrarStats(){
         
         std::string s_stats = ss_stats.str();
 
-        stats->setCharacterSize(16);
+        stats->setCharacterSize(14);
         stats->setFont(*fuente);
         stats->setString(s_stats);
         
@@ -196,7 +196,7 @@ void EstadoPer::mostrarStats(){
         
         std::string s_stats1 = ss_stats1.str();
 
-        stats1->setCharacterSize(16);
+        stats1->setCharacterSize(14);
         stats1->setFont(*fuente);
         stats1->setString(s_stats1);
         

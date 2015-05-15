@@ -24,7 +24,7 @@ using namespace sf;
 class Unidad {
 public:
     Unidad();
-    Unidad(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu);
+    Unidad(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, const char* textBatalla);
     ~Unidad();
     
     //METODOS SET
@@ -65,6 +65,7 @@ public:
     int getPosicionSpriteY();
     
     Sprite getSprite();
+    Sprite getSpriteBatalla();
     
     void setPV(int);
 
@@ -94,7 +95,8 @@ public:
     int getDestinoX();
     int getDestinoY();
     
-    void recorrido(int destinox, int destinoy);//estrella
+    void recorridoA(int destinox, int destinoy);//estrella
+    void muestraMovs();
     
     
 protected:
@@ -120,6 +122,8 @@ protected:
     //Sprite de la unidad
     Sprite* spriteUnidad;
     Texture* texturaUnidad;
+    Sprite* spriteBatalla;
+    Texture* textBatalla;
     
     int valorSprite;
     bool siguienteSumar;

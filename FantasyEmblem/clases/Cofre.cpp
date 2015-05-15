@@ -63,3 +63,17 @@ void Cofre::Draw(){
 void Cofre::setPosition(int i, int j){
     spriteCofre->setPosition(i,j);
 }
+
+void Cofre::cambiaTexturaAbierto(){
+    cerr << "Le cambia la textura desde cofre.cpp" << endl;
+    spriteCofre->setTextureRect(IntRect(8*16, 1*16, 16, 16));
+    
+}
+
+int Cofre::getPosicionSpriteX() {
+    return spriteCofre->getPosition().x;
+}
+
+int Cofre::getPosicionSpriteY() {
+    return spriteCofre->getPosition().y;
+}

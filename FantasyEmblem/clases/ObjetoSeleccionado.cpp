@@ -46,6 +46,9 @@ ObjetoSeleccionado::ObjetoSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, C
     stats=new Text();
     stats1=new Text();
     fuente=new Font();
+    objeto1=new Sprite();
+    objeto2=new Sprite();
+    objeto3=new Sprite();
     cursorActivo=true;
     cont=0;
     m=map;
@@ -60,6 +63,9 @@ ObjetoSeleccionado::ObjetoSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, C
 
 ObjetoSeleccionado::~ObjetoSeleccionado() {
     
+    delete objeto1;
+    delete objeto2;
+    delete objeto3;
     delete arma;
     delete fuente;
     delete stats1;
@@ -149,16 +155,39 @@ void ObjetoSeleccionado::render_State()
     Juego::Instance()->getVentana()->draw(*stats);
     Juego::Instance()->getVentana()->draw(*stats1);
     Juego::Instance()->getVentana()->draw(*arma);
+    Juego::Instance()->getVentana()->draw(*objeto1);
+    Juego::Instance()->getVentana()->draw(*objeto2);
+    Juego::Instance()->getVentana()->draw(*objeto3);
     Juego::Instance()->getVentana()->display();
 }
 
 void ObjetoSeleccionado::mostrarItems(){
     
-   arma=new Sprite(ali[0]->getArma()->getSprite());
+    
+    
+    cerr << "hola" << endl;
+    cerr << sizeof(ali[0]->getObjetos()) << endl;
+    for(int i=0; i<sizeof(ali[0]->getObjetos());i++){
+        cerr << "sadasds" << endl;
+        if(i==0){
+            objeto1= new Sprite(ali[0]->getObjetos()[i]->getSprite());
+        }
+         if(i==1){
+            objeto1= new Sprite(ali[0]->getObjetos()[i]->getSprite());
+        } 
+        if(i==2){
+            objeto1= new Sprite(ali[0]->getObjetos()[i]->getSprite());
+        }
+        
+    }
+    
+    //arma=new Sprite(ali[0]->getArma()->getSprite());
     std::stringstream ss_stats;
         ss_stats <<   
-               
-              /* ali[0]->getArma()->getSprite() << */ali[0]->getArma()->getNombre()<<" " << ali[0]->getArma()->getUsos() << "\n" << "\n" 
+              
+              ali[0]->getObjetos()[0]->getNombre() << "\n" << "\n"<< 
+              ali[0]->getObjetos()[1]->getNombre() << "\n" << "\n"<< 
+              ali[0]->getObjetos()[2]->getNombre()  
                ;
                
         
@@ -170,7 +199,9 @@ void ObjetoSeleccionado::mostrarItems(){
         
         stats->setColor(sf::Color::White);
         stats->setPosition(50,135);
-        arma->setPosition(40,135);
+        objeto1->setPosition(40,135);
+        objeto2->setPosition(40,157);
+        objeto3->setPosition(40,179);
        /* 
         std::stringstream ss_stats1;
         ss_stats1 <<   
@@ -240,15 +271,17 @@ void ObjetoSeleccionado::input()
                         
                     if(cont==0)
                     {
-                        //atacar
-                        cursorActivo = true;
-                    
-                       
+                        //usar
+                        cursorActivo = true;                    
+                        cout<<"usar"<<endl;
+                        
                     }
                     
                     if(cont==1)
                     {
-                        //estado
+                        //tirar
+                        cout<<"tirar"<<endl;
+                        
                     }
                     
                     break;

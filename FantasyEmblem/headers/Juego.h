@@ -51,12 +51,15 @@ public:
     void ponerEstadoPause();
     void ponerEstadoUnidadSeleccionada();
     void ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
-    void ponerEstadoBatalla();
+    void ponerEstadoBatalla(Aliadas* ali, Enemigo* ene);
     void ponerEstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
     void ponerEstadoPantallaInicio();
     void ponerEstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
     void ponerEstadoObjetosSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
     void ponerEstadoPersonaje(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
+    
+    
+    void reiniciarEstadoEscenario();
     
 protected:
     Juego();

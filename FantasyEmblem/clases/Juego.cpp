@@ -46,10 +46,6 @@ Juego::Juego() {
     
     //ponerEstadoEscenario();
 }
-/*
-Juego::Juego(const Juego& orig) {
-}
-*/
 
 Juego::~Juego() {
     /*if(pinstance != NULL)*/ 
@@ -113,6 +109,11 @@ void Juego::ponerEstadoEscenario(){
     //states.back()->init();
 }
 
+void Juego::reiniciarEstadoEscenario() {
+    Escenario::Instance()->ResetInstance();
+    ponerEstadoEscenario();
+}
+
 void Juego::ponerEstadoPause(){
     states.push_back(EstadoPause::Instance());
     //states.back()->init();
@@ -128,8 +129,8 @@ void Juego::ponerEstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, Cofr
     states.push_back(EstadoConversacion::Instance(map,al,ene,cofr,indice,turno));
 }
 
-void Juego::ponerEstadoBatalla(){
-    states.push_back(EstadoBatall::Instance());
+void Juego::ponerEstadoBatalla(Aliadas* ali, Enemigo* ene){
+    states.push_back(EstadoBatall::Instance(ali,ene));
     //states.back()->init();
 }
 void Juego::ponerEstadoPantallaInicio(){
