@@ -87,9 +87,9 @@ EstadoConversacion::~EstadoConversacion() {
 
 void EstadoConversacion::init_State()
 {
-    if (!texturaPersonajeIzq->loadFromFile("resources/ike5.png"))
+    if (!texturaPersonajeIzq->loadFromFile("resources/eirika.png"))
     {
-            std::cerr << "Error cargando la imagen ike5.png";
+            std::cerr << "Error cargando la imagen eirika.png";
             exit(0);
     }
 
@@ -109,7 +109,7 @@ void EstadoConversacion::init_State()
     personajeDer->setTexture(*texturaPersonajeDer);
     pergamino->setTexture(*texturaPergamino);
     
-    personajeIzq->setTextureRect(IntRect(0, 0, 170, 127));
+    personajeIzq->setTextureRect(IntRect(0, 0, 169, 125));
     personajeDer->setTextureRect(IntRect(0, 0, 170, 127));
     /*posicionar sprites*/
     //personajeIzq->setOrigin(420/2,280/2);
@@ -205,9 +205,11 @@ void EstadoConversacion::update_State()
         input();
     }
     
-    if(reloj3->getElapsedTime().asSeconds() >= 0.2) {
+    if(reloj3->getElapsedTime().asSeconds() >= 0.08){
+        
+        cerr << contX << " " << contY << endl;
         if(quienHabla == 0){
-            personajeIzq->setTextureRect(IntRect(contX*177, contY*127, 170, 127));
+            personajeIzq->setTextureRect(IntRect(contX*169, contY*125, 169, 125));
             //169/125
         }else{
             personajeDer->setTextureRect(IntRect(contX*177, contY*127, 170, 127));
@@ -216,12 +218,27 @@ void EstadoConversacion::update_State()
         //cerr << "contX: " << contX << "  contY: " << contY << endl;
         
         contX++;
-        contY++;
         
-        if(contX == 3)
+        if(contX == 3){
             contX = 0;
+            contY++;
+        }
         if(contY == 6)
             contY = 0;
+        
+        /*
+        contY++;
+        
+        if(contY == 3){
+            contY = 0;
+            contX++;
+        }
+        
+        if(contX == 3){
+            contX=0;
+        }
+        */
+        
         reloj3->restart();
     }
 }
