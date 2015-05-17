@@ -78,12 +78,15 @@ private:
     void update_State();
     
     sf::Texture* texturaCursor;
+    sf::Texture* texturaTurnoUsu;
     sf::Texture* texturaMenuStats;
     sf::Sprite* spriteMenuStats;
+    sf::Sprite* spriteTurnoUsu;
     sf::Sprite* spriteCursor;
     sf::Clock* reloj;
     sf::Clock* relojCursor;
     sf::Clock* reloj2;
+    sf::Clock* relojTurno;
     sf::Event* evento;
     sf::Font* fuente;
     sf::Text* t_stats;
@@ -110,7 +113,8 @@ private:
     bool puertaSi;
     bool cofreSi;
     bool enemigoSi;
-        
+    bool turnoSi;
+    
     Aliadas** aliadas;//aray de unidades aliadas (posiblemente esten en mapa)
     Enemigo** enemigos;//array de unidades enemigas
     Cofre** cofres;

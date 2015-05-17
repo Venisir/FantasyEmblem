@@ -12,7 +12,6 @@
 #include "../headers/Estado.h"
 #include "../headers/Juego.h"
 #include "../headers/Mapa.h"
-//#include "tinyxml2.h"
 
 #include <iostream>
 #include <sstream>
@@ -20,7 +19,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-//using namespace tinyxml2;
 using namespace std;
 using namespace sf;
 
@@ -39,8 +37,6 @@ Escenario::Escenario() {
 
 }
 
-
-
 Escenario::Escenario(const char* nombremapa) {
     //Realizar inicializaciones necesarias de la instancia
     //ventana->create(sf::VideoMode(480,320), "Fantasy Emblem");
@@ -48,6 +44,7 @@ Escenario::Escenario(const char* nombremapa) {
     spriteCursor = new Sprite();
     reloj = new Clock();
     relojCursor = new Clock();
+    relojTurno = new Clock();
     evento = new Event();
     mapa = new Mapa(nombremapa);
     aliadas=new Aliadas*[5];
@@ -65,8 +62,10 @@ Escenario::Escenario(const char* nombremapa) {
     texturaMenuStats = new Texture();
     
     texturaAbrirPuerta = new Texture();
-    spriteAbrirPuerta = new Sprite();
+    texturaTurnoUsu = new Texture();
     
+    spriteTurnoUsu = new Sprite();
+    spriteAbrirPuerta = new Sprite();
     
     int atri[] = { 20, 9, 1, 19, 9, 6, 4};
     
@@ -103,6 +102,8 @@ Escenario::~Escenario() {
     delete pause_open;
     delete opause;
     delete spriteAbrirPuerta;
+    delete texturaTurnoUsu;
+    delete spriteTurnoUsu;
 }
 
 void Escenario::ResetInstance(){
@@ -125,12 +126,17 @@ void Escenario::init_State(){
         exit(0);
     }
     
+    if (!texturaTurnoUsu-> loadFromFile("resources/turnoJugador.png"))
+    {
+        std::cerr << "Error cargando la imagen turnoJugador.png";
+        exit(0);
+    }
+    
     if (!texturaMenuStats-> loadFromFile("resources/menuStats.png"))
     {
         std::cerr << "Error cargando la imagen menuStats.png";
         exit(0);
     }
-    
     
     if (!mapasonido->loadFromFile("resources/mapasonido.wav")){
         std::cerr << "Error al cargar el archivo de audio";
@@ -145,11 +151,14 @@ void Escenario::init_State(){
     
     spriteCursor->setTexture(*texturaCursor);
     spriteCursor->setTextureRect(IntRect(0, 0, 16, 16));
-    
     spriteCursor->setPosition(176,176);
     
     spriteAbrirPuerta->setTexture(*texturaAbrirPuerta);
     spriteAbrirPuerta->setPosition(100,30);
+    
+    spriteTurnoUsu->setTexture(*texturaTurnoUsu);
+    spriteTurnoUsu->setOrigin(120/2,60/2);
+    spriteTurnoUsu->setPosition(240,160);
     
     puertaSi = false;
     cofreSi = false;
@@ -187,7 +196,7 @@ void Escenario::init_State(){
     opause->setBuffer(*pause_open);
     opause->setVolume(80);
     
-    
+    turnoSi = false;
 }
 
 void Escenario::paramusic(){
@@ -399,8 +408,11 @@ void Escenario::render_State(){
         Juego::Instance()->getVentana()->draw(*spriteCursor);
     }
     
-    Juego::Instance()->renderText();
+    if(turnoSi == true){
+        Juego::Instance()->getVentana()->draw(*spriteTurnoUsu);
+    }
     
+    Juego::Instance()->renderText();
     Juego::Instance()->getVentana()->display();
 }
 
@@ -430,6 +442,10 @@ void Escenario::update_State(){
             cursorActivo = abs(cursorActivo-16);
         }
         relojCursor->restart();
+    }
+    
+    if (relojTurno->getElapsedTime().asSeconds() >= 2) {
+        turnoSi = false;
     }
     
     //Reloj del input y del movimiento
@@ -553,12 +569,13 @@ void Escenario::update_State(){
                     *turnoUsu=true;
                     turnoEnemigo = 0;
                     fasesEnemigo = 0;
+                    relojTurno->restart();
+                    turnoSi = true;
                 }
                 break;
             case 4:
                 break;
         }
-        
         fasesEnemigo++;
     }
 }

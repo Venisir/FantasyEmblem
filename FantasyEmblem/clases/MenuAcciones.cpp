@@ -57,9 +57,7 @@ MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr,
     mcursor = new SoundBuffer();
     cursor = new Sound();
     init_State();
-    
 }
-
 
 MenuAcciones::~MenuAcciones() {
     delete texturaDanyo;
@@ -83,12 +81,10 @@ MenuAcciones::~MenuAcciones() {
     delete turnoEnemigo;
     delete reloj;
     delete reloj2;
-   
 }
 
 void MenuAcciones::init_State()
 {
-    
     if (!texturaMenuAtaque->loadFromFile("resources/menuaccionesAtacar.png"))
     {
         std::cerr << "Error cargando la imagen menuaccionesAtacar.png";
@@ -140,11 +136,10 @@ void MenuAcciones::init_State()
     numMenu = -1;
     seleccionarMenu();
     
-    
     cursorDedo->setTexture(*texturaDedo);
     danyo->setTexture(*texturaDanyo);
     objetos->setTexture(*texturaObjetos);
-   turnoEnemigo->setTexture(*texturaTurnoEnemigo);
+    turnoEnemigo->setTexture(*texturaTurnoEnemigo);
     /*posicionar sprites*/
     turnoEnemigo->setOrigin(120/2,60/2);
     menu->setOrigin(420/2,280/2);
@@ -212,9 +207,6 @@ void MenuAcciones::update_State()
     if (reloj2->getElapsedTime().asSeconds() >= 0.5 && dibujaTurnoEnemigo==false) {
         ali[0]->cambiaSpriteQuieto();
         for(int x=0; x<m->getNumEnemigos(); x++){
-            // if(aliadas[x]!=NULL){
-                //aliadas[x]->Draw();
-            //}
             enem[x]->cambiaSpriteQuieto();
         }
         
@@ -320,11 +312,6 @@ void MenuAcciones::teclaIntro(){
 
                 reloj3->restart();
                 dibujaTurnoEnemigo = true;
-                /*
-                Escenario::Instance()->empiezaturnoIA();
-                Escenario::Instance()->deseleccionarUnidad();
-                Juego::Instance()->ponerEstadoEscenario();
-                */
             }
         }
         if(cont==3){
@@ -343,12 +330,6 @@ void MenuAcciones::teclaIntro(){
             
             reloj3->restart();
             dibujaTurnoEnemigo = true;
-            
-            /*
-            Escenario::Instance()->empiezaturnoIA();
-            Escenario::Instance()->deseleccionarUnidad();
-            Juego::Instance()->ponerEstadoEscenario();
-            */
         }
     }else{  
         if(cont==0)
@@ -434,12 +415,6 @@ void MenuAcciones::teclaIntro(){
                 for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
                     ali[i]->setHaJugado(false);
                 }
-                
-                /*
-                Escenario::Instance()->empiezaturnoIA();
-                Escenario::Instance()->deseleccionarUnidad();
-                Juego::Instance()->ponerEstadoEscenario();
-                */
                 cursorActivo=true;
                 cont=0;
                 cursorDedo->setPosition(215,260);
@@ -469,11 +444,6 @@ void MenuAcciones::teclaIntro(){
 
             reloj3->restart();
             dibujaTurnoEnemigo = true;
-            /*
-            Escenario::Instance()->empiezaturnoIA();
-            Escenario::Instance()->deseleccionarUnidad();
-            Juego::Instance()->ponerEstadoEscenario();
-            */
         }
     }
 }
@@ -504,24 +474,20 @@ void MenuAcciones::input()
                 break;
                     
                 case sf::Keyboard::Numpad1:
-                    ali[*index]->setHaJugado(true);
                 break;
+                
                 case sf::Keyboard::Numpad2:
-                    ali[*index]->setHaJugado(false);
                 break;
+                
                 case sf::Keyboard::Numpad3:
-                    cerr << ali[*index]->hayPuertasCercanas(m) << endl;
                 break;
                 
                 case sf::Keyboard::Numpad4:
-                    cerr << "INDEEEEEEEEEEEEEX: " << *index << endl;
                 break;
                     
                 case sf::Keyboard::Numpad9:
-                    *index=-1;
-                    Escenario::Instance()->deseleccionarUnidad();
-                    Juego::Instance()->ponerEstadoEscenario(); 
                 break;
+                
                 case sf::Keyboard::Escape:
                     Juego::Instance()->getVentana()->close();               
                 break;
@@ -550,7 +516,6 @@ void MenuAcciones::input()
                 if(evento->type == sf::Event::JoystickButtonPressed){
                     
                     switch(evento->joystickButton.button){
-
                         case 2:
                             teclaIntro();
                         break;
