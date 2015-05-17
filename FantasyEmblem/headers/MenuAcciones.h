@@ -54,12 +54,15 @@ private:
     sf::Texture *texturaDedo;
     sf::Texture *texturaDanyo;
     sf::Texture *texturaObjetos;
+    sf::Texture *texturaTurnoEnemigo;
+    sf::Sprite *turnoEnemigo;
     sf::Sprite *menu;
     sf::Sprite *cursorDedo;
     sf::Sprite *danyo;
     sf::Sprite *objetos;
     sf::Clock *reloj;
     sf::Clock *reloj2;
+    sf::Clock *reloj3;
     sf::Event *evento;
     int cont;
     bool cursorActivo;
@@ -74,6 +77,8 @@ private:
     int numMenu;//numero de menu que tiene, si tiene el de abrirpuerta, el de abrircofre, el de atacar...
     sf::SoundBuffer* mcursor;
     sf::Sound* cursor;
+    
+    bool dibujaTurnoEnemigo;
 };
 
 #endif	/* MENUACCIONES_H */
