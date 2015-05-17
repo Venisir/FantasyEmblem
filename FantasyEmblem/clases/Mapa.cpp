@@ -28,6 +28,11 @@ using namespace std;
 using namespace sf;
 
 Mapa::Mapa() {
+
+}
+
+
+Mapa::Mapa(const char* nombremapa) {
    
     _width = 0;
     _height = 0;
@@ -45,7 +50,7 @@ Mapa::Mapa() {
     XMLDocument doc;
     
     const char* m1 = "niveles/";
-    const char* m2 = "mapa1";
+    const char* m2 = nombremapa;
     const char* m3 = ".tmx"; 
     
     char result[24];   // array to hold the result.

@@ -30,8 +30,9 @@ class Escenario: public Estado{
 public:
     
     static Escenario* Instance();
-    static void ResetInstance();
     
+    static void ResetInstance();
+    static void nuevoEscenario(const char* nombremapa);
     void input();
     
     void cambiaSpriteCursorMano();
@@ -59,9 +60,11 @@ public:
     void teclaIzquierda();
     void teclaAbajo();
     void teclaIntro();
+    void cambiaMapa(const char* nombremapa);
 
 protected:
     Escenario();
+    Escenario(const char* nombremapa);
     ~Escenario();
 
 private:

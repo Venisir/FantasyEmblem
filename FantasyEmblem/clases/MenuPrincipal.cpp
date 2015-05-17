@@ -255,7 +255,12 @@ void MenuPrincipal::input(){
                     if(getSelectedItemIndex()==3){
                         Exit();
                     }      
-                break;  
+                break; 
+                case sf::Keyboard::Num5:
+                    Escenario::Instance()->cambiaMapa("mapaPruebas");
+                    Escenario::Instance()->init();
+                    Juego::Instance()->ponerEstadoEscenario();
+                        
             }
         }else{
             if(sf::Joystick::isConnected(0)){

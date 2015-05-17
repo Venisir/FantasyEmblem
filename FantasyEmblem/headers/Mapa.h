@@ -18,6 +18,7 @@
 class Mapa {
 public:
     Mapa();
+    Mapa(const char* nombremapa);
     virtual ~Mapa();
     void Draw();
     void setSpriteColor(int color, int i, int j, int saltaComprobacion);
