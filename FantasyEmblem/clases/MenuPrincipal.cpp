@@ -246,9 +246,15 @@ void MenuPrincipal::input(){
                 case sf::Keyboard::Return:
                     if(getSelectedItemIndex()==1){
                         PantallaStart::Instance()->pararmusica();
+                        time1 = seconds(0.3);
+                        select->play();
+                        sleep(time1);
                         Juego::Instance()->ponerEstadoEscenario();
                     }      
                     if(getSelectedItemIndex()==2){
+                        time1 = seconds(0.3);
+                        select->play();
+                        sleep(time1);
                         Juego::Instance()->ponerEstadoEscenario();
                         Juego::Instance()->reiniciarEstadoEscenario();
                     }      
