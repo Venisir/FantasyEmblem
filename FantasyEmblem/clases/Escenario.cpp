@@ -382,7 +382,6 @@ void Escenario::render_State(){
     }
     
     for(int i=0; i<sizeof(aliadas)/sizeof(int)+1; i++){
-    //cerr << "Heeeey" << endl;
         aliadas[i]->Draw();
     }
     
@@ -411,7 +410,6 @@ void Escenario::update_State(){
            
         if(*primeritaVes == true){
             *primeritaVes = false;
-            cerr << "GRINGO, A HABLAR" << endl;
             Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu);     
         }
         
@@ -572,7 +570,6 @@ void Escenario::teclaArriba(){
     }
     if(*unidad_sel!=-1){
         aliadas[*unidad_sel]->guardamovimiento(2);
-        std::cerr << "2" << endl;
     }
 }
 
@@ -583,7 +580,6 @@ void Escenario::teclaDerecha(){
     }
     if(*unidad_sel!=-1){
         aliadas[*unidad_sel]->guardamovimiento(1);
-        std::cerr << "1" << endl;
     }
 }
 
@@ -594,7 +590,6 @@ void Escenario::teclaIzquierda(){
     }
     if(*unidad_sel!=-1){
         aliadas[*unidad_sel]->guardamovimiento(-1);
-        std:cerr << "-1" << endl;
     }
 }
 
@@ -606,7 +601,6 @@ void Escenario::teclaAbajo(){
     }
     if(*unidad_sel!=-1){
         aliadas[*unidad_sel]->guardamovimiento(-2);
-        std::cerr << "-2" << endl;
     }
 }
 
@@ -633,9 +627,8 @@ void Escenario::teclaIntro(){
                 //aliadas[*unidad_sel]->recorre();
                 //ESTRELLA
                 
-                cerr << "Vamonos";
                 aliadas[*unidad_sel]->recorridoA(spriteCursor->getPosition().x, spriteCursor->getPosition().y);
-                cerr << " atomos" << endl;
+                
                 quitarCuadriculaUnidad(aliadas[*unidad_sel]->getPosicionSpriteX(), aliadas[*unidad_sel]->getPosicionSpriteY(),aliadas[*unidad_sel]->getRango());
                 aliadas[*unidad_sel]->recorre();
             }
@@ -677,52 +670,39 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad1:
-                    aliadas[0]->recorridoA(spriteCursor->getPosition().x, spriteCursor->getPosition().y);
+                    //Limpiar consola
+                    system("cls");
                 break;
                 
                 case sf::Keyboard::Numpad2:
-                    aliadas[0]->muestraMovs();
+                    //Estado conversacion
+                    Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu);
                 break;
                 
                 case sf::Keyboard::Numpad3:
-                    aliadas[0]->getMovimientos();
-                    
-                    //cerr << "Tamanyo: " << sizeof(aliadas[0]->getMovimientos())/sizeof(aliadas[0]->getMovimientos()[0]) << endl;
-                    for(int i=0; i<sizeof(aliadas[0]->getMovimientos())/sizeof(aliadas[0]->getMovimientos()[0]); i++){
-                        cerr << aliadas[0]->getMovimientos()[i] << " " ;
+                    if(sf::Joystick::isConnected(0)){
+                        cerr << "Mando conectado!" << endl;
+                    }else{
+                        cerr << "Mando no conectado!" << endl;
                     }
                 break;
                 
                 case sf::Keyboard::Numpad4:
-                    Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu);
                 break;
                 
                 case sf::Keyboard::Numpad5:
-                    cerr << endl;
                 break;
                 
                 case sf::Keyboard::Numpad6:
-                    cerr << *unidad_sel << endl;
                 break;
                 
                 case sf::Keyboard::Numpad7:
-                    
-                    if(sf::Joystick::isConnected(0)){
-                        cerr << "Conectado!" << endl;
-                    }else{
-                        cerr << "No conectado!" << endl;
-                    }
-    
                 break;
                 
                 case sf::Keyboard::Numpad8:
-                    //paramusic();
-                    Juego::Instance()->ponerEstadoMenuPrincipal();              
                 break;
+                
                 case sf::Keyboard::Numpad9:
-                    mapasonido1->pause();
-                    opause->play();
-                    Juego::Instance()->ponerEstadoPause();              
                 break;
                 
                 case sf::Keyboard::A:
@@ -741,6 +721,19 @@ void Escenario::input() {
                     aliadas[0]->setPosition(aliadas[0]->getPosicionSpriteX()+16, aliadas[0]->getPosicionSpriteY());
                 break;
                 
+                case sf::Keyboard::P:
+                    //Pause
+                    mapasonido1->pause();
+                    opause->play();
+                    Juego::Instance()->ponerEstadoPause();    
+                break;
+                
+                case sf::Keyboard::M:
+                    //Menu principal
+                    //paramusic();
+                    Juego::Instance()->ponerEstadoMenuPrincipal();    
+                break;
+                
                 case sf::Keyboard::Escape:
                     Juego::Instance()->getVentana()->close();               
                 break;
@@ -750,23 +743,6 @@ void Escenario::input() {
                     init_State();
                 break;
             }
-            
-            tieneQueMostrarStats = false;
-            /*
-            for(int i=0; i<sizeof(aliadas); i++){
-                if(spriteCursor->getPosition().x == aliadas[i]->getPosicionSpriteX() && spriteCursor->getPosition().y == aliadas[i]->getPosicionSpriteY()){
-                    mostrarStats(i, 0);
-                    tieneQueMostrarStats = true;
-                }
-            }
-
-            for(int i=0; i< mapa->getNumEnemigos(); i++){
-                if(spriteCursor->getPosition().x == enemigos[i]->getPosicionSpriteX() && spriteCursor->getPosition().y == enemigos[i]->getPosicionSpriteY()){
-                    mostrarStats(i, 1);
-                    tieneQueMostrarStats = true;
-                }
-            }
-             */
         }else{
             if(sf::Joystick::isConnected(0)){
                 
@@ -787,11 +763,8 @@ void Escenario::input() {
                         }
                     }
                 }
-                
                 if(evento->type == sf::Event::JoystickButtonPressed){
-                    
                     switch(evento->joystickButton.button){
-
                         case 2:
                             teclaIntro();
                         break;
@@ -801,6 +774,22 @@ void Escenario::input() {
                             Juego::Instance()->ponerEstadoPause();  
                         break;
                     }
+                }
+            }
+            
+            tieneQueMostrarStats = false;
+            
+            for(int i=0; i<sizeof(aliadas)/sizeof(int)+1; i++){
+                if(spriteCursor->getPosition().x == aliadas[i]->getPosicionSpriteX() && spriteCursor->getPosition().y == aliadas[i]->getPosicionSpriteY()){
+                    mostrarStats(i, 0);
+                    tieneQueMostrarStats = true;
+                }
+            }
+
+            for(int i=0; i< mapa->getNumEnemigos(); i++){
+                if(spriteCursor->getPosition().x == enemigos[i]->getPosicionSpriteX() && spriteCursor->getPosition().y == enemigos[i]->getPosicionSpriteY()){
+                    mostrarStats(i, 1);
+                    tieneQueMostrarStats = true;
                 }
             }
         }
@@ -825,4 +814,24 @@ void Escenario::volverMenuAcciones(){
 
 void Escenario::deseleccionarUnidad(){
     *unidad_sel = -1;
+}
+
+void Escenario::borraEnemigo(int e){
+    enemigos[e] = NULL;
+    
+    for(int i=e; i<sizeof(enemigos)/sizeof(int); i++){
+        if(enemigos[i+1]!=NULL){
+            enemigos[i] = enemigos[i+1];
+        }
+    }
+}
+
+void Escenario::borraAliado(int a){
+    aliadas[a] = NULL;
+    
+    for(int i=a; i<sizeof(aliadas)/sizeof(int); i++){
+        if(aliadas[i+1]!=NULL){
+            aliadas[i] = aliadas[i+1];
+        }
+    }
 }

@@ -61,6 +61,9 @@ public:
     void teclaAbajo();
     void teclaIntro();
     void cambiaMapa(const char* nombremapa);
+    
+    void borraEnemigo(int e);
+    void borraAliado(int a);
 
 protected:
     Escenario();

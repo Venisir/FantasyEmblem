@@ -640,8 +640,6 @@ void Unidad::muestraMovs(){
         
         cerr << endl;
     }
-        
-        //movs.clear();
 }
 
 Sprite Unidad::getSpriteBatalla(){
@@ -654,7 +652,6 @@ bool Unidad::getHaJugado(){
 
 void Unidad::setHaJugado(bool b){
     
-    cerr << "He entrado en setHaJugado" << endl;
     haJugado = b;
     if(haJugado == true){
         spriteUnidad->setColor(sf::Color(128,128,128));
@@ -702,19 +699,6 @@ void Unidad::MovstoInt() {
             cerr << "arriba." << endl;
         }
     }
-    
-    /*
-    for(int i=0; i<sizeof(movimientos)/sizeof(int); i++){
-        
-        //cerr << "size: " << movimientos.size() << endl;
-        //cerr << "i: " << i << endl;
-        cerr << "x: " << movimientos[i] << " "<< endl;
-        //cerr << "y: " << movimientos.at(i)->getCoordenadas().y << endl;
-        
-    }
-    
-    cerr << endl;
-     */
 }
 
 Sprite Unidad::getSpriteEvadir(){

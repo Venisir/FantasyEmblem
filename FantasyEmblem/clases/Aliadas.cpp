@@ -128,7 +128,6 @@ bool Aliadas::abrirCofre(Cofre* cofre){
                 abierto = true;
                 //cambiar sprite
                 cofre->cambiaTexturaAbierto();
-                cerr << "Hola!" << endl;
                 
                 if(cofre->getArma() != NULL){
                     for(int j=0;j<3;j++){
@@ -245,19 +244,19 @@ void Aliadas::recorre()
         {
             case 1:
                 moverDerecha(); 
-                std::cerr << movimientos[i] << " ";
+                std::cerr << movimientos[i] << " " << endl;
                 break;
             case 2:
                 moverArriba();
-                std::cerr << movimientos[i] << " ";
+                std::cerr << movimientos[i] << " " << endl;
                break;
             case -1:
                 moverIzquierda();
-                std::cerr << movimientos[i] << " ";
+                std::cerr << movimientos[i] << " " << endl;
                break;
             case -2:
                 moverAbajo();
-                std::cerr << movimientos[i] << " ";
+                std::cerr << movimientos[i] << " " << endl;
                break; 
          }
      }
