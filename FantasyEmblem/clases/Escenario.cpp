@@ -30,12 +30,18 @@ Escenario* Escenario::pinstance = 0;
 
 Escenario* Escenario::Instance () {
     if(pinstance == 0){ //¿Es la primera llamada?
-        pinstance = new Escenario(); //Creamos la instancia
+        pinstance = new Escenario("mapa1"); //Creamos la instancia
     }
     return pinstance; //Retornamos la direccion de la instancia
 }
 
 Escenario::Escenario() {
+
+}
+
+
+
+Escenario::Escenario(const char* nombremapa) {
     //Realizar inicializaciones necesarias de la instancia
     //ventana->create(sf::VideoMode(480,320), "Fantasy Emblem");
     texturaCursor = new Texture();
@@ -43,9 +49,9 @@ Escenario::Escenario() {
     reloj = new Clock();
     relojCursor = new Clock();
     evento = new Event();
-    mapa = new Mapa();
+    mapa = new Mapa(nombremapa);
     aliadas=new Aliadas*[5];
-    enemigos=new Enemigo*[5];
+    //enemigos=new Enemigo*[5];
     cofres=new Cofre*[5];
     unidad_sel=new int();
     turnoUsu=new bool();
@@ -62,12 +68,12 @@ Escenario::Escenario() {
     spriteAbrirPuerta = new Sprite();
     
     
-    int atri[] = { 11, 22, 33, 44, 55, 66, 77};
+    int atri[] = { 20, 9, 1, 19, 9, 6, 4};
     
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
-    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0);
-    aliadas[1] = new Aliadas("Albertina", "Espadachina", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0);
+    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"evadirblack.png",95);
+    aliadas[1] = new Aliadas("Albertina", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"evadirblack.png",0);
 
     
     pause_open = new SoundBuffer();
@@ -103,6 +109,11 @@ void Escenario::ResetInstance(){
     //delete pinstance; // REM : it works even if the pointer is NULL (does nothing then)
     pinstance = 0; // so GetInstance will still work.
 }
+
+void Escenario::nuevoEscenario(const char* nombremapa) {   
+    pinstance= new Escenario(nombremapa);
+}
+
 
 
 void Escenario::init_State(){
@@ -175,6 +186,7 @@ void Escenario::init_State(){
     
     opause->setBuffer(*pause_open);
     opause->setVolume(80);
+    
     
 }
 
@@ -339,6 +351,16 @@ void Escenario::mostrarStats(int numUnidad, int tipo){
         t_stats->setPosition(10,100);
     }
 }
+
+void Escenario::cambiaMapa(const char* nombremapa) {
+    mapa=new Mapa(nombremapa);
+    cofres=mapa->getCofres();
+    enemigos=mapa->getEnemigos();
+    int atri[] = { 11, 22, 33, 44, 55, 66, 77};
+    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"ike.png",95);
+    aliadas[1] = new Aliadas("Albertina", "Espadachina", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"ike.png",95);
+}
+
 
 void Escenario::empiezaturnoIA()
 {
@@ -694,6 +716,7 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad8:
+                    //paramusic();
                     Juego::Instance()->ponerEstadoMenuPrincipal();              
                 break;
                 case sf::Keyboard::Numpad9:
@@ -721,6 +744,11 @@ void Escenario::input() {
                 case sf::Keyboard::Escape:
                     Juego::Instance()->getVentana()->close();               
                 break;
+                
+                case sf::Keyboard::Num5:
+                    cambiaMapa("mapaPruebas");
+                    init_State();
+                break;
             }
             
             tieneQueMostrarStats = false;
@@ -732,7 +760,7 @@ void Escenario::input() {
                 }
             }
 
-            for(int i=0; i<mapa->getNumEnemigos(); i++){
+            for(int i=0; i< mapa->getNumEnemigos(); i++){
                 if(spriteCursor->getPosition().x == enemigos[i]->getPosicionSpriteX() && spriteCursor->getPosition().y == enemigos[i]->getPosicionSpriteY()){
                     mostrarStats(i, 1);
                     tieneQueMostrarStats = true;

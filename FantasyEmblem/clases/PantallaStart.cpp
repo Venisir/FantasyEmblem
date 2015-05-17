@@ -126,7 +126,11 @@ void PantallaStart::pararmusica() {
     menusonido->stop();
     
 }
-
+void PantallaStart::playmusic() {
+    
+    menusonido->play();
+    
+}
 
 void PantallaStart::render_State(){
     Juego::Instance()->getVentana()->clear();

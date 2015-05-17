@@ -44,11 +44,14 @@ OBJECTFILES= \
 	${OBJECTDIR}/clases/Escenario.o \
 	${OBJECTDIR}/clases/Estado.o \
 	${OBJECTDIR}/clases/EstadoBatall.o \
+	${OBJECTDIR}/clases/EstadoBatallaEnemigo.o \
 	${OBJECTDIR}/clases/EstadoConversacion.o \
 	${OBJECTDIR}/clases/EstadoObjetos.o \
 	${OBJECTDIR}/clases/EstadoPause.o \
 	${OBJECTDIR}/clases/EstadoPer.o \
+	${OBJECTDIR}/clases/EstadoSumarExp.o \
 	${OBJECTDIR}/clases/EventoMapa.o \
+	${OBJECTDIR}/clases/GameOver.o \
 	${OBJECTDIR}/clases/Juego.o \
 	${OBJECTDIR}/clases/Mapa.o \
 	${OBJECTDIR}/clases/MenuAcciones.o \
@@ -57,6 +60,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/clases/Objetos.o \
 	${OBJECTDIR}/clases/PantallaStart.o \
 	${OBJECTDIR}/clases/Partida.o \
+	${OBJECTDIR}/clases/SubirNivel.o \
 	${OBJECTDIR}/clases/Unidad.o \
 	${OBJECTDIR}/clases/main.o \
 	${OBJECTDIR}/tinyxml2.o
@@ -131,6 +135,11 @@ ${OBJECTDIR}/clases/EstadoBatall.o: clases/EstadoBatall.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/EstadoBatall.o clases/EstadoBatall.cpp
 
+${OBJECTDIR}/clases/EstadoBatallaEnemigo.o: clases/EstadoBatallaEnemigo.cpp 
+	${MKDIR} -p ${OBJECTDIR}/clases
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/EstadoBatallaEnemigo.o clases/EstadoBatallaEnemigo.cpp
+
 ${OBJECTDIR}/clases/EstadoConversacion.o: clases/EstadoConversacion.cpp 
 	${MKDIR} -p ${OBJECTDIR}/clases
 	${RM} "$@.d"
@@ -151,10 +160,20 @@ ${OBJECTDIR}/clases/EstadoPer.o: clases/EstadoPer.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/EstadoPer.o clases/EstadoPer.cpp
 
+${OBJECTDIR}/clases/EstadoSumarExp.o: clases/EstadoSumarExp.cpp 
+	${MKDIR} -p ${OBJECTDIR}/clases
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/EstadoSumarExp.o clases/EstadoSumarExp.cpp
+
 ${OBJECTDIR}/clases/EventoMapa.o: clases/EventoMapa.cpp 
 	${MKDIR} -p ${OBJECTDIR}/clases
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/EventoMapa.o clases/EventoMapa.cpp
+
+${OBJECTDIR}/clases/GameOver.o: clases/GameOver.cpp 
+	${MKDIR} -p ${OBJECTDIR}/clases
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/GameOver.o clases/GameOver.cpp
 
 ${OBJECTDIR}/clases/Juego.o: clases/Juego.cpp 
 	${MKDIR} -p ${OBJECTDIR}/clases
@@ -195,6 +214,11 @@ ${OBJECTDIR}/clases/Partida.o: clases/Partida.cpp
 	${MKDIR} -p ${OBJECTDIR}/clases
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/Partida.o clases/Partida.cpp
+
+${OBJECTDIR}/clases/SubirNivel.o: clases/SubirNivel.cpp 
+	${MKDIR} -p ${OBJECTDIR}/clases
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/clases/SubirNivel.o clases/SubirNivel.cpp
 
 ${OBJECTDIR}/clases/Unidad.o: clases/Unidad.cpp 
 	${MKDIR} -p ${OBJECTDIR}/clases

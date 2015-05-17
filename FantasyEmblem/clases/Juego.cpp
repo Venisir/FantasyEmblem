@@ -14,6 +14,7 @@
 #include "../headers/EstadoBatall.h"
 #include "../headers/EstadoConversacion.h"
 #include "../headers/EstadoObjetos.h"
+#include "../headers/GameOver.h"
 
 #include <iostream>
 #include <sstream>
@@ -133,8 +134,24 @@ void Juego::ponerEstadoBatalla(Aliadas* ali, Enemigo* ene){
     states.push_back(EstadoBatall::Instance(ali,ene));
     //states.back()->init();
 }
+void Juego::ponerEstadoBatallaEnemigo(Aliadas* ali, Enemigo* ene){
+    states.push_back(EstadoBatallaEnemigo::Instance(ali,ene));
+    //states.back()->init();
+}
+void Juego::ponerEstadoSumaExp(Aliadas* ali, Enemigo* ene, int i){
+    states.push_back(EstadoSumarExp::Instance(ali,ene,i));
+    //states.back()->init();
+}
+void Juego::ponerEstadoSubirNivel(Aliadas* ali, Enemigo* ene){
+    states.push_back(SubirNivel::Instance(ali,ene));
+    //states.back()->init();
+}
 void Juego::ponerEstadoPantallaInicio(){
     states.push_back(PantallaStart::Instance());
+    //states.back()->init();
+}
+void Juego::ponerEstadoGameOver(){
+    states.push_back(GameOver::Instance());
     //states.back()->init();
 }
 void Juego::ponerEstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)

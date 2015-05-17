@@ -46,6 +46,8 @@ private:
     
     sf::SoundBuffer* pause_close;
     sf::Sound* cpause;
+    
+    sf::Time time1;
 };
 
 #endif	/* ESTADOPAUSE_H */

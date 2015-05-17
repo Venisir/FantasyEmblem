@@ -28,6 +28,11 @@ using namespace std;
 using namespace sf;
 
 Mapa::Mapa() {
+
+}
+
+
+Mapa::Mapa(const char* nombremapa) {
    
     _width = 0;
     _height = 0;
@@ -45,7 +50,7 @@ Mapa::Mapa() {
     XMLDocument doc;
     
     const char* m1 = "niveles/";
-    const char* m2 = "mapa1";
+    const char* m2 = nombremapa;
     const char* m3 = ".tmx"; 
     
     char result[24];   // array to hold the result.
@@ -401,8 +406,8 @@ Enemigo** Mapa::getEnemigos(){
             int gid = _tilemap[6][y][x];
             //CREAR AQUI NPC's
             if(gid==81){
-                int atri[] = { 11, 22, 33, 44, 55, 66, 77};
-                enemigo[l]= new Enemigo("Soldado", "Espadachin", atri, 8, 2, "Mapa_espadachin_rojo.png","black.png");
+                int atri[] = { 24, 8, 1, 10, 11, 6, 4};
+                enemigo[l]= new Enemigo("Soldado", "Espadachin", atri, 8, 2, "Mapa_espadachin_rojo.png","black.png","evadirblack.png");
                 enemigo[l]->setPosition(x*_tileWidth,y*_tileHeight);
                 //std::cerr <<"HOLI"<< endl;
                 l++;

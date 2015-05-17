@@ -316,6 +316,8 @@ void MenuAcciones::teclaIntro(){
                 case 0:
                     //atacar
                     cursorActivo = true;
+                    Escenario::Instance()->paramusic();
+                    EstadoBatall::Instance(ali[*index],enem[0])->playmusica();
                     Juego::Instance()->ponerEstadoBatalla(ali[*index],enem[0]);
                     cursorActivo=true;
                     haAtacado = true;

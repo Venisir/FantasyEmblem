@@ -110,7 +110,10 @@ void EstadoPause::input() {
         if(evento->type == sf::Event::KeyPressed){
             switch(evento->key.code){
                 case sf::Keyboard::Numpad9:
+                    
+                    time1 = seconds(0.3);
                     cpause->play();
+                    sleep(time1);
                     Escenario::Instance()->playmusic();
                     Juego::Instance()->ponerEstadoEscenario();              
                 break;

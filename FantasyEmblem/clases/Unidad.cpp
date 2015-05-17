@@ -18,10 +18,10 @@ Unidad::Unidad()
     
 }
 
-Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, const char* textuBatalla) {
+Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, const char* textuBatalla,const char* textuevadir) {
     nombre = name;
     clase = clas;
-    arma_actual = new Armas("Espada", "Espada", 1, 1, 1, 1, 1, "espada.png");
+    arma_actual = new Armas("Espada", "Espada", 10, 8, 50, 1, 45, "espada.png");
     for(int i=0; i<7; i++)
         atributos[i] = atributo[i];
     lvl = nivel;
@@ -63,6 +63,21 @@ Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int
 
     spriteBatalla->setTexture(*textBatalla);
     spriteBatalla->setTextureRect(IntRect(0,0,248,160));
+    
+    spriteEvadir = new Sprite();
+    textEvadir= new Texture();
+	    
+    string s4 = string(textuevadir);
+    string s5 = "resources/"+s4;
+
+    if (!textEvadir->loadFromFile(s5))
+    {
+        std::cerr << "Error cargando la imagen textura de la unidad";
+        exit(0);
+    }
+
+    spriteEvadir->setTexture(*textEvadir);
+    spriteEvadir->setTextureRect(IntRect(0,0,248,160));
 
     mueve = false;
     //spriteUnidad->setPosition(176,176);
@@ -235,25 +250,25 @@ void Unidad::Draw() {
 
 //------------------------------METODOS SET-------------------------------------
 void Unidad::setHP(int hp){
-    atributos[0]=hp;
+    atributos[0]=atributos[0]+hp;
 }
 void Unidad::setFuerza(int f){
-    atributos[1]=f;
+    atributos[1]=atributos[1]+f;
 }
 void Unidad::setMagia(int m){
-    atributos[2]=m;
+    atributos[2]=atributos[2]+m;
 }
 void Unidad::setHab(int h){
-    atributos[3]=h;
+    atributos[3]=atributos[3]+h;
 }
 void Unidad::setVel(int v){
-    atributos[4]=v;
+    atributos[4]=atributos[4]+v;
 }
 void Unidad::setDef(int d){
-    atributos[5]=d;
+    atributos[5]=atributos[5]+d;
 }
 void Unidad::setDefm(int dm){
-    atributos[6]=dm;
+    atributos[6]=atributos[6]+dm;
 }
 
 //------------------------------METODOS GET-------------------------------------
@@ -304,7 +319,11 @@ int Unidad::getPV(){
 }
 
 void Unidad::setPV(int PV){
+    
     PVactual=PVactual-PV;
+    if(PVactual<0){
+        PVactual=0;
+    }
 }
 
 int Unidad::danyoPropio(Unidad* uni){
@@ -696,4 +715,8 @@ void Unidad::MovstoInt() {
     
     cerr << endl;
      */
+}
+
+Sprite Unidad::getSpriteEvadir(){
+    return *spriteEvadir;
 }
