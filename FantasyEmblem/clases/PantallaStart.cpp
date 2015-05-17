@@ -169,7 +169,7 @@ void PantallaStart::input() {
             
         if(evento->type == sf::Event::KeyPressed){
             switch(evento->key.code){
-                case sf::Keyboard::A:
+                case sf::Keyboard::Return:
                     Juego::Instance()->ponerEstadoMenuPrincipal();              
                 break;
                 case sf::Keyboard::Escape:
