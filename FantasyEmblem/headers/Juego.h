@@ -8,6 +8,7 @@
 #ifndef JUEGO_H
 #define	JUEGO_H
 
+#include "../headers/EstadoBatallaEnemigo.h"
 #include "../headers/Escenario.h"
 #include "../headers/MenuPrincipal.h"
 #include "../headers/EstadoPause.h"
@@ -21,6 +22,9 @@
 #include "../headers/EstadoConversacion.h"
 #include "../headers/ObjetoSeleccionado.h"
 #include "../headers/EstadoPer.h"
+#include "../headers/EstadoSumarExp.h"
+#include "../headers/GameOver.h"
+#include "../headers/SubirNivel.h"
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -52,12 +56,15 @@ public:
     void ponerEstadoUnidadSeleccionada();
     void ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
     void ponerEstadoBatalla(Aliadas* ali, Enemigo* ene);
+    void ponerEstadoBatallaEnemigo(Aliadas* ali, Enemigo* ene);
     void ponerEstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
     void ponerEstadoPantallaInicio();
+    void ponerEstadoGameOver();
     void ponerEstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
     void ponerEstadoObjetosSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
     void ponerEstadoPersonaje(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
-    
+    void ponerEstadoSumaExp(Aliadas* ali, Enemigo* ene, int i);
+    void ponerEstadoSubirNivel(Aliadas* ali, Enemigo* ene);
     
     void reiniciarEstadoEscenario();
     

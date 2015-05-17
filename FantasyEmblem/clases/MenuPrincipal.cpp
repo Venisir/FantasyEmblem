@@ -246,6 +246,7 @@ void MenuPrincipal::input(){
                 case sf::Keyboard::Return:
                     if(getSelectedItemIndex()==1){
                         PantallaStart::Instance()->pararmusica();
+                        Escenario::Instance()->playmusic();
                         Juego::Instance()->ponerEstadoEscenario();
                     }      
                     if(getSelectedItemIndex()==2){

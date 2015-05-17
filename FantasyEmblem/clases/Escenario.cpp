@@ -62,12 +62,12 @@ Escenario::Escenario() {
     spriteAbrirPuerta = new Sprite();
     
     
-    int atri[] = { 11, 22, 33, 44, 55, 66, 77};
+    int atri[] = { 20, 9, 1, 19, 9, 6, 4};
     
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
-    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0);
-    aliadas[1] = new Aliadas("Albertina", "Espadachina", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0);
+    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"evadirblack.png",95);
+    aliadas[1] = new Aliadas("Albertina", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"evadirblack.png",0);
 
     
     pause_open = new SoundBuffer();
@@ -175,6 +175,7 @@ void Escenario::init_State(){
     
     opause->setBuffer(*pause_open);
     opause->setVolume(80);
+    
     
 }
 
@@ -693,7 +694,7 @@ void Escenario::input() {
                 }
             }
 
-            for(int i=0; i<mapa->getNumEnemigos(); i++){
+            for(int i=0; i< mapa->getNumEnemigos(); i++){
                 if(spriteCursor->getPosition().x == enemigos[i]->getPosicionSpriteX() && spriteCursor->getPosition().y == enemigos[i]->getPosicionSpriteY()){
                     mostrarStats(i, 1);
                     tieneQueMostrarStats = true;

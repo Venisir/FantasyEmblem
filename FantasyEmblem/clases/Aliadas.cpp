@@ -31,7 +31,7 @@ Aliadas::Aliadas() {
 }
  
  
-Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, const char* textuBatalla, int experien):Unidad(name, clas, atributo, nivel, rang, nombreTextu, textuBatalla) {
+Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, const char* textuBatalla,const char* textuevadir, int experien):Unidad(name, clas, atributo, nivel, rang, nombreTextu, textuBatalla, textuevadir) {
     experiencia = experien;
      
     recorrido=new int[rango];
@@ -408,4 +408,15 @@ int Aliadas::hayPuertasCercanas(Mapa* m){
         }
     
     return hayPuerta;
+}
+
+void Aliadas::setExp(int i){
+    
+    if((experiencia+i)>=100){
+        experiencia=(experiencia+i)-100;
+        
+    }else if ((experiencia+i)<100){
+        experiencia=experiencia+1;
+    }
+    
 }
