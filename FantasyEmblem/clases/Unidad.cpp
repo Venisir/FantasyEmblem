@@ -35,6 +35,8 @@ Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int
     spriteUnidad = new Sprite();
     texturaUnidad = new Texture();
     
+    movimientos=new int[0];
+    
     string s1 = string(nombreTextu);
     string s = "resources/"+s1;
     
@@ -462,14 +464,12 @@ void Unidad::Atacar(Unidad* uni){
 void Unidad::recorridoA(int destinox, int destinoy) 
 {
     movs.clear();
-    cerr << "1" << endl;
+    
     vector<Celda*> abierta;
     vector<Celda*> cerrada;
     sf::Vector2i posaux= sf::Vector2i(getPosicionSpriteX(),getPosicionSpriteY());
     Celda* n;
     Celda* ady;
-    
-    cerr << "2" << endl;
     
     int coste=1;//coste de moverse en cualquiera de las 4 direcciones, equivale a g
     int manhatan,f,g;
@@ -478,22 +478,17 @@ void Unidad::recorridoA(int destinox, int destinoy)
     int adyacentes=0;//numero de celdas adyacentes
     vector<Celda*>::iterator iter;
     
-    
-    cerr << "3" << endl;
     Celda* celdaInicio=new Celda(posaux,0,0,0); //la celda inicio no tiene padre
     
-    /*Ponemos la celda de inicio en la abierta
-     */
+    /*Ponemos la celda de inicio en la abierta*/
     abierta.push_back(celdaInicio);
     
-    cerr << "4" << endl;
     while(abierta.empty()!=true && movs.empty()==true)
     {
-        cerr << "5" << endl;
         menorf=100000000000000000000;
         /*obtenemos el nodo con menor f(n) de la lista abierta*/        
         cerr << endl;
-        cerr << endl;
+        
         for(int i=0;i<abierta.size();i++)
         {
             g=abierta.at(i)->getG();
@@ -511,15 +506,10 @@ void Unidad::recorridoA(int destinox, int destinoy)
         }
         
         cerr << endl;
-        cerr << endl;
         
-        cerr << "6" << endl;
         iter=abierta.begin()+nodomenor;
         abierta.erase(iter);
         cerrada.push_back(n);
-        
-
-        
         
         //si n es la celda correspondiente al destino
         if(n->getCoordenadas().x == destinox && n->getCoordenadas().y == destinoy)
@@ -528,7 +518,6 @@ void Unidad::recorridoA(int destinox, int destinoy)
         }
         else if(movs.empty()==true)
         {
-            
             /*obtenemos los adyacentes*/
             
             //arriba
@@ -614,11 +603,11 @@ void Unidad::recorridoA(int destinox, int destinoy)
                     }
                 }*/
             //}  
-            cerr << "putacaacacaca" << endl;
         }
         //delete ady;
-        cerr << "cagoen" << endl;
     }
+    MovstoInt();
+    
 }
 
 void Unidad::muestraMovs(){
@@ -660,28 +649,51 @@ int* Unidad::getMovimientos() {
 }
 
 void Unidad::MovstoInt() {
+    
     movimientos=new int [movs.size()-1];//-1 porque movs contiene la posicion de inicio
     
     for(int i=0;i<movs.size()-1;i++)
     {
+        cerr << "He entrado, y decido que la direccion es ";
+        
         //priemro compruebo las posibles direcciones del eje x
-        if(movs.at(i+1)->getCoordenadas().x == movs.at(i+1)->getCoordenadas().x+16)
+        if(movs.at(i+1)->getCoordenadas().x == movs.at(i)->getCoordenadas().x+16)
         {
+            //Escenario::Instance()->getMapa()->setSpriteColorAtaque(movs.at(i+1)->getCoordenadas().x+16,movs.at(i+1)->getCoordenadas().y);
             movimientos[i]=1;//derecha
+            cerr << "derecha." << endl;
         }
-        else if(movs.at(i+1)->getCoordenadas().x == movs.at(i+1)->getCoordenadas().x-16)
+        else if(movs.at(i+1)->getCoordenadas().x == movs.at(i)->getCoordenadas().x-16)
         {
+            //Escenario::Instance()->getMapa()->setSpriteColorAtaque(movs.at(i+1)->getCoordenadas().x-16,movs.at(i+1)->getCoordenadas().y);
             movimientos[i]=-1;//izquierda
+            cerr << "izquierda." << endl;
         }
         //le toca el turno al eje y
-        else if(movs.at(i+1)->getCoordenadas().y == movs.at(i+1)->getCoordenadas().y+16)
+        else if(movs.at(i+1)->getCoordenadas().y == movs.at(i)->getCoordenadas().y+16)
         {
-            movimientos[i]=2;//abajo
+            //Escenario::Instance()->getMapa()->setSpriteColorAtaque(movs.at(i+1)->getCoordenadas().x,movs.at(i+1)->getCoordenadas().y+16);
+            movimientos[i]=-2;//abajo
+            cerr << "abajo." << endl;
         }
-        else if(movs.at(i+1)->getCoordenadas().y == movs.at(i+1)->getCoordenadas().y-16)
+        else if(movs.at(i+1)->getCoordenadas().y == movs.at(i)->getCoordenadas().y-16)
         {
-            movimientos[i]=-2;//arriba
+            //Escenario::Instance()->getMapa()->setSpriteColorAtaque(movs.at(i+1)->getCoordenadas().x,movs.at(i+1)->getCoordenadas().y-16);
+            movimientos[i]=2;//arriba
+            cerr << "arriba." << endl;
         }
     }
+    
+    /*
+    for(int i=0; i<sizeof(movimientos)/sizeof(int); i++){
+        
+        //cerr << "size: " << movimientos.size() << endl;
+        //cerr << "i: " << i << endl;
+        cerr << "x: " << movimientos[i] << " "<< endl;
+        //cerr << "y: " << movimientos.at(i)->getCoordenadas().y << endl;
+        
+    }
+    
+    cerr << endl;
+     */
 }
-

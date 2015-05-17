@@ -241,23 +241,23 @@ void Aliadas::recorre()
     //for(int i=0;i<ultimo_mov;i++)
     for(int i=0;i<1;i++)
     {
-        switch(recorrido[i])
+        switch(movimientos[i])
         {
             case 1:
                 moverDerecha(); 
-                std::cerr << recorrido[i] << " ";
+                std::cerr << movimientos[i] << " ";
                 break;
             case 2:
                 moverArriba();
-                std::cerr << recorrido[i] << " ";
+                std::cerr << movimientos[i] << " ";
                break;
             case -1:
                 moverIzquierda();
-                std::cerr << recorrido[i] << " ";
+                std::cerr << movimientos[i] << " ";
                break;
             case -2:
                 moverAbajo();
-                std::cerr << recorrido[i] << " ";
+                std::cerr << movimientos[i] << " ";
                break; 
          }
      }

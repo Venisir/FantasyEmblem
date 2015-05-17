@@ -331,7 +331,7 @@ void Mapa::defaultSpriteColorAtaque(int i, int j){
 bool Mapa::getColision(int j, int i){
     //cerr << "i: " << i << "   j: " << j << endl;
     //cerr << "gid:" << _tilemap[4][i/16][j/16] << endl;
-    if(_tilemap[4][i/16][j/16]!=0 || _tilemap[5][i/16][j/16]!=0 || _tilemap[6][i/16][j/16]!=0){
+    if(_tilemap[4][i/16][j/16]!=0 || _tilemap[5][i/16][j/16]!=0 /*|| _tilemap[6][i/16][j/16]!=0*/){
         return false;
     }else{
         return true;
