@@ -357,8 +357,8 @@ void Escenario::cambiaMapa(const char* nombremapa) {
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
     int atri[] = { 11, 22, 33, 44, 55, 66, 77};
-    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0);
-    aliadas[1] = new Aliadas("Albertina", "Espadachina", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0);
+    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"ike.png",95);
+    aliadas[1] = new Aliadas("Albertina", "Espadachina", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"ike.png",95);
 }
 
 
