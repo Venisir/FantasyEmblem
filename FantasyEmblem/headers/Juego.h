@@ -62,7 +62,7 @@ public:
     void ponerEstadoGameOver();
     void ponerEstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
     void ponerEstadoObjetosSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
-    void ponerEstadoPersonaje(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno);
+    void ponerEstadoPersonaje(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno, Aliadas* alis);
     void ponerEstadoSumaExp(Aliadas* ali, Enemigo* ene, int i);
     void ponerEstadoSubirNivel(Aliadas* ali, Enemigo* ene);
     

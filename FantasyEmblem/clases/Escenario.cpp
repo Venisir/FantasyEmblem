@@ -67,12 +67,12 @@ Escenario::Escenario(const char* nombremapa) {
     spriteTurnoUsu = new Sprite();
     spriteAbrirPuerta = new Sprite();
     
-    int atri[] = { 20, 9, 1, 19, 9, 6, 4};
+    int atri[] = { 20, 9, 1, 19, 19, 6, 4};
     
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
-    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"evadirblack.png",95);
-    aliadas[1] = new Aliadas("Albertina", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"evadirblack.png",0);
+    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"retrato1.png",95);
+    aliadas[1] = new Aliadas("Albertina", "Arquero", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"retrato2.png",0);
 
     
     pause_open = new SoundBuffer();

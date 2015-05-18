@@ -269,7 +269,7 @@ void MenuAcciones::teclaIntro(){
     }else if(numMenu == 3){
         if(cont==0){
             //estado
-           Juego::Instance()->ponerEstadoPersonaje(m,ali,enem,cof,index,turnoUsu);
+           Juego::Instance()->ponerEstadoPersonaje(m,ali,enem,cof,index,turnoUsu,ali[*index]);
 
            cursorActivo=true;
         }
@@ -383,7 +383,7 @@ void MenuAcciones::teclaIntro(){
 
         if(cont==1){
             //estado
-           Juego::Instance()->ponerEstadoPersonaje(m,ali,enem,cof,index,turnoUsu);
+           Juego::Instance()->ponerEstadoPersonaje(m,ali,enem,cof,index,turnoUsu,ali[*index]);
 
            cursorActivo=true;
         }

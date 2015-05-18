@@ -35,6 +35,8 @@ SubirNivel::SubirNivel(){
 
 SubirNivel::SubirNivel(Aliadas* ali, Enemigo* ene) {
     
+    nivel= new Texture();
+    nivel1=new Sprite();
     reloj = new Clock();
     evento = new Event();
     fondoBata = new Texture();
@@ -71,6 +73,8 @@ SubirNivel::SubirNivel(Aliadas* ali, Enemigo* ene) {
 
 SubirNivel::~SubirNivel() {
     
+    delete nivel;
+    delete nivel1;
     delete level;
     delete level1;
     delete up;
@@ -126,6 +130,16 @@ void SubirNivel::init_State(){
         std::cerr << "Error cargando la imagen mas1.png";
         exit(0);
     }
+    
+    if (!nivel->loadFromFile("resources/level.png"))
+    {
+        std::cerr << "Error cargando la imagen level.png";
+        exit(0);
+    }
+    
+    nivel1->setTexture(*nivel);
+    nivel1->setOrigin(0,0);
+    nivel1->setPosition(135,40);
     
     mas1->setTexture(*mas);
     mas1->setOrigin(0,0);
@@ -281,6 +295,7 @@ void SubirNivel::render_State(){
     Juego::Instance()->getVentana()->draw(*barraExp);
     Juego::Instance()->getVentana()->draw(*clase);
     Juego::Instance()->getVentana()->draw(*mas1);
+    Juego::Instance()->getVentana()->draw(*nivel1);
     Juego::Instance()->getVentana()->display();
 }
 
@@ -361,6 +376,7 @@ void SubirNivel::update_State(){
             if(cont==5){
                 alia->subirNivel();
                 up1->play();
+                nivel1->setScale(0,0);
                // mas1->setPosition(200,146);
             }
             if(aux1<=80){
@@ -430,6 +446,7 @@ void SubirNivel::update_State(){
             if(cont==5){
                 up1->play();
                 alia->subirNivel();
+                nivel1->setScale(0,0);
                // mas1->setPosition(200,146);
             }
             if(aux1<=55){
@@ -499,6 +516,7 @@ void SubirNivel::update_State(){
             if(cont==5){
                 up1->play();
                 alia->subirNivel();
+                nivel1->setScale(0,0);
                // mas1->setPosition(200,146);
             }
             if(aux1<=50){
