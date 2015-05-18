@@ -27,6 +27,7 @@ public:
     static PantallaStart* Instance();
     void input();
     void pararmusica();
+    void playmusic();
     
 protected:
     PantallaStart();

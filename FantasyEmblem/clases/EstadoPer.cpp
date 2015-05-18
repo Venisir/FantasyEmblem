@@ -15,11 +15,14 @@ using namespace std;
 using namespace sf;
 
 EstadoPer* EstadoPer::pinstance = 0;
-EstadoPer* EstadoPer::Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm)
+EstadoPer* EstadoPer::Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno, Aliadas* alis, Objetos** obj, Armas** arm)
 {
     if(pinstance==0)
     {
-        pinstance=new EstadoPer(map,al,ene,cofr,indice,turno,obj,arm);
+        pinstance=new EstadoPer(map,al,ene,cofr,indice,turno,alis, obj,arm);
+    }
+    else{
+        pinstance->index=indice;
     }
     return pinstance;
 }
@@ -29,12 +32,10 @@ EstadoPer::EstadoPer()
     
 }
 
-
-EstadoPer::EstadoPer(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno,Objetos** obj, Armas** arm)
+EstadoPer::EstadoPer(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno, Aliadas* alis, Objetos** obj, Armas** arm)
 {
-    
     texturaMenu=new Texture();
-    
+    retrato= new Sprite();
     menu= new Sprite();
     reloj=new Clock();
     reloj2=new Clock();
@@ -49,6 +50,7 @@ EstadoPer::EstadoPer(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *
     
     objeto = obj;
     arma = arm;
+    alia=alis;
     cont=0;
     m=map;
     ali=al;
@@ -62,6 +64,7 @@ EstadoPer::EstadoPer(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *
 
 EstadoPer::~EstadoPer() {
     
+    delete retrato;
     delete stats;
     delete stats1;
     delete clase;
@@ -89,7 +92,10 @@ void EstadoPer::init_State()
     
     menu->setTexture(*texturaMenu);
     
-
+    retrato= new Sprite(alia->getSpriteEvadir());
+    retrato->setOrigin(0,0);
+    retrato->setPosition(37,16);
+    
     
     /*posicionar sprites*/
     menu->setOrigin(0,0);
@@ -108,7 +114,7 @@ void EstadoPer::mostrarDatos(){
     //Tipo 0: Aliado
     //Tipo 1: Enemigo
         std::stringstream ss_stats;
-        ss_stats << ali[0]->getNombre();
+        ss_stats << alia->getNombre();
         
         //std::string s_stats = new std::string(ss_stats.str());
         std::string s_stats = ss_stats.str();
@@ -121,7 +127,7 @@ void EstadoPer::mostrarDatos(){
         t_stats->setPosition(65,135);
         
         std::stringstream levell;
-        levell << ali[0]->getLvl() << "  " << ali[0]->getExp() ;
+        levell << alia->getLvl() << "  " << alia->getExp() ;
         //ali[0]->getHP() << ""<< ali[0]->getPV();
          
         
@@ -136,7 +142,7 @@ void EstadoPer::mostrarDatos(){
         level->setPosition(83,224);
         
         std::stringstream vidal;
-        vidal<< ali[0]->getHP() << " "<< ali[0]->getPV();
+        vidal<< alia->getHP() << " "<< alia->getPV();
         
          
         
@@ -151,7 +157,7 @@ void EstadoPer::mostrarDatos(){
         vida->setPosition(80,245);
         
         std::stringstream clasel;
-        clasel<< ali[0]->getClase();
+        clasel<< alia->getClase();
         
          
         
@@ -170,10 +176,10 @@ void EstadoPer::mostrarStats(){
     std::stringstream ss_stats;
         ss_stats <<   
                
-                "HP:   " << ali[0]->getHP() << "\n" << "\n" <<
-                "Str:  " << ali[0]->getFuerza() << "\n" << "\n" <<
-                "Mag:  " << ali[0]->getMagia() << "\n" << "\n" <<
-                "Hab:  " << ali[0]->getHab() << "\n" << "\n" 
+                "HP:   " << alia->getHP() << "\n" << "\n" <<
+                "Str:  " << alia->getFuerza() << "\n" << "\n" <<
+                "Mag:  " << alia->getMagia() << "\n" << "\n" <<
+                "Hab:  " << alia->getHab() << "\n" << "\n" 
                /* "Velocidad: " << ali[0]->getVel() << "\n" <<
                 "Defensa: " << ali[0]->getDef() << "\n" <<
                 "Defensa mag: " << ali[0]->getDefm() << "\n" <<
@@ -181,7 +187,7 @@ void EstadoPer::mostrarStats(){
         
         std::string s_stats = ss_stats.str();
 
-        stats->setCharacterSize(14);
+        stats->setCharacterSize(16);
         stats->setFont(*fuente);
         stats->setString(s_stats);
         
@@ -191,14 +197,14 @@ void EstadoPer::mostrarStats(){
          std::stringstream ss_stats1;
         ss_stats1 <<   
                
-                "Spd:  " << ali[0]->getVel() << "\n" << "\n" <<
-                "Def:  " << ali[0]->getDef() << "\n" << "\n" <<
-                "Res:  " << ali[0]->getDefm() << "\n" << "\n" <<
-                "Rng:   " << ali[0]->getRango();
+                "Spd:  " << alia->getVel() << "\n" << "\n" <<
+                "Def:  " << alia->getDef() << "\n" << "\n" <<
+                "Res:  " << alia->getDefm() << "\n" << "\n" <<
+                "Rng:   " << alia->getRango();
         
         std::string s_stats1 = ss_stats1.str();
 
-        stats1->setCharacterSize(14);
+        stats1->setCharacterSize(16);
         stats1->setFont(*fuente);
         stats1->setString(s_stats1);
         
@@ -217,6 +223,7 @@ void EstadoPer::render_State()
     Juego::Instance()->getVentana()->draw(*clase);
     Juego::Instance()->getVentana()->draw(*stats);
     Juego::Instance()->getVentana()->draw(*stats1);
+    Juego::Instance()->getVentana()->draw(*retrato);
     Juego::Instance()->renderText();
     Juego::Instance()->getVentana()->display();
 }

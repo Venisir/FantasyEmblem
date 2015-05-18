@@ -246,15 +246,10 @@ void MenuPrincipal::input(){
                 case sf::Keyboard::Return:
                     if(getSelectedItemIndex()==1){
                         PantallaStart::Instance()->pararmusica();
-                        time1 = seconds(0.3);
-                        select->play();
-                        sleep(time1);
+                        Escenario::Instance()->playmusic();
                         Juego::Instance()->ponerEstadoEscenario();
                     }      
                     if(getSelectedItemIndex()==2){
-                        time1 = seconds(0.3);
-                        select->play();
-                        sleep(time1);
                         Juego::Instance()->ponerEstadoEscenario();
                         Juego::Instance()->reiniciarEstadoEscenario();
                     }      
@@ -262,11 +257,13 @@ void MenuPrincipal::input(){
                         Exit();
                     }      
                 break; 
+                
                 case sf::Keyboard::Num5:
-                    Escenario::Instance()->cambiaMapa("mapaPruebas");
-                    Escenario::Instance()->init();
+                    //Escenario::Instance()->cambiaMapa("mapaPruebas");
+                    //Escenario::Instance()->init();
+                    Escenario::Instance()->setCambio(1);
                     Juego::Instance()->ponerEstadoEscenario();
-                        
+                break;
             }
         }else{
             if(sf::Joystick::isConnected(0)){

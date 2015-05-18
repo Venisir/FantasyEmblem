@@ -24,7 +24,7 @@ using namespace sf;
 class Enemigo : public Unidad {
 public:
     Enemigo();
-    Enemigo(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu,const char* textuBatalla);
+    Enemigo(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu,const char* textuBatalla,const char* textuevadir);
     ~Enemigo();
     
     //Aliadas* encontrarAliadoMasCercano(Aliadas** aliadas);

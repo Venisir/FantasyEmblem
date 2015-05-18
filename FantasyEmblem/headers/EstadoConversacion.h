@@ -31,15 +31,23 @@ using namespace sf;
 
 class EstadoConversacion:public Estado {
 public:
+
     static EstadoConversacion* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm);
+
     void input();
     void cambiaQuienHabla();
     void siguienteTexto();
+    void setMapa(Mapa* map);
+    void reset();
+    
+    
     
 protected:
     EstadoConversacion();
+
     EstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm);
     ~EstadoConversacion();        
+
 private:
     static EstadoConversacion* pinstance;
     void init_State();
@@ -68,7 +76,10 @@ private:
     int contY;
     
     int quienHabla;
+    int cambioMapa;
     
+    
+    Mapa* maux;//mapa auxiliar;
     Mapa *m;//mapa proveniente del escenario 
     Aliadas **ali;//array de unidades aliadas proveniente del escenario
     Enemigo **enem;//array de unidades enemigas proveniete del escenario

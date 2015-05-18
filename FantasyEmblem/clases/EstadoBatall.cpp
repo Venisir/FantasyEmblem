@@ -49,6 +49,8 @@ EstadoBatall::EstadoBatall(Aliadas* ali, Enemigo* ene) {
     armas=new Text();
     vidas=new Text();
     per1= new Sprite();
+    batasonido=new SoundBuffer();
+    batasonido1= new Sound();
     
     per2= new Sprite();
     alia=ali;
@@ -61,7 +63,8 @@ EstadoBatall::EstadoBatall(Aliadas* ali, Enemigo* ene) {
 
 EstadoBatall::~EstadoBatall() {
     
-    
+    delete batasonido1;
+    delete batasonido;
     delete nombres;
     delete vidas;
     delete armas;
@@ -97,6 +100,8 @@ void EstadoBatall::init_State(){
     atacado= false;
     atacado2=false;
     turno2=false;
+    atacar2=false;
+    aux3=0;
     contPer1i = 0;
     contPer1j = 0;
     contPer2i = 0;
@@ -113,7 +118,25 @@ void EstadoBatall::init_State(){
     per2->setPosition(-30,28);
     
     fuente->loadFromFile("resources/font.ttf");
+    
+    if (!batasonido->loadFromFile("resources/batalla.wav")){
+        std::cerr << "Error al cargar el archivo de audio";
+    }
+    
+    batasonido1->setBuffer(*batasonido);
+    batasonido1->setVolume(30);
+    batasonido1->play();
+    aux= rand()%(101-1);
+    aux2= rand()%(101-1);
+    
     mostrarDats();
+}
+
+void EstadoBatall::paramusica(){
+    batasonido1->stop();
+}
+void EstadoBatall::playmusica(){
+    batasonido1->play();
 }
 
 void EstadoBatall::mostrarDats(){
@@ -220,10 +243,7 @@ void EstadoBatall::update_State(){
                
             enem->getPV()<<   "   " <<
             alia->getPV();
-            
-               
-               
-        
+          
         std::string vida2 = vidas2.str();
 
         vidas->setCharacterSize(16);
@@ -233,56 +253,125 @@ void EstadoBatall::update_State(){
         vidas->setColor(sf::Color::Black);
         vidas->setPosition(204,283);
         
-        
-        per1->setTextureRect(IntRect(contPer1i*248,contPer1j*160,248,160));
-        if(atacado==false){
-            if(contPer1i==7){
-                contPer1i=0;
-                contPer1j++;
-            }
-            contPer1i++;
-
-            if(contPer1i==7 && contPer1j== 4){
-                contPer1i = 0;
-                contPer1j = 0;
-                atacado=true;
-                turno2=true;
-                enem->setPV(alia->TotalDanyo(enem));
-                //sleep(1);
-
-               // Escenario::Instance()->volverMenuAcciones();
-                //Juego::Instance()->ponerEstadoEscenario();
-            }
-        }
         per2->setTextureRect(IntRect(contPer2i*248,contPer2j*160,248,160));
-        if(turno2==true){
-            if(atacado2==false){
-                if(contPer2i==7){
-                    contPer2i=0;
-                    contPer2j++;
+        per1->setTextureRect(IntRect(contPer1i*248,contPer1j*160,248,160));
+        
+            if(atacado==false){
+                if(contPer1i==7){
+                    contPer1i=0;
+                    contPer1j++;
                 }
-                contPer2i++;
+                contPer1i++;
 
-                if(contPer2i==7 && contPer2j== 6){
-                    contPer2i = 0;
-                    contPer2j = 0;
-                    atacado2=true;
-                   // sleep(1);
-                    reini=true;
-                    alia->setPV(enem->TotalDanyo(alia));
+                if(contPer1i==7 && contPer1j== 5){
+                    contPer1i = 0;
+                    contPer1j = 0;
+                    atacado=true;
+                    turno2=true;
+                    if(atacar2==true){
+                        reini=true;
+                    }
                     
+                    if(aux<=alia->PosiGolpearTotal(enem)){
+                        enem->setPV(alia->TotalDanyo(enem));
+                        if(enem->getPV()<=0){
+                            
+                            if(alia->getLvl()>enem->getLvl()){
+                                aux3=30-(2*(alia->getLvl()-enem->getLvl()));
+                                if(aux3<10){
+                                    aux3=10;
+                                }
+                            }else if(alia->getLvl() < enem->getLvl()){
+                                aux3=30+(2*(enem->getLvl()-alia->getLvl()));
+                            }
+                            
+                            Juego::Instance()->ponerEstadoSumaExp(alia, enem, aux3);
+                            
+                        }
+                    }
+                   
                     //Juego::Instance()->ponerEstadoEscenario();
                 }
             }
-        }
-        if(reini==true){
-            sleep(1);
-            atacado=false;
-            atacado2=false;
-            turno2=false;
-            reini=false;
-            Escenario::Instance()->volverMenuAcciones();
-        }
+
+            if(turno2==true){
+                if(atacado2==false){
+                    if(contPer2i==7){
+                        contPer2i=0;
+                        contPer2j++;
+                    }
+                    contPer2i++;
+
+                    if(contPer2i==7 && contPer2j== 6){
+                        contPer2i = 0;
+                        contPer2j = 0;
+                        atacado2=true;
+                        // sleep(1);
+                        if(atacar2==true){
+                            reini=true;
+                        }
+                        
+                        if(aux2<=enem->PosiGolpearTotal(alia)){
+                            alia->setPV(enem->TotalDanyo(alia));
+                            if(alia->getPV()<=0){
+                                
+                                batasonido1->stop();
+                                Juego::Instance()->ponerEstadoGameOver();
+                            }
+                        }
+
+
+                        //Juego::Instance()->ponerEstadoEscenario();
+                    }
+                }
+                
+            }
+            if(alia->GolpesDoble(enem)==2 && enem->GolpesDoble(alia)==1 && atacado2==true){
+                atacado=false;
+                //atacado2=false;
+                //turno2=false;
+                atacar2=true;
+            } else if(alia->GolpesDoble(enem)==1 && enem->GolpesDoble(alia)==2 && atacado2==true){
+                atacado2=false;
+                //atacado2=false;
+                //turno2=false;
+                atacar2=true;
+            }if(alia->GolpesDoble(enem)==2 && enem->GolpesDoble(alia)==2 && atacado2==true){
+                atacado=false;
+                atacado2=false;
+                turno2=false;
+                atacar2=true;
+            }if(alia->GolpesDoble(enem)==1 && enem->GolpesDoble(alia)==1 && atacado2==true){
+                //atacado=false;
+                //atacado2=false;
+                //turno2=false;
+                reini=true;
+            }
+        
+        
+            if(reini==true){
+                
+                atacado=false;
+                atacado2=false;
+                turno2=false;
+                reini=false;
+                
+                if(enem->getPV()>=0){
+                
+                    if(alia->getLvl()>=enem->getLvl()){
+                        aux3=10-(1*(alia->getLvl()-enem->getLvl()));
+                        if(aux3<1){
+                            aux3=1;
+                        }
+                    }else if(alia->getLvl() < enem->getLvl()){
+                        aux3=10+(1*(enem->getLvl()-alia->getLvl()));
+                    }
+
+                    Juego::Instance()->ponerEstadoSumaExp(alia, enem, aux3);
+                }           
+               
+            }
+        
         reloj->restart();
         
         input();

@@ -121,6 +121,21 @@ void EstadoPause::input() {
                     Juego::Instance()->getVentana()->close();               
                 break;
             }
+        }else{
+            if(sf::Joystick::isConnected(0)){
+                
+                if(evento->type == sf::Event::JoystickButtonPressed){
+                    
+                    switch(evento->joystickButton.button){
+
+                        case 9:
+                            cpause->play();
+                            Escenario::Instance()->playmusic();
+                            Juego::Instance()->ponerEstadoEscenario();    
+                        break;
+                    }
+                }
+            }
         }
     }
 }

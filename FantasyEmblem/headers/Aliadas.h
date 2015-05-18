@@ -25,7 +25,9 @@ using namespace sf;
 class Aliadas : public Unidad {
 public:
     Aliadas();
-    Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu,const char* textuBatalla , int experien, Objetos** obj, Armas** arm);
+
+    Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu,const char* textuBatalla, const char* textuevadir, int experien, Objetos** obj, Armas** arm);
+
     virtual ~Aliadas();    
      
     void subirNivel();
@@ -36,12 +38,13 @@ public:
     Armas** getArmas();
     Objetos** getObjetos();
     Sprite* dameQuePinte();
-    Objetos* usarObjeto(int pos);
+    Objetos** usarObjeto(int pos);
     bool abrirCofre(Cofre* cofre);
     bool equiparArma(Armas* arma);
     bool abrirPuerta(Mapa* mapa);
     
     int getExp();
+    void setExp(int i);
     
     bool hayCofre(Mapa* mapa);
     bool hayPuerta(Mapa* mapa);

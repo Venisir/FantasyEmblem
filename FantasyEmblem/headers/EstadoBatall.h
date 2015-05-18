@@ -29,6 +29,8 @@ class EstadoBatall: public Estado {
 public:
     static EstadoBatall* Instance(Aliadas* ali, Enemigo* ene);
     void input();
+    void paramusica();
+    void playmusica();
     
 protected: 
     
@@ -50,10 +52,18 @@ private:
     int contPer1j;
     int contPer2i;
     int contPer2j;
+    int contPer2evai;
+    int contPer2evaj;
+    bool eva1;
+    bool eva2;
     bool atacado;
     bool atacado2;
     bool turno2;
     bool reini;
+    bool atacar2;
+    int aux;
+    int aux2;
+    int aux3;
     sf::Clock* reloj;
     sf::Event* evento;
     sf::Texture* fondoBata;
@@ -62,12 +72,16 @@ private:
     sf::Sprite* per1;
     sf::Texture* perso2;
     sf::Sprite* per2;
+    sf::Sprite* per1eva;
+    sf::Sprite* per2eva;
     sf::Font* fuente;
     sf::Text* stats;
     sf::Text* stats2;
     sf::Text* nombres;
     sf::Text* armas;
     sf::Text* vidas;
+    sf::SoundBuffer* batasonido;
+    sf::Sound* batasonido1;
    
     Aliadas* alia; 
     Enemigo* enem;

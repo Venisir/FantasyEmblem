@@ -29,9 +29,9 @@ using namespace sf;
 Aliadas::Aliadas() {
  
 }
- 
- 
-Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, const char* textuBatalla, int experien, Objetos** obj, Armas** arm):Unidad(name, clas, atributo, nivel, rang, nombreTextu, textuBatalla) {
+
+Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, const char* textuBatalla, const char* textuevadir, int experien, Objetos** obj, Armas** arm):Unidad(name, clas, atributo, nivel, rang, nombreTextu, textuBatalla, textuevadir) {
+
     experiencia = experien;
      
     recorrido=new int[rango];
@@ -98,11 +98,11 @@ bool Aliadas::equiparArma(Armas* arma){
         arma_actual = arma;
     return equipada;
 }
+
 Objetos** Aliadas::usarObjeto(int pos){
-    
-    
+
     delete inventarioObjetos[pos];
-    for(int i=0;i<sizeof();i++){
+    for(int i=0;i<sizeof(inventarioObjetos);i++){
             
         if(inventarioObjetos[i+1]!=NULL){
             inventarioObjetos[i]=inventarioObjetos[i+1];
@@ -130,7 +130,6 @@ bool Aliadas::abrirCofre(Cofre* cofre){
                 abierto = true;
                 //cambiar sprite
                 cofre->cambiaTexturaAbierto();
-                cerr << "Hola!" << endl;
                 
                 if(cofre->getArma() != NULL){
                     for(int j=0;j<3;j++){
@@ -243,23 +242,23 @@ void Aliadas::recorre()
     //for(int i=0;i<ultimo_mov;i++)
     for(int i=0;i<1;i++)
     {
-        switch(recorrido[i])
+        switch(movimientos[i])
         {
             case 1:
                 moverDerecha(); 
-                std::cerr << recorrido[i] << " ";
+                std::cerr << movimientos[i] << " " << endl;
                 break;
             case 2:
                 moverArriba();
-                std::cerr << recorrido[i] << " ";
+                std::cerr << movimientos[i] << " " << endl;
                break;
             case -1:
                 moverIzquierda();
-                std::cerr << recorrido[i] << " ";
+                std::cerr << movimientos[i] << " " << endl;
                break;
             case -2:
                 moverAbajo();
-                std::cerr << recorrido[i] << " ";
+                std::cerr << movimientos[i] << " " << endl;
                break; 
          }
      }
@@ -410,4 +409,15 @@ int Aliadas::hayPuertasCercanas(Mapa* m){
         }
     
     return hayPuerta;
+}
+
+void Aliadas::setExp(int i){
+    
+    if((experiencia+i)>=100){
+        experiencia=(experiencia+i)-100;
+        
+    }else if ((experiencia+i)<100){
+        experiencia=experiencia+1;
+    }
+    
 }

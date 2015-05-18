@@ -12,7 +12,6 @@
 #include "../headers/Estado.h"
 #include "../headers/Juego.h"
 #include "../headers/Mapa.h"
-//#include "tinyxml2.h"
 
 #include <iostream>
 #include <sstream>
@@ -20,7 +19,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-//using namespace tinyxml2;
 using namespace std;
 using namespace sf;
 
@@ -39,8 +37,6 @@ Escenario::Escenario() {
 
 }
 
-
-
 Escenario::Escenario(const char* nombremapa) {
     //Realizar inicializaciones necesarias de la instancia
     //ventana->create(sf::VideoMode(480,320), "Fantasy Emblem");
@@ -48,6 +44,7 @@ Escenario::Escenario(const char* nombremapa) {
     spriteCursor = new Sprite();
     reloj = new Clock();
     relojCursor = new Clock();
+    relojTurno = new Clock();
     evento = new Event();
     mapa = new Mapa(nombremapa);
     aliadas=new Aliadas*[5];
@@ -67,19 +64,23 @@ Escenario::Escenario(const char* nombremapa) {
     texturaMenuStats = new Texture();
     
     texturaAbrirPuerta = new Texture();
+    texturaTurnoUsu = new Texture();
+    
+    spriteTurnoUsu = new Sprite();
     spriteAbrirPuerta = new Sprite();
     
-    
-    int atri[] = { 11, 22, 33, 44, 55, 66, 77};
+    int atri[] = { 20, 9, 1, 19, 19, 6, 4};
     
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
-    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0,objeto,arma);
-    aliadas[1] = new Aliadas("Albertina", "Espadachina", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0,objeto,arma);
-
+    
+    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"evadirblack.png",95,objeto,arma);
+    aliadas[1] = new Aliadas("Albertina", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"evadirblack.png",0,objeto,arma);
     
     pause_open = new SoundBuffer();
     opause = new Sound();
+    
+    Mapacambio=-1;
     init_State();
 }
 
@@ -105,6 +106,8 @@ Escenario::~Escenario() {
     delete pause_open;
     delete opause;
     delete spriteAbrirPuerta;
+    delete texturaTurnoUsu;
+    delete spriteTurnoUsu;
 }
 
 void Escenario::ResetInstance(){
@@ -127,12 +130,17 @@ void Escenario::init_State(){
         exit(0);
     }
     
+    if (!texturaTurnoUsu-> loadFromFile("resources/turnoJugador.png"))
+    {
+        std::cerr << "Error cargando la imagen turnoJugador.png";
+        exit(0);
+    }
+    
     if (!texturaMenuStats-> loadFromFile("resources/menuStats.png"))
     {
         std::cerr << "Error cargando la imagen menuStats.png";
         exit(0);
     }
-    
     
     if (!mapasonido->loadFromFile("resources/mapasonido.wav")){
         std::cerr << "Error al cargar el archivo de audio";
@@ -147,11 +155,14 @@ void Escenario::init_State(){
     
     spriteCursor->setTexture(*texturaCursor);
     spriteCursor->setTextureRect(IntRect(0, 0, 16, 16));
-    
     spriteCursor->setPosition(176,176);
     
     spriteAbrirPuerta->setTexture(*texturaAbrirPuerta);
     spriteAbrirPuerta->setPosition(100,30);
+    
+    spriteTurnoUsu->setTexture(*texturaTurnoUsu);
+    spriteTurnoUsu->setOrigin(120/2,60/2);
+    spriteTurnoUsu->setPosition(240,160);
     
     puertaSi = false;
     cofreSi = false;
@@ -189,6 +200,7 @@ void Escenario::init_State(){
     opause->setBuffer(*pause_open);
     opause->setVolume(80);
     
+    turnoSi = false;
 }
 
 void Escenario::paramusic(){
@@ -358,8 +370,15 @@ void Escenario::cambiaMapa(const char* nombremapa) {
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
     int atri[] = { 11, 22, 33, 44, 55, 66, 77};
-    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0,objeto,arma);
-    aliadas[1] = new Aliadas("Albertina", "Espadachina", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0,objeto,arma);
+
+    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"ike.png",95,objeto,arma);
+    aliadas[1] = new Aliadas("Albertina", "Espadachina", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"ike.png",95,objeto,arma);
+    //EstadoConversacion::Instance()->reset();
+    //EstadoConversacion::Instance(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu);
+}
+
+void Escenario::setCambio(int n) {
+    Mapacambio=n;
 }
 
 
@@ -383,7 +402,6 @@ void Escenario::render_State(){
     }
     
     for(int i=0; i<sizeof(aliadas)/sizeof(int)+1; i++){
-    //cerr << "Heeeey" << endl;
         aliadas[i]->Draw();
     }
     
@@ -401,17 +419,32 @@ void Escenario::render_State(){
         Juego::Instance()->getVentana()->draw(*spriteCursor);
     }
     
-    Juego::Instance()->renderText();
+    if(turnoSi == true){
+        Juego::Instance()->getVentana()->draw(*spriteTurnoUsu);
+    }
     
+    Juego::Instance()->renderText();
     Juego::Instance()->getVentana()->display();
 }
 
 void Escenario::update_State(){
+    
+    if(Mapacambio!=-1)
+    {
+        if(Mapacambio==1)
+        {
+            Mapacambio=-1;
+            cambiaMapa("mapaPruebas");
+            init_State();
+        }
+    }
+    
     //Reloj del cursor
     if (relojCursor->getElapsedTime().asSeconds() >= 0.5) {
            
         if(*primeritaVes == true){
             *primeritaVes = false;
+
             cerr << "GRINGO, A HABLAR" << endl;
             Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma);     
         }
@@ -435,6 +468,10 @@ void Escenario::update_State(){
         relojCursor->restart();
     }
     
+    if (relojTurno->getElapsedTime().asSeconds() >= 2) {
+        turnoSi = false;
+    }
+    
     //Reloj del input y del movimiento
     if (reloj->getElapsedTime().asMilliseconds() >= 100) {
         
@@ -455,7 +492,7 @@ void Escenario::update_State(){
                     //*unidad_sel = -1;
                 }else{
                     aux++;
-                    switch(aliadas[*unidad_sel]->getRecorrido()[aux]){
+                    switch(aliadas[*unidad_sel]->getMovimientos()[aux]){
                         case 1:
                             aliadas[*unidad_sel]->moverDerecha(); 
                             break;
@@ -473,7 +510,9 @@ void Escenario::update_State(){
             }else{
                 Time tiempoPasado = reloj->restart();
                 float ti = tiempoPasado.asSeconds();
-                
+                ////////////////////////////////////////////////
+                /*ANTIGUO METODO*/
+                /*
                 switch(aliadas[*unidad_sel]->getRecorrido()[aux]){
                     case 1:
                         aliadas[*unidad_sel]->setPosition(aliadas[*unidad_sel]->getSprite().getPosition().x+(kVel*ti),aliadas[*unidad_sel]->getSprite().getPosition().y);
@@ -492,7 +531,34 @@ void Escenario::update_State(){
                         aliadas[*unidad_sel]->cambiaSprite(cont*32, 96, 20, 20);
                         break;
                         
+                 
                 }
+                */
+                /////////////////////////////////////////////
+                
+                /*ESTRELLA ESTRELLITA DONDE ESTAS*/
+                
+                switch(aliadas[*unidad_sel]->getMovimientos()[aux]){
+                    case 1:
+                        aliadas[*unidad_sel]->setPosition(aliadas[*unidad_sel]->getSprite().getPosition().x+(kVel*ti),aliadas[*unidad_sel]->getSprite().getPosition().y);
+                        aliadas[*unidad_sel]->cambiaSprite(cont*32, 32, 20, 20);
+                        break;
+                    case 2:
+                        aliadas[*unidad_sel]->setPosition(aliadas[*unidad_sel]->getSprite().getPosition().x,aliadas[*unidad_sel]->getSprite().getPosition().y-(kVel*ti));
+                        aliadas[*unidad_sel]->cambiaSprite(cont*32, 128, 20, 20);
+                        break;
+                    case -1:
+                        aliadas[*unidad_sel]->setPosition(aliadas[*unidad_sel]->getSprite().getPosition().x-(kVel*ti),aliadas[*unidad_sel]->getSprite().getPosition().y);
+                        aliadas[*unidad_sel]->cambiaSprite(cont*32, 64, 20, 20);
+                        break;
+                    case -2:
+                        aliadas[*unidad_sel]->setPosition(aliadas[*unidad_sel]->getSprite().getPosition().x,aliadas[*unidad_sel]->getSprite().getPosition().y+(kVel*ti));
+                        aliadas[*unidad_sel]->cambiaSprite(cont*32, 96, 20, 20);
+                        break;
+                        
+                }
+                
+                /////////////////////////////////////////////
                 cont++;
                 if(cont==4)
                     cont = 0;
@@ -529,12 +595,13 @@ void Escenario::update_State(){
                     *turnoUsu=true;
                     turnoEnemigo = 0;
                     fasesEnemigo = 0;
+                    relojTurno->restart();
+                    turnoSi = true;
                 }
                 break;
             case 4:
                 break;
         }
-        
         fasesEnemigo++;
     }
 }
@@ -546,7 +613,6 @@ void Escenario::teclaArriba(){
     }
     if(*unidad_sel!=-1){
         aliadas[*unidad_sel]->guardamovimiento(2);
-        std::cerr << "2" << endl;
     }
 }
 
@@ -557,7 +623,6 @@ void Escenario::teclaDerecha(){
     }
     if(*unidad_sel!=-1){
         aliadas[*unidad_sel]->guardamovimiento(1);
-        std::cerr << "1" << endl;
     }
 }
 
@@ -568,7 +633,6 @@ void Escenario::teclaIzquierda(){
     }
     if(*unidad_sel!=-1){
         aliadas[*unidad_sel]->guardamovimiento(-1);
-        std:cerr << "-1" << endl;
     }
 }
 
@@ -580,7 +644,6 @@ void Escenario::teclaAbajo(){
     }
     if(*unidad_sel!=-1){
         aliadas[*unidad_sel]->guardamovimiento(-2);
-        std::cerr << "-2" << endl;
     }
 }
 
@@ -603,6 +666,12 @@ void Escenario::teclaIntro(){
             *unidad_sel=-1;
         }else{
             if(mapa->getColision(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true && mapa->puedeMoverseAqui(spriteCursor->getPosition().x,spriteCursor->getPosition().y)==true){
+                //ANTIGUO
+                //aliadas[*unidad_sel]->recorre();
+                //ESTRELLA
+                
+                aliadas[*unidad_sel]->recorridoA(spriteCursor->getPosition().x, spriteCursor->getPosition().y);
+                
                 quitarCuadriculaUnidad(aliadas[*unidad_sel]->getPosicionSpriteX(), aliadas[*unidad_sel]->getPosicionSpriteY(),aliadas[*unidad_sel]->getRango());
                 aliadas[*unidad_sel]->recorre();
             }
@@ -644,49 +713,39 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad1:
-                    aliadas[0]->recorridoA(spriteCursor->getPosition().x, spriteCursor->getPosition().y);
+                    //Limpiar consola
+                    system("cls");
                 break;
                 
                 case sf::Keyboard::Numpad2:
-                    aliadas[0]->muestraMovs();
+                    //Estado conversacion
                 break;
                 
                 case sf::Keyboard::Numpad3:
-                    Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma);
+
+                    if(sf::Joystick::isConnected(0)){
+                        cerr << "Mando conectado!" << endl;
+                    }else{
+                        cerr << "Mando no conectado!" << endl;
+                    }
                 break;
                 
                 case sf::Keyboard::Numpad4:
-                    cerr<< "Posicion CELDA unidad: (" << aliadas[0]->getPosicionCeldaX() << ", " << aliadas[0]->getPosicionCeldaY() << ")" << endl;
-                    cerr<< "Posicion PIXEL unidad: (" << aliadas[0]->getPosicionSpriteX() << ", " << aliadas[0]->getPosicionSpriteY() << ")" << endl;
-                    cerr << unidad_sel << endl;
                 break;
                 
                 case sf::Keyboard::Numpad5:
-                    cerr << endl;
                 break;
                 
                 case sf::Keyboard::Numpad6:
-                    cerr << *unidad_sel << endl;
                 break;
                 
                 case sf::Keyboard::Numpad7:
-                    
-                    if(sf::Joystick::isConnected(0)){
-                        cerr << "Conectado!" << endl;
-                    }else{
-                        cerr << "No conectado!" << endl;
-                    }
-    
                 break;
                 
                 case sf::Keyboard::Numpad8:
-                    //paramusic();
-                    Juego::Instance()->ponerEstadoMenuPrincipal();              
                 break;
+                
                 case sf::Keyboard::Numpad9:
-                    mapasonido1->pause();
-                    opause->play();
-                    Juego::Instance()->ponerEstadoPause();              
                 break;
                 
                 case sf::Keyboard::A:
@@ -705,32 +764,27 @@ void Escenario::input() {
                     aliadas[0]->setPosition(aliadas[0]->getPosicionSpriteX()+16, aliadas[0]->getPosicionSpriteY());
                 break;
                 
+                case sf::Keyboard::P:
+                    //Pause
+                    mapasonido1->pause();
+                    opause->play();
+                    Juego::Instance()->ponerEstadoPause();    
+                break;
+                
+                case sf::Keyboard::M:
+                    //Menu principal
+                    mapasonido1->pause();
+                    Juego::Instance()->ponerEstadoMenuPrincipal();    
+                break;
+                
                 case sf::Keyboard::Escape:
                     Juego::Instance()->getVentana()->close();               
                 break;
                 
                 case sf::Keyboard::Num5:
-                    cambiaMapa("mapaPruebas");
-                    init_State();
+                    Mapacambio=1;
                 break;
             }
-            
-            tieneQueMostrarStats = false;
-            /*
-            for(int i=0; i<sizeof(aliadas); i++){
-                if(spriteCursor->getPosition().x == aliadas[i]->getPosicionSpriteX() && spriteCursor->getPosition().y == aliadas[i]->getPosicionSpriteY()){
-                    mostrarStats(i, 0);
-                    tieneQueMostrarStats = true;
-                }
-            }
-
-            for(int i=0; i<mapa->getNumEnemigos(); i++){
-                if(spriteCursor->getPosition().x == enemigos[i]->getPosicionSpriteX() && spriteCursor->getPosition().y == enemigos[i]->getPosicionSpriteY()){
-                    mostrarStats(i, 1);
-                    tieneQueMostrarStats = true;
-                }
-            }
-             */
         }else{
             if(sf::Joystick::isConnected(0)){
                 
@@ -751,11 +805,8 @@ void Escenario::input() {
                         }
                     }
                 }
-                
                 if(evento->type == sf::Event::JoystickButtonPressed){
-                    
                     switch(evento->joystickButton.button){
-
                         case 2:
                             teclaIntro();
                         break;
@@ -765,6 +816,22 @@ void Escenario::input() {
                             Juego::Instance()->ponerEstadoPause();  
                         break;
                     }
+                }
+            }
+            
+            tieneQueMostrarStats = false;
+            
+            for(int i=0; i<sizeof(aliadas)/sizeof(int)+1; i++){
+                if(spriteCursor->getPosition().x == aliadas[i]->getPosicionSpriteX() && spriteCursor->getPosition().y == aliadas[i]->getPosicionSpriteY()){
+                    mostrarStats(i, 0);
+                    tieneQueMostrarStats = true;
+                }
+            }
+
+            for(int i=0; i< mapa->getNumEnemigos(); i++){
+                if(spriteCursor->getPosition().x == enemigos[i]->getPosicionSpriteX() && spriteCursor->getPosition().y == enemigos[i]->getPosicionSpriteY()){
+                    mostrarStats(i, 1);
+                    tieneQueMostrarStats = true;
                 }
             }
         }
@@ -789,4 +856,24 @@ void Escenario::volverMenuAcciones(){
 
 void Escenario::deseleccionarUnidad(){
     *unidad_sel = -1;
+}
+
+void Escenario::borraEnemigo(int e){
+    enemigos[e] = NULL;
+    
+    for(int i=e; i<sizeof(enemigos)/sizeof(int); i++){
+        if(enemigos[i+1]!=NULL){
+            enemigos[i] = enemigos[i+1];
+        }
+    }
+}
+
+void Escenario::borraAliado(int a){
+    aliadas[a] = NULL;
+    
+    for(int i=a; i<sizeof(aliadas)/sizeof(int); i++){
+        if(aliadas[i+1]!=NULL){
+            aliadas[i] = aliadas[i+1];
+        }
+    }
 }

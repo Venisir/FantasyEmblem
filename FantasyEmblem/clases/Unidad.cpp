@@ -18,10 +18,10 @@ Unidad::Unidad()
     
 }
 
-Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, const char* textuBatalla) {
+Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, const char* textuBatalla,const char* textuevadir) {
     nombre = name;
     clase = clas;
-    arma_actual = new Armas("Espada", "Espada", 1, 1, 1, 1, 1, "espada.png");
+    arma_actual = new Armas("Espada", "Espada", 10, 8, 50, 1, 45, "espada.png");
     for(int i=0; i<7; i++)
         atributos[i] = atributo[i];
     lvl = nivel;
@@ -34,6 +34,8 @@ Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int
     
     spriteUnidad = new Sprite();
     texturaUnidad = new Texture();
+    
+    movimientos=new int[0];
     
     string s1 = string(nombreTextu);
     string s = "resources/"+s1;
@@ -61,6 +63,21 @@ Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int
 
     spriteBatalla->setTexture(*textBatalla);
     spriteBatalla->setTextureRect(IntRect(0,0,248,160));
+    
+    spriteEvadir = new Sprite();
+    textEvadir= new Texture();
+	    
+    string s4 = string(textuevadir);
+    string s5 = "resources/"+s4;
+
+    if (!textEvadir->loadFromFile(s5))
+    {
+        std::cerr << "Error cargando la imagen textura de la unidad";
+        exit(0);
+    }
+
+    spriteEvadir->setTexture(*textEvadir);
+    
 
     mueve = false;
     //spriteUnidad->setPosition(176,176);
@@ -233,25 +250,25 @@ void Unidad::Draw() {
 
 //------------------------------METODOS SET-------------------------------------
 void Unidad::setHP(int hp){
-    atributos[0]=hp;
+    atributos[0]=atributos[0]+hp;
 }
 void Unidad::setFuerza(int f){
-    atributos[1]=f;
+    atributos[1]=atributos[1]+f;
 }
 void Unidad::setMagia(int m){
-    atributos[2]=m;
+    atributos[2]=atributos[2]+m;
 }
 void Unidad::setHab(int h){
-    atributos[3]=h;
+    atributos[3]=atributos[3]+h;
 }
 void Unidad::setVel(int v){
-    atributos[4]=v;
+    atributos[4]=atributos[4]+v;
 }
 void Unidad::setDef(int d){
-    atributos[5]=d;
+    atributos[5]=atributos[5]+d;
 }
 void Unidad::setDefm(int dm){
-    atributos[6]=dm;
+    atributos[6]=atributos[6]+dm;
 }
 
 //------------------------------METODOS GET-------------------------------------
@@ -302,7 +319,11 @@ int Unidad::getPV(){
 }
 
 void Unidad::setPV(int PV){
+    
     PVactual=PVactual-PV;
+    if(PVactual<0){
+        PVactual=0;
+    }
 }
 
 int Unidad::danyoPropio(Unidad* uni){
@@ -462,14 +483,12 @@ void Unidad::Atacar(Unidad* uni){
 void Unidad::recorridoA(int destinox, int destinoy) 
 {
     movs.clear();
-    cerr << "1" << endl;
+    
     vector<Celda*> abierta;
     vector<Celda*> cerrada;
     sf::Vector2i posaux= sf::Vector2i(getPosicionSpriteX(),getPosicionSpriteY());
     Celda* n;
     Celda* ady;
-    
-    cerr << "2" << endl;
     
     int coste=1;//coste de moverse en cualquiera de las 4 direcciones, equivale a g
     int manhatan,f,g;
@@ -478,22 +497,17 @@ void Unidad::recorridoA(int destinox, int destinoy)
     int adyacentes=0;//numero de celdas adyacentes
     vector<Celda*>::iterator iter;
     
-    
-    cerr << "3" << endl;
     Celda* celdaInicio=new Celda(posaux,0,0,0); //la celda inicio no tiene padre
     
-    /*Ponemos la celda de inicio en la abierta
-     */
+    /*Ponemos la celda de inicio en la abierta*/
     abierta.push_back(celdaInicio);
     
-    cerr << "4" << endl;
     while(abierta.empty()!=true && movs.empty()==true)
     {
-        cerr << "5" << endl;
         menorf=100000000000000000000;
         /*obtenemos el nodo con menor f(n) de la lista abierta*/        
         cerr << endl;
-        cerr << endl;
+        
         for(int i=0;i<abierta.size();i++)
         {
             g=abierta.at(i)->getG();
@@ -511,15 +525,10 @@ void Unidad::recorridoA(int destinox, int destinoy)
         }
         
         cerr << endl;
-        cerr << endl;
         
-        cerr << "6" << endl;
         iter=abierta.begin()+nodomenor;
         abierta.erase(iter);
         cerrada.push_back(n);
-        
-
-        
         
         //si n es la celda correspondiente al destino
         if(n->getCoordenadas().x == destinox && n->getCoordenadas().y == destinoy)
@@ -528,7 +537,6 @@ void Unidad::recorridoA(int destinox, int destinoy)
         }
         else if(movs.empty()==true)
         {
-            
             /*obtenemos los adyacentes*/
             
             //arriba
@@ -614,11 +622,11 @@ void Unidad::recorridoA(int destinox, int destinoy)
                     }
                 }*/
             //}  
-            cerr << "putacaacacaca" << endl;
         }
         //delete ady;
-        cerr << "cagoen" << endl;
     }
+    MovstoInt();
+    
 }
 
 void Unidad::muestraMovs(){
@@ -632,8 +640,6 @@ void Unidad::muestraMovs(){
         
         cerr << endl;
     }
-        
-        //movs.clear();
 }
 
 Sprite Unidad::getSpriteBatalla(){
@@ -646,7 +652,6 @@ bool Unidad::getHaJugado(){
 
 void Unidad::setHaJugado(bool b){
     
-    cerr << "He entrado en setHaJugado" << endl;
     haJugado = b;
     if(haJugado == true){
         spriteUnidad->setColor(sf::Color(128,128,128));
@@ -660,28 +665,42 @@ int* Unidad::getMovimientos() {
 }
 
 void Unidad::MovstoInt() {
+    
     movimientos=new int [movs.size()-1];//-1 porque movs contiene la posicion de inicio
     
     for(int i=0;i<movs.size()-1;i++)
     {
+        cerr << "He entrado, y decido que la direccion es ";
+        
         //priemro compruebo las posibles direcciones del eje x
-        if(movs.at(i+1)->getCoordenadas().x == movs.at(i+1)->getCoordenadas().x+16)
+        if(movs.at(i+1)->getCoordenadas().x == movs.at(i)->getCoordenadas().x+16)
         {
+            //Escenario::Instance()->getMapa()->setSpriteColorAtaque(movs.at(i+1)->getCoordenadas().x+16,movs.at(i+1)->getCoordenadas().y);
             movimientos[i]=1;//derecha
+            cerr << "derecha." << endl;
         }
-        else if(movs.at(i+1)->getCoordenadas().x == movs.at(i+1)->getCoordenadas().x-16)
+        else if(movs.at(i+1)->getCoordenadas().x == movs.at(i)->getCoordenadas().x-16)
         {
+            //Escenario::Instance()->getMapa()->setSpriteColorAtaque(movs.at(i+1)->getCoordenadas().x-16,movs.at(i+1)->getCoordenadas().y);
             movimientos[i]=-1;//izquierda
+            cerr << "izquierda." << endl;
         }
         //le toca el turno al eje y
-        else if(movs.at(i+1)->getCoordenadas().y == movs.at(i+1)->getCoordenadas().y+16)
+        else if(movs.at(i+1)->getCoordenadas().y == movs.at(i)->getCoordenadas().y+16)
         {
-            movimientos[i]=2;//abajo
+            //Escenario::Instance()->getMapa()->setSpriteColorAtaque(movs.at(i+1)->getCoordenadas().x,movs.at(i+1)->getCoordenadas().y+16);
+            movimientos[i]=-2;//abajo
+            cerr << "abajo." << endl;
         }
-        else if(movs.at(i+1)->getCoordenadas().y == movs.at(i+1)->getCoordenadas().y-16)
+        else if(movs.at(i+1)->getCoordenadas().y == movs.at(i)->getCoordenadas().y-16)
         {
-            movimientos[i]=-2;//arriba
+            //Escenario::Instance()->getMapa()->setSpriteColorAtaque(movs.at(i+1)->getCoordenadas().x,movs.at(i+1)->getCoordenadas().y-16);
+            movimientos[i]=2;//arriba
+            cerr << "arriba." << endl;
         }
     }
 }
 
+Sprite Unidad::getSpriteEvadir(){
+    return *spriteEvadir;
+}

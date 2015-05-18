@@ -13,11 +13,14 @@
       <itemPath>headers/Escenario.h</itemPath>
       <itemPath>headers/Estado.h</itemPath>
       <itemPath>headers/EstadoBatall.h</itemPath>
+      <itemPath>headers/EstadoBatallaEnemigo.h</itemPath>
       <itemPath>headers/EstadoConversacion.h</itemPath>
       <itemPath>headers/EstadoObjetos.h</itemPath>
       <itemPath>headers/EstadoPause.h</itemPath>
       <itemPath>headers/EstadoPer.h</itemPath>
+      <itemPath>headers/EstadoSumarExp.h</itemPath>
       <itemPath>headers/EventoMapa.h</itemPath>
+      <itemPath>headers/GameOver.h</itemPath>
       <itemPath>headers/Juego.h</itemPath>
       <itemPath>headers/Mapa.h</itemPath>
       <itemPath>headers/MenuAcciones.h</itemPath>
@@ -26,6 +29,7 @@
       <itemPath>headers/Objetos.h</itemPath>
       <itemPath>headers/PantallaStart.h</itemPath>
       <itemPath>headers/Partida.h</itemPath>
+      <itemPath>headers/SubirNivel.h</itemPath>
       <itemPath>headers/Unidad.h</itemPath>
       <itemPath>tinyxml2.h</itemPath>
     </logicalFolder>
@@ -45,11 +49,14 @@
       <itemPath>clases/Escenario.cpp</itemPath>
       <itemPath>clases/Estado.cpp</itemPath>
       <itemPath>clases/EstadoBatall.cpp</itemPath>
+      <itemPath>clases/EstadoBatallaEnemigo.cpp</itemPath>
       <itemPath>clases/EstadoConversacion.cpp</itemPath>
       <itemPath>clases/EstadoObjetos.cpp</itemPath>
       <itemPath>clases/EstadoPause.cpp</itemPath>
       <itemPath>clases/EstadoPer.cpp</itemPath>
+      <itemPath>clases/EstadoSumarExp.cpp</itemPath>
       <itemPath>clases/EventoMapa.cpp</itemPath>
+      <itemPath>clases/GameOver.cpp</itemPath>
       <itemPath>clases/Juego.cpp</itemPath>
       <itemPath>clases/Mapa.cpp</itemPath>
       <itemPath>clases/MenuAcciones.cpp</itemPath>
@@ -58,6 +65,7 @@
       <itemPath>clases/Objetos.cpp</itemPath>
       <itemPath>clases/PantallaStart.cpp</itemPath>
       <itemPath>clases/Partida.cpp</itemPath>
+      <itemPath>clases/SubirNivel.cpp</itemPath>
       <itemPath>clases/Unidad.cpp</itemPath>
       <itemPath>clases/main.cpp</itemPath>
       <itemPath>tinyxml2.cpp</itemPath>
@@ -122,6 +130,8 @@
       </item>
       <item path="clases/EstadoBatall.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/EstadoBatallaEnemigo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/EstadoConversacion.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/EstadoObjetos.cpp" ex="false" tool="1" flavor2="0">
@@ -130,7 +140,11 @@
       </item>
       <item path="clases/EstadoPer.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/EstadoSumarExp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/EventoMapa.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/GameOver.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Juego.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -147,6 +161,8 @@
       <item path="clases/PantallaStart.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Partida.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/SubirNivel.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Unidad.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -170,6 +186,8 @@
       </item>
       <item path="headers/EstadoBatall.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="headers/EstadoBatallaEnemigo.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="headers/EstadoConversacion.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/EstadoObjetos.h" ex="false" tool="3" flavor2="0">
@@ -178,7 +196,11 @@
       </item>
       <item path="headers/EstadoPer.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="headers/EstadoSumarExp.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="headers/EventoMapa.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/GameOver.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Juego.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -195,6 +217,8 @@
       <item path="headers/PantallaStart.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Partida.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/SubirNivel.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Unidad.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -241,6 +265,8 @@
       </item>
       <item path="clases/EstadoBatall.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/EstadoBatallaEnemigo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/EstadoConversacion.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/EstadoObjetos.cpp" ex="false" tool="1" flavor2="0">
@@ -249,7 +275,11 @@
       </item>
       <item path="clases/EstadoPer.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="clases/EstadoSumarExp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="clases/EventoMapa.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/GameOver.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Juego.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -266,6 +296,8 @@
       <item path="clases/PantallaStart.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Partida.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/SubirNivel.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Unidad.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -289,6 +321,8 @@
       </item>
       <item path="headers/EstadoBatall.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="headers/EstadoBatallaEnemigo.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="headers/EstadoConversacion.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/EstadoObjetos.h" ex="false" tool="3" flavor2="0">
@@ -297,7 +331,11 @@
       </item>
       <item path="headers/EstadoPer.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="headers/EstadoSumarExp.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="headers/EventoMapa.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/GameOver.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Juego.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -314,6 +352,8 @@
       <item path="headers/PantallaStart.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Partida.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/SubirNivel.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Unidad.h" ex="false" tool="3" flavor2="0">
       </item>

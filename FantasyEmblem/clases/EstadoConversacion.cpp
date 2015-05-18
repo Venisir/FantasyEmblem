@@ -27,11 +27,15 @@ EstadoConversacion* EstadoConversacion::Instance(Mapa* map, Aliadas** al, Enemig
     return pinstance;
 }
 
+
 EstadoConversacion::EstadoConversacion()
 {
     
 }
 
+void EstadoConversacion::reset() {
+    pinstance=0;
+}
 
 EstadoConversacion::EstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno,Objetos** obj, Armas** arm)
 {
@@ -60,8 +64,12 @@ EstadoConversacion::EstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, C
     enem=ene;
     cof=cofr;
     index=indice;
+    
     arma = arma;
     objeto = obj;
+    
+    cambioMapa=-1;
+    
     init_State();
 }
 
@@ -85,6 +93,15 @@ EstadoConversacion::~EstadoConversacion() {
     delete nombre;
     delete fuente;
 }
+
+void EstadoConversacion::setMapa(Mapa* map) {
+    maux=map;
+    cambioMapa=1;
+}
+
+
+
+
 
 void EstadoConversacion::init_State()
 {
@@ -166,6 +183,7 @@ void EstadoConversacion::init_State()
 void EstadoConversacion::render_State()
 {
     Juego::Instance()->getVentana()->clear();
+      
     m->Draw();
     for(int x=0; x<m->getNumEnemigos(); x++){
        // if(aliadas[x]!=NULL){
@@ -173,8 +191,10 @@ void EstadoConversacion::render_State()
         //}
         enem[x]->Draw();
     }
-    ali[0]->Draw();
-    //enemigos[0]->Draw();
+    
+    for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
+        ali[i]->Draw();
+    }
     
     for(int x=0; x<m->getNumCofres(); x++){
         cof[x]->Draw();
@@ -190,12 +210,20 @@ void EstadoConversacion::render_State()
 
 void EstadoConversacion::update_State()
 {
+    /*if(cambioMapa!=-1)
+    {
+        cambioMapa=-1;
+        m=maux;
+    }*/
+  
+    
     if (reloj2->getElapsedTime().asSeconds() >= 0.5) {
-        ali[0]->cambiaSpriteQuieto();
+        
+        for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
+            ali[i]->cambiaSpriteQuieto();
+        }
+    
         for(int x=0; x<m->getNumEnemigos(); x++){
-            // if(aliadas[x]!=NULL){
-                //aliadas[x]->Draw();
-            //}
             enem[x]->cambiaSpriteQuieto();
         }
         reloj2->restart();
@@ -211,34 +239,18 @@ void EstadoConversacion::update_State()
         cerr << contX << " " << contY << endl;
         if(quienHabla == 0){
             personajeIzq->setTextureRect(IntRect(contX*169, contY*125, 169, 125));
-            //169/125
         }else{
             personajeDer->setTextureRect(IntRect(contX*177, contY*127, 170, 127));
         }
         
-        //cerr << "contX: " << contX << "  contY: " << contY << endl;
-        
-        contX++;
-        
-        if(contX == 3){
-            contX = 0;
-            contY++;
-        }
-        if(contY == 6)
-            contY = 0;
-        
-        /*
         contY++;
         
         if(contY == 3){
             contY = 0;
             contX++;
         }
-        
-        if(contX == 3){
-            contX=0;
-        }
-        */
+        if(contX == 3)
+            contX = 0;
         
         reloj3->restart();
     }
@@ -262,8 +274,6 @@ void EstadoConversacion::siguienteTexto(){
         quienHabla = atoi(texto->Attribute("quienHabla"));
         string s2 = texto->Attribute("nombre");
 
-        //cerr << quienHabla;
-
         if(quienHabla == 1){
             personajeIzq->setColor(Color(255, 255, 255, 210));
         }else{
@@ -273,7 +283,6 @@ void EstadoConversacion::siguienteTexto(){
         nombre->setString(s2);
         recuadroTexto->setString(s1);
 
-        //if(texto->NextSiblingElement("texto") != NULL){
         texto = texto->NextSiblingElement("texto");
     }else{
         if(escena->NextSiblingElement("escena") != NULL){

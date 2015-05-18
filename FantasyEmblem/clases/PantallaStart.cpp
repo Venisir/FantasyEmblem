@@ -47,8 +47,6 @@ PantallaStart::PantallaStart() {
      init_State();
 }
 
-
-
 PantallaStart::~PantallaStart() {
     
     delete fondo;
@@ -79,16 +77,12 @@ void PantallaStart::init_State() {
         std::cerr << "Error cargando la imagen start.png";
         exit(0);
     }
-        
-    
-    
     
     intro->setTexture(*fondo);
     intro->setOrigin(0,0);
     intro->setPosition(0,0);
    
     start->setTexture(*boto);
-    
     start->setPosition(200,200);
    
     aux=0;
@@ -102,7 +96,6 @@ void PantallaStart::init_State() {
         std::cerr << "Error al cargar el archivo de audio";
     }
     
-    
     // Le asignamos el buffer cargado
     menusonido->setBuffer(*mainmenu);
     // establecemos el volumen a 20
@@ -111,22 +104,17 @@ void PantallaStart::init_State() {
     menusonido->setLoop(true);
     menusonido->play();
     
- 
-
     select->setBuffer(*mmselect);
     select->setVolume(100);
-
-    
-        
 }
 
 
-void PantallaStart::pararmusica() {
-    
-    menusonido->stop();
-    
+void PantallaStart::pararmusica() { 
+    menusonido->stop(); 
 }
-
+void PantallaStart::playmusic() {
+    menusonido->play();
+}
 
 void PantallaStart::render_State(){
     Juego::Instance()->getVentana()->clear();
@@ -149,7 +137,6 @@ void PantallaStart::update_State(){
             aux=0;
         }
         
-        
         reloj->restart();
         
         input();
@@ -165,7 +152,7 @@ void PantallaStart::input() {
             
         if(evento->type == sf::Event::KeyPressed){
             switch(evento->key.code){
-                case sf::Keyboard::A:
+                case sf::Keyboard::Return:
                     Juego::Instance()->ponerEstadoMenuPrincipal();              
                 break;
                 case sf::Keyboard::Escape:
