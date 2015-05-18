@@ -53,6 +53,8 @@ Escenario::Escenario(const char* nombremapa) {
     aliadas=new Aliadas*[5];
     //enemigos=new Enemigo*[5];
     cofres=new Cofre*[5];
+    objeto=new Objetos*[3];
+    arma=new Armas*[3];
     unidad_sel=new int();
     turnoUsu=new bool();
     primeritaVes=new bool();
@@ -72,8 +74,8 @@ Escenario::Escenario(const char* nombremapa) {
     
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
-    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0);
-    aliadas[1] = new Aliadas("Albertina", "Espadachina", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0);
+    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0,objeto,arma);
+    aliadas[1] = new Aliadas("Albertina", "Espadachina", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0,objeto,arma);
 
     
     pause_open = new SoundBuffer();
@@ -356,8 +358,8 @@ void Escenario::cambiaMapa(const char* nombremapa) {
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
     int atri[] = { 11, 22, 33, 44, 55, 66, 77};
-    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0);
-    aliadas[1] = new Aliadas("Albertina", "Espadachina", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0);
+    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0,objeto,arma);
+    aliadas[1] = new Aliadas("Albertina", "Espadachina", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,0,objeto,arma);
 }
 
 
@@ -411,7 +413,7 @@ void Escenario::update_State(){
         if(*primeritaVes == true){
             *primeritaVes = false;
             cerr << "GRINGO, A HABLAR" << endl;
-            Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu);     
+            Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma);     
         }
         
         for(int i=0; i<sizeof(aliadas)/sizeof(int)+1; i++){
@@ -446,7 +448,9 @@ void Escenario::update_State(){
                     aux = 0;
                     aliadas[*unidad_sel]->cambiaSprite(0, 0, 20, 20);
                     cambiaSpriteCursorSeleccionar();
-                    Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu); 
+                    cout<<"petaescenarioantes"<<endl;
+                    Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma); 
+                    cout<<"petaescenariodespues"<<endl;
                 
                     //*unidad_sel = -1;
                 }else{
@@ -648,7 +652,7 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad3:
-                    Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu);
+                    Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma);
                 break;
                 
                 case sf::Keyboard::Numpad4:
@@ -780,7 +784,7 @@ bool Escenario::getEnemigoSi(){
 }
 
 void Escenario::volverMenuAcciones(){
-    Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu); 
+    Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma); 
 }
 
 void Escenario::deseleccionarUnidad(){

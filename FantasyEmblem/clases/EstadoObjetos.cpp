@@ -16,11 +16,14 @@ using namespace std;
 using namespace sf;
 
 EstadoObjetos* EstadoObjetos::pinstance = 0;
-EstadoObjetos* EstadoObjetos::Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)
+EstadoObjetos* EstadoObjetos::Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno, Objetos** obj, Armas** arm)
 {
     if(pinstance==0)
     {
-        pinstance=new EstadoObjetos(map,al,ene,cofr,indice,turno);
+        pinstance=new EstadoObjetos(map,al,ene,cofr,indice,turno, obj,arm);
+    }
+    else{
+        pinstance->objeto=obj;
     }
     return pinstance;
 }
@@ -31,7 +34,7 @@ EstadoObjetos::EstadoObjetos()
 }
 
 
-EstadoObjetos::EstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno)
+EstadoObjetos::EstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno, Objetos** obj, Armas** arm)
 {
     texturaDedo=new Texture();
     objeto1=new Sprite();
@@ -39,12 +42,12 @@ EstadoObjetos::EstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cof
     objeto3=new Sprite();
     texturaMenu=new Texture();
     cursorDedo= new Sprite();
-    arma=new Sprite(),
+    //arma=new Sprite(),
     menu= new Sprite();
     reloj=new Clock();
     reloj2=new Clock();
     evento=new Event();
-    stats=new Text();
+    stats=new Text*[3];
     stats1=new Text();
     fuente=new Font();
     cursorActivo=true;
@@ -55,7 +58,9 @@ EstadoObjetos::EstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cof
     cof=cofr;
     index=indice;
     turnoUsu=turno;
-    
+    seleccionada=0;
+    objeto = obj;
+    arma = arm;
     init_State();
 }
 
@@ -77,6 +82,9 @@ EstadoObjetos::~EstadoObjetos() {
     delete evento;
 }
 
+int EstadoObjetos::getSeleccionada(){
+    return  seleccionada;
+}
 void EstadoObjetos::init_State()
 {
     if (!texturaMenu->loadFromFile("resources/menuObjeto.png"))
@@ -129,9 +137,12 @@ void EstadoObjetos::render_State()
     }
     Juego::Instance()->getVentana()->draw(*menu);
     Juego::Instance()->getVentana()->draw(*cursorDedo);
-    Juego::Instance()->getVentana()->draw(*stats);
-    Juego::Instance()->getVentana()->draw(*stats1);
-    Juego::Instance()->getVentana()->draw(*arma);
+    //cout<<sizeof(stats)<<endl;
+    for(int i=0; i<sizeof(stats)-1; i++){
+        if(stats[i]!=NULL){
+            Juego::Instance()->getVentana()->draw(*stats[i]);
+        }
+    }
     Juego::Instance()->getVentana()->draw(*objeto1);
     Juego::Instance()->getVentana()->draw(*objeto2);
     Juego::Instance()->getVentana()->draw(*objeto3);
@@ -140,28 +151,48 @@ void EstadoObjetos::render_State()
 
 void EstadoObjetos::mostrarItems(){
     
-    for(int i=0; i<sizeof(ali[0]->getObjetos());i++){
-        cerr << "sadasds" << endl;
-        if(i==0){
-            objeto1= new Sprite(ali[0]->getObjetos()[i]->getSprite());
-        }
-         if(i==1){
-            objeto1= new Sprite(ali[0]->getObjetos()[i]->getSprite());
-        } 
-        if(i==2){
-            objeto1= new Sprite(ali[0]->getObjetos()[i]->getSprite());
+    std::string s_stats;
+    //cout<<"muestro1"<<endl;
+    for(int i=0; i<sizeof(objeto)-1; i++){
+        //cout<<"muestro2"<<endl;
+        if(objeto[i]!=NULL){
+            std::stringstream ss_stats;
+            //cout<<"muestro3"<<endl;
+            ss_stats<<objeto[i]->getNombre();
+            cout<<ss_stats.str()<<endl;
+            
+            //cout<<"muestro5"<<endl;
+            stats[i] = new Text(ss_stats.str(),*fuente,12);
+            //cout<<"muestro6"<<endl;
+            stats[i]->setColor(sf::Color::White);
+            stats[i]->setPosition(50,135+(22*i));
+            
         }
         
     }
     
-    
+    /*for(int i=0; i<sizeof(ali[0]->getObjetos());i++){
+        cerr << "sadasds2" << endl;
+        if(i==0){
+            objeto[i]= new Objetos(ali[0]->getObjetos()[i]);
+            //=objeto1;
+        }
+         if(i==1){
+            objeto[i]= new Objetos(ali[0]->getObjetos()[i]);
+        } 
+        if(i==2){
+            objeto[i]= new Objetos(ali[0]->getObjetos()[i]);
+        }
+        
+    }*/
+    /*cout<<"aqui2"<<endl;
     //arma=new Sprite(ali[0]->getArma()->getSprite());
     std::stringstream ss_stats;
         ss_stats <<   
                
-              ali[0]->getObjetos()[0]->getNombre() << "\n" << "\n"<< 
-              ali[0]->getObjetos()[1]->getNombre() << "\n" << "\n"<< 
-              ali[0]->getObjetos()[2]->getNombre()  
+              objeto[0]->getNombre() << "\n" << "\n"<< 
+              objeto[1]->getNombre() << "\n" << "\n"<< 
+              objeto[2]->getNombre()  
                ;
                
         
@@ -173,9 +204,11 @@ void EstadoObjetos::mostrarItems(){
         
         stats->setColor(sf::Color::White);
         stats->setPosition(50,135);
-        objeto1->setPosition(40,135);
+        /*objeto1->setPosition(40,135);
         objeto2->setPosition(40,157);
-        objeto3->setPosition(40,179);
+        objeto3->setPosition(40,179);*/
+        //cout<<"aqui3"<<endl;
+        
        /* 
         std::stringstream ss_stats1;
         ss_stats1 <<   
@@ -226,54 +259,74 @@ void EstadoObjetos::input()
                 case sf::Keyboard::Up:
                     if(cont==1 && cursorActivo==true)
                     {
+                        cout<<"objeto1"<<endl;
                         cursorDedo->setPosition(240,280);
+                        seleccionada--;
                         cont--;
                     }
                     else if(cont==2 && cursorActivo==true)
                     {
+                        cout<<"objeto2"<<endl;
                         cursorDedo->setPosition(240,303);
+                        seleccionada--;
                         cont--;
                     }
                     else if(cont==3 && cursorActivo==true)
                     {
+                        cout<<"objeto3"<<endl;
                         cursorDedo->setPosition(240,326);
+                        seleccionada--;
                         cont--;
                     }
                     else if(cont==4 && cursorActivo==true)
                     {
+                        cout<<"objeto4"<<endl;
                         cursorDedo->setPosition(335,280);
+                        seleccionada--;
                         cont--;
                     }
                     else if(cont==5 && cursorActivo==true)
                     {
+                        cout<<"objeto5"<<endl;
                         cursorDedo->setPosition(335,303);
+                        seleccionada--;
                         cont--;
                     }
                     break;
                 case sf::Keyboard::Down:
                     if(cont==0 && cursorActivo==true)
                     {
+                        cout<<"objeto2"<<endl;
                         cursorDedo->setPosition(240,303);
+                        seleccionada++;
                         cont++;
                     }
                     else if(cont==1 && cursorActivo==true)
                     {
+                        cout<<"objeto3"<<endl;
                         cursorDedo->setPosition(240,326);
+                        seleccionada++;
                         cont++;
                     }
                     else if(cont==2 && cursorActivo==true)
                     {
+                        cout<<"objeto4"<<endl;
                         cursorDedo->setPosition(335,280);
+                        seleccionada++;
                         cont++;
                     }
                     else if(cont==3 && cursorActivo==true)
                     {
+                        cout<<"objeto5"<<endl;
                         cursorDedo->setPosition(335,303);
+                        seleccionada++;
                         cont++;
                     }
                     else if(cont==4 && cursorActivo==true)
                     {
+                        cout<<"objeto6"<<endl;
                         cursorDedo->setPosition(335,326);
+                        seleccionada++;
                         cont++;
                     }
                     break;
@@ -284,37 +337,37 @@ void EstadoObjetos::input()
                     {
                         //atacar
                         cursorActivo = true;
-                    Juego::Instance()->ponerEstadoObjetosSeleccionado(m,ali,enem,cof,index,turnoUsu);
+                    Juego::Instance()->ponerEstadoObjetosSeleccionado(m,ali,enem,cof,index,turnoUsu,objeto,arma);
                        
                     }
                     
                     if(cont==1)
                     {
                         //estado
-                        Juego::Instance()->ponerEstadoObjetosSeleccionado(m,ali,enem,cof,index,turnoUsu);
+                        Juego::Instance()->ponerEstadoObjetosSeleccionado(m,ali,enem,cof,index,turnoUsu,objeto,arma);
                     }
                     
                     if(cont==2)
                     {
                         //objeto
-                        Juego::Instance()->ponerEstadoObjetosSeleccionado(m,ali,enem,cof,index,turnoUsu);
+                        Juego::Instance()->ponerEstadoObjetosSeleccionado(m,ali,enem,cof,index,turnoUsu,objeto,arma);
                     }
                     
                     if(cont==3)
                     {
                         //interru
-                        Juego::Instance()->ponerEstadoObjetosSeleccionado(m,ali,enem,cof,index,turnoUsu);
+                        Juego::Instance()->ponerEstadoObjetosSeleccionado(m,ali,enem,cof,index,turnoUsu,objeto,arma);
                     }
                     
                     if(cont==4)
                     {
                         //fin
-                        Juego::Instance()->ponerEstadoObjetosSeleccionado(m,ali,enem,cof,index,turnoUsu);
+                        Juego::Instance()->ponerEstadoObjetosSeleccionado(m,ali,enem,cof,index,turnoUsu,objeto,arma);
                        
                     }
                     if(cont==5){
                         
-                        Juego::Instance()->ponerEstadoObjetosSeleccionado(m,ali,enem,cof,index,turnoUsu);
+                        Juego::Instance()->ponerEstadoObjetosSeleccionado(m,ali,enem,cof,index,turnoUsu,objeto,arma);
                     }
                     break;
                 case sf::Keyboard::BackSpace:
@@ -323,7 +376,7 @@ void EstadoObjetos::input()
                 case sf::Keyboard::B:
                     //*index=-1;
                     cursorActivo=true;
-                    Juego::Instance()->ponerEstadoMenuAcciones(m,ali,enem,cof,index,turnoUsu); 
+                    Juego::Instance()->ponerEstadoMenuAcciones(m,ali,enem,cof,index,turnoUsu,objeto,arma); 
                     
                 break;
                 case sf::Keyboard::Escape:

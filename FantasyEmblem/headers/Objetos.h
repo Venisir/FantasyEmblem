@@ -24,6 +24,7 @@ public:
     virtual ~Objetos();
     
     const char* getNombre();
+    void setNombre(const char* nom);
     Sprite getSprite();
     int getId();
     int getUsos();

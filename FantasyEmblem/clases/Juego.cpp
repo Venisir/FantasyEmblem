@@ -119,14 +119,14 @@ void Juego::ponerEstadoPause(){
     //states.back()->init();
 }
 
-void Juego::ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)
+void Juego::ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm)
 {
-    states.push_back(MenuAcciones::Instance(map,al,ene,cofr,indice,turno));
+    states.push_back(MenuAcciones::Instance(map,al,ene,cofr,indice,turno,obj,arm));
 }
 
-void Juego::ponerEstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)
+void Juego::ponerEstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm)
 {
-    states.push_back(EstadoConversacion::Instance(map,al,ene,cofr,indice,turno));
+    states.push_back(EstadoConversacion::Instance(map,al,ene,cofr,indice,turno,obj,arm));
 }
 
 void Juego::ponerEstadoBatalla(Aliadas* ali, Enemigo* ene){
@@ -137,17 +137,17 @@ void Juego::ponerEstadoPantallaInicio(){
     states.push_back(PantallaStart::Instance());
     //states.back()->init();
 }
-void Juego::ponerEstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)
+void Juego::ponerEstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm)
 {
-    states.push_back(EstadoObjetos::Instance(map,al,ene,cofr,indice,turno));
+    states.push_back(EstadoObjetos::Instance(map,al,ene,cofr,indice,turno,obj,arm));
 }
-void Juego::ponerEstadoObjetosSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)
+void Juego::ponerEstadoObjetosSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm)
 {
-    states.push_back(ObjetoSeleccionado::Instance(map,al,ene,cofr,indice,turno));
+    states.push_back(ObjetoSeleccionado::Instance(map,al,ene,cofr,indice,turno,obj,arm));
 }
-void Juego::ponerEstadoPersonaje(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)
+void Juego::ponerEstadoPersonaje(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm)
 {
-    states.push_back(EstadoPer::Instance(map,al,ene,cofr,indice,turno));
+    states.push_back(EstadoPer::Instance(map,al,ene,cofr,indice,turno,obj,arm));
 }
 
 /*

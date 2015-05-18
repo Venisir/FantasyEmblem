@@ -31,13 +31,13 @@ using namespace sf;
 
 class ObjetoSeleccionado: public Estado {
 public:
-    static ObjetoSeleccionado* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno);
+    static ObjetoSeleccionado* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm);
     void input();
     void mostrarItems();
     
 protected:
     ObjetoSeleccionado();
-    ObjetoSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno);
+    ObjetoSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm);
     ~ObjetoSeleccionado();        
 private:
     static ObjetoSeleccionado* pinstance;
@@ -45,7 +45,7 @@ private:
     void render_State();
     void update_State();
     
-     sf::Sprite *arma;
+    // sf::Sprite *arma;
     sf::Texture *usar;
     sf::Texture *tirar;
     sf::Texture *texturaMenu1;
@@ -59,7 +59,7 @@ private:
     sf::Clock *reloj;
     sf::Clock *reloj2;
     sf::Event *evento;
-    sf::Text* stats;
+    sf::Text** stats;
     sf::Text* stats1;
     sf::Font* fuente;
     sf::Sprite *objeto1;
@@ -72,7 +72,12 @@ private:
     Aliadas **ali;//array de unidades aliadas proveniente del escenario
     Enemigo **enem;//array de unidades enemigas proveniete del escenario
     Cofre **cof;
+    Objetos **objeto;
+    Armas **arma;
     int *index;//indice de la unidad aliada seleccionada
+    
+    int seleccionada;
+    sf::Sprite** objetos;
 };
 
 #endif	

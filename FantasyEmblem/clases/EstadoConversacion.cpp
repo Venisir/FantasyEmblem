@@ -18,11 +18,11 @@ using namespace std;
 using namespace sf;
 
 EstadoConversacion* EstadoConversacion::pinstance = 0;
-EstadoConversacion* EstadoConversacion::Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)
+EstadoConversacion* EstadoConversacion::Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm)
 {
     if(pinstance==0)
     {
-        pinstance=new EstadoConversacion(map,al,ene,cofr,indice,turno);
+        pinstance=new EstadoConversacion(map,al,ene,cofr,indice,turno,obj,arm);
     }
     return pinstance;
 }
@@ -33,7 +33,7 @@ EstadoConversacion::EstadoConversacion()
 }
 
 
-EstadoConversacion::EstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno)
+EstadoConversacion::EstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno,Objetos** obj, Armas** arm)
 {
     
     texturaPersonajeIzq=new Texture();
@@ -60,7 +60,8 @@ EstadoConversacion::EstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, C
     enem=ene;
     cof=cofr;
     index=indice;
-    
+    arma = arma;
+    objeto = obj;
     init_State();
 }
 

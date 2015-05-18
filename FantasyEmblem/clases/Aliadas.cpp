@@ -31,14 +31,14 @@ Aliadas::Aliadas() {
 }
  
  
-Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, const char* textuBatalla, int experien):Unidad(name, clas, atributo, nivel, rang, nombreTextu, textuBatalla) {
+Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, const char* textuBatalla, int experien, Objetos** obj, Armas** arm):Unidad(name, clas, atributo, nivel, rang, nombreTextu, textuBatalla) {
     experiencia = experien;
      
     recorrido=new int[rango];
     ultimo_mov=0;   
     
-    inventarioObjetos=new Objetos*[3];
-    inventarioArmas=new Armas*[3];
+    inventarioObjetos=obj;
+    inventarioArmas=arm;
     
     for(int i=0; i<3; i++){
         inventarioObjetos[i]=NULL;
@@ -98,17 +98,19 @@ bool Aliadas::equiparArma(Armas* arma){
         arma_actual = arma;
     return equipada;
 }
-bool Aliadas::usarObjeto(Objetos* obj){
-    bool usada = false; 
-    //recorrer inventario y buscar obj
-    for(int i=0;i<3;i++){
-        if(inventarioObjetos[i]->getId() == obj->getId()){
-            obj->~Objetos();
-            delete inventarioObjetos[i];
-            usada = true;
+Objetos** Aliadas::usarObjeto(int pos){
+    
+    
+    delete inventarioObjetos[pos];
+    for(int i=0;i<sizeof();i++){
+            
+        if(inventarioObjetos[i+1]!=NULL){
+            inventarioObjetos[i]=inventarioObjetos[i+1];
+            
         }
-    }    
-    return usada;
+    }
+        
+    return inventarioObjetos;
 }
  
  

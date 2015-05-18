@@ -47,6 +47,7 @@ Objetos::~Objetos() {
     
     delete spriteObjeto;
     delete textObjeto;
+    delete Nombre;
 }
 
 int Objetos::getUsos(){
@@ -73,6 +74,9 @@ const char* Objetos::getNombre(){
     return Nombre;
 }
 
+void Objetos::setNombre(const char* nom){
+    Nombre = nom;
+}
 Sprite Objetos::getSprite(){
     return *spriteObjeto;
 }

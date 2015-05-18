@@ -15,11 +15,11 @@ using namespace std;
 using namespace sf;
 
 EstadoPer* EstadoPer::pinstance = 0;
-EstadoPer* EstadoPer::Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)
+EstadoPer* EstadoPer::Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm)
 {
     if(pinstance==0)
     {
-        pinstance=new EstadoPer(map,al,ene,cofr,indice,turno);
+        pinstance=new EstadoPer(map,al,ene,cofr,indice,turno,obj,arm);
     }
     return pinstance;
 }
@@ -30,7 +30,7 @@ EstadoPer::EstadoPer()
 }
 
 
-EstadoPer::EstadoPer(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno)
+EstadoPer::EstadoPer(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno,Objetos** obj, Armas** arm)
 {
     
     texturaMenu=new Texture();
@@ -47,6 +47,8 @@ EstadoPer::EstadoPer(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *
     stats=new Text();
     stats1=new Text();
     
+    objeto = obj;
+    arma = arm;
     cont=0;
     m=map;
     ali=al;
@@ -241,7 +243,7 @@ void EstadoPer::input()
                
                 case sf::Keyboard::B:
                     //*index=-1;
-                    Juego::Instance()->ponerEstadoMenuAcciones(m,ali,enem,cof,index,turnoUsu); 
+                    Juego::Instance()->ponerEstadoMenuAcciones(m,ali,enem,cof,index,turnoUsu,objeto,arma); 
                     
                 break;
                 case sf::Keyboard::Escape:
@@ -253,7 +255,7 @@ void EstadoPer::input()
                 if(evento->type == sf::Event::JoystickButtonPressed){
                     switch(evento->joystickButton.button){
                         case 1:
-                            Juego::Instance()->ponerEstadoMenuAcciones(m,ali,enem,cof,index,turnoUsu);
+                            Juego::Instance()->ponerEstadoMenuAcciones(m,ali,enem,cof,index,turnoUsu,objeto,arma);
                         break;
                     }
                 }
