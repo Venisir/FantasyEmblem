@@ -162,9 +162,9 @@ void Juego::ponerEstadoObjetosSeleccionado(Mapa* map, Aliadas** al, Enemigo** en
 {
     states.push_back(ObjetoSeleccionado::Instance(map,al,ene,cofr,indice,turno));
 }
-void Juego::ponerEstadoPersonaje(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)
+void Juego::ponerEstadoPersonaje(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Aliadas* alis)
 {
-    states.push_back(EstadoPer::Instance(map,al,ene,cofr,indice,turno));
+    states.push_back(EstadoPer::Instance(map,al,ene,cofr,indice,turno,alis));
 }
 
 /*

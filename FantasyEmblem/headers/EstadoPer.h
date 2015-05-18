@@ -31,14 +31,14 @@ using namespace sf;
 
 class EstadoPer:public Estado {
 public:
-    static EstadoPer* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno);
+    static EstadoPer* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno, Aliadas* alis);
     void input();
     void mostrarDatos();
     void mostrarStats();
     
 protected:
     EstadoPer();
-    EstadoPer(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno);
+    EstadoPer(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno, Aliadas* alis);
     ~EstadoPer();        
 private:
     static EstadoPer* pinstance;
@@ -54,7 +54,7 @@ private:
     sf::Text* clase;
     sf::Text* stats;
     sf::Text* stats1;
-
+    sf::Sprite* retrato;
     sf::Sprite *menu;
     sf::Clock *reloj;
     sf::Clock *reloj2;
@@ -65,6 +65,7 @@ private:
     Aliadas **ali;//array de unidades aliadas proveniente del escenario
     Enemigo **enem;//array de unidades enemigas proveniete del escenario
     Cofre **cof;
+    Aliadas* alia;
     int *index;//indice de la unidad aliada seleccionada
 };
 
