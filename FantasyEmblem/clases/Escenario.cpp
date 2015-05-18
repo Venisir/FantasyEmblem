@@ -73,10 +73,11 @@ Escenario::Escenario(const char* nombremapa) {
     enemigos=mapa->getEnemigos();
     aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"evadirblack.png",95);
     aliadas[1] = new Aliadas("Albertina", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"evadirblack.png",0);
-
     
     pause_open = new SoundBuffer();
     opause = new Sound();
+    
+    Mapacambio=-1;
     init_State();
 }
 
@@ -368,6 +369,12 @@ void Escenario::cambiaMapa(const char* nombremapa) {
     int atri[] = { 11, 22, 33, 44, 55, 66, 77};
     aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"ike.png",95);
     aliadas[1] = new Aliadas("Albertina", "Espadachina", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"ike.png",95);
+    EstadoConversacion::Intance()->reset();
+    //EstadoConversacion::Instance(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu);
+}
+
+void Escenario::setCambio(int n) {
+    Mapacambio=n;
 }
 
 
@@ -417,6 +424,17 @@ void Escenario::render_State(){
 }
 
 void Escenario::update_State(){
+    
+    if(Mapacambio!=-1)
+    {
+        if(Mapacambio==1)
+        {
+            Mapacambio=-1;
+            cambiaMapa("mapaPruebas");
+            init_State();
+        }
+    }
+    
     //Reloj del cursor
     if (relojCursor->getElapsedTime().asSeconds() >= 0.5) {
            
@@ -747,7 +765,7 @@ void Escenario::input() {
                 
                 case sf::Keyboard::M:
                     //Menu principal
-                    //paramusic();
+                    mapasonido1->pause();
                     Juego::Instance()->ponerEstadoMenuPrincipal();    
                 break;
                 
@@ -756,8 +774,7 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Num5:
-                    cambiaMapa("mapaPruebas");
-                    init_State();
+                    Mapacambio=1;
                 break;
             }
         }else{

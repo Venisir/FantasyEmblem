@@ -64,6 +64,7 @@ public:
     
     void borraEnemigo(int e);
     void borraAliado(int a);
+    void setCambio(int n);
 
 protected:
     Escenario();
@@ -118,6 +119,8 @@ private:
     Aliadas** aliadas;//aray de unidades aliadas (posiblemente esten en mapa)
     Enemigo** enemigos;//array de unidades enemigas
     Cofre** cofres;
+    
+    int Mapacambio;
     
     sf::SoundBuffer* pause_open;
     sf::Sound* opause;

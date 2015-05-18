@@ -27,11 +27,19 @@ EstadoConversacion* EstadoConversacion::Instance(Mapa* map, Aliadas** al, Enemig
     return pinstance;
 }
 
+EstadoConversacion* EstadoConversacion::Intance() {
+
+}
+
+
 EstadoConversacion::EstadoConversacion()
 {
     
 }
 
+void EstadoConversacion::reset() {
+    pinstance=0;
+}
 
 EstadoConversacion::EstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno)
 {
@@ -60,6 +68,7 @@ EstadoConversacion::EstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, C
     enem=ene;
     cof=cofr;
     index=indice;
+    cambioMapa=-1;
     
     init_State();
 }
@@ -84,6 +93,15 @@ EstadoConversacion::~EstadoConversacion() {
     delete nombre;
     delete fuente;
 }
+
+void EstadoConversacion::setMapa(Mapa* map) {
+    maux=map;
+    cambioMapa=1;
+}
+
+
+
+
 
 void EstadoConversacion::init_State()
 {
@@ -165,6 +183,7 @@ void EstadoConversacion::init_State()
 void EstadoConversacion::render_State()
 {
     Juego::Instance()->getVentana()->clear();
+      
     m->Draw();
     for(int x=0; x<m->getNumEnemigos(); x++){
        // if(aliadas[x]!=NULL){
@@ -191,6 +210,13 @@ void EstadoConversacion::render_State()
 
 void EstadoConversacion::update_State()
 {
+    /*if(cambioMapa!=-1)
+    {
+        cambioMapa=-1;
+        m=maux;
+    }*/
+  
+    
     if (reloj2->getElapsedTime().asSeconds() >= 0.5) {
         
         for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
