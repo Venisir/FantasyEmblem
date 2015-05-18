@@ -236,7 +236,7 @@ void EstadoBatall::render_State(){
 
 void EstadoBatall::update_State(){
     if (reloj->getElapsedTime().asSeconds() >= 0.08) {
-        cerr << contPer1i << "  " << contPer1j << endl;
+        //cerr << contPer1i << "  " << contPer1j << endl;
         
         std::stringstream vidas2;
         vidas2 <<   
@@ -284,6 +284,7 @@ void EstadoBatall::update_State(){
                             }else if(alia->getLvl() < enem->getLvl()){
                                 aux3=30+(2*(enem->getLvl()-alia->getLvl()));
                             }
+                            //Debe morir el enemigo
                             
                             Juego::Instance()->ponerEstadoSumaExp(alia, enem, aux3);
                             
@@ -314,9 +315,10 @@ void EstadoBatall::update_State(){
                         if(aux2<=enem->PosiGolpearTotal(alia)){
                             alia->setPV(enem->TotalDanyo(alia));
                             if(alia->getPV()<=0){
+                                //Debe morir el aliado
                                 
                                 batasonido1->stop();
-                                Juego::Instance()->ponerEstadoGameOver();
+                                //Juego::Instance()->ponerEstadoGameOver();
                             }
                         }
 

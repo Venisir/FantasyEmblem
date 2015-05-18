@@ -26,13 +26,18 @@ int main()
     
     //Le pongo la ventana al juego
     juego->setVentana(&window);
+    
+    sf::View view;
+    view.reset(sf::FloatRect(0,0,window.getSize().x,window.getSize().y));
+    view.setViewport(sf::FloatRect(0,0,1.0f,1.0f));
+    view.setCenter(sf::Vector2f(0,0));
+    //juego->setView(view);
 
     //Ejecuto el juego
     juego->init();
     
     while (window.isOpen()){
         
-        //std::cerr << "YES" <<endl;
         juego->update();
         juego->render();
         //window.close();

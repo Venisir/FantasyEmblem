@@ -95,7 +95,7 @@ void Cursor::input() {
                 case sf::Keyboard::Down:
                     if(spriteCursor->getPosition().y<=320-16)
                         spriteCursor->move(0,16);     
-                    std::cerr << spriteCursor->getPosition().y <<endl;
+                        ///td::cerr << spriteCursor->getPosition().y <<endl;
                 break;
                 case sf::Keyboard::Up:
                     if(spriteCursor->getPosition().y>=16)
@@ -108,7 +108,7 @@ void Cursor::input() {
                 case sf::Keyboard::Right:
                     if(spriteCursor->getPosition().x<=480-16)
                         spriteCursor->move(16,0);       
-                    std::cerr << spriteCursor->getPosition().x <<endl;
+                    //std::cerr << spriteCursor->getPosition().x <<endl;
                 break;
                 case sf::Keyboard::Numpad1:
                     cambiaSpriteCursorSeleccionar();             

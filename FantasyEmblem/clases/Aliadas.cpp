@@ -30,12 +30,11 @@ Aliadas::Aliadas() {
  
 }
  
- 
 Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu, const char* textuBatalla,const char* textuevadir, int experien):Unidad(name, clas, atributo, nivel, rang, nombreTextu, textuBatalla, textuevadir) {
     experiencia = experien;
      
-    recorrido=new int[rango];
-    ultimo_mov=0;   
+    //recorrido=new int[rango];
+    //ultimo_mov=0;   
     
     inventarioObjetos=new Objetos*[3];
     inventarioArmas=new Armas*[3];
@@ -86,7 +85,6 @@ Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, i
         exit(0);
     }
     spriteAviso->setTexture(*texturaAvisoLlaveCofre);
-    
 }
  
 Aliadas::~Aliadas() {
@@ -98,6 +96,7 @@ bool Aliadas::equiparArma(Armas* arma){
         arma_actual = arma;
     return equipada;
 }
+
 bool Aliadas::usarObjeto(Objetos* obj){
     bool usada = false; 
     //recorrer inventario y buscar obj
@@ -110,13 +109,11 @@ bool Aliadas::usarObjeto(Objetos* obj){
     }    
     return usada;
 }
- 
- 
+
  void Aliadas::subirNivel(){
     lvl++;
 }
 
- 
 bool Aliadas::abrirCofre(Cofre* cofre){
     
     bool abierto = false;
@@ -152,7 +149,6 @@ bool Aliadas::abrirCofre(Cofre* cofre){
                         spriteAviso->setTexture(*texturaAvisoInventarioObjetos);
                     }
                 }
-
             }else{
                 spriteAviso->setTexture(*texturaAvisoLlaveCofre);
             } 
@@ -189,24 +185,17 @@ bool Aliadas::abrirPuerta(Mapa* mapa){
                     mapa->quitarPuerta(getPosicionSpriteY(),getPosicionSpriteX()-16);
                     cout<<"He abierto la puerta :D"<<endl;
                 }
-                
                 llave=true;
             }
         }
     }
     
     if(!llave){
-        
-        string noLlave = "resources/avisollavepuerta.png";
-
-        cout<<"p1"<<endl;
         spriteAviso->setTexture(*texturaAvisoLlavePuerta);
-        //Juego :: Instance()->getVentana()->draw(*spriteAvisoLlavePuerta);
-        cout<<"p3"<<endl;
     }
     return llave;
 }
-
+/*
  void Aliadas::guardamovimiento(int n){
     int negativo=n*(-1);
     //si el ultimo introducido es el negativo del que se va a introducir..
@@ -229,12 +218,12 @@ bool Aliadas::abrirPuerta(Mapa* mapa){
             ultimo_mov--;
         } 
     }
-}
-  
+}*/
+  /*
 int* Aliadas::getRecorrido(){
     return recorrido;
-}
-  
+}*/
+  /*
 void Aliadas::recorre()
 {
     //for(int i=0;i<ultimo_mov;i++)
@@ -260,37 +249,27 @@ void Aliadas::recorre()
                break; 
          }
      }
-     //recorrido=new int[rango];
      ultimo_mov=0;
  }
-  
+  */
  bool Aliadas::hayPuerta(Mapa* mapa){
-     cout<<"entra en hayPuerta"<<endl;
      bool puerta = false;    
      
         //derecha
-        cout<<"primer if"<<endl;
         if((mapa->getPuerta(spriteUnidad->getPosition().y,spriteUnidad->getPosition().x+16) )== true){
-            puerta = true;
-            cout<<"Hay puerta a la derecha"<<endl;     
+            puerta = true;  
         }
         //izquierda
-        cout<<"segundo if"<<endl;
         if((mapa->getPuerta(spriteUnidad->getPosition().y,spriteUnidad->getPosition().x-16)) == true){
-             puerta = true;
-             cout<<"Hay puerta a la izquierda"<<endl;     
+             puerta = true;     
         }
         //arriba
-        cout<<"tercer if"<<endl;
         if((spriteUnidad->getPosition().y<0)&&(mapa->getPuerta(spriteUnidad->getPosition().y-16,spriteUnidad->getPosition().x)) == true){
              puerta = true;
-             cout<<"Hay puerta arriba"<<endl;
         }
         //abajo
-        cout<<"cuarto if"<<endl;
         if((mapa->getPuerta(spriteUnidad->getPosition().y+16,spriteUnidad->getPosition().x)) == true){
              puerta = true;
-             cout<<"Hay puerta abajo"<<endl;
         }     
         if(puerta==true){
            cout<<"hay puertesica"<<endl;
@@ -305,28 +284,20 @@ void Aliadas::recorre()
       bool cofre = false;    
      
         //derecha
-        cout<<"primer if"<<endl;
         if((mapa->getCofre(spriteUnidad->getPosition().y,spriteUnidad->getPosition().x+16) )== true){
             cofre = true;
-            cout<<"Hay cofre a la derecha"<<endl;     
         }
         //izquierda
-        cout<<"segundo if"<<endl;
         if((mapa->getCofre(spriteUnidad->getPosition().y,spriteUnidad->getPosition().x-16)) == true){
-             cofre = true;
-             cout<<"Hay cofre a la izquierda"<<endl;     
+             cofre = true;   
         }
         //arriba
-        cout<<"tercer if"<<endl;
         if((spriteUnidad->getPosition().y<0)&&(mapa->getCofre(spriteUnidad->getPosition().y-16,spriteUnidad->getPosition().x)) == true){
              cofre = true;
-             cout<<"Hay cofre arriba"<<endl;
         }
         //abajo
-        cout<<"cuarto if"<<endl;
         if((mapa->getCofre(spriteUnidad->getPosition().y+16,spriteUnidad->getPosition().x)) == true){
              cofre = true;
-             cout<<"Hay cofre abajo"<<endl;
         }
      return cofre;
  }
@@ -347,10 +318,6 @@ Objetos** Aliadas::getObjetos(){
 int Aliadas::hayEnemigosCercanos(Enemigo** enemigos){
     
     int hayEnemigo = 0;
-    
-    //cerr << sizeof(enemigos) << endl;
-    //cerr << sizeof(*enemigos) << endl;
-    
     for(int i=0; i<sizeof(enemigos)-1; i++){
         if(this->getPosicionSpriteX()+16 == enemigos[i]->getPosicionSpriteX() && this->getPosicionSpriteY() == enemigos[i]->getPosicionSpriteY()){
             hayEnemigo = 1;
@@ -368,18 +335,34 @@ int Aliadas::hayEnemigosCercanos(Enemigo** enemigos){
     return hayEnemigo;
 }
 
+int Aliadas::cualEsElEnemigoCercano(Enemigo** enemigos){
+    
+    int _aux = 0;
+    
+    for(int i=0; i<sizeof(enemigos)-1; i++){
+        if(this->getPosicionSpriteX()+16 == enemigos[i]->getPosicionSpriteX() && this->getPosicionSpriteY() == enemigos[i]->getPosicionSpriteY()){
+            _aux = i;
+        }
+        if(this->getPosicionSpriteX() == enemigos[i]->getPosicionSpriteX() && this->getPosicionSpriteY()-16 == enemigos[i]->getPosicionSpriteY()){
+            _aux = i;
+        }
+        if(this->getPosicionSpriteX()-16 == enemigos[i]->getPosicionSpriteX() && this->getPosicionSpriteY() == enemigos[i]->getPosicionSpriteY()){
+            _aux = i;
+        }
+        if(this->getPosicionSpriteX() == enemigos[i]->getPosicionSpriteX() && this->getPosicionSpriteY()+16 == enemigos[i]->getPosicionSpriteY()){
+            _aux = i;
+        }
+    }
+    return _aux;
+}
+
 int Aliadas::hayCofresCercanos(Mapa* m){
     
     int hayCofre = 0;
     
-    //cerr << sizeof(enemigos) << endl;
-    //cerr << sizeof(*enemigos) << endl;
-    
-        if(m->getCofre(this->getPosicionSpriteY(), this->getPosicionSpriteX())==true){
-            //Hay cofre
-            hayCofre = 1;
-        }
-    
+    if(m->getCofre(this->getPosicionSpriteY(), this->getPosicionSpriteX())==true){
+        hayCofre = 1;
+    }
     return hayCofre;
 }
 
@@ -387,25 +370,22 @@ int Aliadas::hayPuertasCercanas(Mapa* m){
     
     int hayPuerta = 0;
     bool yano = false;
-    //cerr << sizeof(enemigos) << endl;
-    //cerr << sizeof(*enemigos) << endl;
     
-        if((m->getPuerta(this->getPosicionSpriteY()+16, this->getPosicionSpriteX())==true)){
-            //Esta abajo
-            hayPuerta = -2;
-            yano = true;
-        }
-        if((m->getPuerta(this->getPosicionSpriteY(), this->getPosicionSpriteX()-16)==true)){
-            hayPuerta = 1;
-        }
-        if((m->getPuerta(this->getPosicionSpriteY()-16, this->getPosicionSpriteX())==true)){
-            //Esta arriba
-            hayPuerta = 2;
-        }
-        if((m->getPuerta(this->getPosicionSpriteY(), this->getPosicionSpriteX()+16)==true)){
-            hayPuerta = -1;
-        }
-    
+    if((m->getPuerta(this->getPosicionSpriteY()+16, this->getPosicionSpriteX())==true)){
+        //Esta abajo
+        hayPuerta = -2;
+        yano = true;
+    }
+    if((m->getPuerta(this->getPosicionSpriteY(), this->getPosicionSpriteX()-16)==true)){
+        hayPuerta = 1;
+    }
+    if((m->getPuerta(this->getPosicionSpriteY()-16, this->getPosicionSpriteX())==true)){
+        //Esta arriba
+        hayPuerta = 2;
+    }
+    if((m->getPuerta(this->getPosicionSpriteY(), this->getPosicionSpriteX()+16)==true)){
+        hayPuerta = -1;
+    }
     return hayPuerta;
 }
 
@@ -417,5 +397,4 @@ void Aliadas::setExp(int i){
     }else if ((experiencia+i)<100){
         experiencia=experiencia+1;
     }
-    
 }

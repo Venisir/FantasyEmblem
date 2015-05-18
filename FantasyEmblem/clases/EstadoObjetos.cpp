@@ -141,7 +141,6 @@ void EstadoObjetos::render_State()
 void EstadoObjetos::mostrarItems(){
     
     for(int i=0; i<sizeof(ali[0]->getObjetos());i++){
-        cerr << "sadasds" << endl;
         if(i==0){
             objeto1= new Sprite(ali[0]->getObjetos()[i]->getSprite());
         }

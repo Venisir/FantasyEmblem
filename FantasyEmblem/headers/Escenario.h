@@ -40,7 +40,9 @@ public:
     void mostrarCuadriculaUnidad(int xx, int yy, int rangoUnidad, int color);
     void quitarCuadriculaUnidad(int xx, int yy, int rangoUnidad);
     bool hayunidad();
+    bool hayunidadAqui(int i, int j);
     Mapa* getMapa();
+    Enemigo** getEnemigos();
     void mostrarStats(int numUnidad, int tipo);
     void setEnemigo(Enemigo* malo);
     void empiezaturnoIA();
@@ -114,6 +116,8 @@ private:
     bool cofreSi;
     bool enemigoSi;
     bool turnoSi;
+    
+    bool vengaEntra;
     
     Aliadas** aliadas;//aray de unidades aliadas (posiblemente esten en mapa)
     Enemigo** enemigos;//array de unidades enemigas

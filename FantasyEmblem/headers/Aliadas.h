@@ -30,9 +30,9 @@ public:
      
     void subirNivel();
      
-    void guardamovimiento(int n);
-    void recorre();
-    int* getRecorrido();
+    //void guardamovimiento(int n);
+    //void recorre();
+    //int* getRecorrido();
     Armas** getArmas();
     Objetos** getObjetos();
     Sprite* dameQuePinte();
@@ -50,15 +50,16 @@ public:
     int hayEnemigosCercanos(Enemigo** enemigos);
     int hayCofresCercanos(Mapa* m);
     int hayPuertasCercanas(Mapa* m);
+    int cualEsElEnemigoCercano(Enemigo** enemigos);
      
 private:
     int experiencia;
     Objetos** inventarioObjetos;
     Armas** inventarioArmas;
     
-    int* recorrido;
-    int ultimo_mov;//ultimo paso hecho
-    int pasos;//contador de los pasos realizados
+    //int* recorrido;
+    //int ultimo_mov;//ultimo paso hecho
+    //int pasos;//contador de los pasos realizados
     Sprite *spriteAviso;
     Texture *texturaAvisoInventarioArmas, *texturaAvisoInventarioObjetos,*texturaAvisoLlaveCofre,*texturaAvisoLlavePuerta;
 };

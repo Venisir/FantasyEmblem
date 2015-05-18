@@ -163,12 +163,8 @@ void ObjetoSeleccionado::render_State()
 
 void ObjetoSeleccionado::mostrarItems(){
     
-    
-    
-    cerr << "hola" << endl;
     cerr << sizeof(ali[0]->getObjetos()) << endl;
     for(int i=0; i<sizeof(ali[0]->getObjetos());i++){
-        cerr << "sadasds" << endl;
         if(i==0){
             objeto1= new Sprite(ali[0]->getObjetos()[i]->getSprite());
         }
@@ -178,7 +174,6 @@ void ObjetoSeleccionado::mostrarItems(){
         if(i==2){
             objeto1= new Sprite(ali[0]->getObjetos()[i]->getSprite());
         }
-        
     }
     
     //arma=new Sprite(ali[0]->getArma()->getSprite());

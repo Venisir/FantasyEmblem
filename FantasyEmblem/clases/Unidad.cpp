@@ -87,6 +87,8 @@ Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int
     direccionDestino = 0;
     
     haJugado = false;
+    ultimo_mov=0;   
+    recorrido=new int[rango];
 }
 
 Unidad::~Unidad() {
@@ -610,12 +612,10 @@ void Unidad::recorridoA(int destinox, int destinoy)
                             if(abierta.at(w)->getG()<abierta.at(i)->getG()){
                                 iter = abierta.begin()+i;
                                 abierta.erase(iter);
-                                cerr << "6sdadadadfgjhg888" << endl;
                             }
                             else{
                                 iter = abierta.begin()+w;
                                 abierta.erase(iter);
-                                cerr << "6sdadadadfgjhg" << endl;
                             }
                             break;
                         }
@@ -703,4 +703,61 @@ void Unidad::MovstoInt() {
 
 Sprite Unidad::getSpriteEvadir(){
     return *spriteEvadir;
+}
+
+
+void Unidad::recorre()
+{
+    //for(int i=0;i<ultimo_mov;i++)
+    for(int i=0;i<1;i++)
+    {
+        switch(movimientos[i])
+        {
+            case 1:
+                moverDerecha(); 
+                std::cerr << movimientos[i] << " " << endl;
+                break;
+            case 2:
+                moverArriba();
+                std::cerr << movimientos[i] << " " << endl;
+               break;
+            case -1:
+                moverIzquierda();
+                std::cerr << movimientos[i] << " " << endl;
+               break;
+            case -2:
+                moverAbajo();
+                std::cerr << movimientos[i] << " " << endl;
+               break; 
+         }
+    }
+    ultimo_mov=0;
+ }
+
+void Unidad::guardamovimiento(int n){
+    int negativo=n*(-1);
+    //si el ultimo introducido es el negativo del que se va a introducir..
+    if(ultimo_mov<rango)
+    {
+        if(negativo==recorrido[ultimo_mov-1])
+        {
+            ultimo_mov--;
+        }
+        else
+        {
+            recorrido[ultimo_mov]=n;
+            ultimo_mov++;
+        }
+    }
+    else if(ultimo_mov==rango)
+    {
+        if(negativo==recorrido[ultimo_mov-1])
+        {
+            ultimo_mov--;
+        } 
+    }
+}
+
+int* Unidad::getRecorrido(){
+    return recorrido;
 }

@@ -225,14 +225,22 @@ void Mapa::Draw() {
 
 void Mapa::setSpriteColor(int color, int i, int j, int saltaComprobacion){
     
-    //cerr << "He llegado con color: " <<color<< " i: " << i << " j: " << j << " saltacomprobacion: " << saltaComprobacion << endl;
     if(j<480 && j>=0 && i>=0 && i<320){
-        //cerr << "He entrado" << endl;
         //Si no hay colision
-        if((_tilemap[4][i/16][j/16]==0 && _tilemap[5][i/16][j/16]==0 && _tilemap[6][i/16][j/16]==0) || saltaComprobacion == 1){
-            //cerr << "Y no hay colision" << endl;
+        
+        Enemigo** enemigos = Escenario::Instance()->getEnemigos();
+        bool _aux = true;
+        
+        for(int w=0; w<sizeof(enemigos)/sizeof(int)+1; w++){
+            if(enemigos[w]->getSprite().getPosition().x == j && enemigos[w]->getSprite().getPosition().y == i){
+                cerr << "Enemigo " << w << ", x: " << enemigos[w]->getSprite().getPosition().x << " y:" << enemigos[w]->getSprite().getPosition().y << endl;
+                cerr << "i: " << i << "  j: " << j << endl;
+                _aux = false;
+            }
+        }
+        
+        if((_tilemap[4][i/16][j/16]==0 && _tilemap[5][i/16][j/16]==0 && _aux == true/*&& _tilemap[6][i/16][j/16]==0*/) || saltaComprobacion == 1){
             //Si tiene una adyacencia
-            
             bool entra = false;
             
             if(i+16>= 0 && i+16<320)
@@ -242,7 +250,6 @@ void Mapa::setSpriteColor(int color, int i, int j, int saltaComprobacion){
             if(i-16>= 0 && i-16<320)
                 if(_tilemapSprite[3][(i-16)/16][j/16] != NULL)
                     entra = true;
-            
             
             if(j+16>= 0 && j+16<480)
                 if(_tilemapSprite[3][i/16][(j+16)/16] != NULL)
@@ -272,31 +279,13 @@ void Mapa::setSpriteColor(int color, int i, int j, int saltaComprobacion){
             if(i-16>= 0 && i-16<320 && j-16>= 0 && j-16<480)
                 if(_tilemapSprite[3][(i-16)/16][(j-16)/16] != NULL)
                     entra = true;
-            /*
-            if(entra == true){
-                cerr << "entra = true" << endl;
-            }else{
-                cerr << "entra = false" << endl;    
-            }
-            */  
-            /*
-            if( _tilemapSprite[3][(i+16)/16][j/16] != NULL || 
-                _tilemapSprite[3][(i-16)/16][j/16] != NULL ||
-                _tilemapSprite[3][i/16][(j+16)/16] != NULL || 
-                _tilemapSprite[3][i/16][(j-16)/16] != NULL ||
-                saltaComprobacion == 1 ||
-                _tilemapSprite[3][(i-16)/16][(j-16)/16] != NULL || 
-                _tilemapSprite[3][(i-16)/16][(j+16)/16] != NULL || 
-                _tilemapSprite[3][(i+16)/16][(j-16)/16] != NULL || 
-                _tilemapSprite[3][(i+16)/16][(j+16)/16] != NULL){
-*/
+            
             if(entra == true){
                 if(color == 0){
                     _tilemapSprite[3][i/16][j/16] = new Sprite(*textura, IntRect(144, 0, 16, 16));
                 }else{
                     _tilemapSprite[3][i/16][j/16] = new Sprite(*textura, IntRect(144, 16, 16, 16));
                 }
-                //cerr << "He pintado" << endl;
                 _tilemapSprite[3][i/16][j/16]->setPosition(j,i);
                 _tilemapSprite[3][i/16][j/16]->setColor(Color(255, 255, 255, 128));
             }
@@ -319,7 +308,6 @@ void Mapa::defaultSpriteColor(int i, int j){
 }
 
 void Mapa::setSpriteColorAtaque(int j, int i){
-    cerr << i << " " << j << endl; 
     if(j<480 && j>=0 && i>=0 && i<320){
         _tilemapSprite[3][i/16][j/16] = new Sprite(*textura, IntRect(144, 0, 16, 16));
         _tilemapSprite[3][i/16][j/16]->setPosition(j,i);
@@ -334,8 +322,6 @@ void Mapa::defaultSpriteColorAtaque(int i, int j){
 }
 
 bool Mapa::getColision(int j, int i){
-    //cerr << "i: " << i << "   j: " << j << endl;
-    //cerr << "gid:" << _tilemap[4][i/16][j/16] << endl;
     if(_tilemap[4][i/16][j/16]!=0 || _tilemap[5][i/16][j/16]!=0 /*|| _tilemap[6][i/16][j/16]!=0*/){
         return false;
     }else{
@@ -407,9 +393,8 @@ Enemigo** Mapa::getEnemigos(){
             //CREAR AQUI NPC's
             if(gid==81){
                 int atri[] = { 24, 8, 1, 10, 11, 6, 4};
-                enemigo[l]= new Enemigo("Soldado", "Espadachin", atri, 8, 2, "Mapa_espadachin_rojo.png","black.png","evadirblack.png");
+                enemigo[l]= new Enemigo("Soldado", "Espadachin", atri, 8, 3, "Mapa_espadachin_rojo.png","black.png","evadirblack.png");
                 enemigo[l]->setPosition(x*_tileWidth,y*_tileHeight);
-                //std::cerr <<"HOLI"<< endl;
                 l++;
             }else{
                 //enemigo[l]=NULL;
@@ -433,7 +418,6 @@ Cofre** Mapa::getCofres(){
             if(gid!=0){
                 cofre[l]= new Cofre(y, x, NULL, NULL);
                 cofre[l]->setPosition(x*_tileWidth,y*_tileHeight);
-                //std::cerr <<"HOLI"<< endl;
                 l++;
             }else{
                 //cofre[l]=NULL;
@@ -445,4 +429,8 @@ Cofre** Mapa::getCofres(){
 
 int Mapa::getNumCofres(){		
     return numCofres;		
+}
+
+int Mapa::getAltura(){
+    return _height;
 }

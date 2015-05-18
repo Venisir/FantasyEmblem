@@ -87,6 +87,7 @@ public:
     int GolpesDoble(Unidad* uni);
     void Atacar(Unidad* uni);
 
+    void recorre();
     void Draw();
     void verStats();
     
@@ -104,7 +105,8 @@ public:
     
     void recorridoA(int destinox, int destinoy);//estrella
     void muestraMovs();
-    
+    void guardamovimiento(int n);
+    int* getRecorrido();
     
 protected:
     //Nombre
@@ -147,9 +149,13 @@ protected:
     
     bool haJugado;
     
-    int* movimientos;
     
     vector<Celda*> movs;
+    
+    int* movimientos;
+    int* recorrido;
+    int ultimo_mov;//ultimo paso hecho
+    int pasos;//contador de los pasos realizados
     
 };
 

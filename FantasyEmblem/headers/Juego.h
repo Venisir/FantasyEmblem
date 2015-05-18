@@ -44,6 +44,8 @@ public:
     RenderWindow* getVentana();
     void setVentana(RenderWindow* v);
     void renderText();
+    sf::View getView();
+    void setView(sf::View v);
     
     void init();
     void render();
@@ -83,6 +85,7 @@ private:
     sf::Clock* reloj;
     sf::Clock* reloj_fps;
     sf::Font* fuente;
+    sf::View view;
     
     float fps;
     float c_time;

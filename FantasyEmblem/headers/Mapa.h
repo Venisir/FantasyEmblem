@@ -34,7 +34,8 @@ public:
     void defaultSpriteColorAtaque(int i, int j);
     void quitarPuerta(int i, int j);
     bool getCofre(int i, int j);
-    
+    int getAltura();
+
     Enemigo** getEnemigos();
     Cofre** getCofres();
 private:

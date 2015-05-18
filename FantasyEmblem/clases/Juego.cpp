@@ -186,3 +186,11 @@ void Juego::render()
 	states.back()->Render(this);
 }
 */
+
+sf::View Juego::getView(){
+    return view;
+}
+
+void Juego::setView(sf::View v){
+    view=v;
+}

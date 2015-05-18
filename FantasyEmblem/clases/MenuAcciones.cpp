@@ -117,20 +117,20 @@ void MenuAcciones::init_State()
 
     if (!texturaDanyo->loadFromFile("resources/dano.png"))
     {
-            std::cerr << "Error cargando la imagen dano.png";
-            exit(0);
+        std::cerr << "Error cargando la imagen dano.png";
+        exit(0);
     }
     
     if (!texturaObjetos->loadFromFile("resources/objeto.png"))
     {
-            std::cerr << "Error cargando la imagen objeto.png";
-            exit(0);
+        std::cerr << "Error cargando la imagen objeto.png";
+        exit(0);
     }
     
     if (!texturaTurnoEnemigo->loadFromFile("resources/turnoEnemigo.png"))
     {
-            std::cerr << "Error cargando la imagen turnoEnemigo.png";
-            exit(0);
+        std::cerr << "Error cargando la imagen turnoEnemigo.png";
+        exit(0);
     }
     
     numMenu = -1;
@@ -528,20 +528,33 @@ void MenuAcciones::input()
 
 void MenuAcciones::seleccionarMenu(){
     
+    ali[*index]->hayEnemigosCercanos(enem);
+    
+    cerr << "Entro a seleccionar menu" << endl;
     if(ali[*index]->hayEnemigosCercanos(enem)!=0 && haAtacado == false){
+        cerr << "Entro 1.11" << endl;
         menu->setTexture(*texturaMenuAtaque);
         numMenu = 0;
-    }else if(ali[*index]->hayCofresCercanos(m)!=0){
-        menu->setTexture(*texturaMenuCofre);
-        numMenu = 1;
-    }else if(ali[*index]->hayPuertasCercanas(m)!=0){
-        menu->setTexture(*texturaMenuPuerta);
-        numMenu = 2;
+        cerr << "Entro 1.12" << endl;
     }else{
-        if(numMenu!=3){
-            menu->setTexture(*texturaMenuNormal);
-            numMenu = 3;
+        cerr << "Entro 1.1" << endl;
+        if(ali[*index]->hayCofresCercanos(m)!=0){
+            menu->setTexture(*texturaMenuCofre);
+            numMenu = 1;
+        }else{
+            cerr << "Entro 1.2" << endl;
+            if(ali[*index]->hayPuertasCercanas(m)!=0){
+                menu->setTexture(*texturaMenuPuerta);
+                numMenu = 2;
+            }else{
+                cerr << "Entro 1.3" << endl;
+                if(numMenu!=3){
+                    menu->setTexture(*texturaMenuNormal);
+                    numMenu = 3;
+                }
+            }
         }
     }
+    cerr << "Entro 2" << endl;
     
 }
