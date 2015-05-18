@@ -27,7 +27,7 @@
 
 class MenuAcciones:public Estado {
 public:
-    static MenuAcciones* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno);
+    static MenuAcciones* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm);
     void input();
     void seleccionarMenu();
     
@@ -39,7 +39,7 @@ public:
     
 protected:
     MenuAcciones();
-    MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno);
+    MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm);
     ~MenuAcciones();        
 private:
     static MenuAcciones* pinstance;
@@ -73,6 +73,8 @@ private:
     Aliadas **ali;//array de unidades aliadas proveniente del escenario
     Enemigo **enem;//array de unidades enemigas proveniete del escenario
     Cofre **cof;
+    Objetos **objeto;
+    Armas **arma;
     int *index;//indice de la unidad aliada seleccionada
     int numMenu;//numero de menu que tiene, si tiene el de abrirpuerta, el de abrircofre, el de atacar...
     sf::SoundBuffer* mcursor;

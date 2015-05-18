@@ -77,7 +77,7 @@ Unidad::Unidad(const char* name, const char* clas, int atributo[],int nivel, int
     }
 
     spriteEvadir->setTexture(*textEvadir);
-    spriteEvadir->setTextureRect(IntRect(0,0,248,160));
+    
 
     mueve = false;
     //spriteUnidad->setPosition(176,176);

@@ -92,6 +92,8 @@ private:
     sf::Sound* level1;
     sf::SoundBuffer* up;
     sf::Sound* up1;
+    sf::Texture* nivel;
+    sf::Sprite* nivel1;
     Aliadas* alia; 
     Enemigo* enem;
     int exp;

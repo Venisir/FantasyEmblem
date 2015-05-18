@@ -256,7 +256,14 @@ void MenuPrincipal::input(){
                     if(getSelectedItemIndex()==3){
                         Exit();
                     }      
-                break;  
+                break; 
+                
+                case sf::Keyboard::Num5:
+                    //Escenario::Instance()->cambiaMapa("mapaPruebas");
+                    //Escenario::Instance()->init();
+                    Escenario::Instance()->setCambio(1);
+                    Juego::Instance()->ponerEstadoEscenario();
+                break;
             }
         }else{
             if(sf::Joystick::isConnected(0)){

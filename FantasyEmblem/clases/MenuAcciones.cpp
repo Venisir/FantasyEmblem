@@ -11,11 +11,11 @@
 using namespace std;
 
 MenuAcciones* MenuAcciones::pinstance = 0;
-MenuAcciones* MenuAcciones::Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno)
+MenuAcciones* MenuAcciones::Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm)
 {
     if(pinstance==0)
     {
-        pinstance=new MenuAcciones(map,al,ene,cofr,indice,turno);
+        pinstance=new MenuAcciones(map,al,ene,cofr,indice,turno,obj,arm);
     }else{
         pinstance->index=indice;
     }
@@ -27,7 +27,7 @@ MenuAcciones::MenuAcciones()
     
 }
 
-MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno)
+MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno, Objetos** obj, Armas** arm)
 {
     texturaDanyo=new Texture();
     texturaDedo=new Texture();
@@ -54,6 +54,8 @@ MenuAcciones::MenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr,
     index=indice;
     cursorActivo=true;
     turnoUsu=turno;
+    objeto=obj;
+    arma=arm;
     mcursor = new SoundBuffer();
     cursor = new Sound();
     init_State();
@@ -269,13 +271,13 @@ void MenuAcciones::teclaIntro(){
     }else if(numMenu == 3){
         if(cont==0){
             //estado
-           Juego::Instance()->ponerEstadoPersonaje(m,ali,enem,cof,index,turnoUsu);
+           Juego::Instance()->ponerEstadoPersonaje(m,ali,enem,cof,index,turnoUsu,ali[*index],objeto,arma);
 
            cursorActivo=true;
         }
         if(cont==1){
             //objeto 
-            Juego::Instance()->ponerEstadoObjetos(m,ali,enem,cof,index,turnoUsu);
+            Juego::Instance()->ponerEstadoObjetos(m,ali,enem,cof,index,turnoUsu,objeto,arma);
 
             cursorActivo=true;
         }
@@ -383,13 +385,13 @@ void MenuAcciones::teclaIntro(){
 
         if(cont==1){
             //estado
-           Juego::Instance()->ponerEstadoPersonaje(m,ali,enem,cof,index,turnoUsu);
+           Juego::Instance()->ponerEstadoPersonaje(m,ali,enem,cof,index,turnoUsu,ali[*index],objeto,arma);
 
            cursorActivo=true;
         }
         if(cont==2){
             //objeto 
-            Juego::Instance()->ponerEstadoObjetos(m,ali,enem,cof,index,turnoUsu);
+            Juego::Instance()->ponerEstadoObjetos(m,ali,enem,cof,index,turnoUsu,objeto,arma);
 
             cursorActivo=true;
         }
