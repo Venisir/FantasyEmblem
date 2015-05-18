@@ -47,7 +47,7 @@ Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, i
     //PRUEBA -> VAMOS A PONERLE ALGUNOS OBJETOS
     inventarioObjetos[0] = new Objetos("LlaveInicialCofre", "llaveCofre", 1, 1, "Una llave chachi", 1, "espada.png");
     inventarioObjetos[1] = new Objetos("LlaveInicialPuerta", "llavePuerta", 1, 1, "Una llave chachi", 1, "espada.png");
-    inventarioObjetos[2] = new Objetos("Anillo","anillo",3,1,"ooooroooo",false,"espada.png");
+    inventarioObjetos[2] = new Objetos("Potion","potion",3,1,"ooooroooo",false,"espada.png");
     
     spriteAviso = new Sprite();
     spriteAviso->setOrigin(100/2,45/2);
@@ -109,6 +109,35 @@ Objetos* Aliadas::usarObjeto(int pos){
             if((inventarioObjetos[i]!=NULL) && (strcmp(inventarioObjetos[i]->getNombre(),obj->getNombre())==0)){
                 cout<<"eentra"<<endl;
                 cout<<inventarioObjetos[i]->getNombre()<<endl;
+                if(strcmp(inventarioObjetos[i]->getTipo(),"potion")==0){
+                    if(getPV()<getHP()){
+                        if((getHP()-getPV())>10){
+                            setPV(-10);
+                        }else{
+                            setPV(-(getHP()-getPV()));
+                        }
+                    }
+                }
+                if(strcmp(inventarioObjetos[i]->getTipo(),"elixir")==0){
+                    if(getPV()<getHP()){
+                        setPV(-(getHP()-getPV()));
+                    }
+                }
+                if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorHP")==0){
+                    setHP(getHP()+7);
+                }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorFuer")==0){
+                    setFuerza(getFuerza()+2);
+                }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorMag")==0){
+                    setMagia(getMagia()+2);
+                }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorHab")==0){
+                    setHab(getHab()+2);
+                }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorVel")==0){
+                    setVel(getVel()+2);
+                }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorDef")==0){
+                    setDef(getDef()+2);
+                }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorDefm")==0){
+                    setDefm(getDefm()+2);
+                }
                 cout<<obj->getNombre()<<endl;
                 obj->~Objetos();
                 cout<<obj->getNombre()<<endl;
