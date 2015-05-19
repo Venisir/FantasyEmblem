@@ -29,6 +29,21 @@ Enemigo::Enemigo(const char* name, const char* clas, int atributo[],int nivel, i
 
 Enemigo::~Enemigo() {
 }
+
+//borra el ultimo moviemitno que corresponde a la posicion del objetivo
+void Enemigo::borraultimo() {
+    int *aux= new int[movs.size()-2];
+    
+    for(int i=0;i<movs.size()-2;i++)
+    {
+        aux[i]=movimientos[i];
+        cerr << aux[i] << endl;
+        cerr << movs.at(i) << endl;
+    }
+    
+    movimientos=aux;
+}
+
 /*
 Aliadas* Enemigo::encontrarAliadoMasCercano(Aliadas** aliadas){
     

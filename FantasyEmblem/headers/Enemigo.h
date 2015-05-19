@@ -26,7 +26,7 @@ public:
     Enemigo();
     Enemigo(const char* name, const char* clas, int atributo[],int nivel, int rang, const char* nombreTextu,const char* textuBatalla,const char* textuevadir);
     ~Enemigo();
-    
+    void borraultimo();
     //Aliadas* encontrarAliadoMasCercano(Aliadas** aliadas);
     //void moverseHaciaAliadoMasCercano(Aliadas* aliado);
     

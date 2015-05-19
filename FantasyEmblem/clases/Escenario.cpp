@@ -691,8 +691,8 @@ void Escenario::update_State(){
                             }
                         }
                         if(debeEntrar == true){
-                            enemigos[turnoEnemigo]->recorridoA(aliadas[var]->getPosicionSpriteX()-16,aliadas[var]->getPosicionSpriteY());
-                            
+                            enemigos[turnoEnemigo]->recorridoA(aliadas[var]->getPosicionSpriteX(),aliadas[var]->getPosicionSpriteY());
+                            enemigos[turnoEnemigo]->borraultimo();
                             enemigos[turnoEnemigo]->recorre();
 
                             quitarCuadriculaUnidad(enemigos[turnoEnemigo]->getPosicionSpriteX(), enemigos[turnoEnemigo]->getPosicionSpriteY(),enemigos[turnoEnemigo]->getRango());
