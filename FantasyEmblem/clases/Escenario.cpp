@@ -74,7 +74,11 @@ Escenario::Escenario(const char* nombremapa) {
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
     aliadas[0] = new Aliadas("Eirika", "Espadachin", atri, 8, 5, "Mapa_Eirika.png","ike.png" ,"retrato2.png",95,objeto,arma);
+<<<<<<< HEAD
     aliadas[1] = new Aliadas("Albertina", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"retrato1.png",0,objeto,arma);
+=======
+        aliadas[1] = new Aliadas("Meisner", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"retrato1.png",0,objeto,arma);
+>>>>>>> 41427866e747a31db3a698745d119343d3d8cfb6
     
     pause_open = new SoundBuffer();
     opause = new Sound();
