@@ -306,7 +306,8 @@ void EstadoBatallaEnemigo::update_State(){
                                     aux3=30+(2*(enem->getLvl()-alia->getLvl()));
                                 }
                                 
-                                Juego::Instance()->ponerEstadoSumaExp(alia, enem, aux3);
+                                //Juego::Instance()->ponerEstadoSumaExp(alia, enem, aux3);
+                                Juego::Instance()->ponerEstadoEscenario();
                             }
                         }
 
@@ -355,7 +356,8 @@ void EstadoBatallaEnemigo::update_State(){
                     aux3=10+(1*(enem->getLvl()-alia->getLvl()));
                 }
                             
-                Juego::Instance()->ponerEstadoSumaExp(alia, enem, aux3);
+                //Juego::Instance()->ponerEstadoSumaExp(alia, enem, aux3);
+                Juego::Instance()->ponerEstadoEscenario();
                
             }
         
