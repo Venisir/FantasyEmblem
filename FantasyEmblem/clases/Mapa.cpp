@@ -396,6 +396,11 @@ Enemigo** Mapa::getEnemigos(){
                 enemigo[l]= new Enemigo("Soldado", "Espadachin", atri, 8, 3, "Mapa_espadachin_rojo.png","black.png","evadirblack.png");
                 enemigo[l]->setPosition(x*_tileWidth,y*_tileHeight);
                 l++;
+            }else if(gid==82){
+                int atri[] = { 24, 8, 1, 10, 11, 6, 4};
+                enemigo[l]= new Enemigo("Black Knight", "General", atri, 8, 3, "Mapa_general_rojo.png","black.png","evadirblack.png");
+                enemigo[l]->setPosition(x*_tileWidth,y*_tileHeight);
+                l++;
             }else{
                 //enemigo[l]=NULL;
             }
