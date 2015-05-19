@@ -106,11 +106,13 @@ private:
     int *unidad_sel;
     bool *turnoUsu;
     bool *primeritaVes;
+    bool debeEntrar;
     
     int turnoEnemigo;
     int fasesEnemigo;
     int aux;
     int cont;
+    int var;
     
     bool tieneQueMostrarStats;
     bool puertaSi;

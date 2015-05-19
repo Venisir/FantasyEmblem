@@ -1,10 +1,9 @@
 /* 
  * File:   Escenario.cpp
- * Author: Ricardo
+ * Author: Alberto
  * 
  * Created on 15 de abril de 2015, 9:41
  */
-
 
 #include "../headers/Aliadas.h"
 #include "../headers/Enemigo.h"
@@ -70,6 +69,7 @@ Escenario::Escenario(const char* nombremapa) {
     spriteAbrirPuerta = new Sprite();
     
     int atri[] = { 20, 9, 1, 19, 19, 6, 4};
+    var = 0;
     
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
@@ -173,6 +173,7 @@ void Escenario::init_State(){
     
     cursorActivo = 0;
     varCursor = 0;    
+    bool debeEntrar = false;
    
     fuente->loadFromFile("resources/font.ttf");
     
@@ -616,7 +617,7 @@ void Escenario::update_State(){
             if(enemigos[turnoEnemigo]->getMueve()==true){
                 if(enemigos[turnoEnemigo]->verSiHaLlegado() == true){
                     enemigos[turnoEnemigo]->haLlegado();
-                    if(enemigos[turnoEnemigo]->getSprite().getPosition().x == enemigos[turnoEnemigo]->getSprite().getPosition().x-16 && enemigos[turnoEnemigo]->getSprite().getPosition().y == enemigos[turnoEnemigo]->getSprite().getPosition().y-16){
+                    if(enemigos[turnoEnemigo]->getSprite().getPosition().x == enemigos[turnoEnemigo]->getSprite().getPosition().x-16 && enemigos[turnoEnemigo]->getSprite().getPosition().y == enemigos[turnoEnemigo]->getSprite().getPosition().y){
                         aux = 0;
                         enemigos[turnoEnemigo]->cambiaSprite(0, 0, 20, 20);
                         //cambiaSpriteCursorSeleccionar();
@@ -661,10 +662,7 @@ void Escenario::update_State(){
                             enemigos[turnoEnemigo]->setPosition(enemigos[turnoEnemigo]->getSprite().getPosition().x,enemigos[turnoEnemigo]->getSprite().getPosition().y+(kVel*ti));
                             enemigos[turnoEnemigo]->cambiaSprite(cont*32, 96, 20, 20);
                             break;
-
                     }
-
-                    /////////////////////////////////////////////
                     cont++;
                     if(cont==4)
                         cont = 0;
@@ -682,20 +680,35 @@ void Escenario::update_State(){
                         
                         break;
                     case 2: 
-                        cerr << "Voy a hacer recorridoA" << endl;
-                        enemigos[turnoEnemigo]->recorridoA(enemigos[turnoEnemigo]->getSprite().getPosition().x-16,enemigos[turnoEnemigo]->getSprite().getPosition().y-16);
-                        cerr << "Lo he hecho!!" << endl;
+                        
+                        debeEntrar= false;
+                        
+                        for(int i=0; i<sizeof(aliadas)/sizeof(int)+1; i++){
+                            if(mapa->getCasillaPintada(aliadas[i]->getPosicionSpriteX(),aliadas[i]->getPosicionSpriteY()) == true){
+                                debeEntrar = true;
+                                var = i;
+                            }
+                        }
+                        if(debeEntrar == true){
+                            enemigos[turnoEnemigo]->recorridoA(aliadas[var]->getPosicionSpriteX()-16,aliadas[var]->getPosicionSpriteY());
+                            
+                            enemigos[turnoEnemigo]->recorre();
 
-                        cerr << "Voy a hacer recorre" << endl;
-                        enemigos[turnoEnemigo]->recorre();
-                        cerr << "Lo he hecho!!" << endl;
-
-                        cerr << "Voy a quitar la cuadricula" << endl;
-                        quitarCuadriculaUnidad(enemigos[turnoEnemigo]->getPosicionSpriteX(), enemigos[turnoEnemigo]->getPosicionSpriteY(),enemigos[turnoEnemigo]->getRango());
-                        cerr << "Lo he hecho!!" << endl;
+                            quitarCuadriculaUnidad(enemigos[turnoEnemigo]->getPosicionSpriteX(), enemigos[turnoEnemigo]->getPosicionSpriteY(),enemigos[turnoEnemigo]->getRango());
+                            
+                            
+                        }else{
+                            enemigos[turnoEnemigo]->recorridoA(enemigos[turnoEnemigo]->getSprite().getPosition().x,enemigos[turnoEnemigo]->getSprite().getPosition().y);
+                            enemigos[turnoEnemigo]->recorre();
+                            quitarCuadriculaUnidad(enemigos[turnoEnemigo]->getPosicionSpriteX(), enemigos[turnoEnemigo]->getPosicionSpriteY(),enemigos[turnoEnemigo]->getRango());
+                            
+                        }
                         reloj2->restart();
                         break;
+                        
                     case 3:
+                        
+                        cerr << "Hola1" << endl;
                         enemigos[turnoEnemigo]->cambiaSprite(0, 0, 20, 20);
                         turnoEnemigo++;
                         fasesEnemigo = 0;
@@ -709,6 +722,9 @@ void Escenario::update_State(){
                             fasesEnemigo = 0;
                             relojTurno->restart();
                             turnoSi = true;
+                        }
+                        if(debeEntrar == true){
+                            Juego::Instance()->ponerEstadoBatallaEnemigo(aliadas[var],enemigos[turnoEnemigo]);
                         }
                         input();
                         break;
