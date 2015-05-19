@@ -266,9 +266,8 @@ void EstadoBatallaEnemigo::update_State(){
                         alia->setPV(enem->TotalDanyo(alia));
                         if(alia->getPV()<=0){
                             
-                            
                             batasonido1->stop();
-                            Juego::Instance()->ponerEstadoGameOver();
+                            Juego::Instance()->ponerEstadoEscenario();
                         }
                     }
                    
@@ -307,6 +306,7 @@ void EstadoBatallaEnemigo::update_State(){
                                 }
                                 
                                 //Juego::Instance()->ponerEstadoSumaExp(alia, enem, aux3);
+                                batasonido1->stop();
                                 Juego::Instance()->ponerEstadoEscenario();
                             }
                         }
@@ -357,6 +357,7 @@ void EstadoBatallaEnemigo::update_State(){
                 }
                             
                 //Juego::Instance()->ponerEstadoSumaExp(alia, enem, aux3);
+                batasonido1->stop();
                 Juego::Instance()->ponerEstadoEscenario();
                
             }

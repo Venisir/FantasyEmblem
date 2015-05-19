@@ -33,14 +33,12 @@ class EstadoConversacion:public Estado {
 public:
 
     static EstadoConversacion* Instance(Mapa* ma, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm);
-
+    static EstadoConversacion* Instance();
     void input();
     void cambiaQuienHabla();
     void siguienteTexto();
     void setMapa(Mapa* me);
     void reset();
-    
-    
     
 protected:
     EstadoConversacion();

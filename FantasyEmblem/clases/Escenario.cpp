@@ -393,8 +393,8 @@ void Escenario::cambiaMapa(const char* nombremapa) {
 
     aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"ike.png",95,objeto,arma);
     aliadas[1] = new Aliadas("Albertina", "Espadachina", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"ike.png",95,objeto,arma);
-    //EstadoConversacion::Instance()->reset();
-    //EstadoConversacion::Instance(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu);
+    EstadoConversacion::Instance()->reset();
+    EstadoConversacion::Instance(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma);
 }
 
 void Escenario::setCambio(int n) {
@@ -488,7 +488,7 @@ void Escenario::update_State(){
             *primeritaVes = false;
 
             cerr << "GRINGO, A HABLAR" << endl;
-            //Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma);     
+            Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma);     
         }
         
         for(int i=0; i<sizeof(aliadas)/sizeof(int)+1; i++){
