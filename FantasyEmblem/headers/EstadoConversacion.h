@@ -32,12 +32,12 @@ using namespace sf;
 class EstadoConversacion:public Estado {
 public:
 
-    static EstadoConversacion* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm);
+    static EstadoConversacion* Instance(Mapa* ma, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm);
 
     void input();
     void cambiaQuienHabla();
     void siguienteTexto();
-    void setMapa(Mapa* map);
+    void setMapa(Mapa* me);
     void reset();
     
     
@@ -45,7 +45,7 @@ public:
 protected:
     EstadoConversacion();
 
-    EstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm);
+    EstadoConversacion(Mapa* ma, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm);
     ~EstadoConversacion();        
 
 private:

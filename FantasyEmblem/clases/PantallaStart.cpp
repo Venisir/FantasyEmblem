@@ -163,7 +163,14 @@ void PantallaStart::input() {
             if(sf::Joystick::isConnected(0)){
                 if(evento->type == sf::Event::JoystickButtonPressed){
                     switch(evento->joystickButton.button){
+                        /*Mi mando*/
+                        /*
                         case 9:
+                            Juego::Instance()->ponerEstadoMenuPrincipal(); 
+                        break;
+                        */
+                        /*Mando xBox360*/
+                        case 7:
                             Juego::Instance()->ponerEstadoMenuPrincipal(); 
                         break;
                     }

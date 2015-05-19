@@ -18,11 +18,11 @@ using namespace std;
 using namespace sf;
 
 EstadoConversacion* EstadoConversacion::pinstance = 0;
-EstadoConversacion* EstadoConversacion::Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm)
+EstadoConversacion* EstadoConversacion::Instance(Mapa* ma, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm)
 {
     if(pinstance==0)
     {
-        pinstance=new EstadoConversacion(map,al,ene,cofr,indice,turno,obj,arm);
+        pinstance=new EstadoConversacion(ma,al,ene,cofr,indice,turno,obj,arm);
     }
     return pinstance;
 }
@@ -37,7 +37,7 @@ void EstadoConversacion::reset() {
     pinstance=0;
 }
 
-EstadoConversacion::EstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno,Objetos** obj, Armas** arm)
+EstadoConversacion::EstadoConversacion(Mapa* ma, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno,Objetos** obj, Armas** arm)
 {
     
     texturaPersonajeIzq=new Texture();
@@ -59,7 +59,7 @@ EstadoConversacion::EstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, C
     
     fuente = new Font();
     
-    m=map;
+    m=ma;
     ali=al;
     enem=ene;
     cof=cofr;
@@ -94,14 +94,10 @@ EstadoConversacion::~EstadoConversacion() {
     delete fuente;
 }
 
-void EstadoConversacion::setMapa(Mapa* map) {
-    maux=map;
+void EstadoConversacion::setMapa(Mapa* me) {
+    maux=me;
     cambioMapa=1;
 }
-
-
-
-
 
 void EstadoConversacion::init_State()
 {
@@ -150,17 +146,14 @@ void EstadoConversacion::init_State()
     
     quienHabla = 0;
     
+    
     //XMLDocument doc;
     doc.LoadFile("niveles/textos.tmx");
     //XMLElement* map;
+    
     map = doc.FirstChildElement("map");
     escena = map->FirstChildElement("escena");
     texto = escena->FirstChildElement("texto");
-    
-    /*
-    const char* nombreMapa;
-    map->QueryIntAttribute("nombre", &nombreMapa);
-    */
     
     fuente->loadFromFile("resources/font.ttf");
     
@@ -319,7 +312,14 @@ void EstadoConversacion::input()
                     
                     switch(evento->joystickButton.button){
 
+                        /*Mi mando*/
+                        /*
                         case 2:
+                            siguienteTexto();
+                        break;
+                        */
+                        /*Mando xBox 360*/
+                        case 0:
                             siguienteTexto();
                         break;
                     }

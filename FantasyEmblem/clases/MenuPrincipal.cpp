@@ -282,8 +282,24 @@ void MenuPrincipal::input(){
                 if(evento->type == sf::Event::JoystickButtonPressed){
                     
                     switch(evento->joystickButton.button){
-
+                        /*Mi mando*/
+                        /*
                         case 2:
+                            if(getSelectedItemIndex()==1){
+                                PantallaStart::Instance()->pararmusica();
+                                Juego::Instance()->ponerEstadoEscenario();
+                            }      
+                            if(getSelectedItemIndex()==2){
+                                Juego::Instance()->ponerEstadoEscenario();
+                                Juego::Instance()->reiniciarEstadoEscenario();
+                            }      
+                            if(getSelectedItemIndex()==3){
+                                Exit();
+                            }
+                        break;
+                        */
+                        /*Mando xBox360*/
+                        case 0:
                             if(getSelectedItemIndex()==1){
                                 PantallaStart::Instance()->pararmusica();
                                 Juego::Instance()->ponerEstadoEscenario();

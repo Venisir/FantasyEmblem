@@ -127,8 +127,16 @@ void EstadoPause::input() {
                 if(evento->type == sf::Event::JoystickButtonPressed){
                     
                     switch(evento->joystickButton.button){
-
+                        /*Mi mando*/
+                        /*
                         case 9:
+                            cpause->play();
+                            Escenario::Instance()->playmusic();
+                            Juego::Instance()->ponerEstadoEscenario();    
+                        break;
+                        */ 
+                        /*Mando xBox*/
+                        case 7:
                             cpause->play();
                             Escenario::Instance()->playmusic();
                             Juego::Instance()->ponerEstadoEscenario();    

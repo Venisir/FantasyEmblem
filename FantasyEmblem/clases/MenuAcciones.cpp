@@ -518,7 +518,14 @@ void MenuAcciones::input()
                 if(evento->type == sf::Event::JoystickButtonPressed){
                     
                     switch(evento->joystickButton.button){
+                        /*Mi mando*/
+                        /*
                         case 2:
+                            teclaIntro();
+                        break;
+                        */
+                        /*Mando xBox360*/
+                        case 0:
                             teclaIntro();
                         break;
                     }

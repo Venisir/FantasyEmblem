@@ -74,12 +74,9 @@ Escenario::Escenario(const char* nombremapa) {
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
     aliadas[0] = new Aliadas("Eirika", "Espadachin", atri, 8, 5, "Mapa_Eirika.png","ike.png" ,"retrato2.png",95,objeto,arma);
-<<<<<<< HEAD
-    aliadas[1] = new Aliadas("Albertina", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"retrato1.png",0,objeto,arma);
-=======
-        aliadas[1] = new Aliadas("Meisner", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"retrato1.png",0,objeto,arma);
->>>>>>> 41427866e747a31db3a698745d119343d3d8cfb6
-    
+
+    aliadas[1] = new Aliadas("Meisner", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"retrato1.png",0,objeto,arma);
+
     pause_open = new SoundBuffer();
     opause = new Sound();
     
@@ -491,7 +488,7 @@ void Escenario::update_State(){
             *primeritaVes = false;
 
             cerr << "GRINGO, A HABLAR" << endl;
-            Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma);     
+            //Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma);     
         }
         
         for(int i=0; i<sizeof(aliadas)/sizeof(int)+1; i++){
@@ -858,7 +855,6 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad3:
-
                     if(sf::Joystick::isConnected(0)){
                         cerr << "Mando conectado!" << endl;
                     }else{
@@ -875,10 +871,12 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad6:
-                    
+                    //mapa->getCofre(aliadas[0]->getPosicionSpriteY(),aliadas[0]->getPosicionSpriteX());
                 break;
                 
                 case sf::Keyboard::Numpad7:
+                    Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma);     
+        
                 break;
                 
                 case sf::Keyboard::Numpad8:
@@ -929,6 +927,8 @@ void Escenario::input() {
                 
                 if (evento->type == sf::Event::JoystickMoved)
                 {
+                    /*Mi mando*/
+                    /*
                     if (evento->joystickMove.axis == sf::Joystick::PovX){
                         if(evento->joystickMove.position == -100){
                             teclaAbajo();
@@ -943,9 +943,43 @@ void Escenario::input() {
                             teclaDerecha();
                         }
                     }
+                    */
+                    /*Mando xBox*/
+                    if (evento->joystickMove.axis == sf::Joystick::PovX){
+                        if(evento->joystickMove.position == -100){
+                            teclaAbajo();
+                        }else if(evento->joystickMove.position == +100){
+                            teclaArriba();
+                        }
+                    }else if (evento->joystickMove.axis == sf::Joystick::PovY){
+                        if(evento->joystickMove.position == -100){
+                            teclaIzquierda();
+                        }else if(evento->joystickMove.position == +100){
+                            teclaDerecha();
+                        }
+                    }
+                    
+                    /*
+                    if (evento->joystickMove.joystickId == 0){
+                        //cerr << x << " " << y << endl;
+                        if(sf::Joystick::getAxisPosition(0, sf::Joystick::X) == -100){
+                            teclaIzquierda();
+                        }else if(sf::Joystick::getAxisPosition(0, sf::Joystick::X) == +100){
+                            teclaDerecha();
+                        }else if(sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == -100){
+                            teclaArriba();
+                        }else if(sf::Joystick::getAxisPosition(0, sf::Joystick::Y) == +100){
+                            teclaAbajo();
+                        }
+                    }
+                    */
                 }
+                
                 if(evento->type == sf::Event::JoystickButtonPressed){
+                    
                     switch(evento->joystickButton.button){
+                        /*Mi mando*/
+                        /*
                         case 2:
                             teclaIntro();
                         break;
@@ -954,6 +988,18 @@ void Escenario::input() {
                             opause->play();
                             Juego::Instance()->ponerEstadoPause();  
                         break;
+                        */
+                        
+                        /*Mando xBox360*/
+                        case 0:
+                            teclaIntro();
+                        break;
+                        case 7:
+                            mapasonido1->pause();
+                            opause->play();
+                            Juego::Instance()->ponerEstadoPause();  
+                        break;
+                        
                     }
                 }
             }
