@@ -152,7 +152,7 @@ void EstadoObjetos::render_State()
 void EstadoObjetos::mostrarItems(){
     
     std::string s_stats;
-    //cout<<"muestro1"<<endl;
+    cout<<"muestro1"<<endl;
     for(int i=0; i<sizeof(objeto)-1; i++){
         //cout<<"muestro2"<<endl;
         if(objeto[i]!=NULL){
@@ -168,63 +168,19 @@ void EstadoObjetos::mostrarItems(){
             stats[i]->setPosition(50,135+(22*i));
             
         }
-        
+        else
+        {
+            std::stringstream ss_stats;
+            //cout<<"muestro3"<<endl;
+            cout<<ss_stats.str()<<endl;
+            
+            //cout<<"muestro5"<<endl;
+            stats[i] = new Text(ss_stats.str(),*fuente,12);
+            //cout<<"muestro6"<<endl;
+            stats[i]->setColor(sf::Color::White);
+            stats[i]->setPosition(50,135+(22*i));
+        }
     }
-    
-    /*for(int i=0; i<sizeof(ali[0]->getObjetos());i++){
-        cerr << "sadasds2" << endl;
-        if(i==0){
-            objeto[i]= new Objetos(ali[0]->getObjetos()[i]);
-            //=objeto1;
-        }
-         if(i==1){
-            objeto[i]= new Objetos(ali[0]->getObjetos()[i]);
-        } 
-        if(i==2){
-            objeto[i]= new Objetos(ali[0]->getObjetos()[i]);
-        }
-        
-    }*/
-    /*cout<<"aqui2"<<endl;
-    //arma=new Sprite(ali[0]->getArma()->getSprite());
-    std::stringstream ss_stats;
-        ss_stats <<   
-               
-              objeto[0]->getNombre() << "\n" << "\n"<< 
-              objeto[1]->getNombre() << "\n" << "\n"<< 
-              objeto[2]->getNombre()  
-               ;
-               
-        
-        std::string s_stats = ss_stats.str();
-
-        stats->setCharacterSize(12);
-        stats->setFont(*fuente);
-        stats->setString(s_stats);
-        
-        stats->setColor(sf::Color::White);
-        stats->setPosition(50,135);
-        /*objeto1->setPosition(40,135);
-        objeto2->setPosition(40,157);
-        objeto3->setPosition(40,179);*/
-        //cout<<"aqui3"<<endl;
-        
-       /* 
-        std::stringstream ss_stats1;
-        ss_stats1 <<   
-               
-                ali[0]->getArma()->getNombre() << "\n" << "\n" <<
-                ali[0]->getDef() << "\n" << "\n" <<
-                ali[0]->getDefm() << "\n" << "\n" ;
-        std::string s_stats1 = ss_stats1.str();
-
-        stats1->setCharacterSize(12);
-        stats1->setFont(*fuente);
-        stats1->setString(s_stats1);
-        
-        stats1->setColor(sf::Color::White);
-        stats1->setPosition(140,135);
-         */
 }
 
 void EstadoObjetos::update_State()

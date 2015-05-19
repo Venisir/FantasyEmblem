@@ -45,9 +45,9 @@ Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, i
         inventarioArmas[i]=NULL;
     }
     //PRUEBA -> VAMOS A PONERLE ALGUNOS OBJETOS
-    inventarioObjetos[0] = new Objetos("LlaveInicialCofre", "llaveCofre", 1, 1, "Una llave chachi", 1, "espada.png");
-    inventarioObjetos[1] = new Objetos("LlaveInicialPuerta", "llavePuerta", 1, 1, "Una llave chachi", 1, "espada.png");
-    inventarioObjetos[2] = new Objetos("Anillo","anillo",3,1,"ooooroooo",false,"espada.png");
+    inventarioObjetos[0] = new Objetos("LlaveInicialCofre", "llaveCofre", 1, 1, "Una llave chachi", 1, "llaveCofre");
+    inventarioObjetos[1] = new Objetos("LlaveInicialPuerta", "llavePuerta", 1, 1, "Una llave chachi", 1, "llavePuerta");
+    inventarioObjetos[2] = new Objetos("Pocion","potion",3,1,"ooooroooo",false,"pocion");
     
     spriteAviso = new Sprite();
     spriteAviso->setOrigin(100/2,45/2);
@@ -168,19 +168,32 @@ bool Aliadas::abrirCofre(Cofre* cofre){
     
     bool abierto = false;
     bool meter = false;
+    cout<<"inventario objetos inicial"<<endl;
+    
     //recorrer inventario en busca objeto tipo llave
     for(int i=0;i<3 && abierto!=true;i++){
         if(inventarioObjetos[i]!=NULL){
             if(strcmp(inventarioObjetos[i]->getTipo(),"llaveCofre")== 0){
                 abierto = true;
-                //cambiar sprite
+                //cambiar sprite                
                 cofre->cambiaTexturaAbierto();
+                cout<<"antes de destruir"<<endl;
+                inventarioObjetos[i]=NULL;
                 
                 if(cofre->getArma() != NULL){
                     for(int j=0;j<3;j++){
                         if((inventarioArmas[j]==NULL) && (meter==false)){
                             inventarioArmas[j] = cofre->getArma();
                             meter=true;
+                            
+                            cout<<"inventario Armas"<<endl;
+                            cout<<endl;
+                            if(inventarioArmas[i]->getNombre()=="")
+                                cout<<"NULL"<<endl;
+                           else
+                             cout<<inventarioArmas[i]->getNombre()<<endl;
+                            
+                            cout<<endl;
                         }
                     }
                     if(meter==false){
@@ -213,16 +226,18 @@ Sprite* Aliadas::dameQuePinte(){
 
 bool Aliadas::abrirPuerta(Mapa* mapa){
     bool llave=false;
-    cout<<"entra a abrirPuerta"<<endl;
     for(int i=0;i<3 && llave==false;i++){
         if(inventarioObjetos[i]!=NULL){
+            cout<<"antes de abrir la puerta"<<endl;
+            cout<<inventarioObjetos[i]->getNombre()<<endl;
+            cout<<endl;
             if(strcmp(inventarioObjetos[i]->getTipo(),"llavePuerta")== 0){  
                 //spriteAviso->setTexture(*texturaAvisoInventarioArmas);
                 if(mapa->getPuerta(getPosicionSpriteY()+16,getPosicionSpriteX())){
                     cout<<"abajo"<<endl;
                     mapa->quitarPuerta(getPosicionSpriteY()+16,getPosicionSpriteX());
                     cout<<"He abierto la puerta :D"<<endl;
-                }else if((spriteUnidad->getPosition().y<0)&&(mapa->getPuerta(getPosicionSpriteY()-16,getPosicionSpriteX()))){
+                }else if((mapa->getPuerta(getPosicionSpriteY()-16,getPosicionSpriteX()))){
                     cout<<"arriba"<<endl;
                     mapa->quitarPuerta(getPosicionSpriteY()-16,getPosicionSpriteX());
                     cout<<"He abierto la puerta :D"<<endl;
@@ -236,7 +251,7 @@ bool Aliadas::abrirPuerta(Mapa* mapa){
                     cout<<"He abierto la puerta :D"<<endl;
                 }
                 llave=true;
-                delete inventarioObjetos[i];
+                inventarioObjetos[i]=NULL;
             }
         }
     }

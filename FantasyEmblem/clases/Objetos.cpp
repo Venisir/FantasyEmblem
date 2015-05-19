@@ -31,12 +31,20 @@ Objetos::Objetos(const char* nom,const char* tip, int uso, int alcan, const char
     spriteObjeto= new Sprite();
     textObjeto= new Texture();
             
-    string s1 = string(fotico);
-    string s = "resources/"+s1;
+    const char* m1 = "resources/";
+    const char* m2 = fotico;
+    const char* m3 = ".png"; 
     
-    if (!textObjeto->loadFromFile(s))
+    char result[30];   // array to hold the result.
+
+    strcpy(result,m1); // copy string one into the result.
+    strcat(result,m2); // append string two to the result.
+    strcat(result,m3); // append string two to the result.
+    
+    cout<<result<<endl;
+    if (!textObjeto->loadFromFile(result))
     {
-        std::cerr << "Error cargando la imagen textura del arma";
+        std::cerr << "Error cargando la imagen textura del objeto";
         exit(0);
     }
     

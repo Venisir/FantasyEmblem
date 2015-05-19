@@ -34,10 +34,18 @@ Armas::Armas(const char* nom, const char* tip, int pes, int pod, int golp, int a
     spriteArma = new Sprite();
     texturaArma = new Texture();
     
-    string s1 = string(nombArma);
-    string s = "resources/"+s1;
+    const char* m1 = "resources/";
+    const char* m2 = nombArma;
+    const char* m3 = ".png"; 
     
-    if (!texturaArma->loadFromFile(s))
+    char resulti[30];   // array to hold the result.
+    cout<<resulti<<endl;
+    strcpy(resulti,m1); // copy string one into the result.
+    strcat(resulti,m2); // append string two to the result.
+    strcat(resulti,m3); // append string two to the result.
+    
+    
+    if (!texturaArma->loadFromFile(resulti))
     {
         std::cerr << "Error cargando la imagen textura del arma";
         exit(0);

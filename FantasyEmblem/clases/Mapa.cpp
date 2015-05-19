@@ -416,11 +416,17 @@ Cofre** Mapa::getCofres(){
             int gid = _tilemap[2][y][x];
             //CREAR AQUI NPC's
             if(gid!=0){
-                cofre[l]= new Cofre(y, x, NULL, NULL);
-                cofre[l]->setPosition(x*_tileWidth,y*_tileHeight);
-                l++;
-            }else{
-                //cofre[l]=NULL;
+                if(l==0){
+                    Armas* espada = new Armas("Espada","espada",1,2,4,1,2,"espada2");
+                    cofre[l]= new Cofre(y, x, espada, NULL);
+                    cofre[l]->setPosition(x*_tileWidth,y*_tileHeight);
+                    l++;  
+                }else{
+                    Objetos *llavePuerta = new Objetos("Llave Puerta","llavePuerta", 1, 1, "super llave", 1, "llavePuerta");
+                   cofre[l]= new Cofre(y, x, NULL, llavePuerta);
+                    cofre[l]->setPosition(x*_tileWidth,y*_tileHeight);
+                    l++;  
+                }
             }
         }
     }
