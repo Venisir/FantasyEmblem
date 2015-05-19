@@ -71,6 +71,7 @@ public:
     void ponerEstadoSubirNivel(Aliadas* ali, Enemigo* ene);
     
     void reiniciarEstadoEscenario();
+    void ponerCreditos();
     
 protected:
     Juego();

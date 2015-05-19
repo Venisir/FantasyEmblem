@@ -15,6 +15,7 @@
 #include "../headers/EstadoConversacion.h"
 #include "../headers/EstadoObjetos.h"
 #include "../headers/GameOver.h"
+#include "../headers/Creditos.h"
 
 #include <iostream>
 #include <sstream>
@@ -152,6 +153,10 @@ void Juego::ponerEstadoPantallaInicio(){
 }
 void Juego::ponerEstadoGameOver(){
     states.push_back(GameOver::Instance());
+    //states.back()->init();
+}
+void Juego::ponerCreditos(){
+    states.push_back(Creditos::Instance());
     //states.back()->init();
 }
 void Juego::ponerEstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm)

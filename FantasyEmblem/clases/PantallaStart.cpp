@@ -155,6 +155,10 @@ void PantallaStart::input() {
                 case sf::Keyboard::Return:
                     Juego::Instance()->ponerEstadoMenuPrincipal();              
                 break;
+                case sf::Keyboard::A:
+                    menusonido->stop();
+                    Juego::Instance()->ponerCreditos();              
+                break;
                 case sf::Keyboard::Escape:
                     Juego::Instance()->getVentana()->close();               
                 break;
