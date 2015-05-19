@@ -44,6 +44,7 @@
       <itemPath>clases/Armas.cpp</itemPath>
       <itemPath>clases/Celda.cpp</itemPath>
       <itemPath>clases/Cofre.cpp</itemPath>
+      <itemPath>clases/Creditos.cpp</itemPath>
       <itemPath>clases/Cursor.cpp</itemPath>
       <itemPath>clases/Enemigo.cpp</itemPath>
       <itemPath>clases/Escenario.cpp</itemPath>
@@ -119,6 +120,8 @@
       <item path="clases/Celda.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Cofre.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Creditos.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Cursor.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -254,6 +257,8 @@
       <item path="clases/Celda.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Cofre.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="clases/Creditos.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="clases/Cursor.cpp" ex="false" tool="1" flavor2="0">
       </item>
