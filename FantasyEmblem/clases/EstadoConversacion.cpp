@@ -27,6 +27,11 @@ EstadoConversacion* EstadoConversacion::Instance(Mapa* map, Aliadas** al, Enemig
     return pinstance;
 }
 
+EstadoConversacion* EstadoConversacion::Instance() {
+    return pinstance;
+}
+
+
 
 EstadoConversacion::EstadoConversacion()
 {
