@@ -100,41 +100,63 @@ bool Aliadas::equiparArma(Armas* arma){
 
 Objetos** Aliadas::usarObjeto(int pos){
     
-    delete inventarioObjetos[pos];
-    for(int i=0;i<sizeof(inventarioObjetos);i++){
-        if(strcmp(inventarioObjetos[i]->getTipo(),"potion")==0){
-                if(getPV()<getHP()){
-                    if((getHP()-getPV())>10){
-                        setPV(-10);
-                    }else{
-                        setPV(-(getHP()-getPV()));
-                    }
-                }
+    
+    if(inventarioObjetos!=NULL){
+        for(int i=0;i<sizeof(inventarioObjetos);i++){
+        
+            if(i==pos){
+                if(inventarioObjetos[i]!=NULL){
+           
+                    if(strcmp(inventarioObjetos[i]->getTipo(),"potion")==0){
+
+                         if(getPV()<getHP()){
+                             if((getHP()-getPV())>10){
+                                 setPV(-10);
+                             }else{
+                                 setPV(-(getHP()-getPV()));
+                             }
+                         }
+                     }
+                     if(strcmp(inventarioObjetos[i]->getTipo(),"elixir")==0){
+
+                         if(getPV()<getHP()){
+                             setPV(-(getHP()-getPV()));
+                         }
+                     }
+                     if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorHP")==0){
+
+                         setHP(getHP()+7);
+                     }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorFuer")==0){
+
+                         setFuerza(getFuerza()+2);
+                     }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorMag")==0){
+
+                         setMagia(getMagia()+2);
+                     }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorHab")==0){
+
+                         setHab(getHab()+2);
+                     }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorVel")==0){
+
+                         setVel(getVel()+2);
+                     }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorDef")==0){
+
+                         setDef(getDef()+2);
+                     }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorDefm")==0){
+
+                         setDefm(getDefm()+2);
+                     } 
+                 }
+                delete inventarioObjetos[pos];
             }
-            if(strcmp(inventarioObjetos[i]->getTipo(),"elixir")==0){
-                if(getPV()<getHP()){
-                    setPV(-(getHP()-getPV()));
-                }
-            }
-            if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorHP")==0){
-                setHP(getHP()+7);
-            }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorFuer")==0){
-                setFuerza(getFuerza()+2);
-            }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorMag")==0){
-                setMagia(getMagia()+2);
-            }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorHab")==0){
-                setHab(getHab()+2);
-            }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorVel")==0){
-                setVel(getVel()+2);
-            }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorDef")==0){
-                setDef(getDef()+2);
-            }else if(strcmp(inventarioObjetos[i]->getTipo(),"potenciadorDefm")==0){
-                setDefm(getDefm()+2);
-            }
-        if(inventarioObjetos[i+1]!=NULL){
+        
+            
+        /*if(inventarioObjetos[i+1]!=NULL){
+            
             inventarioObjetos[i]=inventarioObjetos[i+1];
-        }
+        }*/
     }
+    }
+    
     return inventarioObjetos;
 }
 
@@ -214,10 +236,17 @@ bool Aliadas::abrirPuerta(Mapa* mapa){
                     cout<<"He abierto la puerta :D"<<endl;
                 }
                 llave=true;
+                delete inventarioObjetos[i];
             }
         }
     }
-    
+    /* //reordenaaar
+    for(int i=0; i<sizeof(inventarioObjetos)/sizeof(int); i++){
+        if(inventarioObjetos[i+1]!=NULL){
+            
+            inventarioObjetos[i]=inventarioObjetos[i+1];
+        }
+    }*/
     if(!llave){
         spriteAviso->setTexture(*texturaAvisoLlavePuerta);
     }
