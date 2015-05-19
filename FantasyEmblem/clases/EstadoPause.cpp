@@ -141,6 +141,11 @@ void EstadoPause::input() {
                             Escenario::Instance()->playmusic();
                             Juego::Instance()->ponerEstadoEscenario();    
                         break;
+                        
+                        case 6:
+                            Juego::Instance()->ponerCreditos();
+                        break;
+                        
                     }
                 }
             }

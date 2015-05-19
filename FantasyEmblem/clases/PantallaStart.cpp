@@ -157,6 +157,7 @@ void PantallaStart::input() {
                 break;
                 case sf::Keyboard::A:
                     menusonido->stop();
+                    cerr << "Creditos" << endl;
                     Juego::Instance()->ponerCreditos();              
                 break;
                 case sf::Keyboard::Escape:
