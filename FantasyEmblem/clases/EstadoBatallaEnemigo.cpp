@@ -269,6 +269,7 @@ void EstadoBatallaEnemigo::update_State(){
                         if(alia->getPV()<=0){
                             
                             batasonido1->stop();
+                            Escenario::Instance()->playmusic();
                             Juego::Instance()->ponerEstadoEscenario();
                         }
                     }
@@ -309,6 +310,7 @@ void EstadoBatallaEnemigo::update_State(){
                                 
                                 //Juego::Instance()->ponerEstadoSumaExp(alia, enem, aux3);
                                 batasonido1->stop();
+                                 Escenario::Instance()->playmusic();
                                 Juego::Instance()->ponerEstadoEscenario();
                             }
                         }
@@ -360,6 +362,7 @@ void EstadoBatallaEnemigo::update_State(){
                             
                 //Juego::Instance()->ponerEstadoSumaExp(alia, enem, aux3);
                 batasonido1->stop();
+                 Escenario::Instance()->playmusic();
                 Juego::Instance()->ponerEstadoEscenario();
                
             }
