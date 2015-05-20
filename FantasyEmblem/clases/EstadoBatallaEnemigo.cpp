@@ -370,6 +370,7 @@ void EstadoBatallaEnemigo::update_State(){
                 }
                             
                 //Juego::Instance()->ponerEstadoSumaExp(alia, enem, aux3);
+                sleep(2);
                 batasonido1->stop();
                  Escenario::Instance()->playmusic();
                 Juego::Instance()->ponerEstadoEscenario();
