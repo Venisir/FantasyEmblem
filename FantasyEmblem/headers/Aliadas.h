@@ -53,12 +53,14 @@ public:
     int hayCofresCercanos(Mapa* m);
     int hayPuertasCercanas(Mapa* m);
     int cualEsElEnemigoCercano(Enemigo** enemigos);
+    void setAtacado(bool b);
+    bool getAtacado();
      
 private:
     int experiencia;
     Objetos** inventarioObjetos;
     Armas** inventarioArmas;
-    
+    bool haAtacado;
     //int* recorrido;
     //int ultimo_mov;//ultimo paso hecho
     //int pasos;//contador de los pasos realizados

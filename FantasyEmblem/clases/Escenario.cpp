@@ -734,6 +734,13 @@ void Escenario::update_State(){
                             fasesEnemigo = 0;
                             relojTurno->restart();
                             turnoSi = true;
+                            
+                            //pone la variable flag de si las aliadas han atacado a false, para que en el siguinte turno pueden atacar
+                            for(int k=0;k< sizeof(aliadas)/sizeof(int)+1;k++)
+                            {
+                                aliadas[k]->setAtacado(false);
+                            }
+                            
                         }
                         if(debeEntrar == true){
                             mapasonido1->stop();
