@@ -256,7 +256,7 @@ void SubirNivel::mostrarDats(){
         nombres->setString(nombre2);
         
         nombres->setColor(sf::Color::White);
-        nombres->setPosition(30,20);
+        nombres->setPosition(20,20);
         
         
         
