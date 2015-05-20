@@ -396,7 +396,7 @@ Enemigo** Mapa::getEnemigos(){
             //CREAR AQUI NPC's
             if(gid==81 || gid==241){
                 int atri[] = { 24, 8, 1, 10, 11, 6, 4};
-                enemigo[l]= new Enemigo("Soldado", "Espadachin", atri, 8, 3, "Mapa_espadachin_rojo.png","black.png","evadirblack.png");
+                enemigo[l]= new Enemigo("Soldado", "Espadachin", atri, 8, 3, "Mapa_espadachin_rojo.png","espadachinBatalla.png","evadirblack.png");
                 enemigo[l]->setPosition(x*_tileWidth,y*_tileHeight);
                 l++;
             }else if(gid==82 || gid==242){
