@@ -361,7 +361,7 @@ void MenuAcciones::teclaIntro(){
                     cursorActivo = true;
                     Escenario::Instance()->paramusic();
                     //EstadoBatall::Instance(ali[*index],enem[0])->playmusica();
-                    Juego::Instance()->ponerEstadoBatalla(ali[*index],enem[0]);
+                    Juego::Instance()->ponerEstadoBatalla(ali[*index],enem[ali[*index]->cualEsElEnemigoCercano(enem)]);
                     cursorActivo=true;
                     haAtacado = true;
                     menu->setTexture(*texturaMenuNormal);
@@ -494,10 +494,7 @@ void MenuAcciones::input()
                 break;
                     
                 case sf::Keyboard::Numpad1:
-                    cerr << ali[*index]->hayEnemigosCercanos(enem,m->getNumEnemigos()) << " adasdda " << endl;
-                    cerr << *index << endl;
-                    cerr << haAtacado << endl;
-                    cerr << m->getNumEnemigos() << endl;
+                    cerr << ali[*index]->cualEsElEnemigoCercano(enem) << endl;
                     
                     
                 break;
