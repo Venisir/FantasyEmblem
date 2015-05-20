@@ -71,14 +71,15 @@ EstadoObjetos::EstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cof
     seleccionada=0;
     objeto = obj;
     arma = arm;
+    armitas=new Sprite*[3];
+    objetitos=new Sprite*[3];
     init_State();
 }
 
 EstadoObjetos::~EstadoObjetos() {
     
-    delete objeto1;
-    delete objeto2;
-    delete objeto3;
+    delete objetitos;
+    delete armitas;
     delete arma;
     delete fuente;
     delete stats2;
@@ -146,22 +147,34 @@ void EstadoObjetos::render_State()
         cof[x]->Draw();
     }
     Juego::Instance()->getVentana()->draw(*menu);
-    Juego::Instance()->getVentana()->draw(*cursorDedo);
-    //cout<<sizeof(stats)<<endl;
+    
+    
     for(int i=0; i<sizeof(stats)-1; i++){
         if(stats[i]!=NULL){
             Juego::Instance()->getVentana()->draw(*stats[i]);
+        }
+    }
+    for(int i=0; i<sizeof(stats2)-1; i++){
+        if(stats2[i]!=NULL){ 
             Juego::Instance()->getVentana()->draw(*stats2[i]);
         }
     }
-    Juego::Instance()->getVentana()->draw(*objeto1);
-    Juego::Instance()->getVentana()->draw(*objeto2);
-    Juego::Instance()->getVentana()->draw(*objeto3);
+    for(int i=0; i<sizeof(objetitos)-1; i++){
+        if(objetitos[i]!=NULL){ 
+            Juego::Instance()->getVentana()->draw(*objetitos[i]);
+        }
+    }
+    for(int i=0; i<sizeof(armitas)-1; i++){
+        if((armitas[i]!=NULL) && (arma[i]!=NULL)){ 
+            Juego::Instance()->getVentana()->draw(*armitas[i]);
+        }
+    }
+    Juego::Instance()->getVentana()->draw(*cursorDedo);
     Juego::Instance()->getVentana()->display();
 }
 
 void EstadoObjetos::mostrarItems(){
-    
+   
 
     for(int i=0; i<sizeof(objeto)-1; i++){
 
@@ -171,10 +184,12 @@ void EstadoObjetos::mostrarItems(){
             ss_stats<<objeto[i]->getNombre();
             cout<<ss_stats.str()<<endl;
 
-            stats[i] = new Text(ss_stats.str(),*fuente,12);
+            stats[i] = new Text(ss_stats.str(),*fuente,10);
 
             stats[i]->setColor(sf::Color::White);
             stats[i]->setPosition(50,135+(22*i));
+            objetitos[i] = new Sprite(objeto[i]->getSprite());
+            objetitos[i]->setPosition(35,135+(22*i));
             
         }
         else
@@ -183,10 +198,11 @@ void EstadoObjetos::mostrarItems(){
 
             cout<<ss_stats.str()<<endl;
 
-            stats[i] = new Text(ss_stats.str(),*fuente,12);
+            stats[i] = new Text(ss_stats.str(),*fuente,10);
 
             stats[i]->setColor(sf::Color::White);
             stats[i]->setPosition(50,135+(22*i));
+            objetitos[i] = NULL;
         }
     }
     
@@ -198,10 +214,12 @@ void EstadoObjetos::mostrarItems(){
             ss_stats2<<arma[i]->getNombre();
             cout<<ss_stats2.str()<<endl;
 
-            stats2[i] = new Text(ss_stats2.str(),*fuente,12);
+            stats2[i] = new Text(ss_stats2.str(),*fuente,10);
 
             stats2[i]->setColor(sf::Color::White);
-            stats2[i]->setPosition(100,135+(22*i));
+            stats2[i]->setPosition(140,135+(22*i));
+            armitas[i] = new Sprite(arma[i]->getSprite());
+            armitas[i]->setPosition(125,135+(22*i));
             
         }
         else
@@ -210,10 +228,11 @@ void EstadoObjetos::mostrarItems(){
 
             cout<<ss_stats2.str()<<endl;
 
-            stats2[i] = new Text(ss_stats2.str(),*fuente,12);
+            stats2[i] = new Text(ss_stats2.str(),*fuente,10);
 
             stats2[i]->setColor(sf::Color::White);
-            stats2[i]->setPosition(100,135+(22*i));
+            stats2[i]->setPosition(140,135+(22*i));
+            armitas[i]=NULL;
         }
     }
 }

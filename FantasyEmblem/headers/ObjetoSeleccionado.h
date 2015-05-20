@@ -64,9 +64,8 @@ private:
     sf::Text** stats;
     sf::Text** stats2;
     sf::Font* fuente;
-    sf::Sprite *objeto1;
-    sf::Sprite *objeto2;
-    sf::Sprite *objeto3;
+    sf::Sprite** armitas;
+    sf::Sprite** objetitos;
     int cont;
     bool cursorActivo;
     bool *turnoUsu;
