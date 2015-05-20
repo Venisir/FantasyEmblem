@@ -486,6 +486,12 @@ void Escenario::update_State(){
             cambiaMapa("mapaPruebas");
             init_State();
         }
+        if(Mapacambio==2)
+        {
+            Mapacambio=-1;
+            cambiaMapa("mapa2");
+            init_State();
+        }
     }
     
     //Reloj del cursor

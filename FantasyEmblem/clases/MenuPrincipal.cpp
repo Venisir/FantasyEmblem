@@ -264,6 +264,12 @@ void MenuPrincipal::input(){
                     Escenario::Instance()->setCambio(1);
                     Juego::Instance()->ponerEstadoEscenario();
                 break;
+                case sf::Keyboard::Num6:
+                    //Escenario::Instance()->cambiaMapa("mapaPruebas");
+                    //Escenario::Instance()->init();
+                    Escenario::Instance()->setCambio(2);
+                    Juego::Instance()->ponerEstadoEscenario();
+                break;
             }
         }else{
             if(sf::Joystick::isConnected(0)){

@@ -16,14 +16,17 @@ MenuAcciones* MenuAcciones::Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cof
     if(pinstance==0)
     {
         pinstance=new MenuAcciones(map,al,ene,cofr,indice,turno,obj,arm);
-    }/*else{
+    }else{
+            pinstance->seleccionarMenu();
+        /*
         //pinstance->index=indice;
         if(pinstance->index != indice){
             pinstance->haAtacado = false;
             pinstance->seleccionarMenu();
             pinstance->index=indice;
         }
-    }*/
+           * */
+    }
     return pinstance;
 }
 
@@ -357,7 +360,7 @@ void MenuAcciones::teclaIntro(){
                     //atacar
                     cursorActivo = true;
                     Escenario::Instance()->paramusic();
-                    EstadoBatall::Instance(ali[*index],enem[0])->playmusica();
+                    //EstadoBatall::Instance(ali[*index],enem[0])->playmusica();
                     Juego::Instance()->ponerEstadoBatalla(ali[*index],enem[0]);
                     cursorActivo=true;
                     haAtacado = true;

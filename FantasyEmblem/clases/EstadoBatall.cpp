@@ -128,6 +128,7 @@ void EstadoBatall::init_State(){
     
     batasonido1->setBuffer(*batasonido);
     batasonido1->setVolume(30);
+    batasonido1->play();
     //batasonido1->play();
     aux= rand()%(101-1);
     aux2= rand()%(101-1);
@@ -287,7 +288,7 @@ void EstadoBatall::update_State(){
                                 aux3=30+(2*(enem->getLvl()-alia->getLvl()));
                             }
                             //Debe morir el enemigo
-                            
+                            batasonido1->stop();
                             Juego::Instance()->ponerEstadoSumaExp(alia, enem, aux3);
                             
                         }
@@ -371,6 +372,8 @@ void EstadoBatall::update_State(){
                         aux3=10+(1*(enem->getLvl()-alia->getLvl()));
                     }
 
+                            batasonido1->stop();
+                            
                     Juego::Instance()->ponerEstadoSumaExp(alia, enem, aux3);
                 }           
                

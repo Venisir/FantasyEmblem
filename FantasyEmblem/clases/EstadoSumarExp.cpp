@@ -274,12 +274,13 @@ void EstadoSumarExp::update_State(){
         
         if(alia->getExp()>=99){
             alia->setExp(exp-cont);
-            EstadoBatall::Instance(alia,enem)->paramusica();
+            //EstadoBatall::Instance(alia,enem)->paramusica();
             //Escenario::Instance()->playmusic();
             Juego::Instance()->ponerEstadoSubirNivel(alia,enem);
         }
         
         if(cont>exp){
+            Escenario::Instance()->playmusic();
             Escenario::Instance()->volverMenuAcciones();
         }
             
