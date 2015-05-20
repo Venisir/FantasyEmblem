@@ -744,7 +744,7 @@ void Escenario::update_State(){
                         }
                         if(debeEntrar == true){
                             mapasonido1->stop();
-                            Juego::Instance()->ponerEstadoBatallaEnemigo(aliadas[var],enemigos[turnoEnemigo]);
+                            Juego::Instance()->ponerEstadoBatallaEnemigo(aliadas[var],enemigos[turnoEnemigo], mapa->getFondo());
                         }
                         input();
                         break;

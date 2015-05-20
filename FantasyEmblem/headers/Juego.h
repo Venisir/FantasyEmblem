@@ -57,7 +57,7 @@ public:
     void ponerEstadoPause();
     void ponerEstadoUnidadSeleccionada();
     void ponerEstadoMenuAcciones(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno, Objetos** obj, Armas** arm);
-    void ponerEstadoBatalla(Aliadas* ali, Enemigo* ene);
+    void ponerEstadoBatalla(Aliadas* ali, Enemigo* ene, int fondo);
 
     void ponerEstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno, Objetos** obj, Armas** arm);
     void ponerEstadoPantallaInicio();
@@ -65,7 +65,7 @@ public:
     void ponerEstadoObjetosSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno, Objetos** obj, Armas** arm);
     void ponerEstadoPersonaje(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno, Aliadas* alis, Objetos** obj, Armas** arm);
     
-    void ponerEstadoBatallaEnemigo(Aliadas* ali, Enemigo* ene);
+    void ponerEstadoBatallaEnemigo(Aliadas* ali, Enemigo* ene, int fondo);
     void ponerEstadoGameOver();
     void ponerEstadoSumaExp(Aliadas* ali, Enemigo* ene, int i);
     void ponerEstadoSubirNivel(Aliadas* ali, Enemigo* ene);

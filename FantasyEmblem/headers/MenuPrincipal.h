@@ -35,6 +35,7 @@ public:
     
     void MoveUp();
     void MoveDown();
+    void Intro();
     void Exit();
     int getSelectedItemIndex();
     

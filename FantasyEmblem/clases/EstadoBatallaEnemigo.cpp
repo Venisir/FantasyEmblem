@@ -26,12 +26,12 @@ using namespace sf;
 
 EstadoBatallaEnemigo* EstadoBatallaEnemigo::pinstance = 0;
 
-EstadoBatallaEnemigo* EstadoBatallaEnemigo::Instance (Aliadas* ali, Enemigo* ene) {
+EstadoBatallaEnemigo* EstadoBatallaEnemigo::Instance (Aliadas* ali, Enemigo* ene, int fondo) {
     if(pinstance == 0){ //¿Es la primera llamada?
-        pinstance = new EstadoBatallaEnemigo( ali,  ene); //Creamos la instancia
+        pinstance = new EstadoBatallaEnemigo(ali, ene, fondo); //Creamos la instancia
     }else{
         pinstance = 0;
-        pinstance = new EstadoBatallaEnemigo( ali,  ene);
+        pinstance = new EstadoBatallaEnemigo(ali, ene, fondo);
     }
     return pinstance; //Retornamos la direccion de la instancia
 }
@@ -40,7 +40,7 @@ EstadoBatallaEnemigo::EstadoBatallaEnemigo(){
     
 }
 
-EstadoBatallaEnemigo::EstadoBatallaEnemigo(Aliadas* ali, Enemigo* ene) {
+EstadoBatallaEnemigo::EstadoBatallaEnemigo(Aliadas* ali, Enemigo* ene, int fondo) {
     
     reloj = new Clock();
     evento = new Event();
@@ -59,6 +59,7 @@ EstadoBatallaEnemigo::EstadoBatallaEnemigo(Aliadas* ali, Enemigo* ene) {
     per2= new Sprite();
     alia=ali;
     enem=ene;
+    fon=fondo;
     
     init_State();
 }
@@ -88,13 +89,21 @@ EstadoBatallaEnemigo::~EstadoBatallaEnemigo() {
 
 void EstadoBatallaEnemigo::init_State(){
     
-    string s ="resources/fondoBatalla.png";
-    if (!fondoBata->loadFromFile(s))
-    {
-        std::cerr << "Error cargando la imagen fondoBatalla.png";
-        exit(0);
+    if(fon==0){
+        string s ="resources/fondoBatalla.png";
+        if (!fondoBata->loadFromFile(s))
+        {
+            std::cerr << "Error cargando la imagen fondoBatalla.png";
+            exit(0);
+        }
+    }else{
+        string s ="resources/fondoBatallaNieve.png";
+        if (!fondoBata->loadFromFile(s))
+        {
+            std::cerr << "Error cargando la imagen fondoBatallaNieve.png";
+            exit(0);
+        }
     }
-    
     
     batalla->setTexture(*fondoBata);
     batalla->setOrigin(0,0);
@@ -186,7 +195,7 @@ void EstadoBatallaEnemigo::mostrarDats(){
         nombres->setString(nombre2);
         
         nombres->setColor(sf::Color::White);
-        nombres->setPosition(30,20);
+        nombres->setPosition(20,20);
         
         
         

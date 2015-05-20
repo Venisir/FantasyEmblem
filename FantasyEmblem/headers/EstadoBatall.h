@@ -27,7 +27,7 @@ using namespace sf;
 
 class EstadoBatall: public Estado {
 public:
-    static EstadoBatall* Instance(Aliadas* ali, Enemigo* ene);
+    static EstadoBatall* Instance(Aliadas* ali, Enemigo* ene, int fondo);
     void input();
     void paramusica();
     void playmusica();
@@ -35,7 +35,7 @@ public:
 protected: 
     
     EstadoBatall();
-    EstadoBatall(Aliadas* ali, Enemigo* ene);
+    EstadoBatall(Aliadas* ali, Enemigo* ene, int fondo);
     ~EstadoBatall();
     
     
@@ -65,6 +65,9 @@ private:
     int aux;
     int aux2;
     int aux3;
+    
+    int fon;
+    
     sf::Clock* reloj;
     sf::Event* evento;
     sf::Texture* fondoBata;

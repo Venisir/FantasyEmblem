@@ -361,8 +361,10 @@ void MenuAcciones::teclaIntro(){
                     cursorActivo = true;
                     Escenario::Instance()->paramusic();
                     //EstadoBatall::Instance(ali[*index],enem[0])->playmusica();
-                    Juego::Instance()->ponerEstadoBatalla(ali[*index],enem[ali[*index]->cualEsElEnemigoCercano(enem)]);
+                    
+                    Juego::Instance()->ponerEstadoBatalla(ali[*index], enem[ali[*index]->cualEsElEnemigoCercano(enem)], m->getFondo());
                     ali[*index]->setAtacado(true);
+
                     cursorActivo=true;
                    // haAtacado = true;
                     menu->setTexture(*texturaMenuNormal);

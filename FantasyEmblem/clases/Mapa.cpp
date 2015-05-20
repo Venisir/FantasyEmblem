@@ -34,6 +34,12 @@ Mapa::Mapa() {
 
 Mapa::Mapa(const char* nombremapa) {
    
+    if(strcmp("mapa2",nombremapa)==0){
+        fon = 1;
+    }else{
+        fon = 0;
+    }
+        
     _width = 0;
     _height = 0;
     _tileWidth = 0;
@@ -395,7 +401,7 @@ Enemigo** Mapa::getEnemigos(){
                 l++;
             }else if(gid==82 || gid==242){
                 int atri[] = { 24, 8, 1, 10, 11, 6, 4};
-                enemigo[l]= new Enemigo("Black Knight", "General", atri, 8, 3, "Mapa_general_rojo.png","black.png","evadirblack.png");
+                enemigo[l]= new Enemigo("Cab. Negro", "General", atri, 8, 3, "Mapa_general_rojo.png","black.png","evadirblack.png");
                 enemigo[l]->setPosition(x*_tileWidth,y*_tileHeight);
                 l++;
             }else{
@@ -441,4 +447,12 @@ int Mapa::getNumCofres(){
 
 int Mapa::getAltura(){
     return _height;
+}
+
+int Mapa::getFondo(){
+    return fon;
+}
+
+void Mapa::setFondo(int n){
+    fon = n;
 }
