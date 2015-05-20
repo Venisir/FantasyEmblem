@@ -44,14 +44,12 @@ MenuPrincipal::MenuPrincipal() {
     }
     textura_fond = new Texture();
     fondo = new Sprite();
-    //time1 = new Time();
     mainmenu = new SoundBuffer();
     mmcursor = new SoundBuffer();
     mmselect = new SoundBuffer();
     menusonido = new Sound();
     cursor = new Sound();
     select = new Sound(); 
-    
     reloj = new Clock();
     evento = new Event();
     
@@ -63,11 +61,8 @@ MenuPrincipal::~MenuPrincipal() {
     delete botn1;
     delete botn2;
     delete botn3;
-    //delete[] texturas;
     delete textura_fond;
-    //delete[] menu;
     delete fondo;
-    //delete time1;
     delete mainmenu;
     delete mmcursor;
     delete mmselect;
@@ -82,7 +77,6 @@ MenuPrincipal::~MenuPrincipal() {
     for(int i=0; i<MAX_NUM_SPRITE; i++){
         delete menu[i];
     }
-    
     delete reloj;
     delete evento;
 }
@@ -144,10 +138,6 @@ void MenuPrincipal::init_State() {
     }
     
     //cargar audios
-   /* if (!mainmenu->loadFromFile("resources/menu.wav")){
-        std::cerr << "Error al cargar el archivo de audio";
-    }*/
-    
     if (!mmcursor->loadFromFile("resources/MainMenu_Cursor.wav")){
         std::cerr << "Error al cargar el archivo de audio";
     }
@@ -155,7 +145,6 @@ void MenuPrincipal::init_State() {
     if (!mmselect->loadFromFile("resources/MainMenu_Select.wav")){
         std::cerr << "Error al cargar el archivo de audio";
     }
-    
     
     //cargar el buffer y asignar volumen del cursor y de la seleccion
     cursor->setBuffer(*mmcursor);
@@ -170,12 +159,10 @@ void MenuPrincipal::init_State() {
     //Para que por defecto este seleccionada la Nueva Partida
     menu[selectedItemIndex]->setScale(1.2,1.2);
     selectedItemIndex++;
-        
 }
 
 void MenuPrincipal::MoveUp(){
     if((selectedItemIndex-1>0) ){   
-        
         menu[selectedItemIndex-1]->setScale(1,1);
         selectedItemIndex--;
         menu[selectedItemIndex-1]->setScale(1.2,1.2);        
@@ -191,6 +178,21 @@ void MenuPrincipal::MoveDown(){
         selectedItemIndex++;
         cursor->play();
     }
+}
+
+void MenuPrincipal::Intro(){
+    if(getSelectedItemIndex()==1){
+        PantallaStart::Instance()->pararmusica();
+        Escenario::Instance()->playmusic();
+        Juego::Instance()->ponerEstadoEscenario();
+    }      
+    if(getSelectedItemIndex()==2){
+        PantallaStart::Instance()->pararmusica();
+        Juego::Instance()->ponerCreditos();
+    }      
+    if(getSelectedItemIndex()==3){
+        Exit();
+    }   
 }
 
 void MenuPrincipal::render_State(){
@@ -210,7 +212,6 @@ void MenuPrincipal::render_State(){
 void MenuPrincipal::update_State(){
     if (reloj->getElapsedTime().asMilliseconds() >= 100) {
         reloj->restart();
-        
         input();
     }
 }
@@ -236,26 +237,17 @@ void MenuPrincipal::input(){
                    
         if(evento->type == sf::Event::KeyPressed){
             switch(evento->key.code){
+                
                 case sf::Keyboard::Down:
                     MoveDown();
                 break;
+                
                 case sf::Keyboard::Up:
                     MoveUp();
                 break;
                         
                 case sf::Keyboard::Return:
-                    if(getSelectedItemIndex()==1){
-                        PantallaStart::Instance()->pararmusica();
-                        Escenario::Instance()->playmusic();
-                        Juego::Instance()->ponerEstadoEscenario();
-                    }      
-                    if(getSelectedItemIndex()==2){
-                        Juego::Instance()->ponerEstadoEscenario();
-                        Juego::Instance()->reiniciarEstadoEscenario();
-                    }      
-                    if(getSelectedItemIndex()==3){
-                        Exit();
-                    }      
+                    Intro();   
                 break; 
                 
                 case sf::Keyboard::Num5:
@@ -264,6 +256,7 @@ void MenuPrincipal::input(){
                     Escenario::Instance()->setCambio(1);
                     Juego::Instance()->ponerEstadoEscenario();
                 break;
+                
                 case sf::Keyboard::Num6:
                     //Escenario::Instance()->cambiaMapa("mapaPruebas");
                     //Escenario::Instance()->init();
@@ -291,32 +284,12 @@ void MenuPrincipal::input(){
                         /*Mi mando*/
                         /*
                         case 2:
-                            if(getSelectedItemIndex()==1){
-                                PantallaStart::Instance()->pararmusica();
-                                Juego::Instance()->ponerEstadoEscenario();
-                            }      
-                            if(getSelectedItemIndex()==2){
-                                Juego::Instance()->ponerEstadoEscenario();
-                                Juego::Instance()->reiniciarEstadoEscenario();
-                            }      
-                            if(getSelectedItemIndex()==3){
-                                Exit();
-                            }
+                            Intro();
                         break;
                         */
                         /*Mando xBox360*/
                         case 0:
-                            if(getSelectedItemIndex()==1){
-                                PantallaStart::Instance()->pararmusica();
-                                Juego::Instance()->ponerEstadoEscenario();
-                            }      
-                            if(getSelectedItemIndex()==2){
-                                Juego::Instance()->ponerEstadoEscenario();
-                                Juego::Instance()->reiniciarEstadoEscenario();
-                            }      
-                            if(getSelectedItemIndex()==3){
-                                Exit();
-                            }
+                            Intro();
                         break;
                     }
                 }

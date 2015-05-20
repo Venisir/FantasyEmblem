@@ -90,7 +90,8 @@ void Juego::renderText() {
     
     t_fps.setPosition(0,0);
     
-    ventana->draw(t_fps);
+    //Aqui pintamos los FPS
+    //ventana->draw(t_fps);
 }
 
 RenderWindow* Juego::getVentana(){
@@ -131,12 +132,12 @@ void Juego::ponerEstadoConversacion(Mapa* map, Aliadas** al, Enemigo** ene, Cofr
     states.push_back(EstadoConversacion::Instance(map,al,ene,cofr,indice,turno,obj,arm));
 }
 
-void Juego::ponerEstadoBatalla(Aliadas* ali, Enemigo* ene){
-    states.push_back(EstadoBatall::Instance(ali,ene));
+void Juego::ponerEstadoBatalla(Aliadas* ali, Enemigo* ene, int fondo){
+    states.push_back(EstadoBatall::Instance(ali,ene,fondo));
     //states.back()->init();
 }
-void Juego::ponerEstadoBatallaEnemigo(Aliadas* ali, Enemigo* ene){
-    states.push_back(EstadoBatallaEnemigo::Instance(ali,ene));
+void Juego::ponerEstadoBatallaEnemigo(Aliadas* ali, Enemigo* ene, int fondo){
+    states.push_back(EstadoBatallaEnemigo::Instance(ali,ene, fondo));
     //states.back()->init();
 }
 void Juego::ponerEstadoSumaExp(Aliadas* ali, Enemigo* ene, int i){

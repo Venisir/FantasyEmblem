@@ -35,6 +35,8 @@ public:
     void quitarPuerta(int i, int j);
     bool getCofre(int i, int j);
     int getAltura();
+    int getFondo();
+    void setFondo(int n);
 
     Enemigo** getEnemigos();
     Cofre** getCofres();
@@ -52,6 +54,8 @@ private:
     int numEnemigos;
     int numCofres;
 
+    int fon;
+    
     int ***_tilemap;
     sf::Sprite ****_tilemapSprite;
     sf::Texture* textura;

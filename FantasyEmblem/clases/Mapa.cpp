@@ -34,6 +34,12 @@ Mapa::Mapa() {
 
 Mapa::Mapa(const char* nombremapa) {
    
+    if(strcmp("mapa2",nombremapa)==0){
+        fon = 1;
+    }else{
+        fon = 0;
+    }
+        
     _width = 0;
     _height = 0;
     _tileWidth = 0;
@@ -441,4 +447,12 @@ int Mapa::getNumCofres(){
 
 int Mapa::getAltura(){
     return _height;
+}
+
+int Mapa::getFondo(){
+    return fon;
+}
+
+void Mapa::setFondo(int n){
+    fon = n;
 }

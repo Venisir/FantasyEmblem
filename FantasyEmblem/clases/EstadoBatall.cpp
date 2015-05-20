@@ -25,12 +25,12 @@ using namespace sf;
 
 EstadoBatall* EstadoBatall::pinstance = 0;
 
-EstadoBatall* EstadoBatall::Instance (Aliadas* ali, Enemigo* ene) {
+EstadoBatall* EstadoBatall::Instance (Aliadas* ali, Enemigo* ene, int fondo) {
     if(pinstance == 0){ //¿Es la primera llamada?
-        pinstance = new EstadoBatall( ali,  ene); //Creamos la instancia
+        pinstance = new EstadoBatall(ali, ene, fondo); //Creamos la instancia
     }else{
         pinstance = 0;
-        pinstance = new EstadoBatall( ali,  ene); //Creamos la instancia
+        pinstance = new EstadoBatall(ali, ene, fondo); //Creamos la instancia
     }
     return pinstance; //Retornamos la direccion de la instancia
 }
@@ -39,7 +39,7 @@ EstadoBatall::EstadoBatall(){
     
 }
 
-EstadoBatall::EstadoBatall(Aliadas* ali, Enemigo* ene) {
+EstadoBatall::EstadoBatall(Aliadas* ali, Enemigo* ene, int fondo) {
     
     reloj = new Clock();
     evento = new Event();
@@ -58,6 +58,7 @@ EstadoBatall::EstadoBatall(Aliadas* ali, Enemigo* ene) {
     per2= new Sprite();
     alia=ali;
     enem=ene;
+    fon = fondo;
     
     init_State();
 }
@@ -87,14 +88,21 @@ EstadoBatall::~EstadoBatall() {
 
 void EstadoBatall::init_State(){
     
-    string s ="resources/fondoBatalla.png";
-    if (!fondoBata->loadFromFile(s))
-    {
-        std::cerr << "Error cargando la imagen fondoBatalla.png";
-        exit(0);
+    if(fon == 0){
+        string s ="resources/fondoBatalla.png";
+        if (!fondoBata->loadFromFile(s))
+        {
+            std::cerr << "Error cargando la imagen fondoBatalla.png";
+            exit(0);
+        }
+    }else{
+        string s ="resources/fondoBatallaNieve.png";
+        if (!fondoBata->loadFromFile(s))
+        {
+            std::cerr << "Error cargando la imagen fondoBatallaNieve.png";
+            exit(0);
+        }
     }
-    
-    
     batalla->setTexture(*fondoBata);
     batalla->setOrigin(0,0);
     batalla->setPosition(0,0);

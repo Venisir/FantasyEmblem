@@ -285,12 +285,12 @@ void SubirNivel::mostrarDats(){
 void SubirNivel::render_State(){
     Juego::Instance()->getVentana()->clear();
     
-    Juego::Instance()->getVentana()->draw(*batalla);
-    Juego::Instance()->getVentana()->draw(*per1);
-    Juego::Instance()->getVentana()->draw(*per2);
-    Juego::Instance()->getVentana()->draw(*stats);
-    Juego::Instance()->getVentana()->draw(*stats2);
-    Juego::Instance()->getVentana()->draw(*nombres);
+    //Juego::Instance()->getVentana()->draw(*batalla);
+    //Juego::Instance()->getVentana()->draw(*per1);
+    //Juego::Instance()->getVentana()->draw(*per2);
+    //Juego::Instance()->getVentana()->draw(*stats);
+    //Juego::Instance()->getVentana()->draw(*stats2);
+    //Juego::Instance()->getVentana()->draw(*nombres);
     Juego::Instance()->getVentana()->draw(*vidas);
     Juego::Instance()->getVentana()->draw(*armas);
     Juego::Instance()->getVentana()->draw(*marcoExp);
