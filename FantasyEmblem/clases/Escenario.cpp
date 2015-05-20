@@ -155,6 +155,7 @@ void Escenario::init_State(){
     spriteCursor->setTexture(*texturaCursor);
     spriteCursor->setTextureRect(IntRect(0, 0, 16, 16));
     spriteCursor->setPosition(176,176);
+    //spriteCursor->setPosition(176,464);
     
     spriteAbrirPuerta->setTexture(*texturaAbrirPuerta);
     spriteAbrirPuerta->setPosition(100,30);
@@ -898,6 +899,22 @@ void Escenario::input() {
                 
                 case sf::Keyboard::D:
                     aliadas[0]->setPosition(aliadas[0]->getPosicionSpriteX()+16, aliadas[0]->getPosicionSpriteY());
+                break;
+                
+                case sf::Keyboard::F:
+                    aliadas[1]->setPosition(aliadas[1]->getPosicionSpriteX()-16, aliadas[1]->getPosicionSpriteY());
+                break;
+                
+                case sf::Keyboard::T:
+                    aliadas[1]->setPosition(aliadas[1]->getPosicionSpriteX(), aliadas[1]->getPosicionSpriteY()-16);
+                break;
+                
+                case sf::Keyboard::G:
+                    aliadas[1]->setPosition(aliadas[1]->getPosicionSpriteX(), aliadas[1]->getPosicionSpriteY()+16);
+                break;
+                
+                case sf::Keyboard::H:
+                    aliadas[1]->setPosition(aliadas[1]->getPosicionSpriteX()+16, aliadas[1]->getPosicionSpriteY());
                 break;
                 
                 case sf::Keyboard::P:

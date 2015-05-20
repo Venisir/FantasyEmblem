@@ -273,8 +273,10 @@ void EstadoConversacion::siguienteTexto(){
         string s2 = texto->Attribute("nombre");
 
         if(quienHabla == 1){
+            personajeIzq->setTextureRect(IntRect(0*169, 0*125, 169, 125));
             personajeIzq->setColor(Color(255, 255, 255, 210));
         }else{
+            personajeDer->setTextureRect(IntRect(0*177, 0*127, 170, 127));
             personajeDer->setColor(Color(255, 255, 255, 128));
         }
 

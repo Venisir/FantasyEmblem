@@ -46,7 +46,8 @@ protected:
     void update_State();
     void mostrarDats();
     
-    
+    void setEne(Enemigo* ene);
+    void setAli(Aliadas* ali);
 private:
     int contPer1i;
     int contPer1j;

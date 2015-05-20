@@ -17,7 +17,12 @@ MenuAcciones* MenuAcciones::Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cof
     {
         pinstance=new MenuAcciones(map,al,ene,cofr,indice,turno,obj,arm);
     }else{
-        pinstance->index=indice;
+        //pinstance->index=indice;
+        if(pinstance->index != indice){
+            pinstance->haAtacado = false;
+            pinstance->seleccionarMenu();
+            pinstance->index=indice;
+        }
     }
     return pinstance;
 }
@@ -537,9 +542,10 @@ void MenuAcciones::input()
 
 void MenuAcciones::seleccionarMenu(){
     
-    ali[*index]->hayEnemigosCercanos(enem);
+    
     
     cerr << "Entro a seleccionar menu" << endl;
+    cerr << "Hay enemigos cercanos? " << *index << " " << ali[*index]->hayEnemigosCercanos(enem) << endl;
     if(ali[*index]->hayEnemigosCercanos(enem)!=0 && haAtacado == false){
         cerr << "Entro 1.11" << endl;
         menu->setTexture(*texturaMenuAtaque);

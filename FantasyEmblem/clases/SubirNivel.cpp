@@ -25,7 +25,11 @@ SubirNivel* SubirNivel::pinstance = 0;
 SubirNivel* SubirNivel::Instance (Aliadas* ali, Enemigo* ene) {
     if(pinstance == 0){ //¿Es la primera llamada?
         pinstance = new SubirNivel( ali,  ene); //Creamos la instancia
+    }else{
+        pinstance = 0;
+        pinstance = new SubirNivel( ali,  ene); //Creamos la instancia
     }
+        
     return pinstance; //Retornamos la direccion de la instancia
 }
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map nombre="Tilev1">
 	<escena prueba="AAA">
-		<texto quienHabla="1" nombre="Meisner" textoL="Princesa Eirika!Donde esta?"/>
+		<texto quienHabla="1" nombre="Meisner" textoL="Princesa Eirika! Donde esta?"/>
 		<texto quienHabla="0" nombre="Eirika" textoL="Meisner, estoy aqui."/>
 		<texto quienHabla="1" nombre="Meisner" textoL="Se encuentra bien? "/>
 		<texto quienHabla="1" nombre="Meisner" textoL="Espero que esos rufianes"/>
@@ -9,7 +9,7 @@
 		<texto quienHabla="0" nombre="Eirika" textoL="Tranquilo, estoy bien."/>
 		<texto quienHabla="0" nombre="Eirika" textoL="Pude escapar antes de que empezara."/>
 		<texto quienHabla="0" nombre="Eirika" textoL="Que es lo que esta ocurriendo?"/>
-		<texto quienHabla="0" nombre="Eirika" textoL="Porque nos atacan?"/>
+		<texto quienHabla="0" nombre="Eirika" textoL="Por que nos atacan?"/>
 		<texto quienHabla="0" nombre="Eirika" textoL="Pensaba que todo esto era "/>
 		<texto quienHabla="0" nombre="Eirika" textoL="para firmar la paz de forma duradera."/>
 		<texto quienHabla="1" nombre="Meisner" textoL="No lo se, hay mucha gente"/>

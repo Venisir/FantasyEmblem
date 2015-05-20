@@ -29,6 +29,9 @@ EstadoBatallaEnemigo* EstadoBatallaEnemigo::pinstance = 0;
 EstadoBatallaEnemigo* EstadoBatallaEnemigo::Instance (Aliadas* ali, Enemigo* ene) {
     if(pinstance == 0){ //¿Es la primera llamada?
         pinstance = new EstadoBatallaEnemigo( ali,  ene); //Creamos la instancia
+    }else{
+        pinstance = 0;
+        pinstance = new EstadoBatallaEnemigo( ali,  ene);
     }
     return pinstance; //Retornamos la direccion de la instancia
 }

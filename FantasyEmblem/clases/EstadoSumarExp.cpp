@@ -29,6 +29,9 @@ EstadoSumarExp* EstadoSumarExp::pinstance = 0;
 EstadoSumarExp* EstadoSumarExp::Instance (Aliadas* ali, Enemigo* ene, int i ) {
     if(pinstance == 0){ //¿Es la primera llamada?
         pinstance = new EstadoSumarExp( ali,  ene, i); //Creamos la instancia
+    }else{
+        pinstance = 0;
+        pinstance = new EstadoSumarExp( ali,  ene, i); //Creamos la instancia
     }
     return pinstance; //Retornamos la direccion de la instancia
 }

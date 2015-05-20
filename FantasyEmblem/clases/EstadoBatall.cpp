@@ -28,6 +28,9 @@ EstadoBatall* EstadoBatall::pinstance = 0;
 EstadoBatall* EstadoBatall::Instance (Aliadas* ali, Enemigo* ene) {
     if(pinstance == 0){ //¿Es la primera llamada?
         pinstance = new EstadoBatall( ali,  ene); //Creamos la instancia
+    }else{
+        pinstance = 0;
+        pinstance = new EstadoBatall( ali,  ene); //Creamos la instancia
     }
     return pinstance; //Retornamos la direccion de la instancia
 }
@@ -398,4 +401,12 @@ void EstadoBatall::input() {
             }
         }
     }
+}
+
+void EstadoBatall::setAli(Aliadas* ali){
+    alia = ali;
+}
+
+void EstadoBatall::setEne(Enemigo* ene){
+    enem = ene;
 }
