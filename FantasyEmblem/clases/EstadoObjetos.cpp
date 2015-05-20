@@ -23,7 +23,8 @@ EstadoObjetos* EstadoObjetos::Instance(Mapa* map, Aliadas** al, Enemigo** ene, C
         pinstance=new EstadoObjetos(map,al,ene,cofr,indice,turno, obj,arm);
     }
     else{
-        pinstance->objeto=obj;
+        pinstance=0;
+        pinstance=new EstadoObjetos(map,al,ene,cofr,indice,turno, obj,arm);
     }
     return pinstance;
 }
@@ -51,13 +52,13 @@ EstadoObjetos::EstadoObjetos(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cof
     objeto3=new Sprite();
     texturaMenu=new Texture();
     cursorDedo= new Sprite();
-    //arma=new Sprite(),
+    
     menu= new Sprite();
     reloj=new Clock();
     reloj2=new Clock();
     evento=new Event();
     stats=new Text*[3];
-    stats1=new Text();
+    stats2=new Text*[3];
     fuente=new Font();
     cursorActivo=true;
     cont=0;
@@ -80,7 +81,7 @@ EstadoObjetos::~EstadoObjetos() {
     delete objeto3;
     delete arma;
     delete fuente;
-    delete stats1;
+    delete stats2;
     delete stats;
     delete texturaDedo;
     delete texturaMenu;
@@ -150,6 +151,7 @@ void EstadoObjetos::render_State()
     for(int i=0; i<sizeof(stats)-1; i++){
         if(stats[i]!=NULL){
             Juego::Instance()->getVentana()->draw(*stats[i]);
+            Juego::Instance()->getVentana()->draw(*stats2[i]);
         }
     }
     Juego::Instance()->getVentana()->draw(*objeto1);
@@ -160,19 +162,17 @@ void EstadoObjetos::render_State()
 
 void EstadoObjetos::mostrarItems(){
     
-    std::string s_stats;
-    cout<<"muestro1"<<endl;
+
     for(int i=0; i<sizeof(objeto)-1; i++){
-        //cout<<"muestro2"<<endl;
+
         if(objeto[i]!=NULL){
             std::stringstream ss_stats;
-            //cout<<"muestro3"<<endl;
+
             ss_stats<<objeto[i]->getNombre();
             cout<<ss_stats.str()<<endl;
-            
-            //cout<<"muestro5"<<endl;
+
             stats[i] = new Text(ss_stats.str(),*fuente,12);
-            //cout<<"muestro6"<<endl;
+
             stats[i]->setColor(sf::Color::White);
             stats[i]->setPosition(50,135+(22*i));
             
@@ -180,14 +180,40 @@ void EstadoObjetos::mostrarItems(){
         else
         {
             std::stringstream ss_stats;
-            //cout<<"muestro3"<<endl;
+
             cout<<ss_stats.str()<<endl;
-            
-            //cout<<"muestro5"<<endl;
+
             stats[i] = new Text(ss_stats.str(),*fuente,12);
-            //cout<<"muestro6"<<endl;
+
             stats[i]->setColor(sf::Color::White);
             stats[i]->setPosition(50,135+(22*i));
+        }
+    }
+    
+    for(int i=0; i<sizeof(arma)-1; i++){
+
+        if(arma[i]!=NULL){
+            std::stringstream ss_stats2;
+
+            ss_stats2<<arma[i]->getNombre();
+            cout<<ss_stats2.str()<<endl;
+
+            stats2[i] = new Text(ss_stats2.str(),*fuente,12);
+
+            stats2[i]->setColor(sf::Color::White);
+            stats2[i]->setPosition(100,135+(22*i));
+            
+        }
+        else
+        {
+            std::stringstream ss_stats2;
+
+            cout<<ss_stats2.str()<<endl;
+
+            stats2[i] = new Text(ss_stats2.str(),*fuente,12);
+
+            stats2[i]->setColor(sf::Color::White);
+            stats2[i]->setPosition(100,135+(22*i));
         }
     }
 }

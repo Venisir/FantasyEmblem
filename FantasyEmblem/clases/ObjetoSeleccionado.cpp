@@ -53,7 +53,7 @@ ObjetoSeleccionado::ObjetoSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, C
     reloj2=new Clock();
     evento=new Event();
     stats=new Text*[3];
-    stats1=new Text();
+    stats2=new Text*[3];
     fuente=new Font();
     objeto1=new Sprite();
     objeto2=new Sprite();
@@ -80,7 +80,7 @@ ObjetoSeleccionado::~ObjetoSeleccionado() {
     delete objeto3;
     delete arma;
     delete fuente;
-    delete stats1;
+    delete stats2;
     delete stats;
     delete texturaDedo;
     delete texturaMenu;
@@ -169,6 +169,7 @@ void ObjetoSeleccionado::render_State()
     for(int i=0; i<sizeof(stats)-1; i++){
         if(stats[i]!=NULL){ 
             Juego::Instance()->getVentana()->draw(*stats[i]);
+            Juego::Instance()->getVentana()->draw(*stats2[i]);
         }
     }
     Juego::Instance()->getVentana()->draw(*objeto1);
@@ -193,7 +194,7 @@ void ObjetoSeleccionado::mostrarItems(){
         }
     }
    
-    std::string s_stats;
+    
     
     for(int i=0; i<sizeof(objeto)-1; i++){
         
@@ -212,7 +213,23 @@ void ObjetoSeleccionado::mostrarItems(){
         
     }
         
+    
+    for(int i=0; i<sizeof(arma)-1; i++){
+        
+        if(arma[i]!=NULL){
+            std::stringstream ss_stats2;
+            
+            ss_stats2<<arma[i]->getNombre();
+            
 
+            stats2[i] = new Text(ss_stats2.str(),*fuente,12);
+            
+            stats2[i]->setColor(sf::Color::White);
+            stats2[i]->setPosition(100,135+(22*i));
+            
+        }
+        
+    }
 }
 
 

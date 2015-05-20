@@ -228,35 +228,35 @@ bool Aliadas::abrirPuerta(Mapa* mapa){
     bool llave=false;
     for(int i=0;i<3 && llave==false;i++){
         if(inventarioObjetos[i]!=NULL){
-            cout<<"antes de abrir la puerta"<<endl;
+            
             cout<<inventarioObjetos[i]->getNombre()<<endl;
             cout<<endl;
             if(strcmp(inventarioObjetos[i]->getTipo(),"llavePuerta")== 0){  
-                //spriteAviso->setTexture(*texturaAvisoInventarioArmas);
+                
                 if(mapa->getPuerta(getPosicionSpriteY()+16,getPosicionSpriteX())){
-                    cout<<"abajo"<<endl;
+                    
                     mapa->quitarPuerta(getPosicionSpriteY()+16,getPosicionSpriteX());
-                    cout<<"He abierto la puerta :D"<<endl;
+                    
                 }else if((mapa->getPuerta(getPosicionSpriteY()-16,getPosicionSpriteX()))){
-                    cout<<"arriba"<<endl;
+                    
                     mapa->quitarPuerta(getPosicionSpriteY()-16,getPosicionSpriteX());
-                    cout<<"He abierto la puerta :D"<<endl;
+                    
                 }else if(mapa->getPuerta(getPosicionSpriteY(),getPosicionSpriteX()+16)){
-                    cout<<"derecha"<<endl;
+                    
                     mapa->quitarPuerta(getPosicionSpriteY(),getPosicionSpriteX()+16);
-                    cout<<"He abierto la puerta :D"<<endl;
+                    
                 }else if(mapa->getPuerta(getPosicionSpriteY(),getPosicionSpriteX()-16)){
-                    cout<<"izquierda"<<endl;
+                    
                     mapa->quitarPuerta(getPosicionSpriteY(),getPosicionSpriteX()-16);
-                    cout<<"He abierto la puerta :D"<<endl;
+                    
                 }
                 llave=true;
                 inventarioObjetos[i]=NULL;
             }
         }
     }
-    /* //reordenaaar
-    for(int i=0; i<sizeof(inventarioObjetos)/sizeof(int); i++){
+     //reordenaaar
+    /*for(int i=0; i<sizeof(inventarioObjetos)/sizeof(int); i++){
         if(inventarioObjetos[i+1]!=NULL){
             
             inventarioObjetos[i]=inventarioObjetos[i+1];

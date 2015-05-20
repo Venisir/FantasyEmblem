@@ -62,7 +62,7 @@ private:
     sf::Clock *reloj2;
     sf::Event *evento;
     sf::Text** stats;
-    sf::Text* stats1;
+    sf::Text** stats2;
     int cont;
     bool cursorActivo;
     bool *turnoUsu;
