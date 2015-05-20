@@ -437,6 +437,7 @@ void Escenario::render_State(){
     sf::View view2=Juego::Instance()->getVentana()->getView();
     view2.setCenter(position);
     
+    
     Juego::Instance()->getVentana()->setView(view2);
     Juego::Instance()->setView(view2);
     ///////////////////////////////////////////

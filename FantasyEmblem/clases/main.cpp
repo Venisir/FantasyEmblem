@@ -28,10 +28,13 @@ int main()
     juego->setVentana(&window);
     
     sf::View view;
+    
     view.reset(sf::FloatRect(0,0,window.getSize().x,window.getSize().y));
     view.setViewport(sf::FloatRect(0,0,1.0f,1.0f));
     view.setCenter(sf::Vector2f(0,0));
-    //juego->setView(view);
+    
+   // view.zoom(0.85f);
+   // juego->setView(view);
 
     //Ejecuto el juego
     juego->init();

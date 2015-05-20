@@ -287,9 +287,22 @@ void EstadoConversacion::siguienteTexto(){
         if(escena->NextSiblingElement("escena") != NULL){
             escena = escena->NextSiblingElement("escena");
             texto = escena->FirstChildElement("texto");
+            
+            sf::View view2=Juego::Instance()->getVentana()->getView();
+                    
+            view2.zoom(0.75f);
+            Juego::Instance()->getVentana()->setView(view2);
+            Juego::Instance()->setView(view2);
+            
             Juego::Instance()->ponerEstadoEscenario();
             siguienteTexto();
         }else{
+            sf::View view2=Juego::Instance()->getVentana()->getView();
+                    
+            view2.zoom(0.75f);
+            Juego::Instance()->getVentana()->setView(view2);
+            Juego::Instance()->setView(view2);
+    
             Juego::Instance()->ponerEstadoEscenario();
             cerr << "No hay mas escenas!!" << endl;
         }
