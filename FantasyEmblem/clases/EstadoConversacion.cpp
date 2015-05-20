@@ -190,7 +190,7 @@ void EstadoConversacion::render_State()
         enem[x]->Draw();
     }
     
-    for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
+    for(int i=0; i<=sizeof(ali)/sizeof(int)+1; i++){
         ali[i]->Draw();
     }
     
@@ -217,7 +217,7 @@ void EstadoConversacion::update_State()
     
     if (reloj2->getElapsedTime().asSeconds() >= 0.5) {
         
-        for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
+        for(int i=0; i<=sizeof(ali)/sizeof(int)+1; i++){
             ali[i]->cambiaSpriteQuieto();
         }
     
@@ -287,22 +287,9 @@ void EstadoConversacion::siguienteTexto(){
         if(escena->NextSiblingElement("escena") != NULL){
             escena = escena->NextSiblingElement("escena");
             texto = escena->FirstChildElement("texto");
-            
-            sf::View view2=Juego::Instance()->getVentana()->getView();
-                    
-            view2.zoom(0.75f);
-            Juego::Instance()->getVentana()->setView(view2);
-            Juego::Instance()->setView(view2);
-            
             Juego::Instance()->ponerEstadoEscenario();
             siguienteTexto();
         }else{
-            sf::View view2=Juego::Instance()->getVentana()->getView();
-                    
-            view2.zoom(0.75f);
-            Juego::Instance()->getVentana()->setView(view2);
-            Juego::Instance()->setView(view2);
-    
             Juego::Instance()->ponerEstadoEscenario();
             cerr << "No hay mas escenas!!" << endl;
         }

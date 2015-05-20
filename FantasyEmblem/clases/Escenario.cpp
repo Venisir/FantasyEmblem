@@ -21,7 +21,7 @@
 using namespace std;
 using namespace sf;
 
-#define kVel 10
+#define kVel 20
 
 Escenario* Escenario::pinstance = 0;
 
@@ -73,8 +73,9 @@ Escenario::Escenario(const char* nombremapa) {
     
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
-    aliadas[0] = new Aliadas("Eirika", "Arquero", atri, 8, 5, "Mapa_Eirika.png","eirikaBatalla.png" ,"retrato2.png",95,objeto,arma);
-    aliadas[1] = new Aliadas("Meisner", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"retrato1.png",95,objeto,arma);
+    aliadas[0] = new Aliadas("Eirika", "Arquero", atri, 8, 5, "Mapa_Eirika.png","eirikaBatalla.png" ,"retrato2.png",75,objeto,arma);
+    aliadas[1] = new Aliadas("Meisner", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"retrato1.png",75,objeto,arma);
+    aliadas[2] = new Aliadas("Soren", "Mago", atri, 8, 5, "Mapa_mago_azul.png","mago.png" ,"retrato3.png",75,objeto,arma);
 
     pause_open = new SoundBuffer();
     opause = new Sound();
@@ -185,6 +186,7 @@ void Escenario::init_State(){
 
     aliadas[0]->setPosition(176,32);
     aliadas[1]->setPosition(320,224);
+    aliadas[2]->setPosition(80,144);
     
     fasesEnemigo = 1;
     turnoEnemigo = 0;
@@ -231,7 +233,7 @@ void Escenario::cambiaSpriteCursorMano() {
 bool Escenario::hayunidad()
 {
     bool resultado=false;
-    for(int i=0; i<sizeof(aliadas)/sizeof(int)+1 && resultado==false; i++)
+    for(int i=0; i<=sizeof(aliadas)/sizeof(int)+1 && resultado==false; i++)
     {
         if(spriteCursor->getPosition()==aliadas[i]->getSprite().getPosition())
         {
@@ -245,7 +247,7 @@ bool Escenario::hayunidad()
 bool Escenario::hayunidadAqui(int i, int j)
 {
     bool resultado=false;
-    for(int w=0; w<sizeof(enemigos)/sizeof(int)+1; w++){
+    for(int w=0; w<=sizeof(enemigos)/sizeof(int)+1; w++){
         if(enemigos[w]->getSprite().getPosition().x == j && enemigos[w]->getSprite().getPosition().y == i){
             resultado=true;    
         }
@@ -451,7 +453,7 @@ void Escenario::render_State(){
         cofres[x]->Draw();
     }
     
-    for(int i=0; i<sizeof(aliadas)/sizeof(int)+1; i++){
+    for(int i=0; i<=sizeof(aliadas)/sizeof(int)+1; i++){
         aliadas[i]->Draw();
     }
     
@@ -505,7 +507,7 @@ void Escenario::update_State(){
             Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma);     
         }
         
-        for(int i=0; i<sizeof(aliadas)/sizeof(int)+1; i++){
+        for(int i=0; i<=sizeof(aliadas)/sizeof(int)+1; i++){
             if(aliadas[i]->getMueve()==false)
             aliadas[i]->cambiaSpriteQuieto();
         }
@@ -697,7 +699,7 @@ void Escenario::update_State(){
                         
                         debeEntrar= false;
                         
-                        for(int i=0; i<sizeof(aliadas)/sizeof(int)+1; i++){
+                        for(int i=0; i<=sizeof(aliadas)/sizeof(int)+1; i++){
                             if(mapa->getCasillaPintada(aliadas[i]->getPosicionSpriteX(),aliadas[i]->getPosicionSpriteY()) == true){
                                 debeEntrar = true;
                                 var = i;
@@ -737,7 +739,7 @@ void Escenario::update_State(){
                             turnoSi = true;
                             
                             //pone la variable flag de si las aliadas han atacado a false, para que en el siguinte turno pueden atacar
-                            for(int k=0;k< sizeof(aliadas)/sizeof(int)+1;k++)
+                            for(int k=0;k<=sizeof(aliadas)/sizeof(int)+1;k++)
                             {
                                 aliadas[k]->setAtacado(false);
                             }
@@ -888,7 +890,7 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad6:
-                    
+                    cerr << sizeof(aliadas)/sizeof(int)+1 << endl;
                 break;
                 
                 case sf::Keyboard::Numpad7:
@@ -1039,7 +1041,7 @@ void Escenario::input() {
             
             tieneQueMostrarStats = false;
             
-            for(int i=0; i<sizeof(aliadas)/sizeof(int)+1; i++){
+            for(int i=0; i<=sizeof(aliadas)/sizeof(int)+1; i++){
                 if(spriteCursor->getPosition().x == aliadas[i]->getPosicionSpriteX() && spriteCursor->getPosition().y == aliadas[i]->getPosicionSpriteY()){
                     mostrarStats(i, 0);
                     tieneQueMostrarStats = true;
@@ -1089,7 +1091,7 @@ void Escenario::borraEnemigo(int e){
 void Escenario::borraAliado(int a){
     aliadas[a] = NULL;
     
-    for(int i=a; i<sizeof(aliadas)/sizeof(int); i++){
+    for(int i=a; i<=sizeof(aliadas)/sizeof(int); i++){
         //if(aliadas[i+1]!=NULL){
             aliadas[i] = aliadas[i+1];
         //}

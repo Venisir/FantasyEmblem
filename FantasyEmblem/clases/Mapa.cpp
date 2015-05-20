@@ -237,7 +237,7 @@ void Mapa::setSpriteColor(int color, int i, int j, int saltaComprobacion){
         Enemigo** enemigos = Escenario::Instance()->getEnemigos();
         bool _aux = true;
         
-        for(int w=0; w<sizeof(enemigos)/sizeof(int)+1; w++){
+        for(int w=0; w<=sizeof(enemigos)/sizeof(int)+1; w++){
             if(enemigos[w]->getSprite().getPosition().x == j && enemigos[w]->getSprite().getPosition().y == i){
                 _aux = false;
             }

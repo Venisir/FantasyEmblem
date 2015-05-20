@@ -250,14 +250,14 @@ void MenuPrincipal::input(){
                     Intro();   
                 break; 
                 
-                case sf::Keyboard::Num5:
+                case sf::Keyboard::Num1:
                     //Escenario::Instance()->cambiaMapa("mapaPruebas");
                     //Escenario::Instance()->init();
                     Escenario::Instance()->setCambio(1);
                     Juego::Instance()->ponerEstadoEscenario();
                 break;
                 
-                case sf::Keyboard::Num6:
+                case sf::Keyboard::Num2:
                     //Escenario::Instance()->cambiaMapa("mapaPruebas");
                     //Escenario::Instance()->init();
                     Escenario::Instance()->setCambio(2);

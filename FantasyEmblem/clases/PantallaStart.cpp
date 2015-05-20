@@ -19,7 +19,6 @@
 using namespace std;
 using namespace sf;
 
-
 PantallaStart* PantallaStart::pinstance = 0;
 
 PantallaStart* PantallaStart::Instance () {
@@ -28,10 +27,7 @@ PantallaStart* PantallaStart::Instance () {
     }
     return pinstance; //Retornamos la direccion de la instancia
 }
-
-
 PantallaStart::PantallaStart() {
-    
     
     boto= new Texture();
     fondo= new Texture();
@@ -44,7 +40,7 @@ PantallaStart::PantallaStart() {
     reloj = new Clock();
     evento = new Event();
     
-     init_State();
+    init_State();
 }
 
 PantallaStart::~PantallaStart() {
@@ -54,12 +50,9 @@ PantallaStart::~PantallaStart() {
     delete start;
     delete intro;
     delete mainmenu;
- 
     delete mmselect;
     delete menusonido;
-
     delete select;  
-    
     delete reloj;
     delete evento;
 }
@@ -154,11 +147,6 @@ void PantallaStart::input() {
             switch(evento->key.code){
                 case sf::Keyboard::Return:
                     Juego::Instance()->ponerEstadoMenuPrincipal();              
-                break;
-                case sf::Keyboard::A:
-                    menusonido->stop();
-                    cerr << "Creditos" << endl;
-                    Juego::Instance()->ponerCreditos();              
                 break;
                 case sf::Keyboard::Escape:
                     Juego::Instance()->getVentana()->close();               

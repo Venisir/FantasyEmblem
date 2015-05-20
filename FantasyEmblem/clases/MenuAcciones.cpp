@@ -205,7 +205,7 @@ void MenuAcciones::render_State()
         cof[x]->Draw();
     }
     
-    for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
+    for(int i=0; i<=sizeof(ali)/sizeof(int)+1; i++){
         ali[i]->Draw();
     }
     
@@ -306,7 +306,7 @@ void MenuAcciones::teclaIntro(){
 
             bool hayMasAliadosPorJugar = false;
 
-            for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
+            for(int i=0; i<=sizeof(ali)/sizeof(int)+1; i++){
                 if(ali[i]->getHaJugado() == false){
                     hayMasAliadosPorJugar = true;
                 }
@@ -318,7 +318,7 @@ void MenuAcciones::teclaIntro(){
                 Juego::Instance()->ponerEstadoEscenario();
             }else{
                 //Se ha acabado el turno de los aliados
-                for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
+                for(int i=0; i<=sizeof(ali)/sizeof(int)+1; i++){
                     ali[i]->setHaJugado(false);
                 }
 
@@ -344,7 +344,7 @@ void MenuAcciones::teclaIntro(){
             //haAtacado=false;
             numMenu = -1;
 
-            for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
+            for(int i=0; i<=sizeof(ali)/sizeof(int)+1; i++){
                 ali[i]->setHaJugado(false);
             }
             
@@ -423,7 +423,7 @@ void MenuAcciones::teclaIntro(){
 
             bool hayMasAliadosPorJugar = false;
 
-            for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
+            for(int i=0; i<=sizeof(ali)/sizeof(int)+1; i++){
                 if(ali[*index]->getHaJugado() == false){
                     hayMasAliadosPorJugar = true;
                 }
@@ -435,7 +435,7 @@ void MenuAcciones::teclaIntro(){
                 Juego::Instance()->ponerEstadoEscenario();
             }else{
                 //Se ha acabado el turno de los aliados
-                for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
+                for(int i=0; i<=sizeof(ali)/sizeof(int)+1; i++){
                     ali[i]->setHaJugado(false);
                 }
                 cursorActivo=true;
@@ -461,7 +461,7 @@ void MenuAcciones::teclaIntro(){
             //haAtacado=false;
             numMenu = -1;
 
-            for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
+            for(int i=0; i<=sizeof(ali)/sizeof(int)+1; i++){
                     ali[i]->setHaJugado(false);
             }
 
