@@ -37,8 +37,8 @@ void Enemigo::borraultimo() {
     for(int i=0;i<movs.size()-2;i++)
     {
         aux[i]=movimientos[i];
-        cerr << aux[i] << endl;
-        cerr << movs.at(i) << endl;
+        //cerr << aux[i] << endl;
+        //cerr << movs.at(i) << endl;
     }
     
     movimientos=aux;

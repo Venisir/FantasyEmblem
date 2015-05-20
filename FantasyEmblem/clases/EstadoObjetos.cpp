@@ -28,6 +28,15 @@ EstadoObjetos* EstadoObjetos::Instance(Mapa* map, Aliadas** al, Enemigo** ene, C
     return pinstance;
 }
 
+EstadoObjetos* EstadoObjetos::Instance() {
+    return pinstance;
+}
+
+void EstadoObjetos::reset() {
+    pinstance=0;
+}
+
+
 EstadoObjetos::EstadoObjetos()
 {
     

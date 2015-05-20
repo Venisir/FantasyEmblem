@@ -204,6 +204,8 @@ void Escenario::init_State(){
     opause->setVolume(80);
     
     turnoSi = false;
+    //Limpio la consola
+    system("cls");
 }
 
 void Escenario::paramusic(){
@@ -245,9 +247,7 @@ bool Escenario::hayunidadAqui(int i, int j)
     bool resultado=false;
     for(int w=0; w<sizeof(enemigos)/sizeof(int)+1; w++){
         if(enemigos[w]->getSprite().getPosition().x == j && enemigos[w]->getSprite().getPosition().y == i){
-            resultado=true;
-            cerr << "Enemigo " << w << ", x: " << enemigos[w]->getSprite().getPosition().x << " y:" << enemigos[w]->getSprite().getPosition().y << endl;
-            cerr << "i: " << i << "  j: " << j << endl;
+            resultado=true;    
         }
     }
     return resultado;
@@ -391,10 +391,17 @@ void Escenario::cambiaMapa(const char* nombremapa) {
     enemigos=mapa->getEnemigos();
     int atri[] = { 11, 22, 33, 44, 55, 66, 77};
 
-    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"ike.png",95,objeto,arma);
-    aliadas[1] = new Aliadas("Albertina", "Espadachina", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"ike.png",95,objeto,arma);
+    aliadas[0] = new Aliadas("Eirika", "Espadachin", atri, 8, 5, "Mapa_Eirika.png","eirikaBatalla.png" ,"retrato2.png",95,objeto,arma);
+    aliadas[1] = new Aliadas("Meisner", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"retrato1.png",0,objeto,arma);
+   
     EstadoConversacion::Instance()->reset();
+    MenuAcciones::Instance()->reset();
+    EstadoObjetos::Instance()->reset();
+    ObjetoSeleccionado::Instance()->reset();
     EstadoConversacion::Instance(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma);
+    //MenuAcciones::Instance(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma);
+    //EstadoObjetos::Instance(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma);
+    //ObjetoSeleccionado::Instance(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma);
 }
 
 void Escenario::setCambio(int n) {
@@ -487,7 +494,7 @@ void Escenario::update_State(){
         if(*primeritaVes == true){
             *primeritaVes = false;
 
-            cerr << "GRINGO, A HABLAR" << endl;
+            //Empieza la conversacion
             Juego::Instance()->ponerEstadoConversacion(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma);     
         }
         
@@ -528,9 +535,8 @@ void Escenario::update_State(){
                     aux = 0;
                     aliadas[*unidad_sel]->cambiaSprite(0, 0, 20, 20);
                     cambiaSpriteCursorSeleccionar();
-                    cout<<"petaescenarioantes"<<endl;
                     Juego::Instance()->ponerEstadoMenuAcciones(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma); 
-                    cout<<"petaescenariodespues"<<endl;
+                    
                 
                     //*unidad_sel = -1;
                 }else{
@@ -709,7 +715,6 @@ void Escenario::update_State(){
                         
                     case 3:
                         
-                        cerr << "Hola1" << endl;
                         enemigos[turnoEnemigo]->cambiaSprite(0, 0, 20, 20);
                         turnoEnemigo++;
                         fasesEnemigo = 0;
@@ -742,7 +747,6 @@ void Escenario::update_State(){
 void Escenario::teclaArriba(){
     if(spriteCursor->getPosition().y>=16){
         spriteCursor->move(0,-16);       
-        std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
     }
     if(*unidad_sel!=-1){
         aliadas[*unidad_sel]->guardamovimiento(2);
@@ -752,7 +756,7 @@ void Escenario::teclaArriba(){
 void Escenario::teclaDerecha(){
     if(spriteCursor->getPosition().x<480-16){
         spriteCursor->move(16,0);       
-        std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
+        
     }
     if(*unidad_sel!=-1){
         aliadas[*unidad_sel]->guardamovimiento(1);
@@ -762,7 +766,6 @@ void Escenario::teclaDerecha(){
 void Escenario::teclaIzquierda(){
     if(spriteCursor->getPosition().x>=16){
         spriteCursor->move(-16,0);              
-        std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
     }
     if(*unidad_sel!=-1){
         aliadas[*unidad_sel]->guardamovimiento(-1);
@@ -773,7 +776,7 @@ void Escenario::teclaAbajo(){
     
     if(spriteCursor->getPosition().y<(mapa->getAltura()*16)-16){
         spriteCursor->move(0,16);
-        std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
+        
     }
     if(*unidad_sel!=-1){
         aliadas[*unidad_sel]->guardamovimiento(-2);
@@ -863,15 +866,14 @@ void Escenario::input() {
                 break;
                 
                 case sf::Keyboard::Numpad4:
-                    borraAliado(0);
+                    std::cerr << "Cursor en: (" << spriteCursor->getPosition().x << ", " << spriteCursor->getPosition().y << ")" <<endl;
                 break;
                 
                 case sf::Keyboard::Numpad5:
-                    borraEnemigo(0);
                 break;
                 
                 case sf::Keyboard::Numpad6:
-                    //mapa->getCofre(aliadas[0]->getPosicionSpriteY(),aliadas[0]->getPosicionSpriteX());
+                    
                 break;
                 
                 case sf::Keyboard::Numpad7:
@@ -975,9 +977,9 @@ void Escenario::input() {
                         }
                     }
                     
+                    //Prueba de los joysticks
                     /*
                     if (evento->joystickMove.joystickId == 0){
-                        //cerr << x << " " << y << endl;
                         if(sf::Joystick::getAxisPosition(0, sf::Joystick::X) == -100){
                             teclaIzquierda();
                         }else if(sf::Joystick::getAxisPosition(0, sf::Joystick::X) == +100){

@@ -32,8 +32,10 @@ using namespace sf;
 class ObjetoSeleccionado: public Estado {
 public:
     static ObjetoSeleccionado* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm);
+    static ObjetoSeleccionado* Instance();
     void input();
     void mostrarItems();
+    void reset();
     
 protected:
     ObjetoSeleccionado();

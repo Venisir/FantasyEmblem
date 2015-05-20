@@ -45,8 +45,8 @@ Aliadas::Aliadas(const char* name, const char* clas, int atributo[],int nivel, i
         inventarioArmas[i]=NULL;
     }
     //PRUEBA -> VAMOS A PONERLE ALGUNOS OBJETOS
-    inventarioObjetos[0] = new Objetos("LlaveInicialCofre", "llaveCofre", 1, 1, "Una llave chachi", 1, "llaveCofre");
-    inventarioObjetos[1] = new Objetos("LlaveInicialPuerta", "llavePuerta", 1, 1, "Una llave chachi", 1, "llavePuerta");
+    inventarioObjetos[0] = new Objetos("Llave Cofre", "llaveCofre", 1, 1, "Una llave chachi", 1, "llaveCofre");
+    inventarioObjetos[1] = new Objetos("Llave Puerta", "llavePuerta", 1, 1, "Una llave chachi", 1, "llavePuerta");
     inventarioObjetos[2] = new Objetos("Pocion","potion",3,1,"ooooroooo",false,"pocion");
     
     spriteAviso = new Sprite();
@@ -267,63 +267,7 @@ bool Aliadas::abrirPuerta(Mapa* mapa){
     }
     return llave;
 }
-/*
- void Aliadas::guardamovimiento(int n){
-    int negativo=n*(-1);
-    //si el ultimo introducido es el negativo del que se va a introducir..
-    if(ultimo_mov<rango)
-    {
-        if(negativo==recorrido[ultimo_mov-1])
-        {
-            ultimo_mov--;
-        }
-        else
-        {
-            recorrido[ultimo_mov]=n;
-            ultimo_mov++;
-        }
-    }
-    else if(ultimo_mov==rango)
-    {
-        if(negativo==recorrido[ultimo_mov-1])
-        {
-            ultimo_mov--;
-        } 
-    }
-}*/
-  /*
-int* Aliadas::getRecorrido(){
-    return recorrido;
-}*/
-  /*
-void Aliadas::recorre()
-{
-    //for(int i=0;i<ultimo_mov;i++)
-    for(int i=0;i<1;i++)
-    {
-        switch(movimientos[i])
-        {
-            case 1:
-                moverDerecha(); 
-                std::cerr << movimientos[i] << " " << endl;
-                break;
-            case 2:
-                moverArriba();
-                std::cerr << movimientos[i] << " " << endl;
-               break;
-            case -1:
-                moverIzquierda();
-                std::cerr << movimientos[i] << " " << endl;
-               break;
-            case -2:
-                moverAbajo();
-                std::cerr << movimientos[i] << " " << endl;
-               break; 
-         }
-     }
-     ultimo_mov=0;
- }
-  */
+
  bool Aliadas::hayPuerta(Mapa* mapa){
      bool puerta = false;    
      
@@ -387,10 +331,10 @@ Objetos** Aliadas::getObjetos(){
     return inventarioObjetos;
 }
 
-int Aliadas::hayEnemigosCercanos(Enemigo** enemigos){
+int Aliadas::hayEnemigosCercanos(Enemigo** enemigos,int n){
     
     int hayEnemigo = 0;
-    for(int i=0; i<sizeof(enemigos)-1; i++){
+    for(int i=0; i<n; i++){
         if(this->getPosicionSpriteX()+16 == enemigos[i]->getPosicionSpriteX() && this->getPosicionSpriteY() == enemigos[i]->getPosicionSpriteY()){
             hayEnemigo = 1;
         }

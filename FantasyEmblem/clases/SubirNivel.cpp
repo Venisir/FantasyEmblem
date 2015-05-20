@@ -306,7 +306,6 @@ void SubirNivel::render_State(){
 
 void SubirNivel::update_State(){
     if (reloj->getElapsedTime().asSeconds() >= 0.08) {
-        cerr << contPer1i << "  " << contPer1j << endl;
         
         std::stringstream clases2;
         clases2 <<   

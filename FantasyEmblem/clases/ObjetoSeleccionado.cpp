@@ -23,6 +23,15 @@ ObjetoSeleccionado* ObjetoSeleccionado::Instance(Mapa* map, Aliadas** al, Enemig
     return pinstance;
 }
 
+ObjetoSeleccionado* ObjetoSeleccionado::Instance() {
+    return pinstance;
+}
+
+void ObjetoSeleccionado::reset() {
+    pinstance=0;
+}
+
+
 ObjetoSeleccionado::ObjetoSeleccionado()
 {
     

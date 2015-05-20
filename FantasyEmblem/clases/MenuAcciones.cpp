@@ -16,16 +16,21 @@ MenuAcciones* MenuAcciones::Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cof
     if(pinstance==0)
     {
         pinstance=new MenuAcciones(map,al,ene,cofr,indice,turno,obj,arm);
-    }else{
+    }/*else{
         //pinstance->index=indice;
         if(pinstance->index != indice){
             pinstance->haAtacado = false;
             pinstance->seleccionarMenu();
             pinstance->index=indice;
         }
-    }
+    }*/
     return pinstance;
 }
+
+MenuAcciones* MenuAcciones::Instance() {
+    return pinstance;
+}
+
 
 MenuAcciones::MenuAcciones()
 {
@@ -89,6 +94,11 @@ MenuAcciones::~MenuAcciones() {
     delete reloj;
     delete reloj2;
 }
+
+void MenuAcciones::reset() {
+    pinstance=0;
+}
+
 
 void MenuAcciones::init_State()
 {
@@ -481,6 +491,12 @@ void MenuAcciones::input()
                 break;
                     
                 case sf::Keyboard::Numpad1:
+                    cerr << ali[*index]->hayEnemigosCercanos(enem,m->getNumEnemigos()) << " adasdda " << endl;
+                    cerr << *index << endl;
+                    cerr << haAtacado << endl;
+                    cerr << m->getNumEnemigos() << endl;
+                    
+                    
                 break;
                 
                 case sf::Keyboard::Numpad2:
@@ -542,27 +558,21 @@ void MenuAcciones::input()
 
 void MenuAcciones::seleccionarMenu(){
     
-    
-    
     cerr << "Entro a seleccionar menu" << endl;
-    cerr << "Hay enemigos cercanos? " << *index << " " << ali[*index]->hayEnemigosCercanos(enem) << endl;
-    if(ali[*index]->hayEnemigosCercanos(enem)!=0 && haAtacado == false){
-        cerr << "Entro 1.11" << endl;
+    //cerr << "Hay enemigos cercanos? " << *index << " " << ali[*index]->hayEnemigosCercanos(enem) << endl;
+    if(ali[*index]->hayEnemigosCercanos(enem,m->getNumEnemigos())!=0 && haAtacado == false){
+        
         menu->setTexture(*texturaMenuAtaque);
         numMenu = 0;
-        cerr << "Entro 1.12" << endl;
     }else{
-        cerr << "Entro 1.1" << endl;
         if(ali[*index]->hayCofresCercanos(m)!=0){
             menu->setTexture(*texturaMenuCofre);
             numMenu = 1;
         }else{
-            cerr << "Entro 1.2" << endl;
             if(ali[*index]->hayPuertasCercanas(m)!=0){
                 menu->setTexture(*texturaMenuPuerta);
                 numMenu = 2;
             }else{
-                cerr << "Entro 1.3" << endl;
                 if(numMenu!=3){
                     menu->setTexture(*texturaMenuNormal);
                     numMenu = 3;
@@ -570,6 +580,4 @@ void MenuAcciones::seleccionarMenu(){
             }
         }
     }
-    cerr << "Entro 2" << endl;
-    
 }

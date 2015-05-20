@@ -508,7 +508,6 @@ void Unidad::recorridoA(int destinox, int destinoy)
     {
         menorf=100000000000000000000;
         /*obtenemos el nodo con menor f(n) de la lista abierta*/        
-        cerr << endl;
         
         for(int i=0;i<abierta.size();i++)
         {
@@ -519,9 +518,9 @@ void Unidad::recorridoA(int destinox, int destinoy)
             {
                 menorf=f;
                 n=abierta.at(i);
-                cerr << "x" << n->getCoordenadas().x << endl;
-                cerr << "y" << n->getCoordenadas().y << endl;
-                cerr << endl;
+                //cerr << "x" << n->getCoordenadas().x << endl;
+                //cerr << "y" << n->getCoordenadas().y << endl;
+                //cerr << endl;
                 nodomenor=i;
             }
         }
@@ -586,8 +585,8 @@ void Unidad::recorridoA(int destinox, int destinoy)
                 ady=new Celda(posaux,g,f,manhatan,n);
                 abierta.push_back(ady);
                 adyacentes++;
-                cerr << abierta.back()->getCoordenadas().x << endl;
-                cerr << abierta.back()->getCoordenadas().y << endl;
+                //cerr << abierta.back()->getCoordenadas().x << endl;
+                //cerr << abierta.back()->getCoordenadas().y << endl;
             }
                      
             
@@ -715,19 +714,19 @@ void Unidad::recorre()
         {
             case 1:
                 moverDerecha(); 
-                std::cerr << movimientos[i] << " " << endl;
+                //std::cerr << movimientos[i] << " " << endl;
                 break;
             case 2:
                 moverArriba();
-                std::cerr << movimientos[i] << " " << endl;
+                //std::cerr << movimientos[i] << " " << endl;
                break;
             case -1:
                 moverIzquierda();
-                std::cerr << movimientos[i] << " " << endl;
+                //std::cerr << movimientos[i] << " " << endl;
                break;
             case -2:
                 moverAbajo();
-                std::cerr << movimientos[i] << " " << endl;
+                //std::cerr << movimientos[i] << " " << endl;
                break; 
          }
     }

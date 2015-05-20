@@ -31,9 +31,11 @@ using namespace sf;
 class EstadoObjetos:public Estado {
 public:
     static EstadoObjetos* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm);
+    static EstadoObjetos* Instance();
     void input();
     void mostrarItems();
     int getSeleccionada();
+    void reset();
     
 protected:
     EstadoObjetos();

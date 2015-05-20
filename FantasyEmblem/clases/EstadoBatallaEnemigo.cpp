@@ -229,7 +229,6 @@ void EstadoBatallaEnemigo::render_State(){
 
 void EstadoBatallaEnemigo::update_State(){
     if (reloj->getElapsedTime().asSeconds() >= 0.08) {
-        //cerr << contPer1i << "  " << contPer1j << endl;
         
         std::stringstream vidas2;
         vidas2 <<   

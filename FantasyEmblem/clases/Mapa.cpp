@@ -233,8 +233,6 @@ void Mapa::setSpriteColor(int color, int i, int j, int saltaComprobacion){
         
         for(int w=0; w<sizeof(enemigos)/sizeof(int)+1; w++){
             if(enemigos[w]->getSprite().getPosition().x == j && enemigos[w]->getSprite().getPosition().y == i){
-                cerr << "Enemigo " << w << ", x: " << enemigos[w]->getSprite().getPosition().x << " y:" << enemigos[w]->getSprite().getPosition().y << endl;
-                cerr << "i: " << i << "  j: " << j << endl;
                 _aux = false;
             }
         }
@@ -330,7 +328,6 @@ bool Mapa::getColision(int j, int i){
 }
 
 bool Mapa::getPuerta(int i, int j){
-    cout<<"Entra en getPuerta"<<endl;
     if(i>=0 && i<320 && j>=0 && j<480){
         if(_tilemap[5][i/16][j/16]!=0){
             return true;
@@ -354,7 +351,7 @@ void Mapa::quitarPuerta(int i, int j){
 }
 
 bool Mapa::getCofre(int i, int j){
-    cout<<"Entra en getCofre"<<endl;
+    
     if(_tilemap[2][i/16][j/16]!=0){
         return true;
     }else{

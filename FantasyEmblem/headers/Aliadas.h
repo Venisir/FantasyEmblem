@@ -49,7 +49,7 @@ public:
     bool hayCofre(Mapa* mapa);
     bool hayPuerta(Mapa* mapa);
     
-    int hayEnemigosCercanos(Enemigo** enemigos);
+    int hayEnemigosCercanos(Enemigo** enemigos,int n);
     int hayCofresCercanos(Mapa* m);
     int hayPuertasCercanas(Mapa* m);
     int cualEsElEnemigoCercano(Enemigo** enemigos);

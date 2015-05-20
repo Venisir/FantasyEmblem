@@ -28,6 +28,7 @@
 class MenuAcciones:public Estado {
 public:
     static MenuAcciones* Instance(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice,bool *turno,Objetos** obj, Armas** arm);
+    static MenuAcciones* Instance();
     void input();
     void seleccionarMenu();
     
@@ -36,6 +37,7 @@ public:
     void teclaIzquierda();
     void teclaAbajo();
     void teclaIntro();
+    void reset();
     
 protected:
     MenuAcciones();
