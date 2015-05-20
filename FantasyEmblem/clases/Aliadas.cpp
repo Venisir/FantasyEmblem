@@ -98,6 +98,15 @@ bool Aliadas::equiparArma(Armas* arma){
     return equipada;
 }
 
+void Aliadas::setAtacado(bool b) {
+    haAtacado=b;
+}
+
+bool Aliadas::getAtacado() {
+    return haAtacado;
+}
+
+
 Objetos** Aliadas::usarObjeto(int pos){
     
     

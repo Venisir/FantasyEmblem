@@ -69,7 +69,7 @@ private:
     int cont;
     bool cursorActivo;
     bool *turnoUsu;
-    bool haAtacado;
+    //bool haAtacado;
     int renderAviso;
     Mapa *m;//mapa proveniente del escenario 
     Aliadas **ali;//array de unidades aliadas proveniente del escenario

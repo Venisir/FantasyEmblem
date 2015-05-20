@@ -177,7 +177,7 @@ void MenuAcciones::init_State()
     objetos->setPosition(305,226);    
     turnoEnemigo->setPosition(240,160);
     
-    haAtacado = false;
+   // haAtacado = false;
     renderAviso = 0;
     
     if (!mcursor->loadFromFile("resources/Menu_Cursor.wav")){
@@ -327,7 +327,7 @@ void MenuAcciones::teclaIntro(){
                 cursorDedo->setPosition(215,260);
                 *index=-1;
                 *turnoUsu=false;
-                haAtacado=false;
+              //  haAtacado=false;
                 numMenu = -1;
 
                 reloj3->restart();
@@ -341,7 +341,7 @@ void MenuAcciones::teclaIntro(){
             cursorDedo->setPosition(215,260);
             *index=-1;
             *turnoUsu=false;
-            haAtacado=false;
+            //haAtacado=false;
             numMenu = -1;
 
             for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
@@ -361,10 +361,12 @@ void MenuAcciones::teclaIntro(){
                     cursorActivo = true;
                     Escenario::Instance()->paramusic();
                     //EstadoBatall::Instance(ali[*index],enem[0])->playmusica();
+                    
                     Juego::Instance()->ponerEstadoBatalla(ali[*index], enem[ali[*index]->cualEsElEnemigoCercano(enem)], m->getFondo());
+                    ali[*index]->setAtacado(true);
 
                     cursorActivo=true;
-                    haAtacado = true;
+                   // haAtacado = true;
                     menu->setTexture(*texturaMenuNormal);
                     numMenu = 3;
                     break;
@@ -441,7 +443,7 @@ void MenuAcciones::teclaIntro(){
                 cursorDedo->setPosition(215,260);
                 *index=-1;
                 *turnoUsu=false;
-                haAtacado=false;
+               // haAtacado=false;
                 numMenu = -1;
                 
                 reloj3->restart();
@@ -456,7 +458,7 @@ void MenuAcciones::teclaIntro(){
             cursorDedo->setPosition(215,260);
             *index=-1;
             *turnoUsu=false;
-            haAtacado=false;
+            //haAtacado=false;
             numMenu = -1;
 
             for(int i=0; i<sizeof(ali)/sizeof(int)+1; i++){
@@ -561,7 +563,7 @@ void MenuAcciones::seleccionarMenu(){
     
     cerr << "Entro a seleccionar menu" << endl;
     //cerr << "Hay enemigos cercanos? " << *index << " " << ali[*index]->hayEnemigosCercanos(enem) << endl;
-    if(ali[*index]->hayEnemigosCercanos(enem,m->getNumEnemigos())!=0 && haAtacado == false){
+    if(ali[*index]->hayEnemigosCercanos(enem,m->getNumEnemigos())!=0 && ali[*index]->getAtacado()==false/*haAtacado == false*/){
         
         menu->setTexture(*texturaMenuAtaque);
         numMenu = 0;
