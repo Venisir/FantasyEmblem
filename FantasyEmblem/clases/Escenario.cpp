@@ -68,13 +68,13 @@ Escenario::Escenario(const char* nombremapa) {
     spriteTurnoUsu = new Sprite();
     spriteAbrirPuerta = new Sprite();
     
-    int atri[] = { 20, 9, 1, 19, 19, 6, 4};
+    int atri[] = { 32, 11, 1, 19, 13, 6, 4};
     var = 0;
     
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
     aliadas[0] = new Aliadas("Eirika", "Espadachin", atri, 8, 5, "Mapa_Eirika.png","eirikaBatalla.png" ,"retrato2.png",95,objeto,arma);
-    aliadas[1] = new Aliadas("Meisner", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"retrato1.png",0,objeto,arma);
+    aliadas[1] = new Aliadas("Meisner", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"retrato1.png",95,objeto,arma);
 
     pause_open = new SoundBuffer();
     opause = new Sound();
@@ -389,10 +389,10 @@ void Escenario::cambiaMapa(const char* nombremapa) {
     mapa=new Mapa(nombremapa);
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
-    int atri[] = { 11, 22, 33, 44, 55, 66, 77};
+    int atri[] = { 33, 12, 0, 19, 14, 6, 4};
 
-    aliadas[0] = new Aliadas("Alberto", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"ike.png",95,objeto,arma);
-    aliadas[1] = new Aliadas("Albertina", "Espadachina", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"ike.png",95,objeto,arma);
+    aliadas[0] = new Aliadas("Eirika", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","eirikaBatalla.png" ,"retrato2.png",95,objeto,arma);
+    aliadas[1] = new Aliadas("Meisner", "Espadachina", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"retrato1.png",95,objeto,arma);
     EstadoConversacion::Instance()->reset();
     EstadoConversacion::Instance(mapa,aliadas,enemigos,cofres,unidad_sel,turnoUsu,objeto,arma);
 }

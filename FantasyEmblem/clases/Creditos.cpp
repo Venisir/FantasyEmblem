@@ -130,7 +130,7 @@ void Creditos::init_State(){
     sprite4->setScale(0,0);
     
     std::stringstream ss_textoPause;
-    ss_textoPause << "Create by Hexaiden";
+    ss_textoPause << "Created by Hexaiden";
            
             
             
