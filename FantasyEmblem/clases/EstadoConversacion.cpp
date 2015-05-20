@@ -308,6 +308,9 @@ void EstadoConversacion::input()
                 case sf::Keyboard::Return:
                     siguienteTexto();
                 break;
+                case sf::Keyboard::A:
+                    Juego::Instance()->ponerEstadoEscenario();
+                break;
                 case sf::Keyboard::Escape:
                     Juego::Instance()->getVentana()->close();               
                 break;

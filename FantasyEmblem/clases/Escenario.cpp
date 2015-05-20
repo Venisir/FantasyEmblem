@@ -68,13 +68,13 @@ Escenario::Escenario(const char* nombremapa) {
     spriteTurnoUsu = new Sprite();
     spriteAbrirPuerta = new Sprite();
     
-    int atri[] = { 20, 9, 1, 19, 19, 6, 4};
+    int atri[] = { 32, 11, 1, 19, 13, 6, 4};
     var = 0;
     
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
-    aliadas[0] = new Aliadas("Eirika", "Espadachin", atri, 8, 5, "Mapa_Eirika.png","eirikaBatalla.png" ,"retrato2.png",95,objeto,arma);
-    aliadas[1] = new Aliadas("Meisner", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"retrato1.png",0,objeto,arma);
+    aliadas[0] = new Aliadas("Eirika", "Arquero", atri, 8, 5, "Mapa_Eirika.png","eirikaBatalla.png" ,"retrato2.png",95,objeto,arma);
+    aliadas[1] = new Aliadas("Meisner", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"retrato1.png",95,objeto,arma);
 
     pause_open = new SoundBuffer();
     opause = new Sound();
@@ -183,8 +183,8 @@ void Escenario::init_State(){
     
     tieneQueMostrarStats = false;
 
-    aliadas[0]->setPosition(176,176);
-    aliadas[1]->setPosition(224,176);
+    aliadas[0]->setPosition(176,32);
+    aliadas[1]->setPosition(320,224);
     
     fasesEnemigo = 1;
     turnoEnemigo = 0;
@@ -389,10 +389,10 @@ void Escenario::cambiaMapa(const char* nombremapa) {
     mapa=new Mapa(nombremapa);
     cofres=mapa->getCofres();
     enemigos=mapa->getEnemigos();
-    int atri[] = { 11, 22, 33, 44, 55, 66, 77};
+    int atri[] = { 33, 12, 0, 19, 14, 6, 4};
 
     aliadas[0] = new Aliadas("Eirika", "Espadachin", atri, 8, 5, "Mapa_Eirika.png","eirikaBatalla.png" ,"retrato2.png",95,objeto,arma);
-    aliadas[1] = new Aliadas("Meisner", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"retrato1.png",0,objeto,arma);
+    aliadas[1] = new Aliadas("Meisner", "Espadachin", atri, 8, 5, "Mapa_espadachin_azul.png","ike.png" ,"retrato1.png",95,objeto,arma);
    
     EstadoConversacion::Instance()->reset();
     MenuAcciones::Instance()->reset();

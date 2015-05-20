@@ -128,7 +128,7 @@ void EstadoBatall::init_State(){
     
     batasonido1->setBuffer(*batasonido);
     batasonido1->setVolume(30);
-    batasonido1->play();
+    //batasonido1->play();
     aux= rand()%(101-1);
     aux2= rand()%(101-1);
     
