@@ -40,7 +40,8 @@ ObjetoSeleccionado::ObjetoSeleccionado()
 
 ObjetoSeleccionado::ObjetoSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, Cofre** cofr, int *indice, bool *turno, Objetos** obj, Armas** arm)
 {
-    //arma=new Sprite();
+    armitas=new Sprite*[3];
+    objetitos=new Sprite*[3];
     texturaDedo=new Texture();
     texturaMenu=new Texture();
     cursorDedo= new Sprite();
@@ -55,9 +56,6 @@ ObjetoSeleccionado::ObjetoSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, C
     stats=new Text*[3];
     stats2=new Text*[3];
     fuente=new Font();
-    objeto1=new Sprite();
-    objeto2=new Sprite();
-    objeto3=new Sprite();
     cursorActivo=true;
     cont=0;
     m=map;
@@ -68,18 +66,16 @@ ObjetoSeleccionado::ObjetoSeleccionado(Mapa* map, Aliadas** al, Enemigo** ene, C
     turnoUsu=turno;
     objeto = obj;
     arma = arm;
-    objetos = new Sprite*[3];
     
     init_State();
 }
 
 ObjetoSeleccionado::~ObjetoSeleccionado() {
     
-    delete objeto1;
-    delete objeto2;
-    delete objeto3;
     delete arma;
     delete fuente;
+    delete objetitos;
+    delete armitas;
     delete stats2;
     delete stats;
     delete texturaDedo;
@@ -164,36 +160,35 @@ void ObjetoSeleccionado::render_State()
     
     Juego::Instance()->getVentana()->draw(*usado);
     Juego::Instance()->getVentana()->draw(*tirado);
-    Juego::Instance()->getVentana()->draw(*cursorDedo);
+    
     
     for(int i=0; i<sizeof(stats)-1; i++){
         if(stats[i]!=NULL){ 
             Juego::Instance()->getVentana()->draw(*stats[i]);
+            
+        }
+    }
+    for(int i=0; i<sizeof(stats2)-1; i++){
+        if(stats2[i]!=NULL){ 
             Juego::Instance()->getVentana()->draw(*stats2[i]);
         }
     }
-    Juego::Instance()->getVentana()->draw(*objeto1);
-    Juego::Instance()->getVentana()->draw(*objeto2);
-    Juego::Instance()->getVentana()->draw(*objeto3);
+    for(int i=0; i<sizeof(objetitos)-1; i++){
+        if((objetitos[i]!=NULL) && (objeto!=NULL)){ 
+            Juego::Instance()->getVentana()->draw(*objetitos[i]);
+        }
+    }
+    /*for(int i=0; i<sizeof(armitas)-1; i++){
+        if((armitas[i]!=NULL) && (arma[i]!=NULL)){ 
+            Juego::Instance()->getVentana()->draw(*armitas[i]);
+        }
+    }*/
+    Juego::Instance()->getVentana()->draw(*cursorDedo);
     Juego::Instance()->getVentana()->display();
 }
 
 void ObjetoSeleccionado::mostrarItems(){
     
-    cerr << sizeof(ali[0]->getObjetos()) << endl;
-    for(int i=0; i<sizeof(ali[0]->getObjetos());i++){
-        if(i==0){
-            objetos[i]= new Sprite(ali[0]->getObjetos()[i]->getSprite());
-            //=objeto1;
-        }
-         if(i==1){
-            objetos[i]= new Sprite(ali[0]->getObjetos()[i]->getSprite());
-        } 
-        if(i==2){
-            objetos[i]= new Sprite(ali[0]->getObjetos()[i]->getSprite());
-        }
-    }
-   
     
     
     for(int i=0; i<sizeof(objeto)-1; i++){
@@ -204,11 +199,26 @@ void ObjetoSeleccionado::mostrarItems(){
             ss_stats<<objeto[i]->getNombre();
             
 
-            stats[i] = new Text(ss_stats.str(),*fuente,12);
+            stats[i] = new Text(ss_stats.str(),*fuente,10);
             
             stats[i]->setColor(sf::Color::White);
             stats[i]->setPosition(50,135+(22*i));
+            objetitos[i] = new Sprite(objeto[i]->getSprite());
+            objetitos[i]->setPosition(35,135+(22*i));
             
+            
+        }
+        else
+        {
+            std::stringstream ss_stats;
+
+            cout<<ss_stats.str()<<endl;
+
+            stats[i] = new Text(ss_stats.str(),*fuente,10);
+
+            stats[i]->setColor(sf::Color::White);
+            stats[i]->setPosition(50,135+(22*i));
+            objetitos[i] = NULL;
         }
         
     }
@@ -222,13 +232,26 @@ void ObjetoSeleccionado::mostrarItems(){
             ss_stats2<<arma[i]->getNombre();
             
 
-            stats2[i] = new Text(ss_stats2.str(),*fuente,12);
+            stats2[i] = new Text(ss_stats2.str(),*fuente,10);
             
             stats2[i]->setColor(sf::Color::White);
-            stats2[i]->setPosition(100,135+(22*i));
+            stats2[i]->setPosition(140,135+(22*i));
+            armitas[i] = new Sprite(arma[i]->getSprite());
+            armitas[i]->setPosition(125,135+(22*i));
             
         }
-        
+        else
+        {
+            std::stringstream ss_stats2;
+
+            cout<<ss_stats2.str()<<endl;
+
+            stats2[i] = new Text(ss_stats2.str(),*fuente,10);
+
+            stats2[i]->setColor(sf::Color::White);
+            stats2[i]->setPosition(140,135+(22*i));
+            armitas[i]=NULL;
+        }
     }
 }
 

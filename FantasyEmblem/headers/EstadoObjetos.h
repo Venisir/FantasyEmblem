@@ -74,6 +74,8 @@ private:
     Armas ** arma;
     int *index;//indice de la unidad aliada seleccionada
     int seleccionada;
+    sf::Sprite** armitas;
+    sf::Sprite** objetitos;
     
     sf::Sprite** objetos;
 };
